@@ -90,6 +90,7 @@ function Main() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       const { results } = responseJSON;
+      console.log(results);
       setPostMovie(results);
       setPagination(responseJSON);
     }
