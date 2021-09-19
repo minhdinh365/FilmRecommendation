@@ -1,7 +1,7 @@
 import * as React from "react";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
-import propTypes from 'prop-types'
+import propTypes from "prop-types";
 
 const labels = {
   1: "Useless",
@@ -13,11 +13,11 @@ const labels = {
   7: "Good",
   8: "Good+",
   9: "Excellent",
-  10: "Excellent+"
+  10: "Excellent+",
 };
-Rating.protoType ={
-    number : propTypes.number.isRequired,
-}
+Rating.protoType = {
+  number: propTypes.number.isRequired,
+};
 
 export default function TextRating(props) {
   return (

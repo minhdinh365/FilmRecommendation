@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
-import data from "./data.json"
-import { CommentSection } from 'react-comments-section'
-import './index.css'
-import "./App.css"
+import React, { useState } from "react";
+import data from "./data.json";
+import { CommentSection } from "react-comments-section";
+import "./index.css";
+import "./App.css";
 // import CustomInputt from "./CustomInputt"
 
-
-const  Comment = () => {
-  const [comment, setComment] = useState(data)
+const Comment = () => {
+  const [comment, setComment] = useState(data);
   // const userId = "01a"
   // const avatarUrl = "https://ui-avatars.com/api/name=Riya&background=random"
   // const name = "xyz"
-  const signinUrl = "/signin"
-  const signupUrl = "/signup"
-  let count = 0
-  comment.map(i => { count += 1; i.replies && i.replies.map(i => count += 1) })
+  const signinUrl = "/signin";
+  const signupUrl = "/signup";
+  let count = 0;
+  comment.map((i) => {
+    count += 1;
+    i.replies && i.replies.map((i) => (count += 1));
+  });
   // const customInputFunc = (props) => {
   //   return <CustomInputt parentId={props.parentId}
   //     cancellor={props.cancellor}
@@ -22,8 +24,9 @@ const  Comment = () => {
   //     submit={props.submit} handleCancel={props.handleCancel}/>
   // }
 
-  return <div className = "cols">
-    {/* <div className="commentSection">
+  return (
+    <div className="cols">
+      {/* <div className="commentSection">
       <div className="header">{count} Comments (user logged in)</div>
       <CommentSection currentUser={userId && { userId: userId, avatarUrl: avatarUrl, name: name }} commentsArray={comment}
         setComment={setComment} signinUrl={signinUrl} signupUrl={signupUrl} />
@@ -33,12 +36,17 @@ const  Comment = () => {
     </div>
     <div class="verticalLine">
     </div> */}
-    <div className="commentSection" >
-    <div className="header1">{count} Comments (user not logged in)</div>
-    <CommentSection commentsArray={comment}
-      setComment={setComment} signinUrl={signinUrl} signupUrl={signupUrl} />
-  </div>
-  </div>
-}
+      <div className="commentSection">
+        <div className="header1">{count} Comments (user not logged in)</div>
+        <CommentSection
+          commentsArray={comment}
+          setComment={setComment}
+          signinUrl={signinUrl}
+          signupUrl={signupUrl}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Comment;

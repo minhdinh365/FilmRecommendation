@@ -58,7 +58,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "formatCode" : "prettier --single-quote --trailing-comma all --write '{src/**/*.js}'",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

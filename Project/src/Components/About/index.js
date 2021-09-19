@@ -3,7 +3,6 @@ import Fade from "react-reveal";
 
 class About extends Component {
   render() {
-
     return (
       <section id="about">
         <Fade duration={1000}>
@@ -11,9 +10,9 @@ class About extends Component {
             <div className="three columns">
               <img
                 className="profile-pic"
-                src = {process.env.PUBLIC_URL + '/images/LOGOF.png'}
+                src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
                 alt="Nordic Giant Profile Pic"
-                style ={{width : '320px' , height : '320px'}}
+                style={{ width: "320px", height: "320px" }}
               />
             </div>
             <div className="six columns main-col">
