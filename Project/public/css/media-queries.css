@@ -9,7 +9,52 @@
 
 /* screenwidth less than 1024px
 --------------------------------------------------------------------- */
+@media only screen and (max-width: 1224px) {
+
+   /* header styles
+  ------------------------------------------------------------------ */
+  header .banner-text h1 {
+     font: 80px/1.1em 'opensans-bold', sans-serif;
+     letter-spacing: -1px;
+     margin: 0 auto 12px auto;
+  }
+  #portfolio .list-movie-for-today{
+     padding: 3%;
+  }
+  #portfolio .rating-movie-now{
+   flex-direction: column;
+   justify-content: center;
+  }
+  .Header .hiden-GT{
+   display: none;
+   }
+}
 @media only screen and (max-width: 1024px) {
+   
+   .Header {
+      grid-template-areas: "logo burger" "nav nav";
+    }
+    .Nav {
+      grid-template-rows: repeat(4, auto);
+      grid-template-columns: none;
+      grid-row-gap: 20px;
+  
+      padding: 30px 0 30px;
+      background: rgba(40, 44, 47, 0.95);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    .after-responsive {
+      display: flex;
+      align-items: center;
+    }
+    .Header .hidden-input{
+       display: none;
+    }
+    .Header .hiden-GT{
+      display: inline-block;
+      }
 
     /* header styles
    ------------------------------------------------------------------ */
@@ -18,7 +63,20 @@
       letter-spacing: -1px;
       margin: 0 auto 12px auto;
    }
-
+   #portfolio .list-movie-for-today{
+      padding: 1%;
+   }
+   #portfolio .rating-movie-now{
+      flex-direction: column;
+      justify-content: center;
+     }
+   #portfolio .col4-movie-now{
+      width: 33.33%;
+   }
+    /* bang xep hang*/
+   .slick-slide img{
+      min-height: 250px;
+   }
 }
 
 /* screenwidth less than 900px
@@ -45,18 +103,29 @@
       font: 11px 'opensans-bold', sans-serif;
       letter-spacing: 1.5px;
    }
-
+   header .header-movie {
+      display: block;
+   }
+   header .header-movie .logo{
+      display: inline-block;
+   }
 
    /* About Section
    ------------------------------------------------------------------- */
-   #about .profile-pic {
-      width: 114px;
-      height: 114px;
-      margin-left: 12px;
+   .colI-about-movie{
+      width: 0%;
    }
-   #about .contact-details { width: 50%; }
-   #about .download { width: 50%; }
-
+   .colT-about-movie{
+      width: 100%;
+      text-align: center;
+   }
+   .col-contact-like{
+      align-items: center;
+      display: flex;
+   }
+   .image-about-movie{
+      max-width: 115%;
+   }
    /* Resume Section
    ------------------------------------------------------------------- */
    #resume h1 { font: 16px/24px 'opensans-bold', sans-serif; }
@@ -87,9 +156,22 @@
       font-size: 66px;
       line-height: 66px;
    }
-   #contact .section-head p.lead { font: 17px/33px opensans-light, sans-serif; }
-
-
+   /* phim hom nay*/
+   #portfolio .card-movie-now img {
+      border-radius: 10px;
+      display: block;
+      min-height: 307px;
+  }
+  #portfolio .list-movie-for-today{
+     padding: 0;
+  }
+  
+  #portfolio .rating-movie-now{
+   flex-direction: column;
+   justify-content: center;
+  }
+  /*bang xep hang*/
+ 
 }
 
 /* mobile wide/smaller tablets
@@ -191,6 +273,7 @@
       padding-bottom: 12px;
       padding-top: 6px;
    }
+
    header .banner-text h1 { font: 68px/1.1em 'opensans-bold', sans-serif; }
    header .banner-text h3 {
       font: 16px/1.9em 'librebaskerville-regular', serif;
@@ -211,7 +294,6 @@
 
     /* scrolldown link */
    header .scrolldown { display: none; }
-
 
    /* About Section
    -------------------------------------------------------------------- */
@@ -280,11 +362,17 @@
       text-align: center;
       margin-left: -30px;
    }
+   .title-movie-chart p{
+      font-size: 15px;
+   }
+   #bxhm h3{
+      font-size: 18px;
+   }
 
 
    /* contact Section
    ----------------------------------------------------------------------- */
-   #contact { padding-bottom: 66px; }
+   #contact { padding-bottom: 40px; }
    #contact .section-head { margin-bottom: 12px; }
    #contact .section-head h1 {
       font: 16px/24px 'opensans-bold', sans-serif;            
@@ -292,6 +380,24 @@
       margin-bottom: 30px;
       text-shadow: 0px 1px 3px rgba(0, 0, 0, 1);
    }  
+   #contact .contact-movie{
+      width: 100%;
+      height: auto;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+   }
+   .col-contact-movie{
+      width: 100%;
+      height: auto;
+      display: grid;
+      justify-content: center;
+      text-align: center;
+   }
+   #portfolio .col4-movie-now{
+      width: 50%;
+   }
+
    #contact h1 span { display: block; }
    #contact .header-col { padding-top: 0; }
    #contact .header-col h1:before { content: none;	}
@@ -358,17 +464,32 @@
       font: 14px/1.9em 'librebaskerville-regular', sans-serif;
       width: 90%;
    }
+   header .banner-text ul{
+      display: flex;
+      margin-right: 15px;
+   }
   
    /* header social links */
    header .social { font-size: 20px;}
    header .social li { margin: 0 6px; }
+   .Header img{
+      padding-left: 0;
+   }
 
    /* footer
    ------------------------------------------------------------------------ */
 
    /* social links */
    footer .social-links { font-size: 20px; }
-   footer .social-links li { margin-left: 14px; }   
+   footer .social-links li { margin-left: 14px; }  
+   #portfolio .col4-movie-now{
+      width: 100%;
+   } 
+   #portfolio .card-movie-now img {
+      border-radius: 10px;
+      display: block;
+      min-height: 396px;
+  }
 
 }
 

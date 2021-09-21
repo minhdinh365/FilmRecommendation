@@ -6,46 +6,22 @@ const MovieBXH = (props) => {
     <div>
       <motion.div
         key={props.movie.id}
-        className="columns portfolio-item"
         whileHover={{
           scale: 1.06,
           textShadow: "0 0 8px rgb (255,255,255)",
           boxShadow: "0 0 8px rgb (255,255,255)",
         }}
-        style={{ marginBottom: "60px", maxWidth: "320px" }}
       >
-        <div
-          style={{
-            position: "relative",
-            justifyContent: "center",
-            width: "300px",
-          }}
-        >
+        <div className="card-movie-chart">
           <img
             alt={`https://i.stack.imgur.com/kOnzy.gif`}
             src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
-            style={{ minHeight: "450px" }}
           ></img>
+          <h4 className="chart-movie">Releas</h4>
         </div>
-        <div
-          className="title-Movie"
-          style={{ display: "grid", placeItems: "center", overflow: "hidden" }}
-        >
-          <p
-            style={{
-              textAlign: "center",
-              marginTop: "10px",
-              fontSize: "18px",
-              color: "blue",
-            }}
-          >
-            Ngày khởi chiếu: {props.movie.release_date}
-          </p>
-          <p
-            style={{ textAlign: "center", marginTop: "10px", fontSize: "21px" }}
-          >
-            {props.movie.title}
-          </p>
+        <div className="title-movie-chart">
+          <p>Khởi chiếu: {props.movie.release_date}</p>
+          <h3>{props.movie.title}</h3>
         </div>
       </motion.div>
     </div>

@@ -1,20 +1,20 @@
 import React from "react";
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer/Footer";
-import Contact from "../../Components/Contact/Contact";
+import Header from "../../Components//Header";
+import Footer from "../../Components/Footer";
+import Contact from "../../Components/Contact";
 import FilmsNow from "../../Components/MovieNow";
-import BXH from "../../Components/MovieChart";
+import FilmsOnChart from "../../Components/MovieChart";
 import About from "../../Components/About";
 
 function Index() {
   return (
     <div className="Home">
       <Header />
-      <BXH />
-      <FilmsNow />
+      <FilmsOnChart />
+      <FilmsNow /> 
       <About />
       <Contact />
-      <Footer />
+      <Footer /> 
     </div>
   );
 }

@@ -13,6 +13,7 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 12;
 `;
 const WrapperModal = styled.div`
   margin-top: 10px;
@@ -26,7 +27,6 @@ const WrapperModal = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
   padding: 10px;
 `;
 const Content = styled.div`

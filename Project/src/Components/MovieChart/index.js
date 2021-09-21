@@ -32,15 +32,39 @@ class BXH extends Component {
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
     const Movies = this.state.results
       .slice(0, 15)
       .map((movie) => <MovieBXH key={movie.id} movie={movie}></MovieBXH>);
     return (
       <Container id="bxhm">
-        <div style={{ justifyContent: "space-between", display: "flex" }}>
-          <h2 style={{ marginLeft: "18px" }}>Đang Công Chiếu</h2>
-        </div>
+        <h2>Đang Công Chiếu</h2>
         <Slider ref={(slider) => (this.slider = slider)} {...settings}>
           {Movies}
         </Slider>

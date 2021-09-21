@@ -447,8 +447,6 @@ dd { margin: 0 0 0 20px; }
    background-color: #E6E8EB;
 	color: #A9ADB2;
 }
-.pagination .prev, .pagination .next {}
-
 /*  5. Images  --------------------------------------------------------- */
 
 img {
@@ -461,11 +459,7 @@ img.pull-left { margin: 12px 18px 0px 0px; }
 /*  6. Buttons  --------------------------------------------------------- */
 
 .button,
-.button:visited,
-button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+.button:visited{
    font: 16px/30px 'opensans-bold', sans-serif;
    background: #11ABB0;
    display: inline-block;
@@ -490,29 +484,17 @@ input[type="button"] {
    border-radius: 0px;
 }
 
-.button:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover {
+.button:hover {
    background: #ffffff00;
    color: #fff;
 }
 
-.button:active,
-button:active,
-input[type="submit"]:active,
-input[type="reset"]:active,
-input[type="button"]:active {
+.button:active {
    background: #3d4145;
    color: #fff;
 }
 
-.button.full-width,
-button.full-width,
-input[type="submit"].full-width,
-input[type="reset"].full-width,
-input[type="button"].full-width {
+.button.full-width{
 	width: 100%;
 	padding-left: 0 !important;
 	padding-right: 0 !important;
@@ -520,8 +502,7 @@ input[type="button"].full-width {
 }
 
 /* Fix for odd Mozilla border & padding issues */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
+button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
@@ -531,41 +512,6 @@ input::-moz-focus-inner {
 
 form { margin-bottom: 24px; }
 fieldset { margin-bottom: 24px; }
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-textarea,
-select {
-   display: block;
-   padding: 18px 15px;
-   border: 0;
-   outline: none;
-   vertical-align: middle;
-   min-width: 225px;
-	max-width: 100%;
-   font-size: 15px;
-   line-height: 24px;
-	color: #ffffff00;
-	background: #ffffff00;
-
-}
-
-/* select { padding: 0;
-   width: 220px;
-   } */
-
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-   color: #ffffff;
-	background-color: #ffffff00;
-   border-top-style: hidden;
-   border-right-style: hidden;
-   border-left-style: hidden;
-   border-bottom-style: groove;
-}
 
 textarea { min-height: 220px; }
 
@@ -582,13 +528,6 @@ legend span {
    font: 14px/24px 'opensans-regular', sans-serif;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-    font-size: 15px;
-    color: #737373;
-}
-
-input[type="checkbox"] { display: inline; }
 
 /* ------------------------------------------------------------------ */
 /* d. Grid
@@ -598,12 +537,7 @@ input[type="checkbox"] { display: inline; }
 
 /* default
 --------------------------------------------------------------- */
-.row {
-   width: 100%;
-   max-width: 1420px;
-   margin: 0 auto;
-   padding: 30px;
-}
+
 /* fixed width for IE8 */
 .ie .row { width: 1000px ; }
 
