@@ -28,6 +28,9 @@
   .Header .hiden-GT{
    display: none;
    }
+   .react-autosuggest__input {
+      padding: 8px 15px;
+   }
 }
 @media only screen and (max-width: 1024px) {
    
@@ -49,12 +52,15 @@
       display: flex;
       align-items: center;
     }
-    .Header .hidden-input{
+    .Nav .react-autosuggest__container{
        display: none;
     }
     .Header .hiden-GT{
       display: inline-block;
-      }
+   }
+   .Nav .login-navbar img{
+      display: none;
+   }
 
     /* header styles
    ------------------------------------------------------------------ */
@@ -441,7 +447,6 @@
       line-height: 54px;
    }
 
-
 }
 
 /* mobile narrow
@@ -466,7 +471,6 @@
    }
    header .banner-text ul{
       display: flex;
-      margin-right: 15px;
    }
   
    /* header social links */

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ModalSign from "../../Pages/Login/ModalLogin";
 import { CSSTransition } from "react-transition-group";
+import Search from '../Search/Search'
 
 export default function NavBar() {
   const [isNavVisible, setNavVisibility] = useState(false);
@@ -85,14 +86,13 @@ export default function NavBar() {
           >
             Liên hệ
           </a>
-          <input
-            className="hidden-input"
-            placeholder="Search..."
-            onClick={toggleNav}
-          ></input>
+          <Search className = "hidden-input"></Search>
           {success.username !== "" ? (
             <>
-              <a onClick={Mix} className="login-navbar">
+              <a  className="login-navbar">
+                <img
+                  src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
+               />
                 {success.username}
               </a>
               <button>Log out</button>
@@ -108,7 +108,7 @@ export default function NavBar() {
         </nav>
       </CSSTransition>
       <div className="after-responsive">
-        <input placeholder="Search..."></input>
+        <Search></Search>
         <button onClick={toggleNav} className="Burger">
           🎞️
         </button>

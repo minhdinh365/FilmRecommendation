@@ -143,9 +143,16 @@ body { background: #0f0f0f; }
  }
  .Nav .login-navbar{
     width: 100px;
-    display: block;
+    display: flex;
     justify-content: center;
     text-align: center;
+    height: auto;
+    align-items: center;
+    color: yellow;
+ }
+ .Nav .login-navbar img{
+    padding-left: 0px;
+    width: 64%;
  }
  .Nav .login-navbar:hover{
    cursor: pointer;
@@ -443,6 +450,7 @@ ul#nav li.current a { color: #fe6928; }
    display: grid;
    place-items: center;
    overflow: hidden;
+   padding: 0 38px;
 }
 .title-movie-chart p{
    text-align: center;
@@ -465,7 +473,7 @@ ul#nav li.current a { color: #fe6928; }
    padding: 3px 10px;
    color: white;
    border-radius: 0 5px 5px 0;
-   background-color: #46e1ff;
+   background-color: red;
 }
 .card-movie-chart image{
    display: block;
@@ -1035,3 +1043,95 @@ footer .social-links li:first-child { margin-left: 0; }
    width: 20%;
    height: 30px;
 }
+/*Search*/
+.react-autosuggest__container {
+   position: relative;
+   line-height: 19px;
+ }
+ 
+ .react-autosuggest__input {
+   width: 280px;
+   height: 35px;
+   padding: 10px 20px;
+   font-family: Helvetica, sans-serif;
+   font-weight: 300;
+   font-size: 16px;
+   border: 1px solid #aaa;
+   border-radius: 4px;
+ }
+ 
+ .react-autosuggest__input--focused {
+   outline: none;
+ }
+ 
+ .react-autosuggest__input--open {
+   border-bottom-left-radius: 0;
+   border-bottom-right-radius: 0;
+ }
+ 
+ .react-autosuggest__suggestions-container {
+   display: none;
+ }
+ 
+ .react-autosuggest__suggestions-container--open {
+   display: block;
+   position: absolute;
+   top: 38px;
+   width: 100%;
+   border: 1px solid #46e1ff;
+   background-color: #000000;
+   font-family: Helvetica, sans-serif;
+   font-weight: 300;
+   font-size: 16px;
+   border-bottom-left-radius: 4px;
+   border-bottom-right-radius: 4px;
+   z-index: 2;
+ }
+ 
+ .react-autosuggest__suggestions-list {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+ }
+ 
+ .react-autosuggest__suggestion {
+   cursor: pointer;
+   padding: 10px 10px;
+ }
+ 
+ .react-autosuggest__suggestion--highlighted {
+   background-color: rgb(45, 44, 44);
+ }
+ 
+ .searchResult-text {
+   line-height: 25px;
+   overflow: hidden;
+   text-align: left;
+   white-space: nowrap;
+   display: block;
+   font-size: 18px;
+ }
+ 
+ .searchResult-image {
+     width: 30%;
+     height: 50px;
+     float: left;
+     margin-right: 8px;
+     text-indent:-9999px;
+ }
+ 
+ .searchResult-name {
+     color: #46e1ff;
+     font-size: 18px;
+ }
+ 
+ .searchResult-date {
+     color: white;
+     font-size: 14px;
+ }
+ 
+ .searchResult-link {
+   display: block;
+   padding: 5px;
+   text-decoration: none;
+ }

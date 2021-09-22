@@ -17,7 +17,7 @@ const MovieBXH = (props) => {
             alt={`https://i.stack.imgur.com/kOnzy.gif`}
             src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
           ></img>
-          <h4 className="chart-movie">Releas</h4>
+          <h4 className="chart-movie">NEW</h4>
         </div>
         <div className="title-movie-chart">
           <p>Khởi chiếu: {props.movie.release_date}</p>
