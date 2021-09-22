@@ -141,6 +141,16 @@ body { background: #0f0f0f; }
    transform: translateY(3px);
    box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
  }
+ .Nav .login-navbar{
+    width: 100px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+ }
+ .Nav .login-navbar:hover{
+   cursor: pointer;
+}
+
  
  .after-responsive {
    display: none;
@@ -1012,4 +1022,16 @@ footer .social-links li:first-child { margin-left: 0; }
 /*Pagination*/
 .pagination-movie p{
    color: white;
+}
+/*Comment*/
+.form-comment{
+   display: flex;
+}
+.input-comment{
+   width: 100%;
+   border-radius: 5px;
+}
+.button-comment{
+   width: 20%;
+   height: 30px;
 }
