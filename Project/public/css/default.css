@@ -648,7 +648,6 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  font: 16px/30px "opensans-bold", sans-serif;
   background: #11abb0;
   display: inline-block;
   text-decoration: none;
@@ -720,10 +719,8 @@ fieldset {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-textarea,
 select {
   display: block;
-  padding: 18px 15px;
   border: 0;
   outline: none;
   vertical-align: middle;
@@ -741,18 +738,13 @@ select {
 
 input[type="text"]:focus,
 input[type="password"]:focus,
-input[type="email"]:focus,
-textarea:focus {
+input[type="email"]:focus {
   color: #ffffff;
   background-color: #ffffff00;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: groove;
-}
-
-textarea {
-  min-height: 220px;
 }
 
 label,

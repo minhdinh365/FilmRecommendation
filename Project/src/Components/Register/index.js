@@ -151,33 +151,35 @@ const SignUp = () => {
       });
     }
   };
-  if (
-    textInput.FirstName.trim() &&
-    textInput.LastName.trim() &&
-    textInput.Email.trim() &&
-    textInput.Password.trim() &&
-    textInput.RePassword.trim() &&
-    textInput.Password.trim() === textInput.RePassword.trim()
-  ) {
-    var passwordHash = require("password-hash");
-    axios
-      .post("http://192.168.1.3:3030/users", {
-        username: textInput.LastName,
-        password: passwordHash.generate(textInput.Password),
-        email: textInput.Email,
-        role: 1,
-        avatar: uploadedImage.current.currentSrc,
-        full_name: textInput.FirstName,
-      })
-      .then(
-        (response) => {
-          console.log("OK");
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
+  const postRegister = () => {
+    if (
+      textInput.FirstName.trim() &&
+      textInput.LastName.trim() &&
+      textInput.Email.trim() &&
+      textInput.Password.trim() &&
+      textInput.RePassword.trim() &&
+      textInput.Password.trim() === textInput.RePassword.trim()
+    ) {
+      var passwordHash = require("password-hash");
+      axios
+        .post("http://192.168.1.3:3030/users", {
+          username: textInput.LastName,
+          password: passwordHash.generate(textInput.Password),
+          email: textInput.Email,
+          role: 1,
+          avatar: uploadedImage.current.currentSrc,
+          full_name: textInput.FirstName,
+        })
+        .then(
+          (response) => {
+            console.log("OK");
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  };
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
@@ -275,7 +277,7 @@ const SignUp = () => {
                 });
               }}
             />
-            <RegisterButton onClickCapture={checkTextInput}>
+            <RegisterButton onClickCapture={(checkTextInput, postRegister)}>
               <span>Register</span>
             </RegisterButton>
           </Information>

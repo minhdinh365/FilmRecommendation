@@ -75,7 +75,7 @@ export const Rate = styled.div`
   font-weight: 700;
 
   & .iconify {
-    color: #00fc87;
+    color: yellow;
     margin-right: 5px;
   }
 `;
@@ -88,7 +88,7 @@ export const Like = styled.div`
   align-items: center;
 
   & .iconify {
-    color: #00fc87;
+    color: gray;
     margin-right: 5px;
   }
 `;
@@ -107,7 +107,7 @@ export const TrailerButton = styled.button`
 
   & .iconify {
     margin-right: 5px;
-    color: #00fc87;
+    color: red;
   }
 `;
 

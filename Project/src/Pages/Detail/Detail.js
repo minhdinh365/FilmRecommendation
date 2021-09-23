@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DetailMovieCard from "../../Components/DetailMovieCard";
-import Evaluate from "../../Components/EvaluateMovie";
+import CommentBox from "../../Components/EvaluateMovie";
 import axios from "axios";
 
 const Detail = () => {
@@ -20,7 +20,7 @@ const Detail = () => {
   return (
     <>
       <DetailMovieCard contents={content} />
-      <Evaluate />
+      <CommentBox />
     </>
   );
 };

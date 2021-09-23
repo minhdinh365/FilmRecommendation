@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ModalVideo from "react-modal-video";
+import moment from "moment";
 
 import {
   PlayYoutube,
@@ -20,10 +21,15 @@ import {
   Budget,
   Revenue,
 } from "./DetailMovieCardElement";
+
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
-  console.log("1");
+
+  var str = props.contents.release_date;
+  var date = moment(str);
+  var release_date = date.utc().format("YYYY-MM-DD");
+
   return (
     <>
       <PlayYoutube style={{ display: hidden }}>
@@ -51,10 +57,7 @@ const DetailMovieCard = (props) => {
                 <span>{props.contents.evaluate}</span>
               </Rate>
               <Like>
-                <span
-                  className="iconify"
-                  data-icon="ant-design:heart-filled"
-                ></span>
+                <span className="iconify" data-icon="mdi:eye"></span>
                 <span>{props.contents.view}</span>
               </Like>
               <TrailerButton
@@ -72,7 +75,7 @@ const DetailMovieCard = (props) => {
             <Statistics>
               <ReleaseDate>
                 <div>Release Date:</div>
-                <div>{props.contents.release_date}</div>
+                <div>{release_date}</div>
               </ReleaseDate>
               <RunningTime>
                 <div>Running Time:</div>
