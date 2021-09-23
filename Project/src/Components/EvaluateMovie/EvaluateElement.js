@@ -26,12 +26,14 @@ export const EvaluateFrame = styled.div`
 
   & h3 {
     margin-top: 30px;
+    font-size: 18px;
     color: #fff;
     font-weight: 400;
     padding: 0 20px;
   }
   & h4 {
     margin-top: 30px;
+    font-size: 16px;
     color: #fff;
     font-weight: 400;
     display: flex;
@@ -64,7 +66,8 @@ export const Send = styled.button`
 `;
 
 export const Icon = styled.img`
-  margin-top: 30px;
+  margin-top: 35px;
   border-radius: 50%;
-  max-width: 50px;
+  width: 50px;
+  height: 50px;
 `;

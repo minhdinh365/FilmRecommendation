@@ -1,16 +1,4 @@
 import styled from "styled-components";
-export const Background = styled.video`
-  position: fixed;
-  margin: auto;
-  width: auto;
-  height: auto;
-  float: left;
-  z-index: 100;
-  right: 0;
-  bottom: 0;
-  min-height: 100%;
-  min-width: 100%;
-`;
 
 export const Form = styled.div`
   width: 100%;
@@ -88,6 +76,13 @@ export const Information = styled.div`
   }
   & h1 {
     text-align: center;
+  }
+  & .MuiInputLabel-outlined {
+    transform: translate(14px, 10px) scale(1);
+    font-size: 14px;
+  }
+  & .MuiFormHelperText-root {
+    font-size: 1rem;
   }
 `;
 

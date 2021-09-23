@@ -23,6 +23,7 @@ import {
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
+  console.log("1");
   return (
     <>
       <PlayYoutube style={{ display: hidden }}>
@@ -38,23 +39,23 @@ const DetailMovieCard = (props) => {
       </PlayYoutube>
       <Container>
         <Card>
-          <Poster src={props.contents.Image} />
+          <Poster src={props.contents.poster_url} />
           <Detail>
-            <Title>{props.contents.Title}</Title>
+            <Title>{props.contents.title}</Title>
             <Controller>
               <Rate>
                 <span
                   className="iconify"
                   data-icon="ant-design:star-filled"
                 ></span>
-                <span>{props.contents.Star}</span>
+                <span>{props.contents.evaluate}</span>
               </Rate>
               <Like>
                 <span
                   className="iconify"
                   data-icon="ant-design:heart-filled"
                 ></span>
-                <span>{props.contents.Heart}</span>
+                <span>{props.contents.view}</span>
               </Like>
               <TrailerButton
                 onClick={() => {
@@ -66,24 +67,24 @@ const DetailMovieCard = (props) => {
                 <span>Play Trailer</span>
               </TrailerButton>
             </Controller>
-            <Slogan>{props.contents.Slogan}</Slogan>
-            <Desc>{props.contents.Description}</Desc>
+            <Slogan>{props.contents.slogan}</Slogan>
+            <Desc>{props.contents.overview}</Desc>
             <Statistics>
               <ReleaseDate>
                 <div>Release Date:</div>
-                <div>{props.contents.ReleaseDate}</div>
+                <div>{props.contents.release_date}</div>
               </ReleaseDate>
               <RunningTime>
                 <div>Running Time:</div>
-                <div>{props.contents.Runtime} mins</div>
+                <div>{props.contents.running_time} mins</div>
               </RunningTime>
               <Budget>
                 <div>Budget: </div>
-                <div>$ {props.contents.Budget}</div>
+                <div>$ {props.contents.budget}</div>
               </Budget>
               <Revenue>
                 <div>Revenue: </div>
-                <div>$ {props.contents.Revenue}</div>
+                <div>$ {props.contents.revenue}</div>
               </Revenue>
             </Statistics>
           </Detail>

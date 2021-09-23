@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
-  Background,
   Form,
   Card,
   Upload,
@@ -11,7 +11,6 @@ import {
   RegisterButton,
   ImageTemp,
 } from "./RegisterElement";
-import video from ".video.mp4";
 import { TextField } from "@material-ui/core";
 
 const SignUp = () => {
@@ -37,6 +36,8 @@ const SignUp = () => {
     errorPassword: "",
     errorRePassword: "",
   });
+  const uploadedImage = React.useRef(null);
+  const imageUploader = React.useRef(null);
 
   const checkTextInput = () => {
     //check first name
@@ -76,6 +77,7 @@ const SignUp = () => {
         };
       });
     }
+
     //check Email
     if (!textInput.Email.trim()) {
       setErrorMessage((errorMessage) => {
@@ -131,6 +133,14 @@ const SignUp = () => {
           errorRePassword: "Please re-enter the password again",
         };
       });
+    } else if (textInput.Password.trim() !== textInput.RePassword.trim()) {
+      setErrorMessage((errorMessage) => {
+        return {
+          ...errorMessage,
+          checkRePassword: true,
+          errorRePassword: "Re - Password does not match password",
+        };
+      });
     } else {
       setErrorMessage((errorMessage) => {
         return {
@@ -141,9 +151,33 @@ const SignUp = () => {
       });
     }
   };
-
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
+  if (
+    textInput.FirstName.trim() &&
+    textInput.LastName.trim() &&
+    textInput.Email.trim() &&
+    textInput.Password.trim() &&
+    textInput.RePassword.trim() &&
+    textInput.Password.trim() === textInput.RePassword.trim()
+  ) {
+    var passwordHash = require("password-hash");
+    axios
+      .post("http://192.168.1.3:3030/users", {
+        username: textInput.LastName,
+        password: passwordHash.generate(textInput.Password),
+        email: textInput.Email,
+        role: 1,
+        avatar: uploadedImage.current.currentSrc,
+        full_name: textInput.FirstName,
+      })
+      .then(
+        (response) => {
+          console.log("OK");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
@@ -160,15 +194,6 @@ const SignUp = () => {
 
   return (
     <>
-      <Background
-        autoPlay={true}
-        loop={true}
-        controls={false}
-        playsInline
-        muted
-      >
-        <source src={video} type="video/mp4" />
-      </Background>
       <Form>
         <Card>
           <Upload>
