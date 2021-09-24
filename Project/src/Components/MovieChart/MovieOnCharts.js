@@ -1,10 +1,16 @@
 import { motion } from "framer-motion";
 import propTypes from "prop-types";
+import {Link} from 'react-router-dom'
+
 
 const MovieBXH = (props) => {
+
   return (
-    <div>
-      <motion.div
+    <Link to={{
+      pathname: `/inforuser/${props.movie.id}`,
+      state: props.movie.id // your data array of objects
+    }}>
+      <motion.div className ="card-chart"
         key={props.movie.id}
         whileHover={{
           scale: 1.06,
@@ -24,7 +30,7 @@ const MovieBXH = (props) => {
           <h3>{props.movie.title}</h3>
         </div>
       </motion.div>
-    </div>
+    </Link>
   );
 };
 

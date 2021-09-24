@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ModalSign from "../../Pages/Login/ModalLogin";
 import { CSSTransition } from "react-transition-group";
-import Search from '../Search/Search'
+import Search from '../Search/Search';
+import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
 export default function NavBar() {
   const [isNavVisible, setNavVisibility] = useState(false);
@@ -19,7 +21,7 @@ export default function NavBar() {
   /*set small when screen less than 1024px*/
   const handleMediaQueryChange = (mediaQuery) => {
     if (mediaQuery.matches) {
-      setIsSmallScreen(true);
+      setIsSmallScreen(true);  
     } else {
       setIsSmallScreen(false);
     }
@@ -30,8 +32,11 @@ export default function NavBar() {
   };
   /*State check login*/
   const [success, setSuccess] = useState({
-    username: "Bang",
+    username: Cookies.get('User'),
   });
+  // let decodedToken = jwt_decode(success.username);
+  // console.log("Decoded Token", decodedToken.username);
+
   /*State show modal login*/
   const [showModalLogin, setShowModalLogin] = useState(false);
   /*Show modal login*/
@@ -48,9 +53,9 @@ export default function NavBar() {
         showModal={showModalLogin}
         setShowModal={setShowModalLogin}
       ></ModalSign>
-      <a className="smoothscroll current" href="#home" onClick={toggleNav}>
+      <a className="smoothscroll current" href="http://localhost:3000" onClick={toggleNav}>
         <img
-          href="#home"
+          href="http://localhost:3000"
           src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
           className="Logo"
           alt="logo"
@@ -74,26 +79,27 @@ export default function NavBar() {
           </a>
           <a
             className="smoothscroll hiden-GT"
-            href="#about"
+            href="/#about"
             onClick={toggleNav}
           >
             Giới thiệu
           </a>
           <a
             className="smoothscroll hiden-GT"
-            href="#contact"
+            href="/#contact"
             onClick={toggleNav}
           >
             Liên hệ
           </a>
           <Search className = "hidden-input"></Search>
-          {success.username !== "" ? (
+          {success.username !== undefined
+          ? (
             <>
-              <a  className="login-navbar">
+              <a href= "/inforuser" className="login-navbar">
                 <img
                   src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
                />
-                {success.username}
+              {decodedToken.username}
               </a>
               <button>Log out</button>
             </>
