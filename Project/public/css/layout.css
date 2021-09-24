@@ -964,6 +964,10 @@ call-to-action .button {
    display: grid;
    justify-content: center;
 }
+.col-contact-movie ul{
+   list-style-type: none;
+   padding: 0;
+}
 
 
 #contact h4 {
