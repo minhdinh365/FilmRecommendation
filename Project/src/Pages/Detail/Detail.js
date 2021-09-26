@@ -7,22 +7,28 @@ const Detail = () => {
   const [content, setContent] = useState([]);
   useEffect(() => {
     axios
-      .get("http://192.168.1.3:3030/films?id=834068")
+      .get("http://192.168.1.3:3030/comments?id=834068")
       .then(({ data }) => {
-        setContent(data.films);
-        console.log(data.films);
+        setContent(data);
       })
       .catch((err) => {});
-
     return () => {};
   }, []);
-
-  return (
-    <>
-      <DetailMovieCard contents={content} />
-      <CommentBox />
-    </>
-  );
+  if (content.length) {
+    return (
+      <>
+        <DetailMovieCard contents={content[0].film} />
+        <CommentBox evaluate={content} information={content[0].info} />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <DetailMovieCard contents={content} />
+        <CommentBox />
+      </>
+    );
+  }
 };
 
 export default Detail;

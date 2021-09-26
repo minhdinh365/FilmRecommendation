@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Rating from "@material-ui/lab/Rating";
+
 import {
   EvaluateFrame,
   Card,
@@ -11,27 +12,39 @@ import {
 } from "./EvaluateElement";
 
 class CommentBox extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
-      comments: [
-        {
-          avatar: "https://lh3.googleusercontent.com/a/default-user=s96-c",
-          full_name: "Minh Dinh",
-          username: "",
-          start: 3,
-          content:
-            "Phim này rất hay ........... ............ ............ .......... .......... ......... ........ ........ ........ .......... ..... đó nha mọi người. Mọi người vào xem đi ạ",
-        },
-      ],
+      comments: [],
+      information: [],
     };
+  }
+  componentWillUpdate(nextProps, nextState) {
+    if (
+      this.state.comments !== nextState.comments &&
+      this.props.evaluate === this.state.information
+    ) {
+      this.setState({
+        comments: this.state.comments.concat([nextState.comments]),
+      });
+    }
+    if (this.state.information !== nextProps.information) {
+      this.setState({ information: nextProps.information });
+    }
+    if (this.props.evaluate !== nextProps.evaluate) {
+      this.setState({ comments: nextProps.evaluate });
+    }
   }
   render() {
     const comments = this._getComments();
 
     return (
       <>
-        <CommentForm addComment={this._addComment.bind(this)} />
+        <CommentForm
+          addComment={this._addComment.bind(this)}
+          information={this.state.information}
+        />
         <EvaluateFrame>
           <Card>
             <h2>Review</h2>
@@ -42,37 +55,39 @@ class CommentBox extends React.Component {
     );
   }
 
-  _addComment(start, content) {
+  _addComment(full_name, avatar, start, content) {
     const comment = {
-      username: "minhdinh365",
-      full_name: "minh dinh",
-      avatar: "https://lh3.googleusercontent.com/a/default-user=s96-c",
-      start,
-      content,
+      full_name: full_name,
+      avatar: avatar,
+      evaluate: start,
+      contents: content,
     };
     this.setState({ comments: this.state.comments.concat([comment]) });
   }
 
   _getComments() {
-    return this.state.comments.map((comment) => {
-      return (
-        <Evaluate
-          full_name={comment.full_name}
-          avatar={comment.avatar}
-          star={comment.start}
-          content={comment.content}
-        />
-      );
-    });
+    if (this.state.comments !== undefined) {
+      return this.state.comments.map((comment) => {
+        return (
+          <Evaluate
+            avatar={this.state.information.avatar}
+            full_name={this.state.information.full_name}
+            star={comment.evaluate}
+            content={comment.contents}
+          />
+        );
+      });
+    }
   }
 }
 
 class CommentForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { star: 5 };
   }
-  render() {
+
+  render(props) {
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
         <EvaluateFrame>
@@ -103,7 +118,12 @@ class CommentForm extends React.Component {
     event.preventDefault();
     let start = this.state.star;
     let content = this._content;
-    this.props.addComment(start, content.value);
+    this.props.addComment(
+      this.props.information.full_name,
+      this.props.information.avatar,
+      start,
+      content.value
+    );
   }
 }
 class Evaluate extends React.Component {
