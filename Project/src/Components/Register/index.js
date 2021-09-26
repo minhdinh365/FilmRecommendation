@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import passwordHash from 'password-hash'
 import {
   Form,
   Card,
@@ -160,7 +161,6 @@ const SignUp = () => {
       textInput.RePassword.trim() &&
       textInput.Password.trim() === textInput.RePassword.trim()
     ) {
-      var passwordHash = require("password-hash");
       axios
         .post("http://192.168.1.3:3030/users", {
           username: textInput.LastName,

@@ -21,13 +21,7 @@ Rating.protoType = {
 
 export default function TextRating(props) {
   return (
-    <div
-      style={{
-        width: 200,
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <div className="rating-movie-now">
       <Rating
         max={10}
         name="text-feedback"

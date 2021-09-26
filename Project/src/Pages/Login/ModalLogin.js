@@ -18,6 +18,7 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 12;
 `;
 const WrapperModal = styled.div`
   margin-top: 90px;
@@ -121,7 +122,7 @@ export const ModalLogin = ({ showModal, setShowModal }) => {
         if (res.data.status === "Susscess") {
           hideLoader();
           setShowModal(false);
-          setCookie("User", res.data.token, { path: "http://localhost:3000/" });
+          setCookie("User", res.data.token, { path: "http://localhost:3000/"});
         } else {
           hideLoader();
           setErrorTM("Tên tài khoản hoặc mật khẩu không đúng");

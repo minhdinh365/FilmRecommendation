@@ -1,4 +1,3 @@
-import { Container, Row } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { URL_DETAIL, API_KEY } from "../../API/const";
 import Pagination from "../Pagination";
@@ -6,60 +5,36 @@ import { motion } from "framer-motion";
 import propTypes from "prop-types";
 import queryString from "query-string";
 import Rating from "./Rating";
-import styled from "styled-components";
-const Title = styled.span`
-  display: block;
-  width: 80%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: center;
-`;
+import axios from 'axios';
 
 const MovieCard = (props) => {
   return (
-    <div>
-      <motion.div
-        key={props.movie.id}
-        className="columns portfolio-item"
-        whileHover={{
-          scale: 1.06,
-          textShadow: "0 0 8px rgb (255,255,255)",
-          boxShadow: "0 0 8px rgb (255,255,255)",
-        }}
-        style={{ marginBottom: "60px", maxWidth: "330px" }}
-      >
-        <div
-          style={{
-            position: "relative",
-            justifyContent: "center",
-            width: "300px",
-          }}
-        >
-          <img
-            alt={`${props.movie.title} Movie Poster`}
-            src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
-            style={{ minHeight: "450px" }}
-          ></img>
-        </div>
-        <div
-          className="title-Movie"
-          style={{ display: "grid", placeItems: "center", overflow: "hidden" }}
-        >
-          <Title>{props.movie.title}</Title>
-          <Rating
-            number={
-              props.movie.vote_average != ""
-                ? Math.ceil(props.movie.vote_average)
-                : 9
-            }
-          ></Rating>
-          <span style={{ fontWeight: 600, color: "blue", fontSize: "2.5vh" }}>
-            Xem Ngay
-          </span>
-        </div>
-      </motion.div>
-    </div>
+    <motion.div
+      key={props.movie.id}
+      className="col4-movie-now"
+      whileHover={{
+        scale: 1.06,
+        textShadow: "0 0 8px rgb (255,255,255)",
+        boxShadow: "0 0 8px rgb (255,255,255)",
+      }}
+    >
+      <div className="card-movie-now">
+        <img
+          alt={`${props.movie.title} Movie Poster`}
+          src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
+        ></img>
+        <h5 className="new-movie">Full HD</h5>
+        <h2>{props.movie.title}</h2>
+        <Rating
+          number={
+            props.movie.vote_average !== ""
+              ? Math.ceil(props.movie.vote_average)
+              : 9
+          }
+        ></Rating>
+        <h3>Xem Ngay</h3>
+      </div>
+    </motion.div>
   );
 };
 MovieCard.propTypes = {
@@ -90,9 +65,19 @@ function Main() {
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       const { results } = responseJSON;
-      console.log(results);
       setPostMovie(results);
       setPagination(responseJSON);
+      axios.post('http://localhost:5000/pages', {
+        page : responseJSON.page,
+        id : responseJSON.results[0].id
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     }
     fetchPostMovie();
   }, [filters]);
@@ -106,10 +91,10 @@ function Main() {
     <MovieCard key={movie.id} movie={movie} />
   ));
   return (
-    <Container>
-      <Row>{Movies}</Row>
+    <div className="movie-for-today">
+      <div className="list-movie-for-today">{Movies}</div>
       <Pagination pagination={pagination} onPageChange={handleOnPageChange} />
-    </Container>
+    </div>
   );
 }
 

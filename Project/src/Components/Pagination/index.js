@@ -11,7 +11,7 @@ Pagination.defaultProps = {
 function Pagination(props) {
   const { pagination, onPageChange } = props;
 
-  const { page, results, total_pages, total_results } = pagination;
+  const { page, total_pages } = pagination;
 
   function handleOnPageChange(newPage) {
     if (onPageChange) {
@@ -19,22 +19,22 @@ function Pagination(props) {
     }
   }
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="pagination-movie">
       <a className="smoothscroll" href="#portfolio">
         <button
+          className="btn-pagination"
           disabled={page <= 1}
           onClick={() => handleOnPageChange(page - 1)}
-          style={{ margin: "20px" }}
         >
           Prev
         </button>
       </a>
-      <p style={{ alignItems: "center", display: "flex" }}>Trang ... {page}</p>
+      <p>Trang ... {page}</p>
       <a className="smoothscroll" href="#portfolio">
         <button
+          className="btn-pagination"
           disabled={page >= total_pages}
           onClick={() => handleOnPageChange(page + 1)}
-          style={{ margin: "20px" }}
         >
           Next
         </button>

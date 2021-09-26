@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ModalVideo from "react-modal-video";
 import moment from "moment";
+import axios from "axios";
+import { VIDEO_LINK,API_KEY } from "../../API/const";
 
 import {
   PlayYoutube,
@@ -20,6 +22,7 @@ import {
   RunningTime,
   Budget,
   Revenue,
+  Background
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
@@ -29,23 +32,29 @@ const DetailMovieCard = (props) => {
   var str = props.contents.release_date;
   var date = moment(str);
   var release_date = date.utc().format("YYYY-MM-DD");
-
+  const  [idVideo, setidVideo] = useState();
+  const url = `${VIDEO_LINK}${props.contents.id}/videos${API_KEY}`;
+    axios.get(url).then(response => {
+      setidVideo(response.data.results[0].key);
+    });
   return (
     <>
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
           channel="youtube"
           isOpen={isOpen}
-          videoId={"L61p2uyiMSo"}
+          videoId={idVideo}
           onClose={() => {
             setOpen(false);
             setHidden("none");
           }}
+          autoPlay = {false}
         />
       </PlayYoutube>
-      <Container>
+      <Background style={{ backgroundImage: `url("https://image.tmdb.org/t/p/w500/${props.contents.backdrop_path}")`}}>
+      <Container >
         <Card>
-          <Poster src={props.contents.poster_url} />
+          <Poster src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`} />
           <Detail>
             <Title>{props.contents.title}</Title>
             <Controller>
@@ -54,11 +63,11 @@ const DetailMovieCard = (props) => {
                   className="iconify"
                   data-icon="ant-design:star-filled"
                 ></span>
-                <span>{props.contents.evaluate}</span>
+                <span>{props.contents.vote_average}</span>
               </Rate>
               <Like>
                 <span className="iconify" data-icon="mdi:eye"></span>
-                <span>{props.contents.view}</span>
+                <span>{props.contents.vote_count}</span>
               </Like>
               <TrailerButton
                 onClick={() => {
@@ -70,7 +79,7 @@ const DetailMovieCard = (props) => {
                 <span>Play Trailer</span>
               </TrailerButton>
             </Controller>
-            <Slogan>{props.contents.slogan}</Slogan>
+            <Slogan>{props.contents.tagline}</Slogan>
             <Desc>{props.contents.overview}</Desc>
             <Statistics>
               <ReleaseDate>
@@ -79,7 +88,7 @@ const DetailMovieCard = (props) => {
               </ReleaseDate>
               <RunningTime>
                 <div>Running Time:</div>
-                <div>{props.contents.running_time} mins</div>
+                <div>{props.contents.runtime} mins</div>
               </RunningTime>
               <Budget>
                 <div>Budget: </div>
@@ -93,6 +102,7 @@ const DetailMovieCard = (props) => {
           </Detail>
         </Card>
       </Container>
+      </Background>
     </>
   );
 };

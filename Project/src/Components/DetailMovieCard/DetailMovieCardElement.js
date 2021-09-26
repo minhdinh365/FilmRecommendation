@@ -33,10 +33,16 @@ export const PlayYoutube = styled.div`
   }
 `;
 
+export const Background = styled.div`
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+`
+
 export const Container = styled.div`
+margin: 100px auto auto auto;
   width: 100%;
   max-width: 1260px;
-  margin: auto;
   display: flex;
   justify-content: center;
 `;
