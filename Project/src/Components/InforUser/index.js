@@ -1,23 +1,22 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Cookies from 'js-cookie';
-import { useRouteMatch } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
-export default function index(props) {
-    const [cookie, setcookie] = useState({
-        username: Cookies.get('User'),
 
-    })
-    const {
-        params: { id },
-      } = useRouteMatch('/inforuser/:id');
-    console.log('ne:  ' + id)
+export default function Information() {
+  const cookieUser = Cookies.get('User')
+  const [success, setSuccess] = useState();
+  if(cookieUser){
+    setSuccess(jwt_decode(cookieUser))
+  }
+  console.log('ne:  ' + id)
     return (
         <div className ="information_user">
-            {cookie.username === undefined || cookie.username === null  || cookie.username === ""
+            {(success === undefined )
             ? 
-            <div className="khong">ban can phai dang nhap <img src = ''/> </div> 
+            <div className="khong"><img className ="errorPage" src = {process.env.PUBLIC_URL + "/images/errorPage.png"} />Bạn cần phải đăng nhập<img src = ''/> </div> 
             : 
-            <div className= "co">la : {cookie.username + id}</div>}
+            <div className= "co">la : {success}</div>}
         </div>
     )
 }

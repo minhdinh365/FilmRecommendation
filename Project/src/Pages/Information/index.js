@@ -3,8 +3,9 @@ import Header from "../../Components//Header/NavBar";
 import Contact from "../../Components/Contact";
 import Information from '../../Components/InforUser'
 
-function Index(props) {
 
+
+function Index(props) {
   return (
     <div className="informatiton">
       <Header />

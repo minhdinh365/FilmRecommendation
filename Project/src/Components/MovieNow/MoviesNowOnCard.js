@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import propTypes from "prop-types";
 import queryString from "query-string";
 import Rating from "./Rating";
+import axios from 'axios';
 
 const MovieCard = (props) => {
   return (
@@ -66,6 +67,17 @@ function Main() {
       const { results } = responseJSON;
       setPostMovie(results);
       setPagination(responseJSON);
+      axios.post('http://localhost:5000/pages', {
+        page : responseJSON.page,
+        id : responseJSON.results[0].id
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     }
     fetchPostMovie();
   }, [filters]);

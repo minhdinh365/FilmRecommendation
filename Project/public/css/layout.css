@@ -1212,6 +1212,9 @@ footer .social-links li:first-child { margin-left: 0; }
    padding: 5px;
    text-decoration: none;
  }
+ .search-card{
+    text-decoration: none;
+ }
  /*Information of a user*/
  .informatiton{
    display: block;
@@ -1222,4 +1225,15 @@ footer .social-links li:first-child { margin-left: 0; }
    align-items: center;
    display: flex;
    height: 68vh;
+}
+.information_user .khong{
+   justify-content: center;
+   align-items: center;
+   display: flex;
+   height: 68vh;
+   flex-direction: column;
+}
+.information_user .errorPage{
+   width: 60%;
+   height: auto;
 }

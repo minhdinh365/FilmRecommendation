@@ -31,12 +31,17 @@ export default function NavBar() {
     setNavVisibility(!isNavVisible);
   };
   /*State check login*/
-  const [success, setSuccess] = useState({
-    username: Cookies.get('User'),
-  });
-  // let decodedToken = jwt_decode(success.username);
-  // console.log("Decoded Token", decodedToken.username);
+  const cookieUser = Cookies.get('User')
+  const [success, setSuccess] = useState();
 
+
+  useEffect(() => {
+    if(cookieUser !== 'undefined' ){
+      setSuccess(cookieUser)
+      console.log('Day la luc set cookie: ' +cookieUser)
+    }
+  }, [cookieUser])
+  
   /*State show modal login*/
   const [showModalLogin, setShowModalLogin] = useState(false);
   /*Show modal login*/
@@ -92,14 +97,14 @@ export default function NavBar() {
             Liên hệ
           </a>
           <Search className = "hidden-input"></Search>
-          {success.username !== undefined
+          {(success !== undefined)
           ? (
             <>
               <a href= "/inforuser" className="login-navbar">
                 <img
                   src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
                />
-              {decodedToken.username}
+              {jwt_decode(success)}
               </a>
               <button>Log out</button>
             </>
