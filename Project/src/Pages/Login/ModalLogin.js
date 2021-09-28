@@ -80,7 +80,6 @@ const Content = styled.div`
 const InputField = styled.input`
   border-top-style: hidden;
   border-right-style: hidden;
-  border-left-style: hidden;
   border-bottom-style: groove;
   color: black;
 `;
@@ -94,6 +93,17 @@ const Errors = styled.div`
   justify-content: center;
   display: flex;
 `;
+const Button = styled.button`
+  height: 60px;
+  font-size: 23px;
+  padding: 10px 20px;
+  background-color: #5b83e3;
+  color: #fff;
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0px;
+`
 const schema = yup.object().shape({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
@@ -120,9 +130,10 @@ export const ModalLogin = ({ showModal, setShowModal }) => {
     })
       .then((res) => {
         if (res.data.status === "Susscess") {
+          window.location.reload();
           hideLoader();
           setShowModal(false);
-          setCookie("User", res.data.token, { path: "http://localhost:3000/"});
+          setCookie("User", res.data.token, { path: "http://localhost:3000/"})
         } else {
           hideLoader();
           setErrorTM("Tên tài khoản hoặc mật khẩu không đúng");
@@ -189,7 +200,7 @@ export const ModalLogin = ({ showModal, setShowModal }) => {
                     </p>
                   </div>
                   <div>
-                    <button type="submit">Login</button>
+                    <Button type="submit">Login</Button>
                   </div>
                   <OtherSign>
                     <span>Or Sign Up Using</span>

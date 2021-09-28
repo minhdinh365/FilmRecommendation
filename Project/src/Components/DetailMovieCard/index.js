@@ -75,7 +75,7 @@ const DetailMovieCard = (props) => {
                   setHidden("flex");
                 }}
               >
-                <span class="iconify" data-icon="clarity:play-solid"></span>
+                <span className="iconify" data-icon="clarity:play-solid"></span>
                 <span>Play Trailer</span>
               </TrailerButton>
             </Controller>

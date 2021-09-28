@@ -30,15 +30,13 @@ export default function NavBar() {
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
+
   /*State check login*/
   const cookieUser = Cookies.get('User')
-  const [success, setSuccess] = useState();
-
-
+  const [success, setSuccess] = useState('');
   useEffect(() => {
-    if(cookieUser !== 'undefined' ){
-      setSuccess(cookieUser)
-      console.log('Day la luc set cookie: ' +cookieUser)
+    if(cookieUser){
+      setSuccess(jwt_decode(cookieUser).username)
     }
   }, [cookieUser])
   
@@ -51,6 +49,10 @@ export default function NavBar() {
   function Mix() {
     toggleNav();
     OpenModalLogin();
+  }
+  function Logout() {
+      Cookies.remove('User', {path: "http://localhost:3000/"})
+      window.location.reload()
   }
   return (
     <div className="Header">
@@ -97,16 +99,16 @@ export default function NavBar() {
             Liên hệ
           </a>
           <Search className = "hidden-input"></Search>
-          {(success !== undefined)
+          {(success !== '')
           ? (
             <>
               <a href= "/inforuser" className="login-navbar">
                 <img
                   src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
                />
-              {jwt_decode(success)}
+              {success}
               </a>
-              <button>Log out</button>
+              <button onClick ={Logout}>Log out</button>
             </>
           ) : (
             <>

@@ -161,7 +161,7 @@ body {
    box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
  }
  .Nav .login-navbar{
-    width: 105px;
+    width: 157px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -172,7 +172,8 @@ body {
  }
  .Nav .login-navbar img{
     padding-left: 0px;
-    width: 64%;
+    width: 44%;
+    border-radius: 50%;
  }
  .Nav .login-navbar:hover{
    cursor: pointer;
@@ -438,7 +439,7 @@ ul#nav li.current a { color: #fe6928; }
 
 }
 #bxhm h2 {
-   font: 26px 'opensans-semibold', sans-serif;
+   font: 31px 'opensans-semibold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 1px;
    text-align: center;
@@ -461,9 +462,11 @@ ul#nav li.current a { color: #fe6928; }
    max-width: 100%;
    height: auto;
 }
-
+#bxhm .slick-list{
+   padding-top: 20px;
+}
 .card-chart{
-   margin-bottom: 15px;
+   margin-bottom: 40px;
 }
 .title-movie-chart{
    display: grid;
@@ -501,6 +504,26 @@ ul#nav li.current a { color: #fe6928; }
    -webkit-line-clamp: 2; /* number of lines to show */
    -webkit-box-orient: vertical;
 }
+
+.title-movie-chart h3::after {
+	position: absolute;
+	content: "";
+	width: 0%;
+	height: 2px;
+	background-color: rgb(255, 247, 0);
+	left: 50%;
+	bottom: -12px;
+   justify-content: center;
+   display: flex;
+	transition: all 0.4s ease-in-out;
+}
+.card-chart:hover .title-movie-chart h3::after {
+	width: 60%;
+	left: 20%;
+}
+
+
+
 .card-movie-chart .chart-movie{
    position: absolute;
    top: 0;
@@ -531,7 +554,6 @@ ul#nav li.current a { color: #fe6928; }
 
 #portfolio {
    background: #000000;
-   padding-top: 60px;
    padding-bottom: 60px;
 }
 #portfolio h1 {
@@ -547,6 +569,69 @@ ul#nav li.current a { color: #fe6928; }
    max-width: 100%;
    height: auto;
 }
+#portfolio hr{
+   color: gray;
+   width: 100%;
+   margin-bottom: 50px;
+}
+.typeMovie{
+   width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.type-move-choose{
+   width: 20%;
+   align-items: center;
+   display: flex;
+   justify-content: center;
+   font-size: 25px;
+   color: white;
+   font-weight: 300;
+   position: relative;
+   display: inline-block;
+   background-color: rgb(45, 42, 42);
+   
+}
+.type-move-choose li{
+   padding: 10px 0px;
+   width: 100%;
+   display: inline-block;
+   text-align: center;
+   font-weight: 300;
+   font-size: 20px;
+}
+.type-move-choose li:hover{
+   cursor: pointer;
+   background-color:#58afd1;
+}
+.name-category{
+   display: flex;
+   justify-content: center;
+   padding: 10px 0;
+}
+.name-category:hover{
+  cursor: pointer;
+}
+.list-categories{
+   display: none;
+   position: absolute;
+   background-color: rgb(0, 0, 0,0.8);
+   width: 100%;
+   left: 0;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+   list-style-type: none;
+   padding: 15px 5px;
+   margin: 0;
+   justify-content: center;
+   transition: all .5s ease;
+}
+ .name-category:hover ~ .list-categories {display: block;}
+ .list-categories:hover{
+    display: block;
+ }
 
 .pagination-movie{
    display: flex;
@@ -614,6 +699,7 @@ ul#nav li.current a { color: #fe6928; }
    border-radius: 10px;
    display: block;
    min-height: 393px;
+   border: 2px solid;
 }
 .card-movie-now h2{
    overflow: hidden;
@@ -636,9 +722,63 @@ ul#nav li.current a { color: #fe6928; }
    text-transform: uppercase;
    letter-spacing: 1px;
    color: #46e1ff;
-   padding:  0px 10px;
+   padding:  10px 10px;
    margin: 0;
 }
+
+
+.card-movie-now h3 {
+   color: #58afd1;
+   transition: color 0.25s 0.0833333333s;
+   position: relative;
+}
+.card-movie-now h3::before, .card-movie-now h3::after {
+   border: 0 solid transparent;
+   box-sizing: border-box;
+   content: '';
+   pointer-events: none;
+   position: absolute;
+   width: 0;
+   height: 0;
+   bottom: 0;
+   right: 0;
+}
+.card-movie-now h3::before {
+   border-bottom-width: 2px;
+   border-left-width: 2px;
+}
+.card-movie-now h3::after {
+   border-top-width: 2px;
+   border-right-width: 2px;
+}
+.card-movie-now h3:hover {
+   color: #FFFF00;
+}
+.card-movie-now h3:hover::before, .card-movie-now h3:hover::after {
+   border-color: #FFFF00;
+   transition: border-color 0s, width 0.25s, height 0.25s;
+   width: 100%;
+   height: 100%;
+}
+.card-movie-now h3:hover::before {
+   transition-delay: 0s, 0s, 0.25s;
+}
+.card-movie-now h3:hover::after {
+   transition-delay: 0s, 0.25s, 0s;
+}
+.btn {
+   background: none;
+   border: none;
+   cursor: pointer;
+   line-height: 1.5;
+   font: 700 1.2rem 'Roboto Slab', sans-serif;
+   padding: 1em 2em;
+   letter-spacing: 0.05rem;
+}
+.card-movie-now h3:focus {
+   outline: 1px dotted #55d7dc;
+}
+
 .card-movie-now p{
    margin: 0;
    font-size: 18px;

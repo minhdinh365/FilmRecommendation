@@ -6,6 +6,7 @@ import propTypes from "prop-types";
 import queryString from "query-string";
 import Rating from "./Rating";
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 const MovieCard = (props) => {
   return (
@@ -16,8 +17,11 @@ const MovieCard = (props) => {
         scale: 1.06,
         textShadow: "0 0 8px rgb (255,255,255)",
         boxShadow: "0 0 8px rgb (255,255,255)",
-      }}
-    >
+      }}>
+         <Link to={{
+      pathname: `/detail/${props.movie.id}`,
+      state: props.movie.id // your data array of objects
+    }}>
       <div className="card-movie-now">
         <img
           alt={`${props.movie.title} Movie Poster`}
@@ -32,8 +36,9 @@ const MovieCard = (props) => {
               : 9
           }
         ></Rating>
-        <h3>Xem Ngay</h3>
+        <h3 className ="btn-XemNgay from-center">Xem Ngay</h3>
       </div>
+      </Link>
     </motion.div>
   );
 };
@@ -67,17 +72,6 @@ function Main() {
       const { results } = responseJSON;
       setPostMovie(results);
       setPagination(responseJSON);
-      axios.post('http://localhost:5000/pages', {
-        page : responseJSON.page,
-        id : responseJSON.results[0].id
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
     }
     fetchPostMovie();
   }, [filters]);
@@ -99,3 +93,21 @@ function Main() {
 }
 
 export default Main;
+
+
+// const paramString = queryString.stringify(filters);
+// const requestUrl = `${URL_DETAIL}popular${API_KEY}&language=en-US&${paramString}`;
+// const response = await fetch(requestUrl);
+// const responseJSON = await response.json();
+// const { results } = responseJSON;
+// setPostMovie(results);
+// setPagination(responseJSON);
+// axios.post('http://localhost:5000/films', {
+//   films : responseJSON.results,
+// })
+// .then(function (response) {
+//   console.log(response);
+// })
+// .catch(function (error) {
+//   console.log(error);
+// });

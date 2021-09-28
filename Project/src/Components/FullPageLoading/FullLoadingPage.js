@@ -2,12 +2,13 @@ import React from "react";
 
 export default function FullLoadingPage() {
   return (
-    <div>
+    <div >
       <div className="lp-container">
         <img
-          src={`https://icon-library.com/images/loading-icon-animated-gif/loading-icon-animated-gif-7.jpg`}
+           src={process.env.PUBLIC_URL + "/images/loading.gif"}
           className="fp-loader"
           alt="Loading..."
+
         ></img>
       </div>
     </div>

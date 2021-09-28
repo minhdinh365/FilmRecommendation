@@ -5,12 +5,14 @@ import Contact from "../../Components/Contact";
 import FilmsNow from "../../Components/MovieNow";
 import FilmsOnChart from "../../Components/MovieChart";
 import About from "../../Components/About";
+import axios from 'axios';
 
+axios.defaults.baseURL = 'http://localhost:5000';
 function Index() {
   return (
     <div className="Home">
       <Header />
-      <FilmsOnChart />
+      <FilmsOnChart /> 
       <FilmsNow /> 
       <About />
       <Contact />

@@ -45,6 +45,7 @@ margin: 100px auto auto auto;
   max-width: 1260px;
   display: flex;
   justify-content: center;
+
 `;
 
 export const Card = styled.div`
