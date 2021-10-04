@@ -6,7 +6,7 @@ import cors from "cors";
 import { getUser, postUser } from "./Controllers/Users.js";
 import { getInfo } from "./Controllers/Informations.js";
 import { getFilms, postFilms } from "./Controllers/Films.js";
-import { getComments } from "./Controllers/Comments.js";
+import { getComments, postComment } from "./Controllers/Comments.js";
 const app = express();
 const port = 3030;
 
@@ -48,7 +48,11 @@ app.post("/films", (req, res) => {
   postFilms(req, res);
 });
 
-app.get("/comments", (req, res) => {
-  getComments(req, res);
-});
+app
+  .get("/comments", (req, res) => {
+    getComments(req, res);
+  })
+  .post("/comments", (req, res) => {
+    postComment(req, res);
+  });
 app.listen(port);

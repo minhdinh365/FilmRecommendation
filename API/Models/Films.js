@@ -1,23 +1,24 @@
 import mongoose from "mongoose";
 
 const Films = mongoose.Schema({
+  adult: { type: Boolean },
+  backdrop_path: {
+    type: String,
+    trim: true,
+  },
+  genre_ids: {
+    type: mongoose.Schema.Types.Array,
+    trim: true,
+  },
   id: {
-    type: String,
-    trim: true,
-  },
-  title: {
-    type: String,
-    trim: true,
-  },
-  slogan: {
-    type: String,
-    trim: true,
-  },
-  evaluate: {
     type: Number,
     trim: true,
   },
-  view: {
+  original_language: {
+    type: Number,
+    trim: true,
+  },
+  original_title: {
     type: String,
     trim: true,
   },
@@ -25,30 +26,34 @@ const Films = mongoose.Schema({
     type: String,
     trim: true,
   },
-  release_date: {
-    type: Date,
+  popularity: {
+    type: mongoose.Schema.Types.Mixed,
     trim: true,
   },
-  running_time: {
+  poster_path: {
     type: Number,
     trim: true,
   },
-  budget: {
+  release_date: {
     type: String,
     trim: true,
   },
-  revenue: {
+  title: {
+    type: Boolean,
+    trim: true,
+  },
+  video: {
     type: String,
     trim: true,
   },
-  poster_url: {
-    type: String,
+  vote_average: {
+    type: mongoose.Schema.Types.Mixed,
     trim: true,
   },
-  background: {
-    type: String,
+  vote_count: {
+    type: Number,
     trim: true,
   },
 });
 
-export default mongoose.model("films", Films);
+export default mongoose.model("filmlists", Films);
