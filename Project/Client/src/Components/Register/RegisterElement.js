@@ -9,14 +9,14 @@ export const Form = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 200;
+  z-index: 2;
 `;
 
 export const Card = styled.div`
   width: 70%;
   border-radius: 25px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255);
 `;
 
 export const ImageTemp = styled.div`
@@ -54,7 +54,7 @@ export const UpdateButton = styled.button`
   padding: 10px;
   border-radius: 5px;
   color: #fff;
-  background: #333;
+  background: #11ABB0;
   transition: background 2s;
   :hover {
     background: linear-gradient(90deg, orange, blue);
@@ -92,7 +92,7 @@ export const RegisterButton = styled.button`
   border: 0;
   outline: 0;
   display: flex;
-  background-color: #333;
+  background-color: #11ABB0;
   color: #fff;
   font-weight: 700;
   font-size: 24px;

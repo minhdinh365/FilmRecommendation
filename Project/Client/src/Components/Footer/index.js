@@ -28,7 +28,7 @@ class Footer extends Component {
           </Fade>
           <div id="go-top">
             <a className="smoothscroll" title="Back to Top" href="#home">
-              <i className="fas fa-chevron-up"></i>
+              ^
             </a>
           </div>
         </Row>

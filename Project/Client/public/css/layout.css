@@ -71,7 +71,10 @@ body {
    display: grid;
    grid-template-areas: "logo nav";
    z-index: 15;
-   background-color: #282c34;
+   background: transparent;
+ }
+.Header.color{
+   background: #282c34;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
  }
  .Header img{
@@ -140,7 +143,7 @@ body {
    padding: 10px;
    outline: none;
    border: none;
-   font-size: 15px;
+   font-size: 20px;
    color: white;
    font-weight: 600;
    background-color: red;
@@ -461,6 +464,12 @@ ul#nav li.current a { color: #fe6928; }
 #bxhm img {
    max-width: 100%;
    height: auto;
+   min-height: 473px;
+}
+#bxhm .advertisments-movie{
+   display: block;
+   min-height: 10px;
+   margin: auto;
 }
 #bxhm .slick-list{
    padding-top: 20px;
@@ -555,6 +564,46 @@ ul#nav li.current a { color: #fe6928; }
 #portfolio {
    background: #000000;
    padding-bottom: 60px;
+   position: relative;
+   height: 100%;
+   overflow: scroll;
+}
+
+.advertisments-left{
+   top: 0;
+   position: fixed;
+   left: 0;
+   width: 10%;
+   height: 100%;
+   display: none;
+   justify-content: center;
+   z-index: 14;
+}
+.advertisments-right{
+   top: 0;
+   position: fixed;
+   right: 0;
+   width: 10%;
+   height: 100%;
+   display: none;
+   justify-content: center;
+   z-index: 14;
+}
+.advertisments-right.show{
+   display: block;
+}
+.advertisments-left.show{
+   display: block;
+}
+.exit-advertisment{
+   position: absolute;
+   width: 30px;
+   height: 30px;
+   border-radius: 15px;
+   background-color: white;
+   color: black;
+   text-align: center;
+   left: 1320px;
 }
 #portfolio h1 {
    font: 15px/24px 'opensans-semibold', sans-serif;
@@ -613,6 +662,8 @@ ul#nav li.current a { color: #fe6928; }
 }
 .name-category:hover{
   cursor: pointer;
+  background-color: rgb(0, 0, 0,0.8);
+
 }
 .list-categories{
    display: none;
@@ -631,6 +682,7 @@ ul#nav li.current a { color: #fe6928; }
  .name-category:hover ~ .list-categories {display: block;}
  .list-categories:hover{
     display: block;
+    border-top: 1px solid gray;
  }
 
 .pagination-movie{
@@ -681,6 +733,10 @@ ul#nav li.current a { color: #fe6928; }
    flex-wrap: wrap;
    justify-content: center;
 
+}
+.movie-for-today img{
+   margin:  40px auto auto auto;
+   display: block;
 }
 .col4-movie-now{
    width: 25%;
@@ -1364,7 +1420,8 @@ footer .social-links li:first-child { margin-left: 0; }
    justify-content: center;
    align-items: center;
    display: flex;
-   height: 68vh;
+   height: auto;
+   margin-top: 79px;
 }
 .information_user .khong{
    justify-content: center;
@@ -1376,4 +1433,14 @@ footer .social-links li:first-child { margin-left: 0; }
 .information_user .errorPage{
    width: 60%;
    height: auto;
+}
+
+
+/*Login*/
+.spanLogin{
+   font-family: serif;
+   font-size: 20px;
+}
+.btnLogin{
+   display: flex;
 }

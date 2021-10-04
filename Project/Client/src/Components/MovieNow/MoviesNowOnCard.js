@@ -88,6 +88,7 @@ function Main() {
     <div className="movie-for-today">
       <div className="list-movie-for-today">{Movies}</div>
       <Pagination pagination={pagination} onPageChange={handleOnPageChange} />
+      <img src ="https://i.imgur.com/uDoxArg.gif" alt ="no advertisment"/>
     </div>
   );
 }

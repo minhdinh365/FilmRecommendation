@@ -63,6 +63,9 @@ class BXH extends Component {
       .map((movie) => <MovieBXH key={movie.id} movie={movie}></MovieBXH>);
     return (
       <Container id="bxhm">
+        <a className="advertisments-movie-link" href ="https://www.fb88anh.com/vi-VN/Account/Register/?affiliateId=2715&cID=1066&tID=1956">
+          <img className= "advertisments-movie" src ="https://i.imgur.com/ZCnc3gg.gif" alt ="no advertisments"/>          
+        </a>                
         <h2>Đang Công Chiếu</h2>
         <Slider ref={(slider) => (this.slider = slider)} {...settings}>
           {Movies}

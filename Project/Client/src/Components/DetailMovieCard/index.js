@@ -3,6 +3,7 @@ import ModalVideo from "react-modal-video";
 import moment from "moment";
 import axios from "axios";
 import { VIDEO_LINK,API_KEY } from "../../API/const";
+import Advertisments from '../Advertisments'
 
 import {
   PlayYoutube,
@@ -28,7 +29,6 @@ import {
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
-
   var str = props.contents.release_date;
   var date = moment(str);
   var release_date = date.utc().format("YYYY-MM-DD");
@@ -39,6 +39,7 @@ const DetailMovieCard = (props) => {
     });
   return (
     <>
+    <Advertisments start ={0} end = {1000}/>
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
           channel="youtube"
@@ -51,7 +52,7 @@ const DetailMovieCard = (props) => {
           autoPlay = {false}
         />
       </PlayYoutube>
-      <Background style={{ backgroundImage: `url("https://image.tmdb.org/t/p/w500/${props.contents.backdrop_path}")`}}>
+      <Background style={{ backgroundImage: `url("https://image.tmdb.org/t/p/original/${props.contents.backdrop_path}")`}}>
       <Container >
         <Card>
           <Poster src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`} />

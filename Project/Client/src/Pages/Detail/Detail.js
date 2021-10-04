@@ -25,6 +25,7 @@ const Detail = () => {
         <Header/>
         <DetailMovieCard contents={content[0].film} />
         {/* <CommentBox evaluate={content} information={content[0].info} /> */}
+
         <Footer/>
       </>
     );
