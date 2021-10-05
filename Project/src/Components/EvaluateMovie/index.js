@@ -13,6 +13,8 @@ import {
   ReviewFrame,
   ReplyFrame,
   ReplyBox,
+  ButtonReply,
+  GroupPost,
 } from "./EvaluateElement";
 
 class CommentBox extends React.Component {
@@ -143,12 +145,16 @@ class CommentForm extends React.Component {
                 }}
               />
             </Group>
-            <Comment
-              rows="1"
-              placeholder="Please Log In To Write Your Comment"
-              ref={(textarea) => (this._content = textarea)}
-            ></Comment>
-            <Send type="submit">Send</Send>
+            <Group>
+              <Comment
+                rows="1"
+                placeholder="Please Log In To Write Your Comment"
+                ref={(textarea) => (this._content = textarea)}
+              ></Comment>
+              <Send type="submit">
+                <span class="iconify" data-icon="akar-icons:send"></span>
+              </Send>
+            </Group>
           </Card>
         </EvaluateFrame>
       </form>
@@ -173,6 +179,8 @@ class Evaluate extends React.Component {
     super(props);
     this.state = {
       showComments: false,
+      id_check: "",
+      on_blur: false,
     };
   }
   render() {
@@ -182,14 +190,16 @@ class Evaluate extends React.Component {
       buttonText = "Cancel";
       commentNodes = (
         <>
-          <ReplyBox
-            rows="1"
-            placeholder="Please Log In To Write Your Comment"
-            ref={(textarea) => (this._content = textarea)}
-          ></ReplyBox>
-          <Send type="button" onClick={this._handleSubmit.bind(this)}>
-            Send
-          </Send>
+          <GroupPost id={"gr" + this.props.id}>
+            <ReplyBox
+              rows="1"
+              placeholder="Please Log In To Write Your Comment"
+              ref={(textarea) => (this._content = textarea)}
+            ></ReplyBox>
+            <ButtonReply type="button" onClick={this._handleSubmit.bind(this)}>
+              <span class="iconify" data-icon="akar-icons:send"></span>
+            </ButtonReply>
+          </GroupPost>
         </>
       );
     }
@@ -203,7 +213,6 @@ class Evaluate extends React.Component {
             <h4>{this.props.content}</h4>
           </Frame>
         </EvaluateFrame>
-        {/* <form onSubmit={this._handleSubmit.bind(this)}> */}
         <EvaluateFrame>
           <Frame>
             <label for={this.props.id}>{buttonText}</label>
@@ -214,12 +223,10 @@ class Evaluate extends React.Component {
               id={this.props.id}
               value={this.props.id}
               onClick={this._handleClick.bind(this)}
-              checked={this.state.showComments}
             />
             {commentNodes}
           </Frame>
         </EvaluateFrame>
-        {/* </form> */}
       </>
     );
   }

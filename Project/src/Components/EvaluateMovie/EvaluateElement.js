@@ -9,6 +9,12 @@ export const Card = styled.div`
     justify-content: center;
     align-items: center;
   }
+
+  & div:nth-child(2) {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const Frame = styled.div`
@@ -65,7 +71,7 @@ export const EvaluateFrame = styled.div`
 
   & h3 {
     font-size: 16px;
-    color: green;
+    color: #00fc87;
     font-weight: 600;
   }
   & h4 {
@@ -92,7 +98,7 @@ export const ReviewFrame = styled.div`
 
   & h3 {
     font-size: 16px;
-    color: green;
+    color: #00fc87;
     font-weight: 600;
   }
 
@@ -105,13 +111,16 @@ export const ReviewFrame = styled.div`
 
 export const Group = styled.div``;
 
+export const GroupPost = styled.div`
+  grid-column: 4;
+  display: flex;
+`;
+
 export const Comment = styled.textarea`
   background: silver;
   border-radius: 10px;
   min-height: 32px;
-  max-width: 100%;
-  min-width: 50%;
-  width: 70%;
+  min-width: 88%;
   color: #333;
   font-size: 18px;
   text-align: center;
@@ -122,9 +131,8 @@ export const Comment = styled.textarea`
 export const ReplyBox = styled.textarea`
   background: silver;
   border-radius: 10px;
+  height: 32px;
   min-height: 32px;
-  max-width: 100%;
-  min-width: 50%;
   width: 70%;
   color: #333;
   font-size: 18px;
@@ -135,15 +143,49 @@ export const ReplyBox = styled.textarea`
 `;
 
 export const Send = styled.button`
-  padding: 3px;
+  margin: auto;
+  width: auto;
   text-decoration: none;
   font-weight: bolder;
   border: 0;
   outline: 0;
   color: #333;
-  background-color: white;
+  background: none;
+  justify-content: center;
   border-radius: 5px;
   cursor: pointer;
+
+  & .iconify {
+    margin-right: 5px;
+    height: 32px;
+    width: 42px;
+    background: silver;
+    border-radius: 5px;
+    color: #333;
+  }
+`;
+
+export const ButtonReply = styled.button`
+  margin: auto;
+  width: auto;
+  text-decoration: none;
+  font-weight: bolder;
+  border: 0;
+  outline: 0;
+  color: #333;
+  background: none;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+
+  & .iconify {
+    margin-right: 5px;
+    height: 32px;
+    width: 42px;
+    background: silver;
+    border-radius: 5px;
+    color: #333;
+  }
 `;
 
 export const Icon = styled.img`

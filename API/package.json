@@ -1,26 +1,38 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Recommendation films",
-  "main": "index.js",
   "type": "module",
+  "description": "",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon  index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhbangnguyen1235/api_userMovies.git"
   },
   "keywords": [
-    "recommendation",
-    "films"
+    "nodejs"
   ],
-  "author": "MinhDinh",
+  "author": "Thanh Bang",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thanhbangnguyen1235/api_userMovies/issues"
+  },
+  "homepage": "https://github.com/thanhbangnguyen1235/api_userMovies#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
-    "mongoose": "^6.0.6"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
+    "express-handlebars": "^5.3.4",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.5",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.12",
+    "react-native-cookie": "^0.3.0"
   }
 }

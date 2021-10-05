@@ -1,13 +1,21 @@
-import Films from "../Models/Films.js";
+import {Film} from "../models/Film.js";
 
-export const getFilms = (req, res) => {
-  Films.find({ id: req.query.id }, (err, films) => {
-    if (!err) {
-      res.status(200).json(films[0]);
-    } else res.status(400).json({ error: "Error !!!" });
-  });
+export const  getFilms = async (req, res) => {
+  try {
+    const List = await Film.find().limit(20).skip(((req.query.page)-1)*20);
+    res.json({
+      page: req.query.page,
+      results : List
+    })
+} catch (err) {
+    return req.status(500).json({msg: err.message});
+}
 };
+
 export const postFilms = (req, res) => {
-  const films = new Films(req.body);
-  films.save();
+    req.body.films.forEach((item) =>{
+        const films = new Film(item)
+        films.save();
+    })
+
 };

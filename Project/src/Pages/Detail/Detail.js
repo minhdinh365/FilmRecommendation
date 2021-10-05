@@ -13,7 +13,7 @@ const Detail = () => {
   const [content, setContent] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://192.168.1.3:3030/comments?id=597891`)
+      .get(`http://192.168.1.3:3030/comments?id=595743`)
       .then(({ data }) => {
         setContent(data);
       })
