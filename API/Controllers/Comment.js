@@ -1,19 +1,21 @@
-import {Comment} from '../models/Comment.js';
+import { Comment } from "../models/Comment.js";
 
-export const saveComment = async(req, res) =>{
-    try{
-        const comment = new Comment(req.boby)
-        comment.save((err, comment) =>{
-            if(err) return res.json({success : false, err})
-            Comment.find({'_id' : comment._id})
-            .populate('writer')
-            .exec((err, result) =>{
-                if(err) return res.json({success: false, err})
-                return res.status(200).json({success: true, result})
-            })
-        });
+export const getComments = async (req, res) => {
+  try {
+    const comments = await Comment.find({ id_film: Number(req.query.id) })
+      .populate("film")
+      .populate("info");
+    if (comments.length != 0) {
+      res.status(200).json(comments);
+    } else {
     }
-    catch(err){
-        return req.status(500).json({msg: err.message});
-    }
-}
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
+
+export const postComment = (req, res) => {
+  const cmt = new Comment(req.body.comment);
+  cmt.save();
+  console.log("Da tao cmt");
+};

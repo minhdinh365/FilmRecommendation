@@ -19,8 +19,8 @@ const Detail = () => {
       })
       .catch((err) => {});
     return () => {};
-  }, []);
-  if (content.length) {
+  });
+  if (content.length)
     return (
       <>
         <Header />
@@ -29,7 +29,7 @@ const Detail = () => {
         <Footer />
       </>
     );
-  } else {
+  else
     return (
       <>
         <Header />
@@ -38,7 +38,6 @@ const Detail = () => {
         <Footer />
       </>
     );
-  }
 };
 
 export default Detail;

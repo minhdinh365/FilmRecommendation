@@ -1,27 +1,63 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const schema = mongoose.Schema({
-    writer:{
-        type : String,
-        trim : true,
-        ref: 'Account',
+const schema = mongoose.Schema(
+  {
+    id: {
+      type: Number,
+      require: true,
+      trim: true,
     },
-    postId : {
-        type : String,
-        require: true,
-        trim: true,
-        ref: 'Film',
+    id_film: {
+      type: Number,
+      ref: "filmlists",
+      trim: true,
     },
-    responseTo:{
-        type: String,
-        require: true,
-        trim: true,
-        ref: 'Account'
+    id_info: {
+      type: String,
+      ref: "information",
+      trim: true,
     },
-    content:{
-        type: String,
-    }
+    evaluate: {
+      type: Number,
+      trim: true,
+    },
+    contents: {
+      type: String,
+      trim: true,
+    },
+    is_reply: {
+      type: Number,
+    },
+    date: {
+      type: mongoose.Schema.Types.Date,
+      default: Date.now(),
+    },
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+schema.virtual("film", {
+  ref: "filmlists",
+  localField: "id_film",
+  foreignField: "id",
+  justOne: true,
+});
 
-},{timestamps : true});
+schema.virtual("info", {
+  ref: "information",
+  localField: "id_info",
+  foreignField: "username",
+  justOne: true,
+});
 
-export const Comment = mongoose.model('comment', schema)
+schema.pre("save", function (next) {
+  if (!this.isNew) {
+    next();
+    return;
+  }
+
+  autoIncrementModelID("activities", this, next);
+});
+export const Comment = mongoose.model("comments", schema);
