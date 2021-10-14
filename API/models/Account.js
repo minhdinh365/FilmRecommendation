@@ -32,6 +32,7 @@ const schema = mongoose.Schema(
   }
 );
 
+
 schema.virtual("info", {
   ref: "information",
   localField: "username",

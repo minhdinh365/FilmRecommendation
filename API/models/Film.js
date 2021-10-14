@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const schema = mongoose.Schema({
+  category:{
+    type: mongoose.Schema.Types.Array,
+    trim: true,
+  },
   adult: {
     type: Boolean,
     trim: true,
@@ -15,9 +19,6 @@ const schema = mongoose.Schema({
   },
   id: {
     type: Number,
-    ref: "comments",
-    trim: true,
-    require: true,
   },
   original_language: {
     type: String,
@@ -33,7 +34,6 @@ const schema = mongoose.Schema({
   },
   popularity: {
     type: Number,
-    trim: true,
   },
   poster_path: {
     type: String,
@@ -53,15 +53,12 @@ const schema = mongoose.Schema({
   },
   vote_average: {
     type: Number,
-    trim: true,
   },
   vote_count: {
     type: Number,
-    trim: true,
   },
   revenue: {
     type: Number,
-    trim: true,
   },
   video_id: {
     type: String,
@@ -72,12 +69,17 @@ const schema = mongoose.Schema({
     trim: true,
   },
   run_time: {
-    number: Number,
+    type: Number,
   },
   budget: {
-    number: Number,
+    type: Number,
   },
-});
+},
+{ 
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true },
+},  
+); 
 
 schema.virtual("cmt", {
   ref: "comments",
@@ -87,4 +89,4 @@ schema.virtual("cmt", {
   count: true,
 });
 
-export const Film = mongoose.model("filmlists", schema);
+export const Film = mongoose.model("filmlists", schema)

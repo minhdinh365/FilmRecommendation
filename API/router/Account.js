@@ -1,5 +1,4 @@
 import express from 'express'
-// import { getAdmins} from '../controllers/Admin.js'
 import {getAccount, showAccount,loginInfor} from '../controllers/Account.js'
 
 
@@ -9,7 +8,7 @@ router.route('/account')
     .post(getAccount)
     .get(showAccount)
 
-router.route('/account/infor')
+router.route('/account/infor/:username')
     .post(loginInfor)
 
 export default router
