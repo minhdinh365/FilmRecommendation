@@ -35,6 +35,7 @@
     "mongoose": "^6.0.5",
     "node-sass": "^6.0.1",
     "nodemon": "^2.0.13",
+    "password-hash": "^1.2.2",
     "react-native-cookie": "^0.3.0"
   }
 }

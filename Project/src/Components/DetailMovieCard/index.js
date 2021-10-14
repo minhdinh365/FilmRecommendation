@@ -29,21 +29,21 @@ const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
 
-  var str = props.contents.release_date;
-  var date = moment(str);
-  var release_date = date.utc().format("YYYY-MM-DD");
-  const [idVideo, setidVideo] = useState();
-  const url = `${VIDEO_LINK}${props.contents.id}/videos${API_KEY}`;
-  axios.get(url).then((response) => {
-    setidVideo(response.data.results[0].key);
-  });
+  // var str = props.contents.release_date;
+  // var date = moment(str);
+  // var release_date = date.utc().format("YYYY-MM-DD");
+  // const [idVideo, setidVideo] = useState();
+  // const url = `${VIDEO_LINK}${props.contents.id}/videos${API_KEY}`;
+  // axios.get(url).then((response) => {
+  //   setidVideo(response.data.results[0].key);
+  // });
   return (
     <>
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
           channel="youtube"
           isOpen={isOpen}
-          videoId={idVideo}
+          videoId={props.contents.video_id}
           onClose={() => {
             setOpen(false);
             setHidden("none");
@@ -53,14 +53,12 @@ const DetailMovieCard = (props) => {
       </PlayYoutube>
       <Background
         style={{
-          backgroundImage: `url("https://image.tmdb.org/t/p/w500/${props.contents.backdrop_path}")`,
+          backgroundImage: `url("${props.contents.backdrop_path}")`,
         }}
       >
         <Container>
           <Card>
-            <Poster
-              src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`}
-            />
+            <Poster src={props.contents.poster_path} />
             <Detail>
               <Title>{props.contents.title}</Title>
               <Controller>
@@ -90,11 +88,11 @@ const DetailMovieCard = (props) => {
               <Statistics>
                 <ReleaseDate>
                   <div>Release Date:</div>
-                  <div>{release_date}</div>
+                  <div>{props.contents.release_date}</div>
                 </ReleaseDate>
                 <RunningTime>
                   <div>Running Time:</div>
-                  <div>{props.contents.runtime} mins</div>
+                  <div>{props.contents.run_time} mins</div>
                 </RunningTime>
                 <Budget>
                   <div>Budget: </div>

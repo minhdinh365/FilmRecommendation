@@ -191,63 +191,30 @@
   <form name="delete-hidden-form" method="POST"></form>
 </div>
 <script>
-  let id = 0; 
-  function getIdFilm(){
-     $('#exampleModalCenter').on('show.bs.modal',function(event){
-        var button = $(event.relatedTarget); 
-        id = button.data('id');
-  }) 
-  }; 
-  function deleteFilm(){ 
-    var form = document.forms['delete-hidden-form'];
-  form.action = '/home/delete/' + id + '?_method=DELETE'; form.submit(); 
-  };
-  function getUrlParameter(name) {
-     name =
-  name.replace(/[\\\\\\\\\\\\\\\\\\\\[]/, '\\\[').replace(/[\]]/, '\\]'); 
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'); 
-  var results = regex.exec(location.search); 
-  return results === null ? '':decodeURIComponent(results[1].replace(/\+/g, ' ')); 
-  }; 
-  const pages ={{count}}
-  let linkPage ="{{linkPage}}"; 
-  let search = "{{search}}".replace("&#x3D;","="); 
-  let currentPage = parseInt(getUrlParameter('page')); 
-  if(currentPage !==currentPage){ 
-    currentPage = {{parentPage}}+0; 
-    }; 
-  let page = currentPage; 
-  console.log(currentPage); 
-  console.log(pages);
-  $("#page_"+page).addClass("active"); 
-  if(currentPage<=1) {
-    $("#btn-previous").addClass("disabled"); 
-  };
-  if(currentPage >= pages || pages<=1) {
-    $("#btn-next").addClass("disabled"); 
-  }; 
-  function nextPage() { 
-    if(pages>=currentPage) {
-       page = currentPage + 1;
-      $("#page_"+currentPage).removeClass("active"); 
-      currentPage = page; 
-    }
-    $("#page_" +page).addClass("active"); 
-    Redirect(); 
-  }; 
-  function prePage() { 
-    if(currentPage > 1) {
-       page = currentPage - 1;
-      $("#page_"+currentPage).removeClass("active");
-      currentPage = page; 
-    }
-    $("#page_" +page).addClass("active"); 
-    Redirect(); 
-  };
-  function Redirect() {
-    linkPage = linkPage.replace("&#x3D;", "="); 
-    window.location=linkPage + currentPage.toString() +search; 
-    $("#page_" +currentPage).addClass("active"); 
+  let id = 0; function getIdFilm(){
+  $('#exampleModalCenter').on('show.bs.modal',function(event){ var button =
+  $(event.relatedTarget); id = button.data('id'); }) }; function deleteFilm(){
+  var form = document.forms['delete-hidden-form']; form.action = '/home/delete/'
+  + id + '?_method=DELETE'; form.submit(); }; function getUrlParameter(name) {
+  name = name.replace(/[\\\\\\\\\\\\\\\\\\\\\[]/, '\\\[').replace(/[\]]/,
+  '\\]'); var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'); var results =
+  regex.exec(location.search); return results === null ?
+  '':decodeURIComponent(results[1].replace(/\+/g, ' ')); }; const pages ={{count}}
+  let linkPage ="{{linkPage}}"; let search = "{{search}}".replace("&#x3D;","=");
+  let currentPage = parseInt(getUrlParameter('page')); if(currentPage
+  !==currentPage){ currentPage =
+  {{parentPage}}+0; }; let page = currentPage; console.log(currentPage);
+  console.log(pages); $("#page_"+page).addClass("active"); if(currentPage<=1) {
+  $("#btn-previous").addClass("disabled"); }; if(currentPage >= pages ||
+  pages<=1) { $("#btn-next").addClass("disabled"); }; function nextPage() {
+  if(pages>=currentPage) { page = currentPage + 1;
+  $("#page_"+currentPage).removeClass("active"); currentPage = page; }
+  $("#page_" +page).addClass("active"); Redirect(); }; function prePage() {
+  if(currentPage > 1) { page = currentPage - 1;
+  $("#page_"+currentPage).removeClass("active"); currentPage = page; }
+  $("#page_" +page).addClass("active"); Redirect(); }; function Redirect() {
+  linkPage = linkPage.replace("&#x3D;", "="); window.location=linkPage +
+  currentPage.toString() +search; $("#page_" +currentPage).addClass("active");
   };
 
 </script>

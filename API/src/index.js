@@ -7,6 +7,7 @@ import Comment from "../router/Comment.js";
 import Films from "../router/Films.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
+import LoginPage from "../router/admin/login.js";
 import bodyParser from "body-parser";
 import Search from "../router/Search.js";
 import handlebars from "express-handlebars";
@@ -19,6 +20,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ limit: "50mb" }));
+app.use(bodyParser({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(methodOverride("_method"));
@@ -66,6 +68,7 @@ app.set("views", __dirname + "\\src\\resources\\views");
 
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
+app.use("/", LoginPage);
 // app.get("/admin", function (req, res) {
 //   res.render("home/index");
 // });

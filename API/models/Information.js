@@ -13,6 +13,7 @@ const schema = mongoose.Schema({
   },
   full_name: {
     type: String,
+    require: true,
     trim: true,
   },
 });

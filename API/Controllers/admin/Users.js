@@ -2,95 +2,196 @@ import { Account } from "../../models/Account.js";
 import { Film } from "../../models/Film.js";
 import { Information } from "../../models/Information.js";
 import escapeStringRegexp from "escape-string-regexp";
+import passwordHash from "password-hash";
 
 export const getAccounts = async (req, res, next) => {
   try {
-    global.countListFilm =
-      (await Film.find().count()) === undefined ? 0 : await Film.find().count();
-    global.countListAccount =
-      (await Account.find().count()) === undefined
-        ? 0
-        : await Account.find().count();
-    let count = countListAccount / 20;
-    let ListAccounts = await Account.find()
-      .populate("info")
-      .populate("cmt")
-      .limit(20)
-      .skip((req.params.page - 1) * 20);
+    if (info !== undefined) {
+      try {
+        global.countListFilm =
+          (await Film.find().count()) === undefined
+            ? 0
+            : await Film.find().count();
+        global.countListAccount =
+          (await Account.find().count()) === undefined
+            ? 0
+            : await Account.find().count();
+        let count = countListAccount / 20;
+        let ListAccounts = await Account.find()
+          .populate("info")
+          .populate("cmt")
+          .limit(20)
+          .skip((Number(req.params.page) - 1) * 20);
 
-    ListAccounts = ListAccounts.map((list) => list.toObject());
-    let linkPage = "/home/users/";
-    res.render("users/index", {
-      ListAccounts,
-      count,
-      linkPage,
-      countListAccount,
-      countListFilm,
-    });
+        ListAccounts = ListAccounts.map((list) => list.toObject());
+        let linkPage = "/home/users/";
+        res.status(200).render("users/index", {
+          ListAccounts,
+          count,
+          linkPage,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      } catch (err) {
+        const message = err.message;
+        res.status(500).render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      }
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
   } catch (err) {
-    next(err);
+    res.redirect("/admin/login");
   }
 };
 
 export const deleteAccount = async (req, res, next) => {
-  try {
-    await Account.deleteOne({ username: req.params.username }).catch(
-      (error) => {
-        console.log(error);
-      }
-    );
-    res.redirect("back");
-  } catch (err) {
-    next(err);
-  }
+  await Account.deleteOne({ username: req.params.username }).catch((error) => {
+    const message = err.message;
+    res.status(500).render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
+  });
+
+  await Information.deleteOne({ username: req.params.username }).catch(
+    (error) => {
+      const message = err.message;
+      res.status(500).render("shared/error", {
+        message,
+        countListAccount,
+        countListFilm,
+        info,
+      });
+    }
+  );
+  res.redirect("back");
 };
 
 export const searchAccount = async (req, res, next) => {
   try {
-    let findContent = req.query.content;
-    const $regex = escapeStringRegexp(findContent);
-    let countRz = await (
-      await Account.find({
-        $or: [
-          { username: { $regex: findContent } },
-          { email: { $regex: findContent } },
-        ],
-      })
-    ).length;
-    let count = countRz / 20;
-    let ListAccounts = await Account.find({
-      $or: [
-        { username: { $regex: findContent } },
-        { email: { $regex: findContent } },
-      ],
-    })
-      .populate("info")
-      .populate("cmt")
-      .limit(20)
-      .skip((req.params.page - 1) * 20);
-    ListAccounts = ListAccounts.map((list) => list.toObject());
-    let linkPage = "/home/films/search/";
-    let search = "?content=" + findContent;
-    let parentPage = req.params.page;
-    let Result =
-      "<div class='alert alert-warning' role='alert'>" +
-      countRz +
-      " Results for '" +
-      findContent +
-      "'" +
-      "</div>";
-    console.log(ListAccounts);
-    res.render("users/index", {
-      ListAccounts,
-      count,
-      linkPage,
-      search,
-      parentPage,
-      countListAccount,
-      Result,
-      countListFilm,
-    });
+    if (info !== undefined) {
+      try {
+        let findContent = req.query.content;
+        const $regex = escapeStringRegexp(findContent);
+        let countRz = await (
+          await Account.find({
+            $or: [
+              { username: { $regex: findContent } },
+              { email: { $regex: findContent } },
+            ],
+          })
+        ).length;
+        let count = countRz / 20;
+        let ListAccounts = await Account.find({
+          $or: [
+            { username: { $regex: findContent } },
+            { email: { $regex: findContent } },
+          ],
+        })
+          .populate("info")
+          .populate("cmt")
+          .limit(20)
+          .skip((Number(req.params.page) - 1) * 20);
+        ListAccounts = ListAccounts.map((list) => list.toObject());
+        let linkPage = "/home/films/search/";
+        let search = "?content=" + findContent;
+        let parentPage = req.params.page;
+        let Result =
+          "<div class='alert alert-warning' role='alert'>" +
+          countRz +
+          " Results for '" +
+          findContent +
+          "'" +
+          "</div>";
+        res.status(200).render("users/index", {
+          ListAccounts,
+          count,
+          linkPage,
+          search,
+          parentPage,
+          countListAccount,
+          Result,
+          countListFilm,
+          info,
+        });
+      } catch (err) {
+        const message = err.message;
+        res.status(500).render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      }
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
   } catch (err) {
-    next(err);
+    res.redirect("/admin/login");
+  }
+};
+
+export const addAccount = (req, res, next) => {
+  try {
+    if (info !== undefined) {
+      res.render("users/addUser", { countListFilm, countListAccount, info });
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
+  } catch (err) {
+    res.redirect("/admin/login");
+  }
+};
+
+export const postAccount = (req, res, next) => {
+  try {
+    const userTemp = {
+      username: req.body.username,
+      password: passwordHash.generate(req.body.password),
+      email: req.body.email,
+      role: req.body.role,
+    };
+
+    const infoTemp = {
+      username: req.body.username,
+      avatar: req.body.avatar,
+      full_name: req.body.full_name,
+    };
+
+    const info = new Information(infoTemp);
+    info.save();
+    const user = new Account(userTemp);
+    user.save();
+
+    let announcement =
+      "<div class='alert alert-success' role='alert'>successfully added new movie</div>";
+    res.status(200).render("users/addUser", {
+      announcement,
+      countListFilm,
+      countListAccount,
+      info,
+    });
+  } catch (error) {
+    const message = err.message;
+    res.status(500).render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
   }
 };
