@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Fade from "react-reveal";
 import { Row } from "react-bootstrap";
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 class Footer extends Component {
   render() {
@@ -27,8 +28,8 @@ class Footer extends Component {
             </div>
           </Fade>
           <div id="go-top">
-            <a className="smoothscroll" title="Back to Top" href="#home">
-              <i className="fas fa-chevron-up"></i>
+            <a className="" title="Back to Top" href="#home">
+                <ArrowDropUpIcon fontSize="large"/>
             </a>
           </div>
         </Row>

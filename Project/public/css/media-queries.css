@@ -31,6 +31,9 @@
    .react-autosuggest__input {
       padding: 8px 15px;
    }
+   #portfolio .typeMovie{
+      display: none;
+   }
 }
 @media only screen and (max-width: 1024px) {
    

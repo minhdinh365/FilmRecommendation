@@ -3,7 +3,7 @@ import Fade from "react-reveal";
 import ModalQuestions from "../QuestionSearch";
 import NavBar from "./NavBar";
 
-function Header() {
+function Header({start}) {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
   /*Show modal questions*/
   const OpenModalQuesitons = () => {
@@ -18,7 +18,7 @@ function Header() {
           setShowModalQuestions={setShowModalQuestions}
         ></ModalQuestions>
       </div>
-      <NavBar />
+      <NavBar/>
       <div className="Header-banner">
         <div className="banner-text">
           <Fade bottom>

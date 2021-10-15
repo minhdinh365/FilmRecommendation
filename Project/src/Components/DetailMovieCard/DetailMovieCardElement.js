@@ -10,6 +10,7 @@ export const PlayYoutube = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
+  z-index:2;
 
   & .modal-video {
     display: flex;
@@ -37,20 +38,22 @@ export const Background = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-`;
+`
 
 export const Container = styled.div`
-  margin: 100px auto auto auto;
+  margin: 79px auto auto auto;
   width: 100%;
   max-width: 1260px;
   display: flex;
   justify-content: center;
+ 
+
 `;
 
 export const Card = styled.div`
   width: 90%;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-image: linear-gradient(rgb(0,0,0), rgb(0,0,0,0.85), rgb(0,0,0));
 `;
 
 export const Poster = styled.img`

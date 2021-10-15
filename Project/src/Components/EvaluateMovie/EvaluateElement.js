@@ -1,15 +1,13 @@
 import styled from "styled-components";
 export const Card = styled.div`
   width: 90%;
-  display: flex;
+  display: block;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.85);
-
   & span {
     justify-content: center;
     align-items: center;
   }
-
   & div:nth-child(2) {
     justify-content: center;
     display: flex;
@@ -40,7 +38,6 @@ export const ReplyFrame = styled.div`
   grid-template-columns: 1fr 2fr 3fr 9fr;
   justify-content: center;
   align-items: center;
-
   & img {
     justify-self: center;
     grid-column: 2;
@@ -62,13 +59,11 @@ export const EvaluateFrame = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-
   & h2 {
     color: #fff;
     font-weight: 400;
     text-transform: uppercase;
   }
-
   & h3 {
     font-size: 16px;
     color: #00fc87;
@@ -88,20 +83,17 @@ export const ReviewFrame = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
-
   & h2 {
     margin-top: 30px;
     color: #fff;
     font-weight: 400;
     text-transform: uppercase;
   }
-
   & h3 {
     font-size: 16px;
     color: #00fc87;
     font-weight: 600;
   }
-
   & h4 {
     font-size: 16px;
     color: #fff;
@@ -117,13 +109,12 @@ export const GroupPost = styled.div`
 `;
 
 export const Comment = styled.textarea`
-  background: silver;
-  border-radius: 10px;
-  min-height: 32px;
-  min-width: 88%;
+  background: white;
+  min-height: 40px;
+  min-width: 100%;
   color: #333;
   font-size: 18px;
-  text-align: center;
+  padding : 10px 20px 0px;
   resize: vertical;
   outline: none;
 `;
@@ -154,12 +145,11 @@ export const Send = styled.button`
   justify-content: center;
   border-radius: 5px;
   cursor: pointer;
-
   & .iconify {
     margin-right: 5px;
-    height: 32px;
-    width: 42px;
-    background: silver;
+    height: 40px;
+    width: 40px;
+    background: white;
     border-radius: 5px;
     color: #333;
   }
@@ -177,7 +167,6 @@ export const ButtonReply = styled.button`
   justify-content: center;
   border-radius: 5px;
   cursor: pointer;
-
   & .iconify {
     margin-right: 5px;
     height: 32px;

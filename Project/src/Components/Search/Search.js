@@ -9,9 +9,15 @@ const getSuggestionValue = suggestion => {const newsuggest = suggestion.title
 
 return newsuggest };
 
- const renderSuggestion = (suggestion) => (
+function Reload(){
+  window.location.reload();
+}
+
+const renderSuggestion = (suggestion) => (
     <div>
-    <Link className= "search-card" to= {`/movie/${suggestion.id}`}> 
+    <Link className= "search-card" to={{
+                  pathname: `/detail/${suggestion.id}`,
+                  state: suggestion.id }}> 
         <img className="searchResult-image" alt="wrong" src= {( IMG_SIZE_XSMALL + suggestion.poster_path ) } />
         <div className="searchResult-text">
         <div className="searchResult-name">
@@ -50,8 +56,6 @@ class Search extends Component {
       suggestions: []
     });
   }
-
-
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {

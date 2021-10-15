@@ -1,10 +1,8 @@
-import express from 'express'
-import { getInfo} from '../controllers/Information.js'
+import express from "express";
+import { getInfo } from "../controllers/Information.js";
 
+const router = express.Router();
 
-const router = express.Router()
+router.route("/infor").get(getInfo);
 
-router.route('/infor/:username')
-   .get(getInfo)
-
-export default router
+export default router;

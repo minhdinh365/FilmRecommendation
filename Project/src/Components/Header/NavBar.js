@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ModalSign from "../../Pages/Login/ModalLogin";
+import ModalForget from "../../Pages/Login/ModalForget";
 import { CSSTransition } from "react-transition-group";
 import Search from '../Search/Search';
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [isNavVisible, setNavVisibility] = useState(false);
@@ -30,42 +32,59 @@ export default function NavBar() {
   const toggleNav = () => {
     setNavVisibility(!isNavVisible);
   };
+
   /*State check login*/
   const cookieUser = Cookies.get('User')
-  const [success, setSuccess] = useState();
-
-
+  const [success, setSuccess] = useState('');
   useEffect(() => {
-    if(cookieUser !== 'undefined' ){
-      setSuccess(cookieUser)
-      console.log('Day la luc set cookie: ' +cookieUser)
+    if(cookieUser){
+      setSuccess(jwt_decode(cookieUser).username)
     }
   }, [cookieUser])
   
   /*State show modal login*/
-  const [showModalLogin, setShowModalLogin] = useState(false);
-  /*Show modal login*/
-  const OpenModalLogin = () => {
-    setShowModalLogin((prev) => !prev);
-  };
+  const [loginOpen, setLoginOpen] = useState(false)
+  const [forgetOpen, setForgetOpen] = useState(false)
+  const handleLogin = (event) => {
+    setLoginOpen(true)
+  }
+
+
   function Mix() {
     toggleNav();
-    OpenModalLogin();
+    handleLogin();
   }
+  function Logout() {
+      Cookies.remove('User', {path: "http://localhost:3000/"})
+      window.location.reload()
+  }
+  const [Navbar, setNavbar] = useState(false);
+
+  const changBackgroundNavbar = () =>{
+    if(window.scrollY >= 111){
+      setNavbar(true);
+    }
+    else{
+      setNavbar(false);
+    }
+  }
+  window.addEventListener('scroll', changBackgroundNavbar)
   return (
-    <div className="Header">
+    <div className={Navbar ? 'Header color' : 'Header'}>
       <ModalSign
-        showModal={showModalLogin}
-        setShowModal={setShowModalLogin}
+        open={loginOpen} setLoginOpen={setLoginOpen} setForgetOpen={setForgetOpen}
       ></ModalSign>
-      <a className="smoothscroll current" href="http://localhost:3000" onClick={toggleNav}>
+      <ModalForget
+        open={forgetOpen} setLoginOpen={setLoginOpen} setForgetOpen={setForgetOpen}
+      ></ModalForget>
+      <Link className="current" to ="/"  onClick={toggleNav}>
+    
         <img
-          href="http://localhost:3000"
           src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
           className="Logo"
           alt="logo"
         />
-      </a>
+      </Link>
       <CSSTransition
         in={!isSmallScreen || isNavVisible}
         timeout={0}
@@ -73,13 +92,13 @@ export default function NavBar() {
         unmountOnExit
       >
         <nav className="Nav">
-          <a className="smoothscroll current" href="#home" onClick={toggleNav}>
+          <a className="smoothscroll current" href="http://localhost:3000/#home" onClick={toggleNav}>
             Home
           </a>
-          <a className="smoothscroll" href="#bxhm" onClick={toggleNav}>
-            Bảng xếp hạng
+          <a className="smoothscroll" href="http://localhost:3000/#bxhm" onClick={toggleNav}>
+            Đang công chiếu
           </a>
-          <a className="smoothscroll" href="#portfolio" onClick={toggleNav}>
+          <a className="smoothscroll" href="http://localhost:3000/#portfolio" onClick={toggleNav}>
             Phim cho bạn
           </a>
           <a
@@ -91,29 +110,28 @@ export default function NavBar() {
           </a>
           <a
             className="smoothscroll hiden-GT"
-            href="/#contact"
+            href="#contact"
             onClick={toggleNav}
           >
             Liên hệ
           </a>
           <Search className = "hidden-input"></Search>
-          {(success !== undefined)
+          {(success !== '')
           ? (
             <>
-              <a href= "/inforuser" className="login-navbar">
-                <img
-                  src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
-               />
-              {jwt_decode(success)}
+              <a href= "/inforuser" className="login-navbar">               
+              {success}
               </a>
-              <button>Log out</button>
+              <button onClick ={Logout}>Log out</button>
             </>
           ) : (
             <>
               <a onClick={Mix} className="login-navbar">
                 Đăng nhập
               </a>
-              <button>Sign up</button>
+              <a href ="http://localhost:3000/register">
+                <button>Sign up</button>
+              </a>
             </>
           )}
         </nav>

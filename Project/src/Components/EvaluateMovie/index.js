@@ -96,8 +96,8 @@ class CommentBox extends React.Component {
               <Evaluate
                 addComment={this._addComment.bind(this)}
                 id={comment.id}
-                avatar={this.state.information.avatar}
-                full_name={this.state.information.full_name}
+                avatar={comment.info.avatar}
+                full_name={comment.info.full_name}
                 star={comment.evaluate}
                 content={comment.contents}
               />
@@ -108,8 +108,8 @@ class CommentBox extends React.Component {
               temp = {
                 cmt: temp.cmt.concat(
                   <Reply
-                    avatar={this.state.information.avatar}
-                    full_name={this.state.information.full_name}
+                    avatar={comment.info.avatar}
+                    full_name={comment.info.full_name}
                     star={reply.evaluate}
                     content={reply.contents}
                   />
@@ -131,6 +131,13 @@ class CommentForm extends React.Component {
   }
 
   render(props) {
+    let isLogin = true;
+    let announce = "Please Log In To Write Your Comment";
+    if (this.props.information.username != "") {
+      isLogin = false;
+      announce = "Enter write Your Comment";
+    }
+
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
         <EvaluateFrame>
@@ -138,6 +145,7 @@ class CommentForm extends React.Component {
             <Group>
               <h2>Post Review</h2>
               <Rating
+                fontsize="large"
                 name="simple-controlled"
                 value={this.state.star}
                 onChange={(event, newValue) => {
@@ -148,7 +156,8 @@ class CommentForm extends React.Component {
             <Group>
               <Comment
                 rows="1"
-                placeholder="Please Log In To Write Your Comment"
+                disabled={isLogin}
+                placeholder={announce}
                 ref={(textarea) => (this._content = textarea)}
               ></Comment>
               <Send type="submit">

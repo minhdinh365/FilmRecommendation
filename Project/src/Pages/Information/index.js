@@ -3,16 +3,14 @@ import Header from "../../Components//Header/NavBar";
 import Contact from "../../Components/Contact";
 import Information from '../../Components/InforUser'
 
-
-
-function Index(props) {
+const InforUser =() => {
   return (
     <div className="informatiton">
-      <Header />
+      <Header/>
       <Information/>
       <Contact />
     </div>
   );
 }
 
-export default Index;
+export default InforUser;

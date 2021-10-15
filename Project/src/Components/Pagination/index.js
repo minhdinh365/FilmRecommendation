@@ -20,7 +20,7 @@ function Pagination(props) {
   }
   return (
     <div className="pagination-movie">
-      <a className="smoothscroll" href="#portfolio">
+      <a className="smoothscroll" href ="portfolio">
         <button
           className="btn-pagination"
           disabled={page <= 1}
@@ -30,7 +30,7 @@ function Pagination(props) {
         </button>
       </a>
       <p>Trang ... {page}</p>
-      <a className="smoothscroll" href="#portfolio">
+      <a className="smoothscroll" href= "portfolio">
         <button
           className="btn-pagination"
           disabled={page >= total_pages}
@@ -40,6 +40,6 @@ function Pagination(props) {
         </button>
       </a>
     </div>
-  );
+  ); 
 }
 export default Pagination;

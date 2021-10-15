@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import Account from "../router/Account.js";
 import Comment from "../router/Comment.js";
 import Films from "../router/Films.js";
+import Information from "../router/Information.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
 import LoginPage from "../router/admin/login.js";
@@ -29,6 +30,7 @@ app.use("/", Account);
 app.use("/", Comment);
 app.use("/", Films);
 app.use("/", Search);
+app.use("/", Information);
 
 const URI = process.env.DATABASE_URL;
 mongoose

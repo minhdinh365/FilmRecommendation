@@ -10,17 +10,18 @@ import { Button } from "react-bootstrap";
 const Background = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.9);
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 12;
 `;
 const WrapperModal = styled.div`
   width: 600px;
   height: 400px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background-color: rgb(247, 202, 201);
+  background-color:white;
   color: #000;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -34,6 +35,7 @@ const WrapperModal = styled.div`
 const Content = styled.div`
   justify-content: center;
   padding: 30px;
+  height: fit-content;
   p {
     margin-bottom: 1rem;
   }
@@ -87,13 +89,6 @@ export const ModalQuestions = ({
   showModalQuestions,
   setShowModalQuestions,
 }) => {
-  // const { register, handleSubmit, formState } = useForm(
-  //     {
-  //         resolver: yupResolver(schema),
-  //     }
-  // );
-  // const {errors} = formState;
-  // const onSubmit = (data) => console.log(data);
   const modalRef = useRef();
   const animatedd = useSpring({
     config: {
