@@ -13,6 +13,12 @@ import jwt_decode from "jwt-decode";
 const Detail = () => {
   const cookieUser = Cookies.get("User");
   const [success, setSuccess] = useState("");
+  useEffect(() => {
+    if (cookieUser) {
+      setSuccess(jwt_decode(cookieUser).username);
+    }
+    return () => {};
+  }, [cookieUser]);
   const [loader, showLoader, hideLoader] = UseFullLoading();
   const {
     params: { id },
@@ -25,9 +31,6 @@ const Detail = () => {
     full_name: "",
   });
   useEffect(() => {
-    if (cookieUser) {
-      setSuccess(jwt_decode(cookieUser).username);
-    }
     showLoader();
     window.scrollTo(0, 0);
     const requestOne = axios.get(`http://localhost:5000/comment?id=${id}`);
@@ -46,14 +49,14 @@ const Detail = () => {
         hideLoader();
       })
     );
-  }, [id, cookieUser]);
+  }, [id, success]);
 
   if (film !== undefined)
     return (
       <>
         <Header />
         <DetailMovieCard contents={film} />
-        <CommentBox evaluate={content} information={User} />
+        <CommentBox evaluate={content} information={User} id={id} />
         <Footer />
       </>
     );

@@ -24,6 +24,7 @@ class CommentBox extends React.Component {
     this.state = {
       comments: [],
       information: [],
+      id: "",
     };
   }
   componentWillUpdate(nextProps, nextState) {
@@ -37,6 +38,9 @@ class CommentBox extends React.Component {
     }
     if (this.props.evaluate !== nextProps.evaluate) {
       this.setState({ comments: nextProps.evaluate });
+    }
+    if (this.state.id !== nextProps.id) {
+      this.setState({ id: nextProps.id });
     }
   }
   render() {
@@ -60,7 +64,7 @@ class CommentBox extends React.Component {
   _addComment(full_name, avatar, start, content, is_reply) {
     const temp_id = this.state.comments;
     const comment = {
-      id_film: this.state.comments[0].id_film,
+      id_film: this.state.id,
       id_info: this.state.information.username,
       full_name: full_name,
       avatar: avatar,
@@ -80,7 +84,7 @@ class CommentBox extends React.Component {
     //       console.log(error);
     //     }
     //   );
-    const id = -temp_id.length;
+    const id = -temp_id.length === 0 ? 1 : -temp_id.length;
     this.setState({
       comments: this.state.comments.concat({ ...comment, id }),
     });
@@ -96,10 +100,11 @@ class CommentBox extends React.Component {
               <Evaluate
                 addComment={this._addComment.bind(this)}
                 id={comment.id}
-                avatar={comment.info.avatar}
-                full_name={comment.info.full_name}
+                avatar={this.state.information.avatar}
+                full_name={this.state.information.full_name}
                 star={comment.evaluate}
                 content={comment.contents}
+                username={this.state.information.username}
               />
             ),
           };
@@ -108,10 +113,11 @@ class CommentBox extends React.Component {
               temp = {
                 cmt: temp.cmt.concat(
                   <Reply
-                    avatar={comment.info.avatar}
-                    full_name={comment.info.full_name}
+                    avatar={this.state.information.avatar}
+                    full_name={this.state.information.full_name}
                     star={reply.evaluate}
                     content={reply.contents}
+                    username={this.state.information.username}
                   />
                 ),
               };
@@ -130,14 +136,13 @@ class CommentForm extends React.Component {
     this.state = { star: 5 };
   }
 
-  render(props) {
+  render() {
     let isLogin = true;
     let announce = "Please Log In To Write Your Comment";
     if (this.props.information.username != "") {
       isLogin = false;
       announce = "Enter write Your Comment";
     }
-
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
         <EvaluateFrame>
@@ -195,6 +200,12 @@ class Evaluate extends React.Component {
   render() {
     let commentNodes;
     let buttonText = "Reply";
+    let isLogin = true;
+    let announce = "Please Log In To Write Your Comment";
+    if (this.props.username != "") {
+      isLogin = false;
+      announce = "Enter write Your Comment";
+    }
     if (this.state.showComments) {
       buttonText = "Cancel";
       commentNodes = (
@@ -202,7 +213,8 @@ class Evaluate extends React.Component {
           <GroupPost id={"gr" + this.props.id}>
             <ReplyBox
               rows="1"
-              placeholder="Please Log In To Write Your Comment"
+              disabled={isLogin}
+              placeholder={announce}
               ref={(textarea) => (this._content = textarea)}
             ></ReplyBox>
             <ButtonReply type="button" onClick={this._handleSubmit.bind(this)}>
