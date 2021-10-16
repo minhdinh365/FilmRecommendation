@@ -25,5 +25,4 @@ const autoIncrementModelID = function (modelName, doc, next) {
   ); // ** Method call ends **
 };
 
-
 export default autoIncrementModelID;

@@ -6,7 +6,14 @@ export const searchFilms = async (req, res, next) => {
     let id = parseInt(req.query.content) || 0;
     const $regex = escapeStringRegexp(req.query.content);
     let ListFilms = await Film.find({
-      $or: [{ id: id }, { title: { $regex: req.query.content } }],
+      $or: [
+        { id: id },
+        {
+          title: {
+            $regex: { $search: req.query.content, $caseSensitive: false },
+          },
+        },
+      ],
     }).limit(20);
     res.status(200).json(ListFilms);
   } catch (err) {
