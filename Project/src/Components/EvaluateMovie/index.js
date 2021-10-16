@@ -72,18 +72,18 @@ class CommentBox extends React.Component {
       contents: content,
       is_reply: is_reply,
     };
-    // axios
-    //   .post("http://192.168.1.3:3030/comments", {
-    //     comment,
-    //   })
-    //   .then(
-    //     (response) => {
-    //       console.log("OK");
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
+    axios
+      .post("http://localhost:5000/comment", {
+        comment,
+      })
+      .then(
+        (response) => {
+          console.log("OK");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     const id = -temp_id.length === 0 ? 1 : -temp_id.length;
     this.setState({
       comments: this.state.comments.concat({ ...comment, id }),

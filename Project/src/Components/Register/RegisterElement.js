@@ -54,7 +54,7 @@ export const UpdateButton = styled.button`
   padding: 10px;
   border-radius: 5px;
   color: #fff;
-  background: #11ABB0;
+  background: #11abb0;
   transition: background 2s;
   :hover {
     background: linear-gradient(90deg, orange, blue);
@@ -87,12 +87,15 @@ export const Information = styled.div`
 `;
 
 export const Title = styled.h1``;
+export const Announcement = styled.h3`
+  color: red;
+`;
 
 export const RegisterButton = styled.button`
   border: 0;
   outline: 0;
   display: flex;
-  background-color: #11ABB0;
+  background-color: #11abb0;
   color: #fff;
   font-weight: 700;
   font-size: 24px;

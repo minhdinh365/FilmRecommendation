@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import passwordHash from 'password-hash'
+import passwordHash from "password-hash";
+import { Redirect } from "react-router-dom";
 import {
   Form,
   Card,
@@ -11,11 +12,13 @@ import {
   Title,
   RegisterButton,
   ImageTemp,
+  Announcement,
 } from "./RegisterElement";
 import { TextField } from "@material-ui/core";
 
 const SignUp = () => {
   var regex = new RegExp("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+  let [announcement, setAnnouncement] = useState("");
 
   let [textInput, setTextInput] = useState({
     FirstName: "",
@@ -40,7 +43,7 @@ const SignUp = () => {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
 
-  const checkTextInput = () => {
+  const checkTextInput = (e) => {
     //check first name
     if (!textInput.FirstName.trim()) {
       setErrorMessage((errorMessage) => {
@@ -152,7 +155,7 @@ const SignUp = () => {
       });
     }
   };
-  const postRegister = () => {
+  const postRegister = (e) => {
     if (
       textInput.FirstName.trim() &&
       textInput.LastName.trim() &&
@@ -162,7 +165,7 @@ const SignUp = () => {
       textInput.Password.trim() === textInput.RePassword.trim()
     ) {
       axios
-        .post("http://192.168.1.3:3030/users", {
+        .post("http://localhost:5000/user", {
           username: textInput.LastName,
           password: passwordHash.generate(textInput.Password),
           email: textInput.Email,
@@ -172,7 +175,12 @@ const SignUp = () => {
         })
         .then(
           (response) => {
-            console.log("OK");
+            console.log(response);
+            if (response.data.status === "success") {
+              return <Redirect to="/" />;
+            } else {
+              setAnnouncement("The account or email already exists");
+            }
           },
           (error) => {
             console.log(error);
@@ -207,6 +215,7 @@ const SignUp = () => {
               <input
                 type="file"
                 accept="image/*"
+                required
                 onChange={handleImageUpload}
                 ref={imageUploader}
                 style={{ display: "none" }}
@@ -215,6 +224,7 @@ const SignUp = () => {
           </Upload>
           <Information>
             <Title>Register</Title>
+            <Announcement>{announcement}</Announcement>
             <TextField
               label="Full Name"
               variant="outlined"
@@ -277,7 +287,12 @@ const SignUp = () => {
                 });
               }}
             />
-            <RegisterButton onClickCapture={(checkTextInput, postRegister)}>
+            <RegisterButton
+              onClickCapture={(e) => {
+                checkTextInput(e);
+                postRegister(e);
+              }}
+            >
               <span>Register</span>
             </RegisterButton>
           </Information>

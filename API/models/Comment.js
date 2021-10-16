@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import autoIncrementModelID from "./AutoIncrement.js";
 
 const schema = mongoose.Schema(
   {
