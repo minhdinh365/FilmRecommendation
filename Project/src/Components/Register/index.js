@@ -179,7 +179,7 @@ const SignUp = () => {
             if (response.data.status === "success") {
               return <Redirect to="/" />;
             } else {
-              setAnnouncement("The account or email already exists");
+              setAnnouncement("Username or email already exists");
             }
           },
           (error) => {

@@ -64,6 +64,22 @@
    .Nav .login-navbar img{
       display: none;
    }
+   .infor-user-details{
+      flex-direction: column;
+   }
+   .infor-user-details h2,input{
+      width: 100%;
+   }
+   .infor-user-details input{
+      width: 100%;
+   }
+   .information-imge-user{
+      width: 50%;
+   }
+   .infor-user-details .password-change-eye{
+      top: 70%
+   }
+
 
     /* header styles
    ------------------------------------------------------------------ */

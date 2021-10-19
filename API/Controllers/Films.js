@@ -5,14 +5,14 @@ export const  getFilms = async (req, res) => {
     if((req.query.page) === null){
       const List = await Film.find().limit(20);
       res.json({
-        page: req.query.page,
+        page: 1,
         results : List
       })
     }
       else{
         const List = await Film.find().limit(20).skip(((req.query.page)-1)*20);
         res.json({
-          page: req.query.page,
+          page: parseInt(req.query.page),
           results : List
         })
     }
@@ -40,14 +40,14 @@ export const  getFilmsPopular = async (req, res) => {
     if(req.query.page === undefined){
       const List = await Film.find({category : 'popular'}).limit(20)
       res.json({
-        page: req.query.page,
+        page: 1,
         results : List
       })
     }
     else{
       const List = await Film.find({category : 'popular'}).limit(20).skip(((req.query.page)-1)*20);
       res.json({
-        page: req.query.page,
+        page: 1,
         results : List
       })
     }    
@@ -60,14 +60,14 @@ export const  getFilmsToprated = async (req, res) => {
     if(req.query.page === undefined){
       const List = await Film.find({category : 'top_rated'}).limit(20)
       res.json({
-        page: req.query.page,
+        page: 1,
         results : List
       })
     }
     else{
       const List = await Film.find({category : 'top_rated'}).limit(20).skip(((req.query.page)-1)*20);
       res.json({
-        page: req.query.page,
+        page: parseInt(req.query.page),
         results : List
       })
     }   
@@ -79,14 +79,14 @@ export const  getFilmsUpcoming = async (req, res) => {
   if(req.query.page === undefined){
     const List = await Film.find({category : 'upcoming'}).limit(20)
     res.json({
-      page: req.query.page,
+      page: 1,
       results : List
     })
   }
   else{
     const List = await Film.find({category : 'upcoming'}).limit(20).skip(((req.query.page)-1)*20);
     res.json({
-      page: req.query.page,
+      page: parseInt(req.query.page),
       results : List
     })
   }
@@ -100,14 +100,14 @@ export const  getFilmsNowPlaying = async (req, res) => {
     if(req.query.page === undefined){
       const List = await Film.find({category : 'now_playing'}).limit(20);
       res.json({
-        page: req.query.page,
+        page: 1,
         results : List
       })
     }
     else{
       const List = await Film.find({category : 'now_playing'}).limit(20).skip(((req.query.page)-1)*20);
       res.json({
-        page: req.query.page,
+        page: parseInt(req.query.page),
         results : List
       })
     }    

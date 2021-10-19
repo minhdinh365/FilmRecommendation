@@ -3,6 +3,7 @@ import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 
 import {
+  CommentDetail,
   EvaluateFrame,
   Card,
   Comment,
@@ -46,7 +47,7 @@ class CommentBox extends React.Component {
   render() {
     const comments = this._getComments();
     return (
-      <>
+      <CommentDetail>
         <CommentForm
           addComment={this._addComment.bind(this)}
           information={this.state.information}
@@ -57,7 +58,7 @@ class CommentBox extends React.Component {
           </Card>
         </EvaluateFrame>
         {comments.filter((item) => item !== undefined)}
-      </>
+      </CommentDetail>
     );
   }
 
@@ -95,6 +96,29 @@ class CommentBox extends React.Component {
       return this.state.comments.map((comment) => {
         if (!comment.is_reply) {
           let temp = { cmt: [] };
+          var now = new Date(Date.now() + (new Date().getTimezoneOffset() * 60000)).getTime();
+          var day2 = new Date(comment.date).getTime();
+          var diff = day2 - now;
+          function time(int) {
+            int = int / 1000
+            if (int >= 86400) {
+              return (parseInt(int / 86400) + ' ngày trước');
+            }
+            else {
+              if (int >= 3600) {
+                return (parseInt(int / 3600) + ' giờ trước');
+              }
+              else {
+                if (int >= 60) {
+                  return (parseInt(int / 60) + ' phút trước');
+                }
+                else {
+                  return (parseInt(int) + ' giây trước');
+                }
+              }
+
+            }
+          }
           temp = {
             cmt: temp.cmt.concat(
               <Evaluate
@@ -104,6 +128,7 @@ class CommentBox extends React.Component {
                 full_name={this.state.information.full_name}
                 star={comment.evaluate}
                 content={comment.contents}
+                time={comment.date}
                 username={this.state.information.username}
               />
             ),
@@ -230,12 +255,13 @@ class Evaluate extends React.Component {
           <Frame>
             <Icon src={this.props.avatar}></Icon>
             <h3>{this.props.full_name}</h3>
+            <h5>{this.props.time}</h5>
             <Rating name="simple-person" value={this.props.star} readOnly />
             <h4>{this.props.content}</h4>
           </Frame>
         </EvaluateFrame>
         <EvaluateFrame>
-          <Frame>
+          <Frame style={{ borderBottom: '2px solid gray' }}>
             <label for={this.props.id}>{buttonText}</label>
             <input
               type="radio"

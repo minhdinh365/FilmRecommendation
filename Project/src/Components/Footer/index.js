@@ -26,12 +26,7 @@ class Footer extends Component {
                 </li>
               </ul>
             </div>
-          </Fade>
-          <div id="go-top">
-            <a className="" title="Back to Top" href="#home">
-                <ArrowDropUpIcon fontSize="large"/>
-            </a>
-          </div>
+          </Fade>         
         </Row>
       </footer>
     );

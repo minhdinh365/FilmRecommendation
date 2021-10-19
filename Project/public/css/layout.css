@@ -6,8 +6,6 @@
 ::-webkit-scrollbar {
    display: none;
 }
-
-
 html, body {
    margin: 0;
    padding: 0;
@@ -71,7 +69,7 @@ body {
    display: grid;
    grid-template-areas: "logo nav";
    z-index: 15;
-   background: #282c34;
+   background: transparent;
  }
 .Header.color{
    background: black;
@@ -421,7 +419,7 @@ ul#nav li.current a { color: #fe6928; }
 
 #bxhm{
    padding : 50px 30px 30px 30px;
-   background-color: rgb(0,0,30);
+   background-color: #222;
    border-bottom: 2px solid gray;
    border-top: 2px solid gray;
 
@@ -470,6 +468,10 @@ ul#nav li.current a { color: #fe6928; }
    max-width: 100%;
    height: auto;
    min-height: 473px;
+   border-radius: 5px;
+}
+#bxhm img:hover{
+   box-shadow: 0px 10px 20px 10px;
 }
 #bxhm .advertisments-movie{
    display: block;
@@ -505,6 +507,7 @@ ul#nav li.current a { color: #fe6928; }
    padding: 0 10%;
    cursor: pointer;
    position: relative;
+
 }
 .title-movie-chart h3{
    font-weight: 100;
@@ -535,9 +538,6 @@ ul#nav li.current a { color: #fe6928; }
 	width: 60%;
 	left: 20%;
 }
-
-
-
 .card-movie-chart .chart-movie{
    position: absolute;
    top: 0;
@@ -546,14 +546,17 @@ ul#nav li.current a { color: #fe6928; }
    color: white;
    border-radius: 0 5px 5px 0;
    background-color: red;
+
 }
 .card-movie-chart image{
    display: block;
    height: auto;
+   box-shadow: 0px 10px 20px 10px;
 }
 .slick-slide img{
    margin-bottom: 10px;
    min-height: 340px;
+   box-shadow: 0 10px 20px 10px rgba(black, 0.2);
 }
 #portfolio a, a:visited {
    text-decoration: none;
@@ -667,6 +670,7 @@ ul#nav li.current a { color: #fe6928; }
 .name-category:hover{
   cursor: pointer;
   background-color: rgb(0, 0, 0,0.8);
+  color: yellow;
 
 }
 .list-categories{

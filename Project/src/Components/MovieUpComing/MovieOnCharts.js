@@ -8,7 +8,7 @@ const MovieBXH = (props) => {
   return (
     <Link to={{
       pathname: `/detail/${props.movie.id}`,
-      state: props.movie.id // your data array of objects
+      state: props.movie.id 
     }}>
       <motion.div className ="card-chart"
         key={props.movie.id}

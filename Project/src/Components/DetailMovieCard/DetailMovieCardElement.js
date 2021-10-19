@@ -31,6 +31,10 @@ export const PlayYoutube = styled.div`
   & .modal-video-movie-wrap iframe {
     width: 1180px;
     height: 640px;
+    @media screen and (max-width: 1024px) {
+      width: 1000px;
+      height: 560px;
+  }
   }
 `;
 
@@ -46,29 +50,50 @@ export const Container = styled.div`
   max-width: 1260px;
   display: flex;
   justify-content: center;
- 
-
 `;
 
 export const Card = styled.div`
   width: 90%;
   display: flex;
   background-image: linear-gradient(rgb(0,0,0), rgb(0,0,0,0.85), rgb(0,0,0));
+  @media screen and (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
 `;
 
 export const Poster = styled.img`
   width: 40%;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  @media screen and (max-width: 1024px) {
+    width: 60%;
+}
 `;
 
 export const Detail = styled.div`
   padding: 40px;
   width: 60%;
   color: #fff;
+  h2{
+    text-align: center;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0px;
+    justify-content: center;
+    text-align: center;
+}
 `;
 
 export const Title = styled.h2`
   font-weight: 400;
   text-transform: uppercase;
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
 `;
 
 export const Controller = styled.div`
@@ -82,7 +107,12 @@ export const Rate = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
-
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
   & .iconify {
     color: yellow;
     margin-right: 5px;
@@ -95,7 +125,12 @@ export const Like = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
   & .iconify {
     color: gray;
     margin-right: 5px;
@@ -113,7 +148,12 @@ export const TrailerButton = styled.button`
   align-items: center;
   padding: 5px;
   cursor: pointer;
-
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
   & .iconify {
     margin-right: 5px;
     color: red;
@@ -122,11 +162,23 @@ export const TrailerButton = styled.button`
 
 export const Slogan = styled.h2`
   font-weight: 500;
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
 `;
 
 export const Desc = styled.p`
   margin-top: 40px;
   line-height: 30px;
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1; 
 `;
 
 export const Statistics = styled.div`
@@ -134,7 +186,12 @@ export const Statistics = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   margin-top: 50px;
-
+  animation-fill-mode: both;
+  animation-duration: 1000ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  opacity: 1;
+  animation-name: react-reveal-787989004656816-1;
   & div > div:nth-child(2) {
     color: #00fc87;
     line-height: 30px;

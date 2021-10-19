@@ -54,6 +54,7 @@ const Detail = () => {
   if (film !== undefined)
     return (
       <>
+        {loader}
         <Header />
         <DetailMovieCard contents={film} />
         <CommentBox evaluate={content} information={User} id={id} />
@@ -63,6 +64,7 @@ const Detail = () => {
   else
     return (
       <>
+      {loader}
         <Header />
       </>
     );
