@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import passwordHash from "password-hash";
 import { Redirect } from "react-router-dom";
+import SuccessRegister from './SuccessRegister';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import {
   Form,
   Card,
@@ -155,6 +157,7 @@ const SignUp = () => {
       });
     }
   };
+  const [success, setsuccess] = useState(false)
   const postRegister = (e) => {
     if (
       textInput.FirstName.trim() &&
@@ -177,7 +180,7 @@ const SignUp = () => {
           (response) => {
             console.log(response);
             if (response.data.status === "success") {
-              return <Redirect to="/" />;
+              setsuccess(true)
             } else {
               setAnnouncement("Username or email already exists");
             }
@@ -188,7 +191,6 @@ const SignUp = () => {
         );
     }
   };
-
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file) {
@@ -201,9 +203,9 @@ const SignUp = () => {
       reader.readAsDataURL(file);
     }
   };
-
   return (
     <>
+      {success ? <SuccessRegister /> : null}
       <Form>
         <Card>
           <Upload>
@@ -211,7 +213,7 @@ const SignUp = () => {
               <Image ref={uploadedImage} onChange={handleImageUpload} />
             </ImageTemp>
             <UpdateButton onClick={() => imageUploader.current.click()}>
-              <span>Upload File</span>
+              <span> <FileUploadIcon className="icon" fontSize="large" />Tải ảnh lên</span>
               <input
                 type="file"
                 accept="image/*"
@@ -223,9 +225,12 @@ const SignUp = () => {
             </UpdateButton>
           </Upload>
           <Information>
-            <Title>Register</Title>
-            <Announcement>{announcement}</Announcement>
+            <Title>Đăng kí</Title>
+            <Announcement
+            >{announcement}</Announcement>
             <TextField
+              className="text-field-register"
+              inputProps={{ style: { fontSize: 20 } }}
               label="Full Name"
               variant="outlined"
               fullWidth
@@ -238,6 +243,8 @@ const SignUp = () => {
               }}
             />
             <TextField
+              className="text-field-register"
+              inputProps={{ style: { fontSize: 20 } }}
               label="Username"
               variant="outlined"
               fullWidth
@@ -250,6 +257,8 @@ const SignUp = () => {
               }}
             />
             <TextField
+              className="text-field-register"
+              inputProps={{ style: { fontSize: 20 } }}
               label="Your Email"
               variant="outlined"
               fullWidth
@@ -262,6 +271,8 @@ const SignUp = () => {
               }}
             />
             <TextField
+              className="text-field-register"
+              inputProps={{ style: { fontSize: 20 } }}
               label="Password"
               type="password"
               variant="outlined"
@@ -275,6 +286,8 @@ const SignUp = () => {
               }}
             />
             <TextField
+              className="text-field-register"
+              inputProps={{ style: { fontSize: 20 } }}
               label="Re - Password"
               type="password"
               variant="outlined"
@@ -293,11 +306,12 @@ const SignUp = () => {
                 postRegister(e);
               }}
             >
-              <span>Register</span>
+              <span>Đăng kí</span>
             </RegisterButton>
           </Information>
         </Card>
       </Form>
+
     </>
   );
 };

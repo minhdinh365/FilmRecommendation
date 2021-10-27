@@ -11,12 +11,12 @@ axios.defaults.baseURL = 'http://localhost:5000';
 function Index() {
   return (
     <div className="Home">
-      <Header/>
+      <Header />
       <FilmsOnChart />
-      <FilmsNow /> 
+      <FilmsNow />
       <About />
       <Contact />
-      <Footer /> 
+      <Footer />
     </div>
   );
 }

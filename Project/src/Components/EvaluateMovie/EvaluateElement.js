@@ -1,5 +1,32 @@
 import styled from "styled-components";
 export const CommentDetail = styled.div`
+  p{
+    position: relative;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 20px;
+    background: gray;
+    width: 13%;
+    border-radius: 5px;
+    background-image: linear-gradient(182deg, #000000 0%, #474242 74%);
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+    @media screen and (max-width: 1024px) {
+      width: 30%;
+    }
+    @media screen and (max-width: 475px) {
+      width: 50%;
+    }
+  }
+  p:hover{
+    background-image: linear-gradient(182deg, #000000 0%, #474242 50%);
+  }
+  .iconload-more{
+    margin-left: -29px;
+    position: absolute;
+    margin-top: 3px;
+  }
 `;
 export const Card = styled.div`
   width: 90%;
@@ -7,15 +34,44 @@ export const Card = styled.div`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.85);
   background: black;
-  & span {
+  h2{
+    font: 28px 'opensans-semibold', sans-serif;
+    margin-bottom: 30px;
+    position: relative;
+    margin: 10px 0px;
+    padding: 0;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+  span {
     justify-content: center;
     align-items: center;
+    font-size: 23px;
+    position: relat
   }
   & div:nth-child(2) {
     justify-content: center;
     display: flex;
     align-items: center;
   }
+  h2 strong {
+     padding: 0;
+     z-index: 1;
+     background: black;
+     padding: 4px 8px;
+     position: relative;
+   }
+  h2::after {
+    position: absolute;
+    content: '';
+    z-index: 0;
+    bottom: 50%;
+    margin-bottom: -2px;
+    height: 3px;
+    left: 0;
+    right: 0;
+ }
+
 `;
 
 export const Frame = styled.div`
@@ -29,19 +85,22 @@ export const Frame = styled.div`
 
   @media screen and (max-width: 1024px) {
     grid-template-columns: 1fr 18fr 10fr 22fr;
-}
-
-}
+  }
+  @media screen and (max-width: 475px) {
+    grid-template-columns: 1fr 9fr 8fr 8fr;
+  }
   & label {
     text-align: center;
-    grid-column: 1;
-    background: #46e1ff;
+    grid-column: 2;
+    background: #00d6ff;
     color: white;
     font-weight: 700;
+    cursor: pointer;
   }
   & label:hover{
     cusor: pointer;
     top: -2px;
+    background: #46e1ff;
   }
   & input {
     position: fixed;
@@ -53,8 +112,8 @@ export const Frame = styled.div`
     margin: 0;
   }
   & span {
-    grid-row: 1;
-    grid-column: 3;
+    grid-row: 1/3;
+    grid-column: 3/5;
   }
   & h4 {
     grid-row: 1;
@@ -73,8 +132,8 @@ export const ReplyFrame = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1024px) {
-    grid-template-columns: 0fr 2fr 3fr 4fr;
-}
+    grid-template-columns: 0.5fr 2fr 3fr 4fr;
+  }
   & img {
     justify-self: center;
     grid-column: 2;
@@ -86,6 +145,20 @@ export const ReplyFrame = styled.div`
   }
   & h4 {
     grid-column: 4;
+    grid-row: 1;
+  }
+  & h5{
+    padding: 0;
+    grid-column: 3;
+    margin: 0;
+  }
+  .line-comment{
+    left: 50%;
+    border-left: 2px solid green;
+    height: 28px;
+    border-bottom: 2px solid green;
+    width: 100%;
+    margin-left: 50%;
   }
 `;
 
@@ -96,12 +169,9 @@ export const EvaluateFrame = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
-
-
   & h2 {
     color: #fff;
     font-weight: 400;
-    text-transform: uppercase;
   }
   & h3 {
     font-size: 16px;
@@ -140,7 +210,9 @@ export const ReviewFrame = styled.div`
   }
 `;
 
-export const Group = styled.div``;
+export const Group = styled.div`
+  display: flex;
+`;
 
 export const GroupPost = styled.div`
   grid-column: 4;
@@ -159,6 +231,15 @@ export const Comment = styled.textarea`
   padding : 10px 20px 0px;
   resize: vertical;
   outline: none;
+  @media screen and (max-width: 1024px) {
+    min-width: 90%;
+  }
+  @media screen and (max-width: 472px) {
+    min-width: 85%;
+  }
+  @media screen and (max-width: 300px) {
+    min-width: 83%;
+  }
 `;
 
 export const ReplyBox = styled.textarea`
@@ -173,6 +254,7 @@ export const ReplyBox = styled.textarea`
   resize: vertical;
   outline: none;
   grid-column: 4;
+  font-family: 'opensans-regular', sans-serif;
 `;
 
 export const Send = styled.button`
@@ -213,7 +295,7 @@ export const ButtonReply = styled.button`
     margin-right: 5px;
     height: 32px;
     width: 42px;
-    background: silver;
+    background: white;
     border-radius: 5px;
     color: #333;
   }
@@ -224,4 +306,6 @@ export const Icon = styled.img`
   justify-self: center;
   width: 50px;
   height: 50px;
+  grid-row: 1/3;
+  object-fit: cover;
 `;

@@ -92,3 +92,17 @@ export const createAccount = async (req, res) => {
     res.json({ status: err.message });
   }
 };
+
+export const Changepass = async (req, res) => {
+  try {
+    const user = await Account.findByIdAndUpdate({ username: username })
+      .then((data) => {
+        if (passwordHash.verify(rea.body.passwordold, data.password)) {
+          user.findByIdAndUpdate
+        }
+      })
+  }
+  catch { }
+
+
+}

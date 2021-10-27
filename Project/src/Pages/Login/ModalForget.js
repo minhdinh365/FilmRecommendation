@@ -4,13 +4,13 @@ import { useSpring, animated } from "react-spring";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {BackgroundForget, WrapperModalForget, ContentForget, InputFieldForget, ErrorsForget, ButtonForget} from './modalelementsForget';
+import { BackgroundForget, WrapperModalForget, ContentForget, InputFieldForget, ErrorsForget, ButtonForget } from './modalelementsForget';
 
 const schema = yup.object().shape({
   email: yup.string().required("Email is not correct"),
 });
 
-function ModalForget (props){
+function ModalForget(props) {
   const { open, setLoginOpen, setForgetOpen } = props;
   const switchLogin = (event) => {
     setLoginOpen(true)
@@ -38,10 +38,10 @@ function ModalForget (props){
   };
   return (
     <>
-      {open ?(
-        <BackgroundForget ref={modalRef} onClick={closeModal} open= {open}>
+      {open ? (
+        <BackgroundForget ref={modalRef} onClick={closeModal} open={open}>
           <animated.div style={animatedd}>
-            <WrapperModalForget open = {open}>
+            <WrapperModalForget open={open}>
               <ContentForget>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <h1>Quên mật khẩu</h1>
@@ -51,17 +51,18 @@ function ModalForget (props){
                     type="email"
                     placeholder={"Type Your Email"}
                     name="email"
-                  ></InputFieldForget>        
+                    autoComplete="on"
+                  ></InputFieldForget>
                   <div className="btnLogin">
-                    <ButtonForget onClick ={switchLogin}> Back</ButtonForget>
+                    <ButtonForget onClick={switchLogin}> Back</ButtonForget>
                     <ButtonForget type="submit">Forget</ButtonForget>
                   </div>
-                </form>              
+                </form>
               </ContentForget>
             </WrapperModalForget>
           </animated.div>
         </BackgroundForget>)
-        :null}
+        : null}
     </>
   );
 };

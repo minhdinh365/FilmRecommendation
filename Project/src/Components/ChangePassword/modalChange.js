@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-export const Background = styled.div`
+
+export const BackgroundForget = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
@@ -10,10 +11,9 @@ export const Background = styled.div`
   align-items: center;
   z-index: 12;
 `;
-export const WrapperModal = styled.div`
-  margin-top: 90px;
+export const WrapperModalForget = styled.div`
   width: 400px;
-  height: 600px;
+  height: 525px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: rgb(255, 255, 255);
   color: #000;
@@ -22,10 +22,9 @@ export const WrapperModal = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-
   padding: 10px;
 `;
-export const Content = styled.div`
+export const ContentForget = styled.div`
   justify-content: center;
   padding: 30px;
   p {
@@ -38,7 +37,7 @@ export const Content = styled.div`
     border: none;
     width: 100%;
     border-radius: 10px;
-    margin: 20px 0px;
+    margin: 20px 10px;
   }
   h1 {
     display: block;
@@ -66,42 +65,32 @@ export const Content = styled.div`
     height: 20px;
   }
 `;
-export const InputField = styled.input`
+export const InputFieldForget = styled.input`
   border: 2px solid gray;
   border-radius: 5px;
   color: black;
-  position: relative;
 `;
-export const OtherSign = styled.div`
-  margin-top: 40px;
-  justify-content: center;
-  display: grid;
-  text-decoration: none;
-`;
-export const Errors = styled.div`
+export const ErrorsForget = styled.div`
   color: red;
   justify-content: center;
   display: flex;
+  z-index: 5;
 `;
-export const Button = styled.button`
-  font-family: serif;
-  height: 50px;
-  font-size: 23px;
+export const ButtonForget = styled.button`
+  cursor: pointer;
+  height: 40px;
+  font-size: 15px;
   padding: 10px 20px;
   background-color: #5b83e3;
   color: #fff;
   border: none;
   width: 100%;
   border-radius: 10px;
-  margin: 20px 0px;
-  cursor: pointer;
+  margin: 0;
 `
-export const PasswordInput = styled.div`
-  position: relative;
-  .password-change-eye{
-    z-index: 9999;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-  }
-`
+export const Errors = styled.div`
+  color: red;
+  justify-content: center;
+  display: flex;
+  font-size: 12px;
+`;

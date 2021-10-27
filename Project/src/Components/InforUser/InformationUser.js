@@ -1,90 +1,99 @@
-import { Button } from '@material-ui/core'
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import propTypes from "prop-types";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useEffect } from 'react';
+import axios from 'axios'
+import EditIcon from '@mui/icons-material/Edit';
+import ChangePassword from '../ChangePassword'
 
 export default function InformationUser(props) {
     const [disable, setDisable] = useState(true)
     const [password, setPassword] = useState('password')
     const [changeIcon, setchangeIcon] = useState(false)
     const [edit, setedit] = useState('Edit')
-    const [Account, setAccount] = useState({
-        username: props.account,
-        full_name: 'Thanh bang',
-        email: 'bangnguyen123@gmail.com',
-        password: '123',
-        avatar: 'none',
-        total_comment: 100,
-        evalute: 7.5,
-    })
-    const temp = Account;
-    const EditInfor = () =>{
+    const [Account, setAccount] = useState({})
+    useEffect(() => {
+        axios.get(
+            'http://localhost:5000/infor?username=' + props.account)
+            .then(res => {
+                setAccount({
+                    username: res.data.account.username,
+                    full_name: res.data.account.full_name,
+                    email: res.data.account.user.email,
+                    password: '123',
+                    avatar: res.data.account.avatar,
+                    total_comment: res.data.total_comment,
+                    evalute: res.data.evalute,
+                })
+            })
+            .catch(e => { })
+        return () => {
+        }
+    }, [edit])
+    const EditInfor = () => {
         setDisable(pre => !pre)
-        if(edit === 'Edit'){
+        if (edit === 'Edit') {
             setedit('Cancel')
         }
-        else{
+        else {
             setedit('Edit')
             window.location.reload()
         }
     }
-    const Showpass =() =>{
-        if(password === 'password'){
+    const Showpass = () => {
+        if (password === 'password') {
             setPassword('text')
             setchangeIcon(true)
         }
-        else{
+        else {
             setPassword('password')
             setchangeIcon(false)
         }
-    }    
+    }
+    const [changePass, setChangPass] = useState(false)
     return (
-        <div className ="information-detail">
-            <div className ="information-imge-user">
-                <img src= 'https://cdn-icons-png.flaticon.com/512/149/149071.png' alt = "no img"/>
-                <div className="image-user-interact">
-                    <span>Total comments: {Account.total_comment}</span>
-                    <span>Evaluted: {Account.evalute}</span>                
+        <>
+            <ChangePassword open={changePass} setChangPass={setChangPass} account={Account.username} />
+            <div className="information-detail">
+                <div className="information-imge-user">
+                    <img src={Account.avatar} alt="no img" />
+                    <div className="image-user-interact">
+                        <span>{Account.total_comment} comments</span>
+                        <span>{Account.evalute} evaluted</span>
+                    </div>
+                </div>
+                <div className="information-infor-user">
+                    <h1>Hồ sơ cá nhân</h1>
+                    <div className="infor-user-details">
+                        <h2>Họ và tên:</h2>
+                        <input disabled={disable} type="text" name="full_name" defaultValue={Account.full_name} />
+                    </div>
+                    <div className="infor-user-details">
+                        <h2>Tên đăng nhập:</h2>
+                        <input disabled={disable} type="text" name="username" defaultValue={Account.username} />
+                    </div>
+                    <div className="infor-user-details">
+                        <h2>Email:</h2>
+                        <input disabled={disable} type="text" name="email" defaultValue={Account.email} />
+                    </div>
+                    <div className="infor-user-details">
+                        <h2>Mật Khẩu:</h2>
+                        <button onClick={() => setChangPass(true)}><EditIcon fontSize="medium" />Thay đổi mật khẩu</button>
+                    </div>
+                    <div className="button-edit-information">
+                        {(edit === 'Edit') ?
+                            <button onClick={EditInfor}>Chỉnh sửa</button>
+                            :
+                            <button className="cancel-edit" onClick={EditInfor}>Hủy bỏ</button>
+                        }
+                        <button onClick={() => window.location.href = "http://localhost:3000"}>Về trang chủ</button>
+                    </div>
+
                 </div>
             </div>
-            <div className= "information-infor-user">
-                <h1>Profile</h1>
-                <div className ="infor-user-details">
-                    <h2>Họ và tên:</h2>
-                    <input disabled={disable} type= "text" name ="full_name" defaultValue={Account.full_name}/>                
-                </div>
-                <div className ="infor-user-details">
-                    <h2>Tên đăng nhập:</h2>
-                    <input disabled={disable} type= "text" name ="username" defaultValue={Account.username}/>              
-                </div>
-                <div className ="infor-user-details">
-                    <h2>Email:</h2>
-                    <input disabled={disable} type= "text" name ="email" defaultValue={Account.email}/>                          
-                </div>
-                <div className ="infor-user-details">
-                    <h2>Mật Khẩu:</h2>                
-                    <input className="password-change" disabled={disable} type= {password} name ="password" defaultValue={Account.password}/>
-                    {changeIcon ? 
-                    <VisibilityIcon onClick= {Showpass} fontSize="large" className="password-change-eye"/>   
-                    :
-                    <VisibilityOffIcon onClick= {Showpass} fontSize="large" className="password-change-eye"/>   
-                    }                                    
-                </div>          
-                <div className= "button-edit-information">
-                    {(edit ==='Edit')?
-                    <button onClick= {EditInfor}>{edit}</button>
-                    :
-                    <button className="cancel-edit" onClick= {EditInfor}>{edit}</button>
-                    }
-                    <button>Back to home</button>
-                </div>
-                
-            </div>
-        </div>
+        </>
     )
 }
 
-InformationUser.propTypes ={
+InformationUser.propTypes = {
     account: propTypes.string.isRequired,
 };

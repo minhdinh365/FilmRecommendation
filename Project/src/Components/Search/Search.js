@@ -3,28 +3,31 @@ import _debounce from 'lodash/debounce'
 import axios from 'axios';
 import Autosuggest from 'react-autosuggest'
 import { Link } from 'react-router-dom'
-import {IMG_SIZE_XSMALL } from '../../API/const';
+import { IMG_SIZE_XSMALL } from '../../API/const';
 
-const getSuggestionValue = suggestion => {const newsuggest = suggestion.title
+const getSuggestionValue = suggestion => {
+  const newsuggest = suggestion.title
 
-return newsuggest };
+  return newsuggest
+};
 const renderSuggestion = (suggestion) => (
-    <div>
-    <Link className= "search-card" to={{
-                  pathname: `/detail/${suggestion.id}`,
-                  state: suggestion.id }}> 
-        <img className="searchResult-image" alt="wrong" src= {( IMG_SIZE_XSMALL + suggestion.poster_path ) } />
-        <div className="searchResult-text">
+  <div>
+    <Link className="search-card" to={{
+      pathname: `/detail/${suggestion.id}`,
+      state: suggestion.id
+    }}>
+      <img className="searchResult-image" alt="wrong" src={(IMG_SIZE_XSMALL + suggestion.poster_path)} />
+      <div className="searchResult-text">
         <div className="searchResult-name">
-              {suggestion.title}
+          {suggestion.title}
         </div>
         <div className="searchResult-date">
-            {suggestion.release_date}
+          {suggestion.release_date}
         </div>
-        </div>
-      </Link>
-    </div>
-  );
+      </div>
+    </Link>
+  </div>
+);
 
 class Search extends Component {
   constructor(props) {
@@ -36,15 +39,15 @@ class Search extends Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
 
-  const url = 'http://localhost:5000/search?content='+inputValue;
+    const url = 'http://localhost:5000/search?content=' + inputValue;
 
-  return inputLength === 0 ? [] : axios.get(url).then(response => {
-            this.setState({suggestions: response.data.results})
-          }).catch(error => { console.log(`Error Message ${error}`)});
-}
+    return inputLength === 0 ? [] : axios.get(url).then(response => {
+      this.setState({ suggestions: response.data.results })
+    }).catch(error => { console.log(`Error Message ${error}`) });
+  }
 
   onSuggestionsClearRequested = () => {
     this.setState({
@@ -54,14 +57,14 @@ class Search extends Component {
   render() {
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: 'Search ...',
+      placeholder: 'Tìm kiếm...',
       value,
-      onChange: (e, { newValue }) => this.setState({value : typeof(newValue) !== 'undefined'? newValue : '' })
+      onChange: (e, { newValue }) => this.setState({ value: typeof (newValue) !== 'undefined' ? newValue : '' })
     };
 
-    const onSuggestionsFetchRequested = _debounce((term) => {this.onSuggestionsFetchRequested(term) }, 1000);
+    const onSuggestionsFetchRequested = _debounce((term) => { this.onSuggestionsFetchRequested(term) }, 1000);
     return (
-      <Autosuggest 
+      <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}

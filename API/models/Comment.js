@@ -29,15 +29,13 @@ const schema = mongoose.Schema(
     is_reply: {
       type: Number,
     },
-    date: {
-      type: mongoose.Schema.Types.Date,
-      default: Date.now(),
-    },
-  },
+  }
+  ,
   {
+    timestamps: { createdAt: 'date' },
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 schema.virtual("film", {
   ref: "filmlists",

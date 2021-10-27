@@ -67,6 +67,9 @@
    .infor-user-details{
       flex-direction: column;
    }
+   .infor-user-details:nth-child(5){
+      flex-direction: row;
+   }
    .infor-user-details h2,input{
       width: 100%;
    }
@@ -74,10 +77,20 @@
       width: 100%;
    }
    .information-imge-user{
-      width: 50%;
+      width: 100%;
+      padding-top: 0;
+   }
+   .information-infor-user{
+      width: 100%;
    }
    .infor-user-details .password-change-eye{
       top: 70%
+   }
+   .information-detail{
+      flex-direction: column;
+   }
+   .information-infor-user button{
+      width: 100%;
    }
 
 

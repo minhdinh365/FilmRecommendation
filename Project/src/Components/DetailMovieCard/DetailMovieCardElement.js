@@ -10,7 +10,7 @@ export const PlayYoutube = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
-  z-index:2;
+  z-index:21;
 
   & .modal-video {
     display: flex;
@@ -32,9 +32,21 @@ export const PlayYoutube = styled.div`
     width: 1180px;
     height: 640px;
     @media screen and (max-width: 1024px) {
+      width: 1024px;
+      height: 560px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 768px;
+      height: 360px;
+    }
+    @media screen and (max-width: 375px) {
+      width: 375px;
+      height: 180px;
+    }
+    @media screen and (max-width: 1024px) {
       width: 1000px;
       height: 560px;
-  }
+    }
   }
 `;
 
@@ -138,15 +150,15 @@ export const Like = styled.div`
 `;
 
 export const TrailerButton = styled.button`
-  border: 0;
-  outline: 0;
+  border: 3px solid;
+  border-radius: 16px;
+  padding: 5px 15px;
   display: flex;
   background-color: transparent;
   color: #fff;
   font-weight: 700;
   font-size: 18px;
   align-items: center;
-  padding: 5px;
   cursor: pointer;
   animation-fill-mode: both;
   animation-duration: 1000ms;
@@ -211,3 +223,13 @@ export const RunningTime = styled.div``;
 export const Budget = styled.div``;
 
 export const Revenue = styled.div``;
+
+export const Gener = styled.div`
+  margin-top: 20px;
+  grid-column: 1/ span 2;
+  grid-row: 4/span 0;
+  span{
+    color: yellow;
+    font-size: 16px;
+  }
+`;

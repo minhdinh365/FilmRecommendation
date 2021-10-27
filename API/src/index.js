@@ -71,6 +71,3 @@ app.set("views", __dirname + "\\src\\resources\\views");
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
 app.use("/", LoginPage);
-// app.get("/admin", function (req, res) {
-//   res.render("home/index");
-// });

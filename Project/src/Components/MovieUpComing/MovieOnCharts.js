@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import propTypes from "prop-types";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const MovieBXH = (props) => {
@@ -8,9 +8,9 @@ const MovieBXH = (props) => {
   return (
     <Link to={{
       pathname: `/detail/${props.movie.id}`,
-      state: props.movie.id 
+      state: props.movie.id
     }}>
-      <motion.div className ="card-chart"
+      <motion.div className="card-chart"
         key={props.movie.id}
         whileHover={{
           scale: 1.06,
@@ -24,6 +24,13 @@ const MovieBXH = (props) => {
             src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
           ></img>
           <h4 className="chart-movie">NEW</h4>
+          <div className="descriptions">
+            <h1>{props.movie.title}</h1>
+            <p className="demo-1">{props.movie.overview}</p>
+            <button>
+              Xem ngay
+            </button>
+          </div>
         </div>
         <div className="title-movie-chart">
           <p>Khởi chiếu: {props.movie.release_date}</p>
@@ -41,6 +48,7 @@ MovieBXH.propTypes = {
     overview: propTypes.string.isRequired,
     id: propTypes.number.isRequired,
     release_date: propTypes.string.isRequired,
+    overview: propTypes.string.isRequired,
   }).isRequired,
 };
 

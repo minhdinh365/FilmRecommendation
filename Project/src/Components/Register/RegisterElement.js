@@ -9,12 +9,14 @@ export const Form = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 2;
+  z-index: 5;
+  margin-bottom: 30px;
 `;
 
 export const Card = styled.div`
+  margin-top: 70px;
   width: 70%;
-  border-radius: 25px;
+  border-radius: 7px;
   display: flex;
   background-color: rgba(255, 255, 255);
 `;
@@ -59,6 +61,16 @@ export const UpdateButton = styled.button`
   :hover {
     background: linear-gradient(90deg, orange, blue);
     color: #fff;
+    cursor: pointer;
+  }
+  span{
+    position: relative;
+    cursor: pointer;
+  }
+  .icon{
+    position: absolute;
+    left: -28px;
+    bottom: 0;
   }
 `;
 
