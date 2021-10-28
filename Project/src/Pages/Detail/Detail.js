@@ -6,7 +6,7 @@ import Header from "../../Components//Header/NavBar";
 import Footer from "../../Components/Footer";
 import axios from "axios";
 import { LocalhostApi } from '../../API/const'
-// import Recommandation from '../../Components/Recommandations'
+import Recommandation from '../../Components/Recommandations'
 import UseFullLoading from "../../Components/FullPageLoading";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
@@ -84,6 +84,7 @@ const Detail = () => {
         <Header />
         <DetailMovieCard contents={film} castMovie={castMovie} />
         <CommentBox evaluate={content} information={User} id={id} total_comment={total} />
+        <Recommandation></Recommandation>
         <Footer />
       </>
     );

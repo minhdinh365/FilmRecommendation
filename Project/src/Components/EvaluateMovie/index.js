@@ -189,6 +189,7 @@ class CommentBox extends React.Component {
                   <Reply
                     time={this.Subtracttime(different)}
                     key={reply + r}
+                    id={comment.id}
                     avatar={reply.info.avatar}
                     full_name={reply.info.full_name}
                     star={reply.evaluate}
@@ -199,6 +200,7 @@ class CommentBox extends React.Component {
               };
             }
           });
+          console.log(temp.cmt)
           return temp.cmt;
         }
       });
