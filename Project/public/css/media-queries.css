@@ -92,7 +92,24 @@
    .information-infor-user button{
       width: 100%;
    }
-
+   .wrapper-hero .detail-movie-banner{
+      flex-direction:  column;
+   }
+   .detail-movie-banner .detail-movie-banner-title{
+      margin: auto;
+   }
+   .detail-movie-banner .detail-movie-banner-title h1{
+      text-align: center;
+   }
+   .detail-movie-banner .detail-movie-banner-img{
+      margin: auto;
+   }
+   .react-reveal.movie-banner-img-right{
+      width: 350px;
+   }
+   .detail-movie-banner{
+      padding: 0;
+   }
 
     /* header styles
    ------------------------------------------------------------------ */
@@ -509,6 +526,9 @@
    header .social li { margin: 0 6px; }
    .Header img{
       padding-left: 0;
+   }
+   .react-reveal.movie-banner-img-right{
+      width: 270px;
    }
 
    /* footer

@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Axios from "axios";
+import { LocalhostClient } from '../../API/const'
+import { LocalhostApi } from '../../API/const'
 import { useCookies } from "react-cookie";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -31,7 +33,7 @@ function ModalLogin(props) {
   }
   const onSubmit = (data) => {
     showLoader();
-    Axios.post("http://localhost:5000/account", {
+    Axios.post(LocalhostApi + "account", {
       username: data.username,
       password: data.password,
     })
@@ -39,9 +41,9 @@ function ModalLogin(props) {
         if (res.data.status === "Susscess") {
           window.location.reload();
           setLoginOpen(false);
-          setCookie("User", res.data.token, { path: "http://localhost:3000/" })
+          setCookie("User", res.data.token, { path: LocalhostClient })
           if (registerUser) {
-            window.location = 'http://localhost:3000'
+            window.location = LocalhostClient
           }
           hideLoader();
         } else {
@@ -142,13 +144,11 @@ function ModalLogin(props) {
                   })}
                   <Errors>{errorTM}</Errors>
                   <div className="text-right">
-                    <p onClick={switchForget} style={{ color: "blue" }}>
+                    <p onClick={switchForget} style={{ color: "white" }}>
                       Quên mật khẩu?
                     </p>
                   </div>
-                  <div>
-                    <Button type="submit">Đăng nhập</Button>
-                  </div>
+                  <Button type="submit">Đăng nhập</Button>
                   <OtherSign>
                     <a
                       href="http://localhost:3000/register"

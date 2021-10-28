@@ -4,6 +4,7 @@ import axios from 'axios';
 import Autosuggest from 'react-autosuggest'
 import { Link } from 'react-router-dom'
 import { IMG_SIZE_XSMALL } from '../../API/const';
+import { LocalhostApi } from '../../API/const'
 
 const getSuggestionValue = suggestion => {
   const newsuggest = suggestion.title
@@ -42,7 +43,7 @@ class Search extends Component {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    const url = 'http://localhost:5000/search?content=' + inputValue;
+    const url = LocalhostApi + 'search?content=' + inputValue;
 
     return inputLength === 0 ? [] : axios.get(url).then(response => {
       this.setState({ suggestions: response.data.results })

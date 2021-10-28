@@ -6,6 +6,7 @@ import queryString from "query-string";
 import Rating from "./Rating";
 import { Link } from 'react-router-dom';
 import LoadingMovieLoad from '../LoadingMovie';
+import { LocalhostApi } from '../../API/const'
 
 const MovieCard = (props) => {
   return (
@@ -24,7 +25,7 @@ const MovieCard = (props) => {
         <div className="card-movie-now">
           <img
             alt={`${props.movie.title} Movie Poster`}
-            src={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
+            src={props.movie.poster_path}
           ></img>
           <h2>{props.movie.title}</h2>
           <Rating
@@ -79,7 +80,7 @@ function Main() {
       try {
         showLoader()
         const paramString = queryString.stringify(filters);
-        const requestUrl = `http://localhost:5000/films/${cate}?${paramString}`;
+        const requestUrl = `${LocalhostApi}films/${cate}?${paramString}`;
         const response = await fetch(requestUrl);
         const responseJSON = await response.json();
         const { results } = responseJSON;

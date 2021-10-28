@@ -2,48 +2,90 @@ import React, { useState, useEffect } from "react";
 import Fade from "react-reveal";
 import ModalQuestions from "../QuestionSearch";
 import NavBar from "./NavBar";
+import { LocalhostApi } from '../../API/const'
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
 
-function Header({start}) {
+function Header({ start }) {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
   /*Show modal questions*/
   const OpenModalQuesitons = () => {
     setShowModalQuestions((prev) => !prev);
   };
-
+  const [postMovie, setPostMovie] = useState([]);
+  useEffect(() => {
+    let isAcctive = false;
+    async function fetchPostMovie() {
+      try {
+        const requestUrl = `${LocalhostApi}films/popular?page=1`;
+        const response = await fetch(requestUrl);
+        const responseJSON = await response.json();
+        const { results } = responseJSON;
+        setPostMovie(results);
+      }
+      catch (e) { }
+    }
+    if (!isAcctive) {
+      fetchPostMovie();
+    }
+    return () => {
+      isAcctive = true
+    }
+  }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: false,
+    autoplaySpeed: 4000,
+    ltr: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          dots: false
+        },
+      },
+    ]
+  };
   return (
-    <header id="home">
+    <section id="home">
       <div className="modal-home-movie">
         <ModalQuestions
           showModalQuestions={showModalQuestions}
           setShowModalQuestions={setShowModalQuestions}
         ></ModalQuestions>
       </div>
-      <NavBar/>
+      <NavBar />
       <div className="Header-banner">
-        <div className="banner-text">
-          <Fade bottom>
-            <h1 className="responsive-headline">Hãy cùng nhau trải nghiệm</h1>
-          </Fade>
-          <Fade bottom duration={1200}>
-            <h3>Những bộ phim hay nhất.</h3>
-          </Fade>
-          <Fade bottom duration={2000}>
-            <ul className="social">
-              <a href="#portfolio" className="button btn project-btn">
-                <i className="fa fa-film smoothscroll"></i>
-                Xem Phim Thôi
-              </a>
-              <div
-                onClick={OpenModalQuesitons}
-                className="button btn github-btn"
-              >
-                <i className="fa fa-search"></i>Tìm Phim Nào
+        <Slider {...settings}>
+          {postMovie.map(element => {
+            return (<div className="wrapper-hero" key={element.id}>
+              <img className="img-movie-banner" src={`${element.backdrop_path}`} />
+              <div className="detail-movie-banner">
+                <div className="detail-movie-banner-title" >
+                  <Fade bottom duration={2000}>
+                    <h1>{element.title}</h1>
+                    <span>{element.overview}</span>
+                    <Link to="https://www.facebook.com/"><button className="button-32">Xem Ngay
+                    </button></Link>
+                  </Fade>
+                </div>
+                <div className="detail-movie-banner-img">
+                  <Fade top duration={2000}>
+                    <img className="movie-banner-img-right" src={element.poster_path} />
+                  </Fade>
+                </div>
               </div>
-            </ul>
-          </Fade>
-        </div>
+
+            </div>)
+          })}
+        </Slider>
       </div>
-    </header>
+    </section>
   );
 }
 

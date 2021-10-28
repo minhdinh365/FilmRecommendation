@@ -1,8 +1,8 @@
 import { React, Component } from "react";
-import { Container } from "react-bootstrap";
 import Slider from "react-slick";
 import axios from "axios";
 import MovieBXH from "./MovieOnCharts";
+import { LocalhostApi } from '../../API/const'
 
 class BXH extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class BXH extends Component {
     this.slider.slickPlay();
   }
   componentDidMount() {
-    axios.get(`http://localhost:5000/films/upcoming?page=1`)
+    axios.get(LocalhostApi + `films/upcoming?page=1`)
       .then((response) => {
         this.setState({ results: response.data.results });
       })
@@ -29,7 +29,7 @@ class BXH extends Component {
       dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 5,
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
@@ -40,7 +40,6 @@ class BXH extends Component {
             slidesToShow: 3,
             slidesToScroll: 3,
             infinite: true,
-            dots: true,
           },
         },
         {
@@ -64,12 +63,12 @@ class BXH extends Component {
       .slice(0, 15)
       .map((movie) => <MovieBXH key={movie.id} movie={movie}></MovieBXH>);
     return (
-      <Container id="bxhm">
-        <h2><strong>Công chiếu<span>( {this.state.results.length} )</span></strong></h2>
+      <section id="bxhm">
+        <h2><strong>Được yêu thích nhất<span>( {this.state.results.length} )</span></strong></h2>
         <Slider ref={(slider) => (this.slider = slider)} {...settings}>
           {Movies}
         </Slider>
-      </Container>
+      </section>
     );
   }
 }

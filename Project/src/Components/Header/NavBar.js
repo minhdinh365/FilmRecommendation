@@ -17,12 +17,12 @@ export default function NavBar() {
     let isAcctive = false;
     const mediaQuery = window.matchMedia("(max-width: 1024px)");
     if (!isAcctive) {
-      mediaQuery.addListener(handleMediaQueryChange);
+      mediaQuery.addEventListener('resize', handleMediaQueryChange);
       handleMediaQueryChange(mediaQuery);
     }
     return () => {
       isAcctive = true
-      mediaQuery.removeListener(handleMediaQueryChange);
+      mediaQuery.removeEventListener('resize', handleMediaQueryChange);
       setIsSmallScreen(null)
     };
   }, []);
@@ -82,7 +82,34 @@ export default function NavBar() {
       setNavbar(false);
     }
   }
+  const [section, setSection] = useState('home')
+  useEffect(() => {
+    let sections = document.querySelectorAll('section');
+
+    window.addEventListener('scroll', () => {
+      let currnent = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset > (sectionTop - sectionHeight / 20)) {
+          currnent = section.getAttribute('id')
+        }
+      })
+      setSection(currnent)
+    })
+    return () => {
+      window.removeEventListener('scroll', () => { })
+    }
+  }, [])
   window.addEventListener('scroll', changBackgroundNavbar)
+  const [listNav, setListNav] = useState([
+    { id: 1, name: 'Trang chủ', section: 'home' },
+    { id: 1, name: 'Đang công chiếu', section: 'bxhm' },
+    { id: 1, name: 'Phim cho bạn', section: 'portfolio' },
+    { id: 1, name: 'Giới thiệu', section: 'about' },
+    { id: 1, name: 'Liên hệ', section: 'contact' },
+  ])
+
   return (
     <div className={Navbar ? 'Header color' : 'Header'}>
       <ModalSign
@@ -92,43 +119,21 @@ export default function NavBar() {
         open={forgetOpen} setLoginOpen={setLoginOpen} setForgetOpen={setForgetOpen}
       ></ModalForget>
       <Link className="current" to="/" onClick={toggleNav}>
-
         <img
           src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
           className="Logo"
           alt="logo"
         />
       </Link>
-      <CSSTransition
-        in={!isSmallScreen || isNavVisible}
-        timeout={0}
-        classNames="NavAnimation"
-        unmountOnExit
-      >
+      <CSSTransition in={!isSmallScreen || isNavVisible} timeout={0} classNames="NavAnimation" unmountOnExit>
         <nav className="Nav">
-          <a className="smoothscroll current" href="http://localhost:3000/#home" onClick={toggleNav}>
-            Trang chủ
-          </a>
-          <a className="smoothscroll" href="http://localhost:3000/#bxhm" onClick={toggleNav}>
-            Đang công chiếu
-          </a>
-          <a className="smoothscroll" href="http://localhost:3000/#portfolio" onClick={toggleNav}>
-            Phim cho bạn
-          </a>
-          <a
-            className="smoothscroll hiden-GT"
-            href="/#about"
-            onClick={toggleNav}
-          >
-            Giới thiệu
-          </a>
-          <a
-            className="smoothscroll hiden-GT"
-            href="#contact"
-            onClick={toggleNav}
-          >
-            Liên hệ
-          </a>
+          {listNav.map((element) => {
+            return <a key={element.section} className={element.section === section ? "smoothscroll current" : "smoothscroll"}
+              href={'#' + element.section}
+              onClick={toggleNav}>
+              {element.name}
+            </a>
+          })}
           <Search className="hidden-input"></Search>
           {(success !== '')
             ? (

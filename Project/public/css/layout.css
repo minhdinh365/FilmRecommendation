@@ -90,13 +90,130 @@ body {
  }
  .Header-banner{
    display: flex;
-   height: 100vh;
-   padding-top: 10vh;
-   background-image: url(https://www.countryandtownhouse.co.uk/wp-content/uploads/2020/04/GettyImages-1176372559-1.jpg);
+   flex-direction: row;
+   height: 100%;
+   width: 100%;
    background-size: cover; 
    background-repeat: no-repeat; 
    background-position: center center;
    object-fit: cover;
+}
+.Header-banner .slick-slider{
+   width: 100%;
+   position: relative;
+}
+.Header-banner .wrapper-hero{
+   position: relative;
+   cursor: pointer;
+   height: 100vh;
+}
+.Header-banner .slick-dots{
+   position: absolute;
+   bottom:  2%;
+}
+.Header-banner .slick-dots li button:before {
+   color: white;
+ }
+ .Header-banner .slick-dots li.slick-active button:before{
+    color: yellow;
+ }
+.img-movie-banner{
+   width: 100%;
+   height: 100%;
+   margin: auto;
+   display: block;
+}
+.detail-movie-banner{
+   top: 0;
+   left: 0;
+   z-index: 60;
+   display: flex;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: #000000bd;
+   padding: 10% 12% 10% 20%;
+}
+.detail-movie-banner-title {
+   width: 50%;
+}
+.detail-movie-banner-img{
+   width: 50%;
+   justify-content: center;
+   display: flex;
+   padding: 0px 5%;
+   transition: transform 330ms ease-in-out;
+  
+}
+.detail-movie-banner-img img{
+   border-radius: 10px;
+   box-shadow: 0 3px 10px rgb(246 240 240 / 52%);
+   transform: translateY(-2px);
+}
+.detail-movie-banner-img:hover{
+      transform:
+        perspective(140em)
+        rotateX(15deg);
+      border-radius: 10px;
+      border-color:
+        rgb(213, 220, 226)
+        rgb(213, 220, 226)
+        rgb(184, 194, 204);
+}
+.detail-movie-banner-title h1{
+   color: white;
+   font-family: "Montserrat", sans-serif;
+   font-size: 35px;
+   line-height: initial;
+}
+.detail-movie-banner-title a{
+   text-decoration: none;
+   color: black;
+}
+.detail-movie-banner-title span{
+   color: white;
+   font-family: "Montserrat", sans-serif;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   margin-bottom: 20px;
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+.button-32 {
+  background-color: #fff000;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-32:not(:disabled):hover,
+.button-32:not(:disabled):focus {
+  transform: translateY(-2px);
+  outline: 0;
+  background: #f4e603;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+
+.button-32:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
 }
 .banner-text{
    display: block;
@@ -124,13 +241,16 @@ body {
    justify-items: center;
  }
  .Nav a {
-   font-size: 20px;
+   font-size: 18px;
    font-weight: 500;
    transition: 0.5s;
    text-decoration: none;
  }
  .Nav .smoothscroll {
    color: rgb(255, 255, 255);
+ }
+ .smoothscroll.current {
+   border-bottom: 2px solid yellow;
  }
 
  .Nav a:hover {
@@ -419,21 +539,16 @@ ul#nav li.current a { color: #fe6928; }
    display: block;
    padding-left: 10px;
 }
-
-
 #bxhm{
    padding : 50px 30px 30px 30px;
-   background: #24282f;
+   background: black;
    border-bottom: 2px solid gray;
-   border-top: 2px solid gray;
-
 }
 
 #bxhm .slick-arrow{
    height: 100%;
    width: 30px;
 }
-
 #bxhm h1 {
    font: 24px 'opensans-semibold', sans-serif;
    text-transform: uppercase;
@@ -443,7 +558,6 @@ ul#nav li.current a { color: #fe6928; }
    color: #95A3A3;
    margin-bottom: 20px;
    background-color: #000000;
-
 }
 #bxhm h2 {
    font: 28px 'opensans-semibold', sans-serif;
@@ -462,7 +576,7 @@ h2 span {
 }
 h2 strong {
    z-index: 2;
-   background: #24282f;
+   background: black;
    padding: 4px 8px;
    position: relative;
  }
@@ -476,10 +590,10 @@ h2 strong {
    z-index: 1;
    bottom: 50%;
    margin-bottom: -2px;
-   height: 3px;
+   height: 2px;
    left: 0;
    right: 0;
-   background: #373d47;
+   background: white;
  }
 #bxhm h2::after {
    position: absolute;
@@ -492,7 +606,6 @@ h2 strong {
    text-decoration: none;
    outline: 0;
    color: #11ABB0;
-
    -webkit-transition: color .3s ease-in-out;
    -moz-transition: color .3s ease-in-out;
    -o-transition: color .3s ease-in-out;
@@ -501,7 +614,7 @@ h2 strong {
 #bxhm img {
    max-width: 100%;
    height: auto;
-   min-height: 473px;
+   min-height: 400px;
    border-radius: 5px;
 }
 #bxhm img:hover{
@@ -528,6 +641,7 @@ h2 strong {
    overflow: hidden;
    padding: 0 38px;
 }
+
 .title-movie-chart p{
    text-align: center;
    color: rgb(255, 255, 255);
@@ -616,11 +730,10 @@ h2 strong {
    transition: all .5s ease-in-out;
 }
 .title-movie-chart h3{
-   font-weight: 100;
    text-align: center;
    color: #46e1ff;
    overflow: hidden;
-   font-size: 24px;
+   font-size: 20px;
    overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
@@ -741,7 +854,7 @@ h2 strong {
    background-color: rgb(0, 0, 0,0.8);
 }
 .type-move-choose.active{  
-   background-color: #24282f;
+   background-color: #0b0b0b;
    color: yellow;
  }
 .type-move-choose li{
@@ -834,7 +947,7 @@ h2 strong {
    justify-content: center;
    border-bottom-left-radius: 10px;
    border-bottom-right-radius: 10px;
-   background-color: #24282f;
+   background-color: #0b0b0b;
    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .movie-for-today img{
@@ -863,7 +976,7 @@ h2 strong {
 .card-movie-now img{
    border-radius: 10px;
    display: block;
-   min-height: 380px;
+   min-height: 350px;
 }
 .card-movie-now h2{
    overflow: hidden;

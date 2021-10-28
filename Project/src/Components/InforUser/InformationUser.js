@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import EditIcon from '@mui/icons-material/Edit';
 import ChangePassword from '../ChangePassword'
+import { LocalhostApi } from '../../API/const'
 
 export default function InformationUser(props) {
     const [disable, setDisable] = useState(true)
@@ -13,7 +14,7 @@ export default function InformationUser(props) {
     const [Account, setAccount] = useState({})
     useEffect(() => {
         axios.get(
-            'http://localhost:5000/infor?username=' + props.account)
+            LocalhostApi + 'infor?username=' + props.account)
             .then(res => {
                 setAccount({
                     username: res.data.account.username,

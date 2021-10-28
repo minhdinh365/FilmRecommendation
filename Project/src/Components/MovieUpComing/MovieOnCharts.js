@@ -33,7 +33,7 @@ const MovieBXH = (props) => {
           </div>
         </div>
         <div className="title-movie-chart">
-          <p>Khởi chiếu: {props.movie.release_date}</p>
+          <p>{props.movie.release_date}</p>
           <h3>{props.movie.title}</h3>
         </div>
       </motion.div>

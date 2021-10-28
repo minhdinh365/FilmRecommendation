@@ -5,10 +5,12 @@ import { useRouteMatch } from "react-router-dom";
 import Header from "../../Components//Header/NavBar";
 import Footer from "../../Components/Footer";
 import axios from "axios";
+import { LocalhostApi } from '../../API/const'
 // import Recommandation from '../../Components/Recommandations'
 import UseFullLoading from "../../Components/FullPageLoading";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
+import { URL_DETAIL, API_KEY } from '../../API/const'
 
 const Detail = () => {
   const cookieUser = Cookies.get("User");
@@ -31,9 +33,9 @@ const Detail = () => {
         success = jwt_decode(cookieUser).username
       }
       window.scrollTo(0, 0);
-      const requestOne = axios.get(`http://localhost:5000/comment?id=${id}`);
-      const requestTwo = axios.get(`http://localhost:5000/infor?username=${success}`);
-      const requestThree = axios.get(`http://localhost:5000/film/${id}`);
+      const requestOne = axios.get(LocalhostApi + `comment?id=${id}`);
+      const requestTwo = axios.get(LocalhostApi + `infor?username=${success}`);
+      const requestThree = axios.get(LocalhostApi + `film/${id}`);
       CallApi(requestOne, requestTwo, requestThree)
     }
     return () => {
@@ -55,12 +57,32 @@ const Detail = () => {
       })
     );
   }
+  const [castMovie, setCastMovie] = useState([])
+  useEffect(() => {
+    let isAcctive = false;
+    async function fetchPostMovie() {
+      try {
+        axios.get(`${URL_DETAIL}${id}/credits${API_KEY}&language=vi`)
+          .then((res) => {
+            setCastMovie(res.data.cast)
+          })
+      }
+      catch (e) { }
+    }
+    if (!isAcctive) {
+      fetchPostMovie();
+      setCastMovie(null)
+    }
+    return () => {
+      isAcctive = true
+    }
+  }, []);
   if (film !== undefined)
     return (
       <>
         {loader}
         <Header />
-        <DetailMovieCard contents={film} />
+        <DetailMovieCard contents={film} castMovie={castMovie} />
         <CommentBox evaluate={content} information={User} id={id} total_comment={total} />
         <Footer />
       </>

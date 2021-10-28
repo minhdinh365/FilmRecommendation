@@ -15,7 +15,7 @@ export const WrapperModal = styled.div`
   width: 400px;
   height: 600px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: rgb(255, 255, 255);
+  background: rgb(23 23 23);
   color: #000;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -45,7 +45,7 @@ export const Content = styled.div`
     justify-content: center;
     font-family: Poppins-Bold;
     font-size: 30px;
-    color: #333;
+    color: white;
     line-height: 1.2;
     text-align: center;
     font-weight: 600;
@@ -67,7 +67,7 @@ export const Content = styled.div`
   }
 `;
 export const InputField = styled.input`
-  border: 2px solid gray;
+  border: 2px solid white;
   border-radius: 5px;
   color: black;
   position: relative;
@@ -84,12 +84,12 @@ export const Errors = styled.div`
   display: flex;
 `;
 export const Button = styled.button`
+  background-color: yellow;
+  color: black;
   font-family: serif;
   height: 50px;
   font-size: 23px;
   padding: 10px 20px;
-  background-color: #5b83e3;
-  color: #fff;
   border: none;
   width: 100%;
   border-radius: 10px;

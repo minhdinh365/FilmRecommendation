@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import ModalVideo from "react-modal-video";
 import Advertisments from '../Advertisments'
-import ModalSign from "../../Pages/Login/ModalLogin";
+import axios from 'axios'
+import { URL_DETAIL, API_KEY, URL_BACKGROUND } from '../../API/const'
 import {
   PlayYoutube,
   Container,
@@ -21,9 +22,11 @@ import {
   Budget,
   Revenue,
   Background,
-  Gener
+  Gener,
+  Caster,
+  CasterCard,
+  WrapperCaster
 } from "./DetailMovieCardElement";
-import { element } from "prop-types";
 
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
@@ -102,6 +105,20 @@ const DetailMovieCard = (props) => {
               </Statistics>
             </Detail>
           </Card>
+          <Caster>
+            <h2>Diễn viên trong phim</h2>
+            <WrapperCaster>
+              {props.castMovie.slice(0, 6).map((element) => {
+                return (
+                  <CasterCard key={element.id}>
+                    <img src={URL_BACKGROUND + element.profile_path} alt="No img" />
+                    <h3>{element.original_name}</h3>
+                    <h4>{element.character}</h4>
+                  </CasterCard>
+                )
+              })}
+            </WrapperCaster>
+          </Caster>
         </Container>
       </Background>
     </>

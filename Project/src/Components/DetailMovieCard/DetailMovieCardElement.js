@@ -60,13 +60,14 @@ export const Container = styled.div`
   margin: 79px auto auto auto;
   width: 100%;
   max-width: 1260px;
-  display: flex;
+  display: block;
   justify-content: center;
 `;
 
 export const Card = styled.div`
   width: 90%;
   display: flex;
+  margin:auto;
   background-image: linear-gradient(rgb(0,0,0), rgb(0,0,0,0.85), rgb(0,0,0));
   @media screen and (max-width: 1024px) {
       flex-direction: column;
@@ -231,5 +232,61 @@ export const Gener = styled.div`
   span{
     color: yellow;
     font-size: 16px;
+  }
+`;
+export const Caster = styled.div`
+  background-image: linear-gradient(rgb(0,0,0),rgb(0,0,0,0.85),rgb(0,0,0));
+  width: 90%;
+  max-width: 1260px; 
+  height: auto;
+  margin: auto;
+  display: block;
+  padding-top: 30px;
+  h2{
+    margin: 0px 20px 20px 20px;
+    color:yellow; 
+
+  }
+`;
+export const WrapperCaster = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  margin:auto;
+  justify-content: center;
+`;
+export const CasterCard = styled.div`
+  width: 12%;
+  display: block;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  margin:0px  2.2%; 
+  border-radius: 5px;
+  @media screen and (max-width: 1024px) {
+    width: 23%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 45%;
+    padding: 0px 30px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 59%;
+    padding: 0px 
+  }
+  img{
+    width:100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  h4{
+    text-align:center;
+    font-weight: 300;
+    color: white;
+    margin: 0px 0px 12px 0px;
+  }
+  h3{
+    color: yellow;
+    font-weight:200;
   }
 `;

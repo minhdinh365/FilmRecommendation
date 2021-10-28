@@ -17,6 +17,7 @@ import {
   ButtonReply,
   GroupPost,
 } from "./EvaluateElement";
+import { LocalhostApi } from '../../API/const'
 
 class CommentBox extends React.Component {
   constructor(props) {
@@ -130,7 +131,7 @@ class CommentBox extends React.Component {
       is_reply: is_reply,
     }
     axios
-      .post("http://localhost:5000/comment", {
+      .post(LocalhostApi + "comment", {
         comment,
       })
       .then(
@@ -228,7 +229,7 @@ class CommentForm extends React.Component {
       <form onSubmit={this._handleSubmit.bind(this)}>
         <EvaluateFrame>
           <Card style={{ display: "block" }}>
-            <h2><strong>Bình luận</strong></h2>
+            <h2><strong></strong></h2>
             {isLogin ? <>
               <Group>
                 <Rating

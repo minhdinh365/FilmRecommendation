@@ -39,3 +39,22 @@ export const createEvaluate = async (req, res) => {
     console.log("ok");
   })
 }
+export const get2000Comments = async (req, res) => {
+  try {
+    const List = await Comment.find().limit(2000).populate("film");
+    res.json({ List });
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+};
+
+export const getCommentsByUsername = async (req, res) => {
+  try {
+    const List = await Comment.find({
+      $and: [{ id_info: req.params.username }, { is_reply: 0 }],
+    }).populate("film");
+    res.json({ List });
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+};

@@ -17,6 +17,7 @@ import {
   Announcement,
 } from "./RegisterElement";
 import { TextField } from "@material-ui/core";
+import { LocalhostApi } from '../../API/const'
 
 const SignUp = () => {
   var regex = new RegExp("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
@@ -168,7 +169,7 @@ const SignUp = () => {
       textInput.Password.trim() === textInput.RePassword.trim()
     ) {
       axios
-        .post("http://localhost:5000/user", {
+        .post(LocalhostApi + "user", {
           username: textInput.LastName,
           password: passwordHash.generate(textInput.Password),
           email: textInput.Email,
