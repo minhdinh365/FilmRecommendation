@@ -95,6 +95,7 @@ function Main() {
     }
     return () => {
       isAcctive = true
+
     }
   }, [filters, cate]);
 

@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const Form = styled.div`
   width: 100%;
-  max-width: 1260px;
   margin: auto;
   display: flex;
-  height: 95vh;
+  height: 100%;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -18,7 +17,7 @@ export const Card = styled.div`
   width: 70%;
   border-radius: 7px;
   display: flex;
-  background-color: rgba(255, 255, 255);
+  background-color: rgba(19, 35, 47, 0.9);
 `;
 
 export const ImageTemp = styled.div`
@@ -29,6 +28,24 @@ export const ImageTemp = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+`;
+export const ButtonHome = styled.a`
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  color: white;
+  solid yellow;
+  padding : 5px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: black;\
+  text-decoration: none;
+  &:hover{
+    color: yellow;
+  }
 `;
 
 export const Upload = styled.div`
@@ -38,6 +55,7 @@ export const Upload = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10% 0;
+  position: relative;
 `;
 
 export const Image = styled.img`
@@ -55,13 +73,12 @@ export const UpdateButton = styled.button`
   font-size: 18px;
   padding: 10px;
   border-radius: 5px;
-  color: #fff;
-  background: #11abb0;
+  color: black;
+  background: yellow;
   transition: background 2s;
+  cursor: pointer;
   :hover {
-    background: linear-gradient(90deg, orange, blue);
-    color: #fff;
-    cursor: pointer;
+    box-shadow: 1px 5px 23px rgb(219 255 0);
   }
   span{
     position: relative;
@@ -98,7 +115,9 @@ export const Information = styled.div`
   }
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  color: white;
+`;
 export const Announcement = styled.h3`
   color: red;
 `;
@@ -107,8 +126,8 @@ export const RegisterButton = styled.button`
   border: 0;
   outline: 0;
   display: flex;
-  background-color: #11abb0;
-  color: #fff;
+  background-color: yellow;
+  color: black;
   font-weight: 700;
   font-size: 24px;
   align-items: center;
@@ -119,8 +138,8 @@ export const RegisterButton = styled.button`
   justify-content: center;
   transition: background 2s;
   margin-bottom: 20px;
+  cursor: pointer;
   :hover {
-    background: linear-gradient(90deg, orange, blue);
-    color: #fff;
+    box-shadow:1px 5px 23px rgb(219 255 0);
   }
 `;

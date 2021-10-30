@@ -70,6 +70,9 @@
    .infor-user-details:nth-child(5){
       flex-direction: row;
    }
+   .infor-user-details:nth-child(5) h2{
+      width: 40%;
+   }
    .infor-user-details h2,input{
       width: 100%;
    }
@@ -91,6 +94,7 @@
    }
    .information-infor-user button{
       width: 100%;
+      margin: 0;
    }
    .wrapper-hero .detail-movie-banner{
       flex-direction:  column;
@@ -109,6 +113,9 @@
    }
    .detail-movie-banner{
       padding: 0;
+   }
+   .btn-info{
+      margin: 0;
    }
 
     /* header styles

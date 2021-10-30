@@ -11,7 +11,7 @@ import { useCookies } from "react-cookie";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import UseFullLoading from "../../Components/FullPageLoading";
-import { PasswordInput, Background, WrapperModal, Content, InputField, OtherSign, Errors, Button } from './modalelementsLogin'
+import { WapperLogo, PasswordInput, Background, WrapperModal, Content, InputField, OtherSign, Errors, Button } from './modalelementsLogin'
 
 const schema = yup.object().shape({
   username: yup.string().required("Tài khoản không được để trống"),
@@ -101,7 +101,11 @@ function ModalLogin(props) {
             <WrapperModal>
               <Content>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                  <h1>Đăng nhập</h1>
+                  <WapperLogo>
+                    <img src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
+                      className="Logo"
+                      alt="logo" />
+                  </WapperLogo>
                   {Field.inputs.map((input, key) => {
                     return (
                       <div key={key}>
@@ -111,16 +115,16 @@ function ModalLogin(props) {
                               <span className="spanLogin">Mật khẩu</span>
                               <InputField
                                 type={password}
-                                placeholder={"Nhập vào mật khẩu"}
+                                placeholder={"Nhập vào mật khẩu*"}
                                 {...register(input.name)}
                                 onChange={(e) => handle(e)}
                                 id={input.name}
                                 autoComplete="on"
                               ></InputField>
                               {changeIcon ?
-                                <VisibilityIcon onClick={Showpass} fontSize="large" className="password-change-eye" />
+                                <VisibilityIcon color="secondary" onClick={Showpass} fontSize="large" className="password-change-eye" />
                                 :
-                                <VisibilityOffIcon onClick={Showpass} fontSize="large" className="password-change-eye" />
+                                <VisibilityOffIcon color="secondary" onClick={Showpass} fontSize="large" className="password-change-eye" />
                               }
                               <Errors>{errors[input.name]?.message}</Errors>
                             </PasswordInput>
@@ -129,7 +133,7 @@ function ModalLogin(props) {
                               <span className="spanLogin">Tên đăng nhập</span>
                               <InputField
                                 type='text'
-                                placeholder={"Nhập vào mật khẩu"}
+                                placeholder={"Nhập vào tên đăng nhập*"}
                                 {...register(input.name)}
                                 onChange={(e) => handle(e)}
                                 id={input.name}

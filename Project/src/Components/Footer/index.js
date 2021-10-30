@@ -4,10 +4,33 @@ import { Row } from "react-bootstrap";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    }
+  }
+  showButtonOntop = (event) => {
+    if (window.scrollY >= 1200) {
+      this.setState({ active: true })
+    }
+    else this.setState({ active: false })
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.showButtonOntop);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.showButtonOntop);
+  }
   render() {
     return (
       <footer>
         <Row>
+          {this.state.active ?
+            <div className="arrow-button">
+              <a className="smoothscroll" href="#home">Top</a>
+            </div>
+            : null}
           <Fade bottom>
             <div className="twelve columns">
               <ul className="social-links"></ul>
@@ -26,7 +49,7 @@ class Footer extends Component {
                 </li>
               </ul>
             </div>
-          </Fade>         
+          </Fade>
         </Row>
       </footer>
     );

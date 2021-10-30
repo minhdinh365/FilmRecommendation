@@ -71,7 +71,6 @@ const Detail = () => {
     }
     if (!isAcctive) {
       fetchPostMovie();
-      setCastMovie(null)
     }
     return () => {
       isAcctive = true

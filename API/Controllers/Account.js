@@ -2,6 +2,7 @@ import { Account } from "../models/Account.js";
 import { Information } from "../models/Information.js";
 import jwt from "jsonwebtoken";
 import passwordHash from "password-hash";
+import mailgun from 'mailgun-js'
 
 export const getAccount = async (req, res) => {
   var username_request = req.body.username;
@@ -95,14 +96,62 @@ export const createAccount = async (req, res) => {
 
 export const Changepass = async (req, res) => {
   try {
-    const user = await Account.findByIdAndUpdate({ username: username })
-      .then((data) => {
-        if (passwordHash.verify(rea.body.passwordold, data.password)) {
-          user.findByIdAndUpdate
+    let newPass = req.body.newpassword;
+    let oldPass = req.body.password;
+    let username_request = req.body.username;
+    const filter = { username: username_request }
+    const update = { password: newPass }
+
+    let change = await Account.findOne(filter)
+    if (change) {
+      if (passwordHash.verify(oldPass, change.password)) {
+        Account.findOneAndUpdate(filter, update, { new: true })
+          .then(data => {
+            res.json({ status: true, mes: 'Thay đổi mật khẩu thành công' })
+          })
+
+      }
+      else res.json({ status: false, mes: 'Mật khẩu hiện tại không chính xác' })
+    }
+  }
+  catch {
+    res.json({ status: false, mes: 'Thay đổi mật khẩu thất bại' })
+  }
+}
+export const forgetPass = async (req, res) => {
+  try {
+    const mg = mailgun({ apiKey: 'abc', domain: 'http://localhost:5000/' })
+    let email = req.query.email;
+    Account.findOne({ email: email }, (err, user) => {
+      if (err || !user) {
+        return res.status(4000).json({ error: 'Email này không tồn tại' })
+      }
+      const token = jwt.sign({ _id: user.username }, 'resetpass', { expiresIn: '10m' });
+      const data = {
+        from: 'bangnguyen1235@gmail.com',
+        to: email,
+        subject: 'Account reset password link',
+        html: `
+          <h2>Please click on the link to reset password</h2>
+          <p>http://localhost:3000/inforuser/forgetpass</p>
+        `
+      };
+      return user.updateOne({ resetLink: token }, (err, success) => {
+        if (err) {
+          return res.status(4000).json({ mes: 'link reset password was wrong!' })
+        }
+        else {
+          mg.messages().send(data, function (err, body) {
+            if (err) {
+              return res.json({ error: err.message })
+            }
+            return res.json({ message: "Email đã được gửi, làm theo hướng dẫn!" })
+          })
         }
       })
+    })
   }
-  catch { }
+  catch {
 
-
+  }
 }

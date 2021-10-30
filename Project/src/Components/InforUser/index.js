@@ -22,6 +22,7 @@ export default function Information() {
   }
   return (
     <div className="information_user">
+
       {(success === '')
         ?
         <div className="information-detail-error"><img className="errorPage" src={process.env.PUBLIC_URL + "/images/errorPage.png"} /> </div>

@@ -947,8 +947,8 @@ h2 strong {
    justify-content: center;
    border-bottom-left-radius: 10px;
    border-bottom-right-radius: 10px;
-   background-color: #0b0b0b;
-   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+   background-color: black;
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .movie-for-today img{
    margin:  30px auto auto auto;
@@ -977,8 +977,11 @@ h2 strong {
    border-radius: 10px;
    display: block;
    min-height: 350px;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
 }
 .card-movie-now h2{
+   background-color: #151414;
    overflow: hidden;
    white-space: nowrap;
    text-overflow: ellipsis;
@@ -1002,6 +1005,9 @@ h2 strong {
    margin: 0;
    font-weight: 500;
    padding: 5px 0px;
+   background-color: #151414;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
 }
 
 
@@ -1082,7 +1088,7 @@ h2 strong {
    justify-content: center;
    display: flex;
    align-items: center;
-   margin-bottom: 5px;
+   background-color: #151414;
 }
 .rating-movie-now p{
    color: white;
@@ -1645,6 +1651,9 @@ footer .social-links li:first-child { margin-left: 0; }
    margin-top: 79px;
 }
 /*Login*/
+.username-input span{ 
+   color: white;
+}
 .spanLogin{
    font-family: serif;
    font-size: 20px;
@@ -1667,14 +1676,12 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 /*Information User*/
 .information-detail{
-   width: 100%;
+   width: 60%;
    margin: 50px 10%;
    display: flex;
    padding: 20px;
-   border: 1px solid gray;
    border-radius: 5px;
    background-color: #222831;
-   /* font-family: 'Baloo Paaji 2', cursive; */
 }
 .information-detail-error{
    width: 100%;
@@ -1694,6 +1701,15 @@ footer .social-links li:first-child { margin-left: 0; }
    display: block;
    text-align: center;
    padding-top: 87px;
+}
+.information-imge-user-change{
+   display: block;
+   margin: auto;
+   background-color: yellow;
+   border-radius: 5px;
+   border: none;
+   padding: 5px 10px;
+   cursor: pointer;
 }
 .information-imge-user .image-user-interact{
    display: grid;
@@ -1766,8 +1782,8 @@ footer .social-links li:first-child { margin-left: 0; }
    text-align: center;
 }
 .information-infor-user button{
-   background-color:	#11abb0;
-   color: white;
+   background-color:	yellow;
+   color: black;
    padding: 6px 16px;
    font-size: 0.875rem;
    min-width: 64px;
@@ -1776,15 +1792,16 @@ footer .social-links li:first-child { margin-left: 0; }
    line-height: 1.75;
    border-radius: 4px;
    letter-spacing: 0.02857em;
-   text-transform: uppercase;
+   text-transform: capitalize;
    border: none;
    width: 48%;
    font-size: 18px;
    font-weight: 600;
+   margin-right: 50px;
 }
 .information-infor-user button:hover{
    cursor: pointer;
-   background-color: #26d3d3;
+   box-shadow: 1px 5px 23px rgb(219 255 0);
 }
 
 .button-edit-information{
@@ -1794,11 +1811,26 @@ footer .social-links li:first-child { margin-left: 0; }
 }
 .button-edit-information .cancel-edit{
    background-color: gray;
+   box-shadow: none;
+}
+.button-edit-information .cancel-edit:hover{
+   box-shadow: none;
 }
 /*Register*/
 .text-field-register label{
    font-size: 16px;
+   color: white;
 }
+.PrivateNotchedOutline-root-1.MuiOutlinedInput-notchedOutline{
+   border-color: white;
+}
+.form-line-active input:focus {
+
+   border : 4px solid yellow !important;
+   
+   outline-color : blue !important;
+   
+   }
 .text-field-register fieldset > legend > span{
    font-size: 10px;
 }
@@ -1946,3 +1978,31 @@ color: white;
     background-color: rgb(0,0,0,0.9);
     z-index: 21;
  }
+/*Footer*/
+.arrow-button{
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   width: 80px;
+   height: 30px;
+   margin: 20px;
+   display: block;
+   background-color: yellow;
+   border-radius: 10px;
+   color: black;
+   cursor: pointer;
+}
+.arrow-button:hover{
+   background-color: black;
+   color: yellow;
+
+}
+.arrow-button a{
+   text-decoration: none;
+   font-size: 2rem;
+   font-weight: 600;
+   color: black;
+}
+.arrow-button a:hover{
+   color: yellow;
+}

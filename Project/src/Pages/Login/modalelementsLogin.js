@@ -11,11 +11,10 @@ export const Background = styled.div`
   z-index: 12;
 `;
 export const WrapperModal = styled.div`
-  margin-top: 90px;
   width: 400px;
   height: 600px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
-  background: rgb(23 23 23);
+  background: rgba(19, 35, 47, 0.9);
   color: #000;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -33,8 +32,8 @@ export const Content = styled.div`
   }
   button {
     padding: 10px 20px;
-    background-color: #5b83e3;
-    color: #fff;
+    background-color: yellow;
+    color: black;
     border: none;
     width: 100%;
     border-radius: 10px;
@@ -59,6 +58,8 @@ export const Content = styled.div`
     height: 55px;
     background: 0 0;
     padding: 0 7px 0 13px;
+    color: white;
+    margin: 20px 0px;
   }
   i {
     padding: 0px 5px;
@@ -73,10 +74,12 @@ export const InputField = styled.input`
   position: relative;
 `;
 export const OtherSign = styled.div`
-  margin-top: 40px;
   justify-content: center;
   display: grid;
   text-decoration: none;
+  a{
+    text-decoration: none;
+  }
 `;
 export const Errors = styled.div`
   color: red;
@@ -95,6 +98,7 @@ export const Button = styled.button`
   border-radius: 10px;
   margin: 20px 0px;
   cursor: pointer;
+  font-weight: 1000;
 `
 export const PasswordInput = styled.div`
   position: relative;
@@ -104,4 +108,15 @@ export const PasswordInput = styled.div`
     top: 50%;
     right: 10px;
   }
-`
+  span{
+    color: white;
+    margin: 20px 0px;
+  }
+`;
+export const WapperLogo = styled.div`
+  width: 100%;
+  img{
+    margin: auto;
+    display: flex;
+  }
+`;

@@ -7,7 +7,6 @@ import FilmsOnChart from "../../Components/MovieUpComing";
 import About from "../../Components/About";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000';
 function Index() {
   return (
     <div className="Home">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import passwordHash from "password-hash";
-import { Redirect } from "react-router-dom";
+import HeaderUser from '../NavUser'
 import SuccessRegister from './SuccessRegister';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import {
@@ -15,6 +15,7 @@ import {
   RegisterButton,
   ImageTemp,
   Announcement,
+  ButtonHome
 } from "./RegisterElement";
 import { TextField } from "@material-ui/core";
 import { LocalhostApi } from '../../API/const'
@@ -205,7 +206,7 @@ const SignUp = () => {
     }
   };
   return (
-    <>
+    <div id="register">
       {success ? <SuccessRegister /> : null}
       <Form>
         <Card>
@@ -232,7 +233,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20 } }}
-              label="Full Name"
+              label="Họ và tên*"
               variant="outlined"
               fullWidth
               error={errorMessage.checkFirstName}
@@ -246,7 +247,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20 } }}
-              label="Username"
+              label="Tên đăng nhập*"
               variant="outlined"
               fullWidth
               error={errorMessage.checkLastName}
@@ -260,7 +261,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20 } }}
-              label="Your Email"
+              label="Email*"
               variant="outlined"
               fullWidth
               error={errorMessage.checkEmail}
@@ -274,7 +275,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20 } }}
-              label="Password"
+              label="Mật khẩu*"
               type="password"
               variant="outlined"
               fullWidth
@@ -289,7 +290,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20 } }}
-              label="Re - Password"
+              label="Nhập lại mật khẩu*"
               type="password"
               variant="outlined"
               fullWidth
@@ -313,7 +314,7 @@ const SignUp = () => {
         </Card>
       </Form>
 
-    </>
+    </div>
   );
 };
 
