@@ -8,6 +8,9 @@ import Cookies2 from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import axios from 'axios'
+import { LocalhostApi, LocalhostClient } from '../../API/const'
 
 export default function NavBar() {
   const [isNavVisible, setNavVisibility] = useState(false);
@@ -40,16 +43,25 @@ export default function NavBar() {
   };
 
   /*State check login*/
+  const [avatar, setAvatar] = useState('')
   const [success, setSuccess] = useState('');
   useEffect(() => {
     let isCancel = false;
     if (!isCancel) {
       setCookiesF();
+      if (success !== '') {
+        axios.get(LocalhostApi + 'infor?username=' + success)
+          .then(data => {
+            setAvatar(data.data.account.avatar)
+            window.localStorage.setItem('avatar', data.data.account.avatar);
+          })
+
+      }
     }
     return () => {
       isCancel = true
     }
-  }, [])
+  }, [success])
   async function setCookiesF() {
     const cookieUser = Cookies.get('User')
     if (cookieUser) {
@@ -70,6 +82,7 @@ export default function NavBar() {
     const cookies = new Cookies2();
     await cookies.remove('User', { path: "/", domain: "localhost" });
     document.cookie = "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;"
+    window.localStorage.clear();
     window.location.reload()
   }
   const [Navbar, setNavbar] = useState(false);
@@ -109,7 +122,6 @@ export default function NavBar() {
     { id: 1, name: 'Giới thiệu', section: 'about' },
     { id: 1, name: 'Liên hệ', section: 'contact' },
   ])
-
   return (
     <div className={Navbar ? 'Header color' : 'Header'}>
       <ModalSign
@@ -118,7 +130,7 @@ export default function NavBar() {
       <ModalForget
         open={forgetOpen} setLoginOpen={setLoginOpen} setForgetOpen={setForgetOpen}
       ></ModalForget>
-      <Link className="current" to="/" onClick={toggleNav}>
+      <Link to="/" onClick={toggleNav}>
         <img
           src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
           className="Logo"
@@ -129,7 +141,7 @@ export default function NavBar() {
         <nav className="Nav">
           {listNav.map((element) => {
             return <a key={element.section} className={element.section === section ? "smoothscroll current" : "smoothscroll"}
-              href={'#' + element.section}
+              href={LocalhostClient + '#' + element.section}
               onClick={toggleNav}>
               {element.name}
             </a>
@@ -137,17 +149,22 @@ export default function NavBar() {
           <Search className="hidden-input"></Search>
           {(success !== '')
             ? (
-              <>
-                <a href="/inforuser" className="login-navbar">
+              <div className="dropdown">
+                <a className="login-navbar">
                   {success}
                 </a>
-                <button onClick={Logout}>Thoát</button>
-              </>
+                <Avatar alt={success} src={window.localStorage.getItem('avatar')} />
+                <div className="dropdown-content">
+                  <p><a href="/inforuser">Thông tin tài khoản</a></p>
+                  <p><a href="/activities">Hoạt động gần đây</a></p>
+                  <p onClick={Logout}>Thoát</p>
+                </div>
+              </div>
             ) : (
               <>
                 <a onClick={Mix} className="login-navbar">
                   Đăng nhập
-              </a>
+                </a>
                 <a href="http://localhost:3000/register">
                   <button>Đăng kí</button>
                 </a>

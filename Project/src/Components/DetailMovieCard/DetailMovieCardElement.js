@@ -278,6 +278,7 @@ export const CasterCard = styled.div`
     width:100%;
     height: auto;
     border-radius: 5px;
+    min-height: 204px
   }
   h4{
     text-align:center;

@@ -159,33 +159,65 @@ export const addAccount = (req, res, next) => {
 
 export const postAccount = (req, res, next) => {
   try {
-    const userTemp = {
-      username: req.body.username,
-      password: passwordHash.generate(req.body.password),
-      email: req.body.email,
-      role: req.body.role,
-    };
 
-    const infoTemp = {
-      username: req.body.username,
-      avatar: req.body.avatar,
-      full_name: req.body.full_name,
-    };
+    if (req.body.password == req.body.re_password) {
+      const userTemp = {
+        username: req.body.username,
+        password: passwordHash.generate(req.body.password),
+        email: req.body.email,
+        role: req.body.role,
+      };
 
-    const info = new Information(infoTemp);
-    info.save();
-    const user = new Account(userTemp);
-    user.save();
+      const infoTemp = {
+        username: req.body.username,
+        avatar: req.body.avatar,
+        full_name: req.body.full_name,
+      };
 
-    let announcement =
-      "<div class='alert alert-success' role='alert'>successfully added new movie</div>";
-    res.status(200).render("users/addUser", {
-      announcement,
-      countListFilm,
-      countListAccount,
-      info,
-    });
-  } catch (error) {
+      const user = new Account(userTemp);
+      user.save().then(() => {
+        const info = new Information(infoTemp);
+        info.save().then(() => {
+          let announcement =
+            "<div class='alert alert-success' role='alert'>successfully added new account</div>";
+          res.status(200).render("users/addUser", {
+            announcement,
+            countListFilm,
+            countListAccount,
+            info,
+          });
+        }).catch((err) => {
+          const message = err.message;
+          res.status(500).render("shared/error", {
+            message,
+            countListAccount,
+            countListFilm,
+            info,
+          });
+        });
+      }).catch((err) => {
+        let announcement =
+          "<div class='alert alert-danger' role='alert'>Username or email already exists</div>";
+        res.status(200).render("users/addUser", {
+          announcement,
+          countListFilm,
+          countListAccount,
+          info,
+        });
+      });
+    }
+    else {
+      let announcement =
+        "<div class='alert alert-danger' role='alert'>Password and re-password do not match</div>";
+      res.status(200).render("users/addUser", {
+        announcement,
+        countListFilm,
+        countListAccount,
+        info,
+      });
+    }
+
+  } catch (err) {
     const message = err.message;
     res.status(500).render("shared/error", {
       message,

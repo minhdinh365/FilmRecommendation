@@ -109,7 +109,7 @@
       margin: auto;
    }
    .react-reveal.movie-banner-img-right{
-      width: 350px;
+      width: 500px;
    }
    .detail-movie-banner{
       padding: 0;
@@ -501,6 +501,13 @@
       font-size: 18px;
       line-height: 54px;
    }
+   .react-reveal.movie-banner-img-right{
+      width: 450px;
+   }
+   .card-detail-acctivity span,
+   .card-detail-acctivity2 span {
+      font-size: 10px;
+}
 
 }
 
@@ -535,7 +542,10 @@
       padding-left: 0;
    }
    .react-reveal.movie-banner-img-right{
-      width: 270px;
+      width: 200px;
+   }
+   .detail-movie-banner .detail-movie-banner-title h1{
+      font-size: 23px;
    }
 
    /* footer

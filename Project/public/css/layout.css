@@ -75,9 +75,6 @@ body {
    background: black;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
  }
- .Header img{
-    margin-left: 15px;
- }
  .Header img:hover{
    transform: scale(1.1);
  }
@@ -180,7 +177,6 @@ body {
    -webkit-box-orient: vertical;
    margin-bottom: 20px;
 }
-
 .button-30:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
@@ -232,32 +228,35 @@ body {
 .Header-banner .banner-text h1{
    margin-bottom: 50px;
 }
- 
- .Nav {
+.Header a:nth-child(1){
+   background-color: transparent;
+}
+.Nav {
    display: grid;
    grid-area: nav;
    grid-template-columns: repeat(8, auto);
    align-items: center;
    justify-items: center;
  }
- .Nav a {
+.Nav a {
    font-size: 18px;
    font-weight: 500;
    transition: 0.5s;
    text-decoration: none;
  }
- .Nav .smoothscroll {
+.Nav .smoothscroll {
    color: rgb(255, 255, 255);
  }
- .smoothscroll.current {
+.smoothscroll.current {
    border-bottom: 2px solid yellow;
  }
 
- .Nav a:hover {
+.Nav a:hover {
    transform: scale(1.1);
    color: yellow;
+   background-color: transparent;
  }
- .Nav button {
+.Nav button {
    padding: 10px;
    outline: none;
    border: none;
@@ -270,18 +269,18 @@ body {
    cursor: pointer;
    transition: 70ms;
  }
- .Nav input{
+.Nav input{
    padding: 8px 40px;
  }
- .Nav input:active{
+.Nav input:active{
    box-shadow: none;
  }
  
- .Nav button:active {
+.Nav button:active {
    transform: translateY(3px);
    box-shadow: 0px 2px 0px 0px rgba(255, 0, 0, 0.25);
  }
- .Nav .login-navbar{
+.Nav .login-navbar{
     width: 157px;
     display: flex;
     justify-content: center;
@@ -291,14 +290,56 @@ body {
     color: yellow;
     overflow: hidden;
  }
- .Nav .login-navbar img{
+.Nav .login-navbar img{
     padding-left: 0px;
     width: 44%;
     border-radius: 50%;
  }
- .Nav .login-navbar:hover{
+.Nav .login-navbar:hover{
    cursor: pointer;
 }
+.Nav .dropdown{
+   position: relative;
+   display: inline-flex;
+}
+.react-reveal.movie-banner-img-right{
+   width: 300px;
+}
+.dropdown-content {
+   display: none;
+   top: 35px;
+   position: absolute;
+   background-color:#222831;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+   z-index: 1;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
+   padding: 0;
+   margin: 0;
+ }
+ .dropdown-content p{
+    margin: 0;
+   padding: 11px 16px;
+   color: rgb(255, 255, 255);
+   text-align: center;
+   border-bottom: 1px solid rgb(59, 56, 56);
+ }
+ .dropdown-content p>a{
+   padding: 11px 0px;
+   margin: 0;
+   font-size: 15px;
+   color: rgb(255, 255, 255);
+   text-align: center;
+}
+ .dropdown-content p:hover,a:hover{
+    cursor: pointer;
+    background-color: #191818;
+    color: yellow;
+ }
+ .dropdown:hover .dropdown-content {
+   display: block;
+ }
  .after-responsive {
    display: none;
    grid-area: burger;
@@ -757,6 +798,7 @@ h2 strong {
    box-shadow: 0px 10px 20px 10px;
 }
 .slick-slide img{
+
    margin-bottom: 10px;
    min-height: 340px;
    box-shadow: 0 10px 20px 10px rgba(rgb(128, 125, 125), 0.2);
@@ -839,7 +881,7 @@ h2 strong {
     height: auto;
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 25px 0px;
 }
 .type-move-choose{
    width: 20%;
@@ -951,7 +993,7 @@ h2 strong {
    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .movie-for-today img{
-   margin:  30px auto auto auto;
+   margin:  auto;
    display: block;
 }
 .col4-movie-now{
@@ -1009,8 +1051,6 @@ h2 strong {
    border-bottom-left-radius: 5px;
    border-bottom-right-radius: 5px;
 }
-
-
 .card-movie-now h3 {
    color: #58afd1;
    transition: color 0.25s 0.0833333333s;
@@ -1089,6 +1129,9 @@ h2 strong {
    display: flex;
    align-items: center;
    background-color: #151414;
+   border-bottom-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+   padding-bottom: 10px;
 }
 .rating-movie-now p{
    color: white;
@@ -1648,7 +1691,35 @@ footer .social-links li:first-child { margin-left: 0; }
    align-items: center;
    display: flex;
    height: auto;
-   margin-top: 79px;
+   margin-top: 65px;
+   position: relative;
+}
+.information_user img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   margin-top: -60px;
+
+}
+.information-user-body{
+   top: 0;
+   left: 0;
+   position: absolute;
+   width: 100%;
+   height: auto;
+}
+.information-user-body img{
+   width: 100%;
+   height: 100vh;
+}
+.background-info{
+   top: 0;
+   left: 0;
+   position: absolute;
+   z-index: 10;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.7);
 }
 /*Login*/
 .username-input span{ 
@@ -1682,6 +1753,10 @@ footer .social-links li:first-child { margin-left: 0; }
    padding: 20px;
    border-radius: 5px;
    background-color: #222831;
+   position: absolute;
+   top: 10%;
+   left: 13%;
+   z-index: 10;
 }
 .information-detail-error{
    width: 100%;
@@ -1749,6 +1824,11 @@ footer .social-links li:first-child { margin-left: 0; }
 	top: 30%;
 	right: 10px;
 }
+.infor-user-details span{
+   font-size: 22px;
+   padding-left: 13px;
+   color: yellow;
+}
 .password-change-eye:hover{
  cursor: pointer;
    
@@ -1757,11 +1837,11 @@ footer .social-links li:first-child { margin-left: 0; }
    margin-right: 5px;
    color: white;
    font-weight: 300;
-   width: 25%;
+   width: 30%;
 }
 .infor-user-details input{
    margin-right: 5px;
-   color: black;
+   color: rgb(255, 255, 255);
    font-weight: 300;
    width: 70%;
    height: 45px;
@@ -1769,8 +1849,9 @@ footer .social-links li:first-child { margin-left: 0; }
    padding-left: 15px;
 }
 .infor-user-details input[type="text"],[type="password"][disabled] {
-   color: black;
-   background-color: white;
+   color: rgb(255, 255, 255);
+   background-color: #222831;
+   border: 1px solid gray;
 }
 
 
@@ -1799,6 +1880,12 @@ footer .social-links li:first-child { margin-left: 0; }
    font-weight: 600;
    margin-right: 50px;
 }
+.information-infor-user p{
+   text-align: center;
+   padding: 0;
+   margin: 0;
+   color: red;
+}
 .information-infor-user button:hover{
    cursor: pointer;
    box-shadow: 1px 5px 23px rgb(219 255 0);
@@ -1809,6 +1896,9 @@ footer .social-links li:first-child { margin-left: 0; }
    justify-content: space-between;
    margin-top: 50px;
 }
+.button-edit-information .btn-info:disabled{
+   opacity: 0.5;
+}
 .button-edit-information .cancel-edit{
    background-color: gray;
    box-shadow: none;
@@ -1817,6 +1907,10 @@ footer .social-links li:first-child { margin-left: 0; }
    box-shadow: none;
 }
 /*Register*/
+#register{
+   width: 100%;
+   height: 100vh;
+}
 .text-field-register label{
    font-size: 16px;
    color: white;
@@ -2005,4 +2099,96 @@ color: white;
 }
 .arrow-button a:hover{
    color: yellow;
+}
+/*Acctuvity*/
+.acctivities{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+}
+.acctivity{
+   width: 100%;
+   height: 100%;
+   display: flex;
+   margin-top: 80px;
+}
+.category-acctivity{
+   display: flex;
+   position: fixed;
+   flex-direction: column;
+   left: 0;
+   top: 0;
+   width: 10%;
+   height: 100%;
+   background-color: rgb(19, 18, 18);
+   padding: 20% 0;
+}
+.category-acctivity span{
+   text-align: center;
+   color: white;
+   padding: 20px 0;
+   border-radius: 3px;
+   background-color: black;
+   cursor: pointer;
+   border-bottom: 1px solid white;
+   user-select: none;
+}
+.category-acctivity span:hover{
+   background-color: rgb(47, 44, 44);
+   color: yellow;
+}
+.category-acctivity .hightlight-span{
+   background-color: rgb(47, 44, 44);
+   color: yellow;
+}
+.detail-acctivity{
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   height: 100%;
+   background-color: rgb(0, 0, 0);
+   margin-left: 10%;
+}
+.detail-acctivity a{
+   text-decoration: none;
+}
+.detail-acctivity h1{
+   color: white;
+   text-align: center;
+}
+.card-detail-acctivity2{
+   width: 100%;
+   height: 60px;
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   background-color: rgb(0, 0, 0);
+   border-bottom: 1px solid rgb(42, 40, 40);
+}
+.card-detail-acctivity{
+   width: 100%;
+   height: auto;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   background-color: rgb(0, 0, 0);
+   border-bottom: 1px solid rgb(42, 40, 40);
+}
+.card-detail-acctivity:hover,
+.card-detail-acctivity2:hover{
+   cursor: pointer;
+   background-color: rgb(20, 19, 19);
+}
+.card-detail-acctivity span,
+.card-detail-acctivity2 span {
+   color: white;
+   margin: auto;
+}
+.card-detail-acctivity  img,
+.card-detail-acctivity2 img{
+   width: 60px;
+   height: 60px;
+   margin: auto;
+}
+.type-m{
+   margin: auto;
+   text-align: center;
 }

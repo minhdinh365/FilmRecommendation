@@ -11,8 +11,11 @@ const getSuggestionValue = suggestion => {
 
   return newsuggest
 };
+const reload = () => {
+  window.location.reload()
+}
 const renderSuggestion = (suggestion) => (
-  <div>
+  <div onClick={reload}>
     <Link className="search-card" to={{
       pathname: `/detail/${suggestion.id}`,
       state: suggestion.id

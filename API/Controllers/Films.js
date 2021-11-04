@@ -25,7 +25,6 @@ export const getFilms = async (req, res) => {
 export const postFilms = async (req, res, next) => {
   try {
     req.body.films.forEach(function (obj) {
-      console.log(obj.category)
       let films = new Film(obj)
       films.save()
     });
@@ -36,7 +35,6 @@ export const postFilms = async (req, res, next) => {
 };
 export const getFilmsPopular = async (req, res) => {
   try {
-    console.log(req.query.page)
     if (req.query.page === undefined) {
       const List = await Film.find({ category: 'popular' }).limit(20)
       res.json({

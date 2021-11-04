@@ -5,7 +5,6 @@ import Contact from "../../Components/Contact";
 import FilmsNow from "../../Components/MovieNow";
 import FilmsOnChart from "../../Components/MovieUpComing";
 import About from "../../Components/About";
-import axios from 'axios';
 
 function Index() {
   return (

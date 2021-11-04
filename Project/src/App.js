@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import HomePage from "./Pages/HomePage/index";
-import Informaiton from './Pages/Information/index';
-import Detail from './Pages/Detail/Detail';
-import Register from './Pages/Register/Register';
+import HomePage from "./Pages/HomePage";
+import Informaiton from './Pages/Information';
+import Detail from './Pages/Detail';
+import Register from './Pages/Register';
+import Acctivities from './Pages/Acctivities'
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           <Redirect from='/detail/' to='/' exact />
           <Route exact path="/detail/:id" component={Detail} />
           <Route path="/register" component={Register} />
+          <Route path="/activities" component={Acctivities} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

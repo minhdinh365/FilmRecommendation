@@ -64,7 +64,7 @@ class BXH extends Component {
       .map((movie) => <MovieBXH key={movie.id} movie={movie}></MovieBXH>);
     return (
       <section id="bxhm">
-        <h2><strong>Được yêu thích nhất<span>( {this.state.results.length} )</span></strong></h2>
+        <h2><strong>Yêu thích nhất<span>( {this.state.results.length} )</span></strong></h2>
         <Slider ref={(slider) => (this.slider = slider)} {...settings}>
           {Movies}
         </Slider>

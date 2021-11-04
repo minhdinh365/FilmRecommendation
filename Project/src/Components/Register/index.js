@@ -15,7 +15,9 @@ import {
   RegisterButton,
   ImageTemp,
   Announcement,
-  ButtonHome
+  ImgBG,
+  ImgBGu,
+  Introduce
 } from "./RegisterElement";
 import { TextField } from "@material-ui/core";
 import { LocalhostApi } from '../../API/const'
@@ -209,25 +211,37 @@ const SignUp = () => {
     <div id="register">
       {success ? <SuccessRegister /> : null}
       <Form>
+        <ImgBG src="https://images.squarespace-cdn.com/content/v1/5d1c1767f015080001773454/1563511715585-69TRKAE6UYQDC2T7NNOJ/Poster+spread+%28Custom%29.jpg" />
+        <ImgBGu />
         <Card>
-          <Upload>
-            <ImageTemp>
-              <Image ref={uploadedImage} onChange={handleImageUpload} />
-            </ImageTemp>
-            <UpdateButton onClick={() => imageUploader.current.click()}>
-              <span> <FileUploadIcon className="icon" fontSize="large" />Tải ảnh lên</span>
-              <input
-                type="file"
-                accept="image/*"
-                required
-                onChange={handleImageUpload}
-                ref={imageUploader}
-                style={{ display: "none" }}
-              />
-            </UpdateButton>
-          </Upload>
+          <Introduce>
+            <img className="chom-film" src="https://cdn2.expertreviews.co.uk/sites/expertreviews/files/styles/er_main_wide/public/2019/11/the-best-films-on-now-tv-with-sky-cinema.jpg" />
+            <div className="img-gb"></div>
+            <Title>Đăng kí ngay</Title>
+            <img
+              src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
+              className="Logo"
+              alt="logo" />
+            <span>Để cùng trải nghiệm những bộ phim hay nhất</span>
+            <p>Chỏm Film, nơi cùng bạn chia sẽ phim</p>
+          </Introduce>
           <Information>
-            <Title>Đăng kí</Title>
+            <Upload>
+              <ImageTemp>
+                <Image ref={uploadedImage} onChange={handleImageUpload} />
+              </ImageTemp>
+              <UpdateButton onClick={() => imageUploader.current.click()}>
+                <ion-icon style={{ position: 'absolute', left: '5px' }} name="cloud-upload"></ion-icon>Tải ảnh lên
+                <input
+                  type="file"
+                  accept="image/*"
+                  required
+                  onChange={handleImageUpload}
+                  ref={imageUploader}
+                  style={{ display: "none" }}
+                />
+              </UpdateButton>
+            </Upload>
             <Announcement
             >{announcement}</Announcement>
             <TextField

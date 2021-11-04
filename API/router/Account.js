@@ -17,7 +17,7 @@ router.route("/forgetpassword").post(forgetPass);
 
 router.route("/account").post(getAccount).get(showAccount);
 
-router.route("/account/infor/username").post(loginInfor);
+router.route("/isLogin/infor/:token").post(loginInfor);
 
 router.route("/user").post(createAccount);
 

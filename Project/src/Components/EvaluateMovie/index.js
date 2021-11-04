@@ -200,7 +200,6 @@ class CommentBox extends React.Component {
               };
             }
           });
-          console.log(temp.cmt)
           return temp.cmt;
         }
       });

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\2022\\GiaiDoan4\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {}
+    "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {}
   },
   "projects": {
-    "E:\\2022\\GiaiDoan4\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {
+    "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\2022\\GiaiDoan4\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
+        "projectUniqueName": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
         "projectName": "TrainAPI",
-        "projectPath": "E:\\2022\\GiaiDoan4\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
-        "packagesPath": "C:\\Users\\BANG\\.nuget\\packages\\",
-        "outputPath": "E:\\2022\\GiaiDoan4\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\obj\\",
+        "projectPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
+        "packagesPath": "C:\\Users\\minhd\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\BANG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\minhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

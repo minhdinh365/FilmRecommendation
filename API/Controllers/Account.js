@@ -12,7 +12,6 @@ export const getAccount = async (req, res) => {
   })
     .then((data) => {
       if (passwordHash.verify(password_request, data.password)) {
-        console.log(data);
         var token = jwt.sign(
           {
             id: data._id,
@@ -52,7 +51,8 @@ export const showAccount = async (req, res) => {
 };
 export const loginInfor = async (req, res, next) => {
   try {
-    var token = req.params.token;
+    console.log(req.query.token)
+    var token = req.query.token;
     var result = jwt.verify(token, "Account");
     if (result) {
       next();

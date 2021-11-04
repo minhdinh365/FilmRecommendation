@@ -8,34 +8,40 @@ import { LocalhostApi } from '../../API/const'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const schema = yup.object().shape({});
+const schema = yup.object().shape({
+    full_name: yup.string().required('Vui lòng nhập đầy đủ họ tên'),
+    email: yup.string().email('Không phải là một email').max(255).required('Vui lòng nhập email của bạn')
+});
 
 export default function InformationUser(props) {
     const { register, handleSubmit, formState } = useForm({
         resolver: yupResolver(schema),
     });
+    const { errors } = formState;
     const [disable, setDisable] = useState(true)
     const [edit, setedit] = useState('Edit')
     const [Account, setAccount] = useState({})
-    const [temp, setTemp] = useState({})
+    const [Temp, setTemp] = useState({})
+    const [cancel, setCancel] = useState(false)
     useEffect(() => {
-        axios.get(
-            LocalhostApi + 'infor?username=' + props.account)
-            .then(res => {
-                setTemp({
-                    username: res.data.account.username,
-                    full_name: res.data.account.full_name,
-                    email: res.data.account.user.email,
-                    password: '123',
-                    avatar: res.data.account.avatar,
-                    total_comment: res.data.total_comment,
-                    evalute: res.data.evalute,
-                })
-                if (edit !== "Edit") {
-                    setAccount(temp)
-                }
-                else {
+        let isActive = false
+        if (!isActive) {
+            axios.get(
+                LocalhostApi + 'infor?username=' + props.account)
+                .then(res => {
+
+                    setTemp({
+                        username: res.data.account.username,
+                        full_name: res.data.account.full_name,
+                        email: res.data.account.user.email,
+                        password: '123',
+                        avatar: res.data.account.avatar,
+                        total_comment: res.data.total_comment,
+                        evalute: res.data.evalute
+                    })
                     setAccount({
                         username: res.data.account.username,
                         full_name: res.data.account.full_name,
@@ -45,13 +51,14 @@ export default function InformationUser(props) {
                         total_comment: res.data.total_comment,
                         evalute: res.data.evalute,
                     })
-                }
-            })
-            .catch(e => { })
-        return () => {
+                })
         }
-    }, [edit])
+        return () => {
+            isActive = true;
+        }
+    }, [cancel])
     function EditInfor() {
+        setCancel(pre => !pre)
         setDisable(pre => !pre)
         if (edit === 'Edit') {
             setedit('Cancel')
@@ -64,7 +71,6 @@ export default function InformationUser(props) {
     const imageUploader = React.useRef(null);
     const [data, setData] = useState({
         full_name: "",
-        username: "",
         email: "",
         avatar: '',
     });
@@ -74,7 +80,28 @@ export default function InformationUser(props) {
         setData(newData);
     }
     const onSubmit = (data) => {
-        console.log(data)
+        let avatar = { avatar: uploadedImage.current.currentSrc }
+        let acc = { user: props.account }
+        let editInfoUser = { ...data, ...avatar, ...acc }
+        setDisbutton(true)
+        axios.post(LocalhostApi + 'infor', editInfoUser)
+            .then((data) => {
+                if (data.data.success) {
+                    toast.success('Cập nhật thông tin thành công!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    setDisbutton(false)
+                }
+                else {
+                    setErrors(data.data.mgs)
+                }
+            })
     }
     const [changePass, setChangPass] = useState(false)
     const handleImageUpload = (e) => {
@@ -89,8 +116,20 @@ export default function InformationUser(props) {
             reader.readAsDataURL(file);
         }
     };
+    const [disbutton, setDisbutton] = useState(false)
     return (
         <>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <ChangePassword open={changePass} setChangPass={setChangPass} account={Account.username} />
             <div className="information-detail">
                 <div className="information-imge-user">
@@ -105,7 +144,10 @@ export default function InformationUser(props) {
                             style={{ display: "none" }}
                         />
                     </button>
-                    <img ref={uploadedImage} src={Account.avatar} alt="no img" />
+                    {edit !== 'Edit' ?
+                        <img ref={uploadedImage} src={Account.avatar} alt="no img" />
+                        :
+                        <img ref={uploadedImage} src={Temp.avatar} alt="no img" />}
                     <div className="image-user-interact">
                         <span>{Account.total_comment} comments</span>
                         <span>{Account.evalute} evaluted</span>
@@ -116,28 +158,55 @@ export default function InformationUser(props) {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="infor-user-details">
                             <h2>Họ và tên:</h2>
-                            <input {...register("full_name")} onChange={(e) => handle(e)} id="full_name" disabled={disable} type="text" name="full_name" defaultValue={Account.full_name} />
+                            {edit !== 'Edit' ?
+                                <input {...register("full_name")}
+                                    onChange={(e) => handle(e)}
+                                    id="full_name" disabled={disable} type="text"
+                                    name="full_name"
+                                    defaultValue={Account.full_name}
+                                    {...register('full_name')} />
+                                :
+                                <span>{Temp.full_name}</span>}
                         </div>
+                        <p>{errors.full_name?.message}</p>
                         <div className="infor-user-details">
                             <h2>Tên đăng nhập:</h2>
-                            <input {...register("username")} onChange={(e) => handle(e)} id="username" disabled={disable} type="text" name="username" defaultValue={Account.username} />
+                            <span>{Temp.username}</span>
                         </div>
                         <div className="infor-user-details">
                             <h2>Email:</h2>
-                            <input {...register("email")} onChange={(e) => handle(e)} id="email" disabled={disable} type="text" name="email" defaultValue={Account.email} />
+                            {edit !== 'Edit' ?
+                                <input {...register("email")}
+                                    onChange={(e) => handle(e)} id="email"
+                                    disabled={disable} type="text"
+                                    name="email"
+                                    defaultValue={Account.email}
+                                    {...register('email')} />
+                                :
+                                <span>{Temp.email}</span>}
+
                         </div>
+                        <p>{errors.email?.message}</p>
                         <div className="infor-user-details">
                             <h2>Mật Khẩu:</h2>
-                            <button className="btn-info" onClick={() => setChangPass(true)}><EditIcon fontSize="medium" />Thay đổi mật khẩu</button>
+                            <button type="button" className="btn-info" onClick={() => setChangPass(true)}><EditIcon fontSize="medium" />Thay đổi mật khẩu</button>
                         </div>
                         <div className="button-edit-information">
                             {(edit === 'Edit') ?
-                                <button className="btn-info" onClick={EditInfor}>Chỉnh sửa</button>
+                                <button type="button" className="btn-info" onClick={EditInfor}>Chỉnh sửa</button>
                                 :
-                                <button className="cancel-edit" onClick={EditInfor}>Hủy bỏ</button>
+                                <button type="button" className="cancel-edit" onClick={EditInfor}>Hủy bỏ</button>
                             }
                             {(edit !== "Edit") ?
-                                <button type="submit" className="btn-info">Lưu</button>
+                                <button type="submit" className="btn-info" disabled={disbutton}>
+                                    {disbutton && (
+                                        <i
+                                            className="fa fa-refresh fa-spin"
+                                            style={{ marginRight: "5px" }}
+                                        />
+                                    )}
+                                    Lưu
+                                </button>
                                 : null}
                         </div>
                     </form>

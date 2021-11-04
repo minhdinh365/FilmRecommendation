@@ -5,136 +5,73 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="title">Movie Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="title"
-          value="{{film.title}}"
-          placeholder="Enter a film name"
-          id="title"
-          required
-        />
+        <input type="text" class="form-control" name="title" value="{{film.title}}" placeholder="Enter a film name"
+          id="title" required />
       </div>
       <div class="form-group col-md-6">
         <label for="tagline">Slogan</label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{film.tagline}}"
-          name="tagline"
-          placeholder="Enter a slogan film"
-          id="tagline"
-          required
-        />
+        <input type="text" class="form-control" value="{{film.tagline}}" name="tagline"
+          placeholder="Enter a slogan film" id="tagline" required />
       </div>
       <div class="form-group col-md-6">
         <label for="poster_path">Link Poster</label>
-        <input
-          type="text"
-          class="form-control"
-          id="poster_path"
-          value="{{film.poster_path}}"
-          name="poster_path"
-          placeholder="https://google.com/"
-          required
-          onchange="changeImage()"
-        />
+        <input type="text" class="form-control" id="poster_path" value="{{film.poster_path}}" name="poster_path"
+          placeholder="https://google.com/" required onchange="changeImage()" />
       </div>
       <div class="form-group col-md-6">
         <label for="backdrop_path">Link Background</label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{film.backdrop_path}}"
-          id="backdrop_path"
-          name="backdrop_path"
-          placeholder="https://google.com/"
-          required
-          onchange="changeImage()"
-        />
+        <input type="text" class="form-control" value="{{film.backdrop_path}}" id="backdrop_path" name="backdrop_path"
+          placeholder="https://google.com/" required onchange="changeImage()" />
       </div>
 
       <div class="form-group col-md-6">
-        <img
-          src="{{film.poster_path}}"
-          width="400px"
-          alt="image for poster"
-          onError="onError(event)"
-          id="img-poster"
-          class="rounded mx-auto d-block"
-        />
+        <img src="{{film.poster_path}}" width="400px" alt="image for poster" onError="onError(event)" id="img-poster"
+          class="rounded mx-auto d-block" />
       </div>
       <div class="form-group col-md-6">
-        <img
-          src="{{film.backdrop_path}}"
-          width="400px"
-          id="img-background"
-          alt="image for background"
-          onError="onError(event)"
-          class="rounded mx-auto d-block"
-        />
+        <img src="{{film.backdrop_path}}" width="400px" id="img-background" alt="image for background"
+          onError="onError(event)" class="rounded mx-auto d-block" />
       </div>
 
     </div>
     <div class="form-group">
       <label for="overview">Description</label>
-      <textarea
-        class="form-control"
-        id="overview"
-        rows="3"
-        name="overview"
-        placeholder="Text for video description"
-        required
-      >{{film.overview}}</textarea>
+      <textarea class="form-control" id="overview" rows="3" name="overview" placeholder="Text for video description"
+        required>{{film.overview}}</textarea>
     </div>
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="revenue">Revenue</label>
-        <input
-          type="number"
-          min="0"
-          value="{{film.revenue}}"
-          class="form-control"
-          id="revenue"
-          name="revenue"
-          required
-          placeholder="Enter the revenue video"
-        />
+        <input type="number" min="0" value="{{film.revenue}}" class="form-control" id="revenue" name="revenue" required
+          placeholder="Enter the revenue video" />
       </div>
       <div class="form-group col-md-5">
         <label for="release_date">Release Date</label>
-        <input
-          type="date"
-          class="form-control"
-          id="release_date"
-          value="{{film.release_date}}"
-          name="release_date"
-          required
-        />
+        <input type="date" class="form-control" id="release_date" value="{{film.release_date}}" name="release_date"
+          required />
       </div>
       <div class="form-group col-md-3">
         <label for="video_id">Video ID</label>
-        <input
-          type="text"
-          class="form-control"
-          value="{{film.video_id}}"
-          id="video_id"
-          name="video_id"
-          placeholder="Video id on youtube"
-          required
-        />
+        <input type="text" class="form-control" value="{{film.video_id}}" id="video_id" name="video_id"
+          placeholder="Video id on youtube" required />
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Edit</button>
+    <h5 id="annouce" class="text-danger"></h5>
+    <button type="submit" id="btn-edit" class="btn btn-primary">Edit</button>
   </form>
 </div>
 
 <script>
-  function changeImage() { document.getElementById("img-poster").src =
-  document.getElementById("poster_path").value;
-  document.getElementById("img-background").src =
-  document.getElementById("backdrop_path").value; } function onError(event) {
-  const path =
-  "https://exploringtm1.com/wp-content/uploads/2021/07/TM1-TI-Error-Codes.jpg"
-  document.getElementById(event.target.id).src = path }
+  function changeImage() {
+    document.getElementById("img-poster").src = document.getElementById("poster_path").value;
+    document.getElementById("img-background").src = document.getElementById("backdrop_path").value;
+    document.getElementById("annouce").innerText = "";
+    document.getElementById("btn-edit").disabled = false;
+  }
+  function onError(event) {
+    const path = "https://exploringtm1.com/wp-content/uploads/2021/07/TM1-TI-Error-Codes.jpg";
+    document.getElementById(event.target.id).src = path;
+    document.getElementById("btn-edit").disabled = true;
+    document.getElementById("annouce").innerText = "Button will work until the image address is correct";
+  }
 </script>

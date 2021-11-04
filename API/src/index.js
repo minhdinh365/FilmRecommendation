@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import Account from "../router/Account.js";
 import Comment from "../router/Comment.js";
 import Films from "../router/Films.js";
+import Watched from '../router/Watched.js'
 import Information from "../router/Information.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(methodOverride("_method"));
 
+app.use("/", Watched)
 app.use("/", Account);
 app.use("/", Comment);
 app.use("/", Films);
@@ -38,8 +40,25 @@ mongoose
   .then(() => {
     console.log("Connected to DB");
 
-    app.listen(PORT, () => {
+    var server = app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+    });
+
+    const io = new Server(server, {
+      cors: {
+        origin: "http://localhost:3000",
+        credentials: true,
+      },
+    });
+
+    io.on("connection", (socket) => {
+      console.log("user connected");
+      io.emit("test", 123);
+      socket.on("add-new-cmt", (comment) => {
+        io.emit("get-new-cmt", comment);
+      });
+
+      socket.on("disconnect", () => { });
     });
   })
   .catch((err) => {

@@ -118,6 +118,7 @@ const ModalForget = (props) => {
                                         name="passwordnew"
                                         autoComplete="off"
                                     ></InputFieldForget>
+                                    <p></p>
                                     <Errors>{errors.passwordnew?.message}</Errors>
                                     <span>Nhập lại mật khẩu mới</span>
                                     <InputFieldForget
@@ -128,6 +129,7 @@ const ModalForget = (props) => {
                                         onChange={(e) => handle(e)}
                                         autoComplete="off"
                                     ></InputFieldForget>
+                                    <p></p>
                                     <Errors>{errors.passwordnew2?.message}</Errors>
                                     <div className="btnLogin">
                                         <ButtonForget onClick={close}> Hủy</ButtonForget>

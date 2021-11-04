@@ -6,7 +6,7 @@ const router = express.Router();
 router.route("/comment").post(postComment).get(getComments);
 router.route('/createEvaluate').get(createEvaluate)
 router.route("/2000Comments").get(get2000Comments);
-router.route("/evaluate/:username").get(getCommentsByUsername);
+router.route("/evaluate").get(getCommentsByUsername);
 
 
 export default router;

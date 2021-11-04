@@ -25,17 +25,11 @@ const MovieCard = (props) => {
         <div className="card-movie-now">
           <img
             alt={`${props.movie.title} Movie Poster`}
-            src={props.movie.poster_path}
-          ></img>
-          <h2>{props.movie.title}</h2>
-          <Rating
-            number={
-              props.movie.vote_average !== ""
-                ? Math.ceil(props.movie.vote_average)
-                : 9
-            }
-          ></Rating>
-          <h3 className="btn-XemNgay from-center">Xem Ngay</h3>
+            src={props.movie.poster_path}/>
+          <div className="card-movie-now-tilte">
+            <h2>{props.movie.title}</h2>
+            <Rating number={props.movie.vote_average !== "" ? Math.ceil(props.movie.vote_average): 9}></Rating>              
+          </div>
         </div>
       </Link>
     </motion.div>

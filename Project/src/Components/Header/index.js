@@ -70,8 +70,13 @@ function Header({ start }) {
                   <Fade bottom duration={2000}>
                     <h1>{element.title}</h1>
                     <span>{element.overview}</span>
-                    <Link to="https://www.facebook.com/"><button className="button-32">Xem Ngay
-                    </button></Link>
+                    <Link to={{
+                      pathname: `/detail/${element.id}`,
+                      state: element.id
+                    }}>
+                      <button className="button-32">Xem Ngay
+                      </button>
+                    </Link>
                   </Fade>
                 </div>
                 <div className="detail-movie-banner-img">

@@ -11,8 +11,14 @@ export const HeaderUser = styled.div`
 `;
 export const Backhome = styled.a`
     text-decaration: none;
+    &:hover{
+        background-color: transparent;
+    }
+
 `;
 export const ImgLogo = styled.img`
     cusor: pointer;
     margin-left: 20px;
+    background-color: transparent;
+   
 `;

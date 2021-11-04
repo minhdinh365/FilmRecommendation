@@ -28,7 +28,7 @@ class Footer extends Component {
         <Row>
           {this.state.active ?
             <div className="arrow-button">
-              <a className="smoothscroll" href="#home">Top</a>
+              <a className="smoothscroll" href="#home"><ion-icon name="arrow-round-up"></ion-icon>Top</a>
             </div>
             : null}
           <Fade bottom>

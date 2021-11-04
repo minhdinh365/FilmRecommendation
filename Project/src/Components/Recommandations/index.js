@@ -58,9 +58,9 @@ const Recommandation = (props) => {
     <MovieCard key={movie.id} movie={movie} />
   ));
   return (
-    <section id="portfolio" style={{ backgroundColor: 'rgb(2,2,40)' }}>
+    <section id="portfolio">
       <div className="movie-for-today">
-        <h1>Phim Liên Quan</h1>
+        <h1>Đề xuất cho bạn</h1>
         <div className="list-movie-for-today">{Movies}</div>
       </div>
     </section>

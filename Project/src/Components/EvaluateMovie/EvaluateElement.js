@@ -79,7 +79,7 @@ export const Frame = styled.div`
   background: #232b2b;
   width: 90%;
   display: grid;    
-  grid-template-columns: 1fr 3fr 2fr 9fr;
+  grid-template-columns: 1fr 2fr 2fr 9fr;
   align-items: center;
   padding: 5px;
 
@@ -96,11 +96,15 @@ export const Frame = styled.div`
     color: white;
     font-weight: 700;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    
   }
   & label:hover{
     cusor: pointer;
     top: -2px;
     background: #46e1ff;
+    justify-content: center;
   }
   & input {
     position: fixed;
@@ -113,7 +117,8 @@ export const Frame = styled.div`
   }
   & span {
     grid-row: 1/3;
-    grid-column: 3/5;
+    grid-column: 3;
+    justify-content: center;
   }
   & h4 {
     grid-row: 1;

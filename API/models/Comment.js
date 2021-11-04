@@ -59,4 +59,7 @@ schema.pre("save", function (next) {
 
   autoIncrementModelID("activities", this, next);
 });
+schema.post("save", function (doc, next) {
+  next(doc);
+});
 export const Comment = mongoose.model("comments", schema);

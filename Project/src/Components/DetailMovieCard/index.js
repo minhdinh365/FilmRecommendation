@@ -111,7 +111,9 @@ const DetailMovieCard = (props) => {
               {props.castMovie.slice(0, 6).map((element) => {
                 return (
                   <CasterCard key={element.id}>
-                    <img src={URL_BACKGROUND + element.profile_path} alt="No img" />
+                    <img src={URL_BACKGROUND + element.profile_path} alt="No img" onError={(e) => {
+                      if (e.target.src === (URL_BACKGROUND + 'null')) { e.target.onerror = null; e.target.src = "https://cdn-icons-png.flaticon.com/512/1496/1496058.png"; }
+                    }} />
                     <h3>{element.original_name}</h3>
                     <h4>{element.character}</h4>
                   </CasterCard>

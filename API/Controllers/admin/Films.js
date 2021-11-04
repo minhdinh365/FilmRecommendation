@@ -199,33 +199,12 @@ export const searchFilms = async (req, res, next) => {
         const $regex = escapeStringRegexp(req.query.content);
         let countRz = await (
           await Film.find({
-            $or: [
-              { id: id },
-              {
-                title: {
-                  $regex: {
-                    $text: {
-                      $search: req.query.content,
-                      $caseSensitive: false,
-                    },
-                  },
-                },
-              },
-            ],
+            $or: [{ id: id }, { title: { $regex: req.query.content } }],
           })
         ).length;
         let count = countRz / 20;
         let ListFilms = await Film.find({
-          $or: [
-            { id: id },
-            {
-              title: {
-                $regex: {
-                  $text: { $search: req.query.content, $caseSensitive: false },
-                },
-              },
-            },
-          ],
+          $or: [{ id: id }, { title: { $regex: req.query.content } }],
         })
           .populate("cmt")
           .limit(20)
