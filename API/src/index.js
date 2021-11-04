@@ -15,6 +15,7 @@ import Search from "../router/Search.js";
 import handlebars from "express-handlebars";
 import methodOverride from "method-override";
 import path from "path";
+import { Server } from "socket.io";
 
 dotenv.config();
 

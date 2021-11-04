@@ -1,7 +1,8 @@
 import React from "react";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import socketClient from "socket.io-client";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import {
   CommentDetail,
   EvaluateFrame,
@@ -17,7 +18,7 @@ import {
   ButtonReply,
   GroupPost,
 } from "./EvaluateElement";
-import { LocalhostApi } from '../../API/const'
+import { LocalhostApi } from "../../API/const";
 
 class CommentBox extends React.Component {
   constructor(props) {
@@ -29,8 +30,28 @@ class CommentBox extends React.Component {
       id: this.props.id,
       limmitComment: 6,
       loadMore: true,
+      socket: null,
     };
   }
+  socket;
+  configSocket = async () => {
+    var socket = socketClient(LocalhostApi);
+    this.socket = socket;
+    socket.on("get-new-cmt", async (cmt) => {
+      let data = await cmt;
+      if (parseInt(this.state.id) === cmt.id_film) {
+        this.setState({
+          comments: this.state.comments.concat({ ...data }),
+          total_comment: this.state.total_comment + 1
+        });
+      }
+    });
+  };
+
+  async componentDidMount() {
+    this.configSocket();
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if (this.state.total_comment !== nextState.total_comment) {
       this.setState({
@@ -56,15 +77,18 @@ class CommentBox extends React.Component {
     const comments = this._getComments();
     const totalComment = comments.slice(0, this.state.limmitComment);
     const handleClickCommentIn = () => {
-      if ((this.state.limmitComment + 3) >= comments.length) {
-        this.setState({ loadMore: false })
-        this.setState({ limmitComment: this.state.limmitComment + (3 - (this.state.limmitComment - comments.length + 3)) })
+      if (this.state.limmitComment + 3 >= comments.length) {
+        this.setState({ loadMore: false });
+        this.setState({
+          limmitComment:
+            this.state.limmitComment +
+            (3 - (this.state.limmitComment - comments.length + 3)),
+        });
+      } else {
+        this.setState({ loadMore: true });
+        this.setState({ limmitComment: this.state.limmitComment + 3 });
       }
-      else {
-        this.setState({ loadMore: true })
-        this.setState({ limmitComment: this.state.limmitComment + 3 })
-      }
-    }
+    };
     return (
       <CommentDetail>
         <CommentForm
@@ -77,37 +101,31 @@ class CommentBox extends React.Component {
           </Card>
         </EvaluateFrame>
         {totalComment.filter((item) => item !== undefined)}
-        {(totalComment.length >= 3)
-          ?
+        {totalComment.length >= 3 ? (
           <p onClick={handleClickCommentIn}>
-            <ArrowDropDownIcon className="iconload-more" fontSize="large" />Xem thêm...
+            <ArrowDropDownIcon className="iconload-more" fontSize="large" />
+            Xem thêm...
           </p>
-          :
-          null}
+        ) : null}
       </CommentDetail>
     );
   }
   Subtracttime(int) {
     if (int >= 86400) {
-      return (parseInt(int / 86400) + ' ngày trước');
-    }
-    else {
+      return parseInt(int / 86400) + " ngày trước";
+    } else {
       if (int >= 3600) {
-        return (parseInt(int / 3600) + ' giờ trước');
-      }
-      else {
+        return parseInt(int / 3600) + " giờ trước";
+      } else {
         if (int >= 60) {
-          return (parseInt(int / 60) + ' phút trước');
-        }
-        else {
-          return ((parseInt(int) + 1) + ' giây trước');
+          return parseInt(int / 60) + " phút trước";
+        } else {
+          return parseInt(int) + 1 + " giây trước";
         }
       }
-
     }
   }
   _addComment(full_name, avatar, start, content, is_reply) {
-    const temp_id = this.state.comments;
     const comment = {
       id_film: this.state.id,
       id_info: this.state.information.username,
@@ -117,36 +135,21 @@ class CommentBox extends React.Component {
       contents: content,
       is_reply: is_reply,
     };
-    const commentshow = {
-      contents: content,
-      date: new Date(Date.now()),
-      evaluate: start,
-      id_film: this.state.id,
-      id_info: this.state.information.username,
-      info: {
-        avatar: avatar,
-        full_name: full_name,
-        username: this.state.information.username,
-      },
-      is_reply: is_reply,
-    }
     axios
       .post(LocalhostApi + "comment", {
         comment,
       })
       .then(
         (response) => {
-          console.log("OK");
+          var socket = socketClient(LocalhostApi);
+          this.socket = socket;
+          this.socket.emit("add-new-cmt", response.data.result);
         },
         (error) => {
           console.log(error);
         }
       );
-    const id = -temp_id.length === 0 ? 1 : -temp_id.length;
-    this.setState({ total_comment: this.state.total_comment + 1 })
-    this.setState({
-      comments: this.state.comments.concat({ ...commentshow, id }),
-    });
+    this.setState({ total_comment: this.state.total_comment + 1 });
   }
 
   _getComments() {
@@ -203,7 +206,6 @@ class CommentBox extends React.Component {
           return temp.cmt;
         }
       });
-
     }
   }
 }
@@ -224,37 +226,44 @@ class CommentForm extends React.Component {
       announce = "Bình luận...";
     }
     function setLoginOpen() {
-      this.setState({ loginOpen: true })
+      this.setState({ loginOpen: true });
     }
     return (
       <form onSubmit={this._handleSubmit.bind(this)}>
         <EvaluateFrame>
           <Card style={{ display: "block" }}>
-            <h2><strong></strong></h2>
-            {isLogin ? <>
-              <Group>
-                <Rating
-                  fontSize="large"
-                  name="simple-controlled"
-                  value={this.state.star}
-                  onChange={(event, newValue) => {
-                    this.setState({ star: newValue });
-                  }}
-                />
-              </Group>
-              <Group>
-                <Comment
-                  rows="1"
-                  placeholder={announce}
-                  ref={(textarea) => (this._content = textarea)}
-                ></Comment>
-                <Send type="submit">
-                  <span className="iconify" data-icon="akar-icons:send"></span>
-                </Send>
-              </Group>
-            </> :
+            <h2>
+              <strong></strong>
+            </h2>
+            {isLogin ? (
+              <>
+                <Group>
+                  <Rating
+                    fontSize="large"
+                    name="simple-controlled"
+                    value={this.state.star}
+                    onChange={(event, newValue) => {
+                      this.setState({ star: newValue });
+                    }}
+                  />
+                </Group>
+                <Group>
+                  <Comment
+                    rows="1"
+                    placeholder={announce}
+                    ref={(textarea) => (this._content = textarea)}
+                  ></Comment>
+                  <Send type="submit">
+                    <span
+                      className="iconify"
+                      data-icon="akar-icons:send"
+                    ></span>
+                  </Send>
+                </Group>
+              </>
+            ) : (
               <span> Bạn cần đăng nhập để bình luận</span>
-            }
+            )}
           </Card>
         </EvaluateFrame>
       </form>
@@ -297,7 +306,7 @@ class Evaluate extends React.Component {
       buttonText = "Hủy";
       commentNodes = (
         <>
-          {isLoginRep ?
+          {isLoginRep ? (
             <GroupPost id={"gr" + this.props.id}>
               <ReplyBox
                 rows="1"
@@ -305,11 +314,17 @@ class Evaluate extends React.Component {
                 placeholder={announce}
                 ref={(textarea) => (this._content = textarea)}
               ></ReplyBox>
-              <ButtonReply disabled={!isLoginRep} type="button" onClick={this._handleSubmit.bind(this)}>
+              <ButtonReply
+                disabled={!isLoginRep}
+                type="button"
+                onClick={this._handleSubmit.bind(this)}
+              >
                 <span className="iconify" data-icon="akar-icons:send"></span>
               </ButtonReply>
             </GroupPost>
-            : <span>Bạn chưa đăng nhập</span>}
+          ) : (
+            <span>Bạn chưa đăng nhập</span>
+          )}
         </>
       );
     }
@@ -319,13 +334,17 @@ class Evaluate extends React.Component {
           <Frame>
             <Icon src={this.props.avatar}></Icon>
             <h3>{this.props.full_name}</h3>
-            <h5>{(this.props.time !== 'NaN giây trước') ? this.props.time : '1 giây trước'}</h5>
+            <h5>
+              {this.props.time !== "NaN giây trước"
+                ? this.props.time
+                : "1 giây trước"}
+            </h5>
             <Rating name="simple-person" value={this.props.star} readOnly />
             <h4>{this.props.content}</h4>
           </Frame>
         </EvaluateFrame>
         <EvaluateFrame>
-          <Frame style={{ borderBottom: '2px solid gray' }}>
+          <Frame style={{ borderBottom: "2px solid gray" }}>
             <label htmlFor={this.props.id}>{buttonText}</label>
             <input
               type="radio"
@@ -367,7 +386,11 @@ class Reply extends React.Component {
             <div className="line-comment"></div>
             <Icon src={this.props.avatar}></Icon>
             <h3>{this.props.full_name}</h3>
-            <h5>{(this.props.time !== 'NaN giây trước') ? this.props.time : '1 giây trước'}</h5>
+            <h5>
+              {this.props.time !== "NaN giây trước"
+                ? this.props.time
+                : "1 giây trước"}
+            </h5>
             <h4>{this.props.content}</h4>
           </ReplyFrame>
         </ReviewFrame>

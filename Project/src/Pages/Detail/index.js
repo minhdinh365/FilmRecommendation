@@ -92,7 +92,7 @@ const Detail = () => {
         <Header />
         <DetailMovieCard contents={film} castMovie={castMovie} />
         <CommentBox evaluate={content} information={User} id={id} total_comment={total} />
-        <Recommandation></Recommandation>
+
         <Footer />
       </>
     );

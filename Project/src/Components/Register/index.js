@@ -246,7 +246,7 @@ const SignUp = () => {
             >{announcement}</Announcement>
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20 } }}
+              inputProps={{ style: { fontSize: 20, color: 'white' } }}
               label="Họ và tên*"
               variant="outlined"
               fullWidth
@@ -260,7 +260,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20 } }}
+              inputProps={{ style: { fontSize: 20, color: 'white' } }}
               label="Tên đăng nhập*"
               variant="outlined"
               fullWidth
@@ -274,7 +274,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20 } }}
+              inputProps={{ style: { fontSize: 20, color: 'white' } }}
               label="Email*"
               variant="outlined"
               fullWidth
@@ -288,7 +288,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20 } }}
+              inputProps={{ style: { fontSize: 20, color: 'white' } }}
               label="Mật khẩu*"
               type="password"
               variant="outlined"
@@ -303,7 +303,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20 } }}
+              inputProps={{ style: { fontSize: 20, color: 'white' } }}
               label="Nhập lại mật khẩu*"
               type="password"
               variant="outlined"
