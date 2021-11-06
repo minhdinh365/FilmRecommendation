@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import passwordHash from "password-hash";
-import HeaderUser from '../NavUser'
-import SuccessRegister from './SuccessRegister';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+import HeaderUser from "../NavUser";
+import SuccessRegister from "./SuccessRegister";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 import {
   Form,
   Card,
@@ -17,10 +17,10 @@ import {
   Announcement,
   ImgBG,
   ImgBGu,
-  Introduce
+  Introduce,
 } from "./RegisterElement";
 import { TextField } from "@material-ui/core";
-import { LocalhostApi } from '../../API/const'
+import { LocalhostApi } from "../../API/const";
 
 const SignUp = () => {
   var regex = new RegExp("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
@@ -161,7 +161,7 @@ const SignUp = () => {
       });
     }
   };
-  const [success, setsuccess] = useState(false)
+  const [success, setsuccess] = useState(false);
   const postRegister = (e) => {
     if (
       textInput.FirstName.trim() &&
@@ -182,9 +182,8 @@ const SignUp = () => {
         })
         .then(
           (response) => {
-            console.log(response);
             if (response.data.status === "success") {
-              setsuccess(true)
+              setsuccess(true);
             } else {
               setAnnouncement("Username or email already exists");
             }
@@ -215,13 +214,17 @@ const SignUp = () => {
         <ImgBGu />
         <Card>
           <Introduce>
-            <img className="chom-film" src="https://cdn2.expertreviews.co.uk/sites/expertreviews/files/styles/er_main_wide/public/2019/11/the-best-films-on-now-tv-with-sky-cinema.jpg" />
+            <img
+              className="chom-film"
+              src="https://cdn2.expertreviews.co.uk/sites/expertreviews/files/styles/er_main_wide/public/2019/11/the-best-films-on-now-tv-with-sky-cinema.jpg"
+            />
             <div className="img-gb"></div>
             <Title>Đăng kí ngay</Title>
             <img
               src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
               className="Logo"
-              alt="logo" />
+              alt="logo"
+            />
             <span>Để cùng trải nghiệm những bộ phim hay nhất</span>
             <p>Chỏm Film, nơi cùng bạn chia sẽ phim</p>
           </Introduce>
@@ -231,10 +234,14 @@ const SignUp = () => {
                 <Image ref={uploadedImage} onChange={handleImageUpload} />
               </ImageTemp>
               <UpdateButton onClick={() => imageUploader.current.click()}>
-                <ion-icon style={{ position: 'absolute', left: '5px' }} name="cloud-upload"></ion-icon>Tải ảnh lên
+                <ion-icon
+                  style={{ position: "absolute", left: "5px" }}
+                  name="cloud-upload"
+                ></ion-icon>
+                Tải ảnh lên
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/png, image/jpeg, image/jpg"
                   required
                   onChange={handleImageUpload}
                   ref={imageUploader}
@@ -242,11 +249,10 @@ const SignUp = () => {
                 />
               </UpdateButton>
             </Upload>
-            <Announcement
-            >{announcement}</Announcement>
+            <Announcement>{announcement}</Announcement>
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20, color: 'white' } }}
+              inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Họ và tên*"
               variant="outlined"
               fullWidth
@@ -260,7 +266,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20, color: 'white' } }}
+              inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Tên đăng nhập*"
               variant="outlined"
               fullWidth
@@ -274,7 +280,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20, color: 'white' } }}
+              inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Email*"
               variant="outlined"
               fullWidth
@@ -288,7 +294,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20, color: 'white' } }}
+              inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Mật khẩu*"
               type="password"
               variant="outlined"
@@ -303,7 +309,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              inputProps={{ style: { fontSize: 20, color: 'white' } }}
+              inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Nhập lại mật khẩu*"
               type="password"
               variant="outlined"
@@ -327,7 +333,6 @@ const SignUp = () => {
           </Information>
         </Card>
       </Form>
-
     </div>
   );
 };
