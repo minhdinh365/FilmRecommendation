@@ -1,83 +1,57 @@
-import React, { Component } from "react";
-import _debounce from 'lodash/debounce'
-import axios from 'axios';
-import Autosuggest from 'react-autosuggest'
-import { Link } from 'react-router-dom'
-import { IMG_SIZE_XSMALL } from '../../API/const';
-import { LocalhostApi } from '../../API/const'
+import styled from "styled-components";
 
-const getSuggestionValue = suggestion => {
-  const newsuggest = suggestion.title
-
-  return newsuggest
-};
-const reload = () => {
-  window.location.reload()
-}
-const renderSuggestion = (suggestion) => (
-  <div onClick={reload}>
-    <Link className="search-card" to={{
-      pathname: `/detail/${suggestion.id}`,
-      state: suggestion.id
-    }}>
-      <img className="searchResult-image" alt="wrong" src={(IMG_SIZE_XSMALL + suggestion.poster_path)} />
-      <div className="searchResult-text">
-        <div className="searchResult-name">
-          {suggestion.title}
-        </div>
-        <div className="searchResult-date">
-          {suggestion.release_date}
-        </div>
-      </div>
-    </Link>
-  </div>
-);
-
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "",
-      suggestions: []
-    };
+export const Container = styled.div`
+  position: relative;
+  margin: auto;
+  display: inline-block;
+  width: 250px;
+  input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    border-bottom: 1px solid gray;
   }
+`;
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
+export const ListSearch = styled.div`
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: auto;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+`;
 
-    const url = LocalhostApi + 'search?content=' + inputValue;
-
-    return inputLength === 0 ? [] : axios.get(url).then(response => {
-      this.setState({ suggestions: response.data.results })
-    }).catch(error => { console.log(`Error Message ${error}`) });
+export const CardSearch = styled.div`
+  height: 50px;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  background-color: #111111;
+  margin-bottom: 5px;
+  &:hover {
+    background-color: #202125;
+    cursor: pointer;
   }
-
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
+  a {
+    transition: none;
   }
-  render() {
-    const { value, suggestions } = this.state;
-    const inputProps = {
-      placeholder: 'Tìm kiếm...',
-      value,
-      onChange: (e, { newValue }) => this.setState({ value: typeof (newValue) !== 'undefined' ? newValue : '' })
-    };
-
-    const onSuggestionsFetchRequested = _debounce((term) => { this.onSuggestionsFetchRequested(term) }, 1000);
-    return (
-      <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
-    );
-  }
-}
-
-export default Search;
+`;
+export const Img = styled.img`
+  width: 30%;
+  height: auto;
+  object-fit: cover;
+`;
+export const Title = styled.span`
+  color: white;
+  font-size: 14px;
+  padding: 0px 5px 0px 10px;
+  margin: 0;
+  display: inline-block;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+`;

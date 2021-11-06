@@ -5,13 +5,24 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Axios from "axios";
-import { LocalhostClient } from '../../API/const'
-import { LocalhostApi } from '../../API/const'
+import { LocalhostClient } from "../../API/const";
+import { LocalhostApi } from "../../API/const";
 import { useCookies } from "react-cookie";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Cookies from "js-cookie";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import UseFullLoading from "../../Components/FullPageLoading";
-import { WapperLogo, PasswordInput, Background, WrapperModal, Content, InputField, OtherSign, Errors, Button } from './modalelementsLogin'
+import {
+  WapperLogo,
+  PasswordInput,
+  Background,
+  WrapperModal,
+  Content,
+  InputField,
+  OtherSign,
+  Errors,
+  Button,
+} from "./modalelementsLogin";
 
 const schema = yup.object().shape({
   username: yup.string().required("Tài khoản không được để trống"),
@@ -28,9 +39,9 @@ function ModalLogin(props) {
   const [loader, showLoader, hideLoader] = UseFullLoading();
   const { open, setLoginOpen, setForgetOpen, registerUser } = props;
   const switchForget = (event) => {
-    setLoginOpen(false)
-    setForgetOpen(true)
-  }
+    setLoginOpen(false);
+    setForgetOpen(true);
+  };
   const onSubmit = (data) => {
     showLoader();
     Axios.post(LocalhostApi + "account", {
@@ -41,9 +52,24 @@ function ModalLogin(props) {
         if (res.data.status === "Susscess") {
           window.location.reload();
           setLoginOpen(false);
-          setCookie("User", res.data.token, { path: LocalhostClient })
+          if (!Cookies.get("User")) {
+            setCookie("User", res.data.token, {
+              path: LocalhostClient,
+              maxAge: 3000,
+            });
+          } else {
+            document.cookie = "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+            window.localStorage.clear();
+            setCookie("User", res.data.token, {
+              path: LocalhostClient,
+              maxAge: 3000,
+            });
+            setTimeout(() => {
+              alert("11111111");
+            }, 3000);
+          }
           if (registerUser) {
-            window.location = LocalhostClient
+            window.location = LocalhostClient;
           }
           hideLoader();
         } else {
@@ -80,18 +106,17 @@ function ModalLogin(props) {
     setData(newData);
     setErrorTM(null);
   }
-  const [changeIcon, setchangeIcon] = useState(false)
-  const [password, setPassword] = useState('password')
+  const [changeIcon, setchangeIcon] = useState(false);
+  const [password, setPassword] = useState("password");
   const Showpass = () => {
-    if (password === 'password') {
-      setPassword('text')
-      setchangeIcon(true)
+    if (password === "password") {
+      setPassword("text");
+      setchangeIcon(true);
+    } else {
+      setPassword("password");
+      setchangeIcon(false);
     }
-    else {
-      setPassword('password')
-      setchangeIcon(false)
-    }
-  }
+  };
   return (
     <>
       {loader}
@@ -102,47 +127,57 @@ function ModalLogin(props) {
               <Content>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <WapperLogo>
-                    <img src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
                       className="Logo"
-                      alt="logo" />
+                      alt="logo"
+                    />
                   </WapperLogo>
                   {Field.inputs.map((input, key) => {
                     return (
                       <div key={key}>
-                        {
-                          (input.span === 'Password') ?
-                            <PasswordInput>
-                              <span className="spanLogin">Mật khẩu</span>
-                              <InputField
-                                type={password}
-                                placeholder={"Nhập vào mật khẩu*"}
-                                {...register(input.name)}
-                                onChange={(e) => handle(e)}
-                                id={input.name}
-                                autoComplete="on"
-                              ></InputField>
-                              {changeIcon ?
-                                <VisibilityIcon color="secondary" onClick={Showpass} fontSize="large" className="password-change-eye" />
-                                :
-                                <VisibilityOffIcon color="secondary" onClick={Showpass} fontSize="large" className="password-change-eye" />
-                              }
-                              <Errors>{errors[input.name]?.message}</Errors>
-                            </PasswordInput>
-                            :
-                            <div className="username-input">
-                              <span className="spanLogin">Tên đăng nhập</span>
-                              <InputField
-                                type='text'
-                                placeholder={"Nhập vào tên đăng nhập*"}
-                                {...register(input.name)}
-                                onChange={(e) => handle(e)}
-                                id={input.name}
-                                autoComplete="on"
-                              ></InputField>
-                              <Errors>{errors[input.name]?.message}</Errors>
-                            </div>
-                        }
-
+                        {input.span === "Password" ? (
+                          <PasswordInput>
+                            <span className="spanLogin">Mật khẩu</span>
+                            <InputField
+                              type={password}
+                              placeholder={"Nhập vào mật khẩu*"}
+                              {...register(input.name)}
+                              onChange={(e) => handle(e)}
+                              id={input.name}
+                              autoComplete="on"
+                            ></InputField>
+                            {changeIcon ? (
+                              <VisibilityIcon
+                                color="secondary"
+                                onClick={Showpass}
+                                fontSize="large"
+                                className="password-change-eye"
+                              />
+                            ) : (
+                              <VisibilityOffIcon
+                                color="secondary"
+                                onClick={Showpass}
+                                fontSize="large"
+                                className="password-change-eye"
+                              />
+                            )}
+                            <Errors>{errors[input.name]?.message}</Errors>
+                          </PasswordInput>
+                        ) : (
+                          <div className="username-input">
+                            <span className="spanLogin">Tên đăng nhập</span>
+                            <InputField
+                              type="text"
+                              placeholder={"Nhập vào tên đăng nhập*"}
+                              {...register(input.name)}
+                              onChange={(e) => handle(e)}
+                              id={input.name}
+                              autoComplete="on"
+                            ></InputField>
+                            <Errors>{errors[input.name]?.message}</Errors>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -165,9 +200,9 @@ function ModalLogin(props) {
               </Content>
             </WrapperModal>
           </animated.div>
-        </Background>)
-        : null}
+        </Background>
+      ) : null}
     </>
   );
-};
+}
 export default ModalLogin;

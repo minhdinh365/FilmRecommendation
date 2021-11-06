@@ -34,7 +34,7 @@ namespace TrainAPI.Controllers
         {
             mlContext = new MLContext();
             client = factory.CreateClient();
-            fmd = new FilmsModel[2000];
+            fmd = new FilmsModel[1999];
 
             client.BaseAddress = new Uri("http://localhost:5000");
             var response = client.GetAsync("/2000comments").Result;
@@ -63,7 +63,7 @@ namespace TrainAPI.Controllers
         {
             clientPost = factory.CreateClient();
             clientPost.BaseAddress = new Uri("http://localhost:5000");
-            var responseUser = clientPost.GetAsync("/evaluate/" + id).Result;
+            var responseUser = clientPost.GetAsync("/evaluate?username=" + id).Result;
             string jsonUser = responseUser.Content.ReadAsStringAsync().Result;
 
             ListFilm user = new ListFilm(jsonUser);
@@ -126,7 +126,7 @@ namespace TrainAPI.Controllers
             var predictionEngine = mlContext.Model.CreatePredictionEngine<FilmsModel, MovieRatingPrediction>(model);
 
             List<FilmsModel> result = new List<FilmsModel>();
-            double[] index = new double[2000];
+            double[] index = new double[1999];
 
             Dictionary<string, int> list = new Dictionary<string, int>();
             list.Add("VinhVinh123", 0);
@@ -139,13 +139,13 @@ namespace TrainAPI.Controllers
                 var watched = testData.Where((val, idx) => val.id == item.id).ToArray();
                 list[watched[0].username] = list[watched[0].username] + 1;
                 testData = testData.Where((val, idx) => val.id != item.id).ToArray();
-                Array.Resize(ref testData, 2000);
-                testData[1999] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path));
+                Array.Resize(ref testData, 1999);
+                testData[1998] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path));
             }
 
             username = list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
 
-            for (int i=0; i < 2000; i++)
+            for (int i=0; i < 1999; i++)
             {
                 if (testData[i].username != username)
                 {

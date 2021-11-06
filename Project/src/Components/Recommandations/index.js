@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { URL_DETAIL, API_KEY } from "../../API/const";
 import { motion } from "framer-motion";
 import propTypes from "prop-types";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import axios from "axios";
-
 
 const MovieCard = (props) => {
   return (
@@ -15,11 +14,9 @@ const MovieCard = (props) => {
         scale: 1.06,
         textShadow: "0 0 8px rgb (255,255,255)",
         boxShadow: "0 0 8px rgb (255,255,255)",
-      }}>
-      <Link to={{
-        pathname: `/detail/${props.movie.id}`,
-        state: props.movie.id
-      }}>
+      }}
+    >
+      <Link to={`/detail/${props.movie.id}`}>
         <div className="card-movie-now">
           <img
             alt={`${props.movie.title} Movie Poster`}
@@ -44,19 +41,18 @@ MovieCard.propTypes = {
 const Recommandation = (props) => {
   const [postMovie, setPostMovie] = useState([]);
   useEffect(() => {
-    axios.get(
-      `https://localhost:44327/home/predict/minhdinh111`,
-    )
-      .then(res => {
-        setPostMovie(res.data)
+    axios
+      .get(`https://localhost:44327/home/predict/minhdinh111`)
+      .then((res) => {
+        setPostMovie(res.data);
       })
-      .catch(e => {
-        alert('Errors')
-      })
-  }, [])
-  const Movies = postMovie.slice(0, 12).map((movie) => (
-    <MovieCard key={movie.id} movie={movie} />
-  ));
+      .catch((e) => {
+        alert("Errors");
+      });
+  }, []);
+  const Movies = postMovie
+    .slice(0, 12)
+    .map((movie) => <MovieCard key={movie.id} movie={movie} />);
   return (
     <section id="portfolio">
       <div className="movie-for-today">
@@ -65,8 +61,8 @@ const Recommandation = (props) => {
       </div>
     </section>
   );
-}
+};
 Recommandation.propTypes = {
-  id: propTypes.number.isRequired
-}
+  id: propTypes.number.isRequired,
+};
 export default Recommandation;

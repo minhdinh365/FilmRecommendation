@@ -1,36 +1,41 @@
 import React, { Component } from "react";
 import Fade from "react-reveal";
 import { Row } from "react-bootstrap";
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 class Footer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false
-    }
+      active: false,
+    };
   }
   showButtonOntop = (event) => {
     if (window.scrollY >= 1200) {
-      this.setState({ active: true })
-    }
-    else this.setState({ active: false })
-  }
+      this.setState({ active: true });
+    } else this.setState({ active: false });
+  };
   componentDidMount() {
-    window.addEventListener('scroll', this.showButtonOntop);
+    window.addEventListener("scroll", this.showButtonOntop);
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.showButtonOntop);
+    window.removeEventListener("scroll", this.showButtonOntop);
+  }
+  topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
   render() {
     return (
       <footer>
         <Row>
-          {this.state.active ?
+          {this.state.active ? (
             <div className="arrow-button">
-              <a className="smoothscroll" href="#home"><ion-icon name="arrow-round-up"></ion-icon>Top</a>
+              <a className="smoothscroll" onclick={this.topFunction}>
+                <ion-icon name="arrow-round-up"></ion-icon>Top
+              </a>
             </div>
-            : null}
+          ) : null}
           <Fade bottom>
             <div className="twelve columns">
               <ul className="social-links"></ul>
