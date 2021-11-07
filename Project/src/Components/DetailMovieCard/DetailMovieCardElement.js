@@ -1,3 +1,4 @@
+import { style } from "@mui/system";
 import styled from "styled-components";
 
 export const PlayYoutube = styled.div`
@@ -10,7 +11,7 @@ export const PlayYoutube = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
-  z-index:21;
+  z-index: 21;
 
   & .modal-video {
     display: flex;
@@ -54,7 +55,7 @@ export const Background = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-`
+`;
 
 export const Container = styled.div`
   margin: 79px auto auto auto;
@@ -67,35 +68,40 @@ export const Container = styled.div`
 export const Card = styled.div`
   width: 90%;
   display: flex;
-  margin:auto;
-  background-image: linear-gradient(rgb(0,0,0), rgb(0,0,0,0.85), rgb(0,0,0));
+  margin: auto;
+  background-image: linear-gradient(
+    rgb(0, 0, 0),
+    rgb(0, 0, 0, 0.85),
+    rgb(0, 0, 0)
+  );
   @media screen and (max-width: 1024px) {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
 export const Poster = styled.img`
   width: 40%;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
   @media screen and (max-width: 1024px) {
     width: 60%;
-}
+  }
 `;
 
 export const Detail = styled.div`
   padding: 40px;
   width: 60%;
   color: #fff;
-  h2{
+  h2 {
     text-align: center;
   }
   @media screen and (max-width: 1024px) {
     padding: 0px;
     justify-content: center;
     text-align: center;
-}
+  }
 `;
 
 export const Title = styled.h2`
@@ -112,6 +118,12 @@ export const Title = styled.h2`
 export const Controller = styled.div`
   display: flex;
   margin: 40px 0 40px 20px;
+  justify-content: center;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+  }
 `;
 
 export const Rate = styled.div`
@@ -149,7 +161,18 @@ export const Like = styled.div`
     margin-right: 5px;
   }
 `;
-
+export const WrapperButton = styled.div`
+  display: flex;
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
+`;
+export const WrapperThum = styled.div`
+  display: flex;
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
+`;
 export const TrailerButton = styled.button`
   border: 3px solid;
   border-radius: 16px;
@@ -166,10 +189,15 @@ export const TrailerButton = styled.button`
   animation-delay: 0ms;
   animation-iteration-count: 1;
   opacity: 1;
+  margin-left: 5px;
   animation-name: react-reveal-787989004656816-1;
   & .iconify {
     margin-right: 5px;
     color: red;
+  }
+  a {
+    text-decoration: none;
+    color: yellow;
   }
 `;
 
@@ -191,7 +219,7 @@ export const Desc = styled.p`
   animation-delay: 0ms;
   animation-iteration-count: 1;
   opacity: 1;
-  animation-name: react-reveal-787989004656816-1; 
+  animation-name: react-reveal-787989004656816-1;
 `;
 
 export const Statistics = styled.div`
@@ -227,25 +255,28 @@ export const Revenue = styled.div``;
 
 export const Gener = styled.div`
   margin-top: 20px;
-  grid-column: 1/ span 2;
-  grid-row: 4/span 0;
-  span{
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 0;
+  span {
     color: yellow;
     font-size: 16px;
   }
 `;
 export const Caster = styled.div`
-  background-image: linear-gradient(rgb(0,0,0),rgb(0,0,0,0.85),rgb(0,0,0));
+  background-image: linear-gradient(
+    rgb(0, 0, 0),
+    rgb(0, 0, 0, 0.85),
+    rgb(0, 0, 0)
+  );
   width: 90%;
-  max-width: 1260px; 
+  max-width: 1260px;
   height: auto;
   margin: auto;
   display: block;
   padding-top: 30px;
-  h2{
+  h2 {
     margin: 0px 20px 20px 20px;
-    color:yellow; 
-
+    color: yellow;
   }
 `;
 export const WrapperCaster = styled.div`
@@ -254,40 +285,39 @@ export const WrapperCaster = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  margin:auto;
+  margin: auto;
   justify-content: center;
 `;
 export const CasterCard = styled.div`
   width: 12%;
   display: block;
   box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-  margin:0px  2.2%; 
+  margin: 0px 2.2%;
   border-radius: 5px;
   @media screen and (max-width: 1024px) {
     width: 23%;
   }
   @media screen and (max-width: 768px) {
     width: 45%;
-    padding: 0px 30px;
+    padding: 0px;
   }
   @media screen and (max-width: 375px) {
     width: 59%;
-    padding: 0px 
   }
-  img{
-    width:100%;
+  img {
+    width: 100%;
     height: auto;
     border-radius: 5px;
-    min-height: 204px
+    min-height: 204px;
   }
-  h4{
-    text-align:center;
+  h4 {
+    text-align: center;
     font-weight: 300;
     color: white;
     margin: 0px 0px 12px 0px;
   }
-  h3{
+  h3 {
     color: yellow;
-    font-weight:200;
+    font-weight: 200;
   }
 `;

@@ -238,6 +238,7 @@ h3 {
   font-weight: 500;
   transition: 0.5s;
   text-decoration: none;
+  cursor: pointer;
 }
 .Nav .smoothscroll {
   color: rgb(255, 255, 255);
@@ -1038,7 +1039,7 @@ a:visited {
 .card-movie-now img {
   border-radius: 10px;
   display: block;
-  min-height: 350px;
+  min-height: 370px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -1274,8 +1275,8 @@ h3 {
 }
 /*#
 call-to-action .button {
-	color:#fff;
-   background: #0D0D0D;
+ color:#fff;
+  background: #0D0D0D;
 }
 */
 #call-to-action .button:hover,
@@ -1420,7 +1421,7 @@ call-to-action .button {
 
 /* No JavaScript Fallback */
 /* If you are not using another script, such as Modernizr, make sure you
- * include js that eliminates this class on page load */
+* include js that eliminates this class on page load */
 .no-js .slides > li:first-child {
   display: block;
 }
@@ -1601,7 +1602,7 @@ footer .social-links li:first-child {
 }
 
 /* .social .btn:first-child{
-   margin-right: 30px;
+  margin-right: 30px;
 } */
 .social .btn {
   text-align: center;
@@ -2255,4 +2256,19 @@ p {
 .type-m {
   margin: auto;
   text-align: center;
+}
+/*iframe*/
+.wrapper-iframe {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  margin: auto;
+  max-width: 1260px;
+}
+.iframe-video {
+  margin: auto;
+  max-width: 1260px;
+  width: 90%;
+  height: 600px;
+  border: none;
 }

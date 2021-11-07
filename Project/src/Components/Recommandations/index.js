@@ -24,7 +24,6 @@ const MovieCard = (props) => {
           ></img>
           <h5 className="new-movie">Full HD</h5>
           <h2>{props.movie.title}</h2>
-          <h3 className="btn-XemNgay from-center">Xem Ngay</h3>
         </div>
       </Link>
     </motion.div>

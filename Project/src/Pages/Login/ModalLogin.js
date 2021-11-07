@@ -55,18 +55,15 @@ function ModalLogin(props) {
           if (!Cookies.get("User")) {
             setCookie("User", res.data.token, {
               path: LocalhostClient,
-              maxAge: 3000,
+              maxAge: 43200,
             });
           } else {
             document.cookie = "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
             window.localStorage.clear();
             setCookie("User", res.data.token, {
               path: LocalhostClient,
-              maxAge: 3000,
+              maxAge: 43200,
             });
-            setTimeout(() => {
-              alert("11111111");
-            }, 3000);
           }
           if (registerUser) {
             window.location = LocalhostClient;

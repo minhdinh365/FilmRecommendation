@@ -1,8 +1,8 @@
 import React, { useState, useLayoutEffect } from "react";
 import ModalVideo from "react-modal-video";
-import Advertisments from '../Advertisments'
-import axios from 'axios'
-import { URL_DETAIL, API_KEY, URL_BACKGROUND } from '../../API/const'
+import { URL_BACKGROUND } from "../../API/const";
+import { Link, animateScroll as scroll } from "react-scroll";
+import Iframe from "../../Components/Iframe";
 import {
   PlayYoutube,
   Container,
@@ -25,7 +25,9 @@ import {
   Gener,
   Caster,
   CasterCard,
-  WrapperCaster
+  WrapperCaster,
+  WrapperButton,
+  WrapperThum,
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
@@ -46,33 +48,58 @@ const DetailMovieCard = (props) => {
           autoPlay={false}
         />
       </PlayYoutube>
-      <Background style={{ backgroundImage: `url("https://image.tmdb.org/t/p/original/${props.contents.backdrop_path}")` }}>
-        <Container >
+      <Background
+        style={{
+          backgroundImage: `url("https://image.tmdb.org/t/p/original/${props.contents.backdrop_path}")`,
+        }}
+      >
+        <Container>
           <Card>
-            <Poster src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`} />
+            <Poster
+              src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`}
+            />
             <Detail>
               <Title>{props.contents.title}</Title>
               <Controller>
-                <Rate>
-                  <span
-                    className="iconify"
-                    data-icon="ant-design:star-filled"
-                  ></span>
-                  <span>{props.contents.vote_average}</span>
-                </Rate>
-                <Like>
-                  <span className="iconify" data-icon="mdi:eye"></span>
-                  <span>{props.contents.vote_count}</span>
-                </Like>
-                <TrailerButton
-                  onClick={() => {
-                    setOpen(true);
-                    setHidden("flex");
-                  }}
-                >
-                  <span className="iconify" data-icon="clarity:play-solid"></span>
-                  <span>Xem Trailer</span>
-                </TrailerButton>
+                <WrapperThum>
+                  <Rate>
+                    <span
+                      className="iconify"
+                      data-icon="ant-design:star-filled"
+                    ></span>
+                    <span>{props.contents.vote_average}</span>
+                  </Rate>
+                  <Like>
+                    <span className="iconify" data-icon="mdi:eye"></span>
+                    <span>{props.contents.vote_count}</span>
+                  </Like>
+                </WrapperThum>
+                <WrapperButton>
+                  <TrailerButton
+                    onClick={() => {
+                      setOpen(true);
+                      setHidden("flex");
+                    }}
+                  >
+                    <span
+                      className="iconify"
+                      data-icon="clarity:play-solid"
+                    ></span>
+                    <span>Xem Trailer</span>
+                  </TrailerButton>
+                  <TrailerButton>
+                    <Link
+                      activeClass="active"
+                      to="iframe-video"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                    >
+                      Xem Phim
+                    </Link>
+                  </TrailerButton>
+                </WrapperButton>
               </Controller>
               <Slogan>{props.contents.tagline}</Slogan>
               <Desc>{props.contents.overview}</Desc>
@@ -96,10 +123,11 @@ const DetailMovieCard = (props) => {
                 <Gener>
                   <div>Thể loại:</div>
                   {props.contents.genre_ids.map(function (element, i) {
-                    return (i === (props.contents.genre_ids.length - 1) ?
-                      <span key={element.id}> {element.name + ' '}</span>
-                      :
-                      <span key={element.id}> {element.name + ', '}</span>)
+                    return i === props.contents.genre_ids.length - 1 ? (
+                      <span key={element.id}> {element.name + " "}</span>
+                    ) : (
+                      <span key={element.id}> {element.name + ", "}</span>
+                    );
                   })}
                 </Gener>
               </Statistics>
@@ -111,16 +139,25 @@ const DetailMovieCard = (props) => {
               {props.castMovie.slice(0, 6).map((element) => {
                 return (
                   <CasterCard key={element.id}>
-                    <img src={URL_BACKGROUND + element.profile_path} alt="No img" onError={(e) => {
-                      if (e.target.src === (URL_BACKGROUND + 'null')) { e.target.onerror = null; e.target.src = "https://cdn-icons-png.flaticon.com/512/1496/1496058.png"; }
-                    }} />
+                    <img
+                      src={URL_BACKGROUND + element.profile_path}
+                      alt="No img"
+                      onError={(e) => {
+                        if (e.target.src === URL_BACKGROUND + "null") {
+                          e.target.onerror = null;
+                          e.target.src =
+                            "https://cdn-icons-png.flaticon.com/512/1496/1496058.png";
+                        }
+                      }}
+                    />
                     <h3>{element.original_name}</h3>
                     <h4>{element.character}</h4>
                   </CasterCard>
-                )
+                );
               })}
             </WrapperCaster>
           </Caster>
+          <Iframe id={props.contents.id} />
         </Container>
       </Background>
     </>
