@@ -18,12 +18,48 @@ export const getComments = async (req, res) => {
     res.status(400).json({ err });
   }
 };
+
 export const postComment = async (req, res) => {
-  const cmt = await new Comment(req.body.comment).populate("info");
-  cmt.save().catch((result) => {
-    res.json({ result });
+  const checkComment = await Comment.find({
+    $and: [
+      { id_info: req.body.comment.id_info },
+      { id_film: Number(req.body.comment.id_film) },
+      { is_reply: 0 },
+    ],
   });
+  if (
+    req.body.comment.is_reply !== 0 ||
+    (checkComment.length === 0 && req.body.comment.is_reply === 0)
+  ) {
+    const cmt = await new Comment(req.body.comment).populate("info");
+    cmt.save().catch((result) => {
+      res.status(200).json({ status: "thành công", result });
+    });
+  } else {
+    res.status(200).json({ result: req.body.comment });
+  }
 };
+
+export const putComment = async (req, res) => {
+  await Comment.findOneAndUpdate(
+    {
+      $and: [
+        { id_info: req.body.commentPut.id_info },
+        { id_film: Number(req.body.commentPut.id_film) },
+        { is_reply: 0 },
+      ],
+    },
+    req.body.commentPut,
+    { new: true }
+  )
+    .then((data) => {
+      res.status(200).json({ data });
+    })
+    .catch((err) => {
+      res.status(500).json({ msg: err.message });
+    });
+};
+
 export const createEvaluate = async (req, res) => {
   const getFilms = await Film.find({}).limit(10);
   let cmttt = [

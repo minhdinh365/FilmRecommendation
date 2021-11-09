@@ -37,14 +37,21 @@ class CommentBox extends React.Component {
   configSocket = async () => {
     var socket = socketClient(LocalhostApi);
     this.socket = socket;
+
     socket.on("get-new-cmt", async (cmt) => {
       let data = await cmt;
       if (parseInt(this.state.id) === cmt.id_film) {
         this.setState({
           comments: this.state.comments.concat({ ...data }),
-          total_comment: this.state.total_comment + 1
+          total_comment: this.state.total_comment + 1,
         });
       }
+    });
+
+    socket.on("get-update-cmt", async (cmt) => {
+      this.setState({
+        comments: cmt,
+      });
     });
   };
 
@@ -143,13 +150,41 @@ class CommentBox extends React.Component {
         (response) => {
           var socket = socketClient(LocalhostApi);
           this.socket = socket;
-          this.socket.emit("add-new-cmt", response.data.result);
+          if (response.data.status === "thành công") {
+            this.socket.emit("add-new-cmt", response.data.result);
+          } else {
+            var result = confirm(
+              "Bạn đã đánh giá cho phim này!\nBạn có muốn thay thế đánh giá trước đó bằng đánh giá hiện tại?"
+            );
+            if (result == true) {
+              var commentPut = response.data.result;
+              axios
+                .put(LocalhostApi + "comment", { commentPut })
+                .then((res) => {
+                  alert("Chỉnh sửa đánh giá thành công!");
+                })
+                .catch((err) => {
+                  alert(err);
+                });
+
+              var contents = commentPut.contents;
+              var evaluate = commentPut.evaluate;
+              this.setState({
+                comments: this.state.comments.map((item, index) =>
+                  item.id_info === commentPut.id_info &&
+                  item.is_reply === commentPut.is_reply
+                    ? { ...item, contents, evaluate }
+                    : item
+                ),
+              });
+              this.socket.emit("update-cmt", this.state.comments);
+            }
+          }
         },
         (error) => {
           console.log(error);
         }
       );
-    this.setState({ total_comment: this.state.total_comment + 1 });
   }
 
   _getComments() {
@@ -251,6 +286,10 @@ class CommentForm extends React.Component {
                   <Comment
                     rows="1"
                     placeholder={announce}
+                    onPaste={(e) => {
+                      e.preventDefault();
+                      return false;
+                    }}
                     ref={(textarea) => (this._content = textarea)}
                   ></Comment>
                   <Send type="submit">

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import Account from "../router/Account.js";
 import Comment from "../router/Comment.js";
 import Films from "../router/Films.js";
-import Watched from '../router/Watched.js'
+import Watched from "../router/Watched.js";
 import Information from "../router/Information.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(methodOverride("_method"));
 
-app.use("/", Watched)
+app.use("/", Watched);
 app.use("/", Account);
 app.use("/", Comment);
 app.use("/", Films);
@@ -59,7 +59,11 @@ mongoose
         io.emit("get-new-cmt", comment);
       });
 
-      socket.on("disconnect", () => { });
+      socket.on("update-cmt", (comment) => {
+        io.emit("get-update-cmt", comment);
+      });
+
+      socket.on("disconnect", () => {});
     });
   })
   .catch((err) => {
