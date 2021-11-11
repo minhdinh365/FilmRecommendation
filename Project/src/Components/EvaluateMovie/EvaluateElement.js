@@ -58,7 +58,6 @@ export const Card = styled.div`
      padding: 0;
      z-index: 1;
      background: black;
-     padding: 4px 8px;
      position: relative;
    }
   h2::after {
