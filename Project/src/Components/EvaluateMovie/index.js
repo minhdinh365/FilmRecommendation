@@ -3,6 +3,9 @@ import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 import socketClient from "socket.io-client";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import AlertDialog from "./announcement";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   CommentDetail,
   EvaluateFrame,
@@ -31,6 +34,8 @@ class CommentBox extends React.Component {
       limmitComment: 6,
       loadMore: true,
       socket: null,
+      announcement: false,
+      waiting: [],
     };
   }
   socket;
@@ -49,20 +54,33 @@ class CommentBox extends React.Component {
     });
 
     socket.on("get-update-cmt", async (cmt) => {
-      this.setState({
-        comments: cmt,
-      });
+      if (parseInt(this.state.id) === parseInt(cmt.id_film)) {
+        let comment = await cmt.comment;
+        this.setState({
+          comments: comment,
+        });
+      }
     });
   };
 
   async componentDidMount() {
-    this.configSocket();
+    await this.configSocket();
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.total_comment !== nextState.total_comment) {
       this.setState({
         total_comment: nextState.total_comment,
+      });
+    }
+    if (this.state.announcement !== nextState.announcement) {
+      this.setState({
+        announcement: nextState.announcement,
+      });
+    }
+    if (this.state.waiting !== nextState.waiting) {
+      this.setState({
+        waiting: nextState.waiting,
       });
     }
     if (this.state.comments !== nextState.comments) {
@@ -97,24 +115,44 @@ class CommentBox extends React.Component {
       }
     };
     return (
-      <CommentDetail>
-        <CommentForm
-          addComment={this._addComment.bind(this)}
-          information={this.state.information}
+      <>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-        <EvaluateFrame>
-          <Card>
-            <h4>Bình luận ({this.state.total_comment})</h4>
-          </Card>
-        </EvaluateFrame>
-        {totalComment.filter((item) => item !== undefined)}
-        {totalComment.length >= 3 ? (
-          <p onClick={handleClickCommentIn}>
-            <ArrowDropDownIcon className="iconload-more" fontSize="large" />
-            Xem thêm...
-          </p>
-        ) : null}
-      </CommentDetail>
+        {this.state.announcement && (
+          <AlertDialog
+            content={this.state.waiting}
+            handleCloseAlert={this._handleClose.bind(this)}
+            updateComment={this._updateComment.bind(this)}
+          />
+        )}
+        <CommentDetail>
+          <CommentForm
+            addComment={this._addComment.bind(this)}
+            information={this.state.information}
+          />
+          <EvaluateFrame>
+            <Card>
+              <h4>Bình luận ({this.state.total_comment})</h4>
+            </Card>
+          </EvaluateFrame>
+          {totalComment.filter((item) => item !== undefined)}
+          {totalComment.length >= 3 ? (
+            <p onClick={handleClickCommentIn}>
+              <ArrowDropDownIcon className="iconload-more" fontSize="large" />
+              Xem thêm...
+            </p>
+          ) : null}
+        </CommentDetail>
+      </>
     );
   }
   Subtracttime(int) {
@@ -132,6 +170,46 @@ class CommentBox extends React.Component {
       }
     }
   }
+  _updateComment() {
+    var commentPut = this.state.waiting;
+    var socket = socketClient(LocalhostApi);
+    this.socket = socket;
+    axios
+      .put(LocalhostApi + "comment", { commentPut })
+      .then((res) => {
+        toast.success("Cập nhật thành công!", {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
+    var contents = commentPut.contents;
+    var evaluate = commentPut.evaluate;
+
+    var cmt = this.state.comments.map((item, index) =>
+      item.id_info === commentPut.id_info &&
+      item.is_reply === commentPut.is_reply
+        ? { ...item, contents, evaluate }
+        : item
+    );
+    var id_film = this.state.id;
+    this.socket.emit("update-cmt", { cmt, id_film });
+  }
+
+  _handleClose() {
+    this.setState({
+      announcement: false,
+    });
+  }
+
   _addComment(full_name, avatar, start, content, is_reply) {
     const comment = {
       id_film: this.state.id,
@@ -153,32 +231,11 @@ class CommentBox extends React.Component {
           if (response.data.status === "thành công") {
             this.socket.emit("add-new-cmt", response.data.result);
           } else {
-            var result = confirm(
-              "Bạn đã đánh giá cho phim này!\nBạn có muốn thay thế đánh giá trước đó bằng đánh giá hiện tại?"
-            );
-            if (result == true) {
-              var commentPut = response.data.result;
-              axios
-                .put(LocalhostApi + "comment", { commentPut })
-                .then((res) => {
-                  alert("Chỉnh sửa đánh giá thành công!");
-                })
-                .catch((err) => {
-                  alert(err);
-                });
-
-              var contents = commentPut.contents;
-              var evaluate = commentPut.evaluate;
-              this.setState({
-                comments: this.state.comments.map((item, index) =>
-                  item.id_info === commentPut.id_info &&
-                  item.is_reply === commentPut.is_reply
-                    ? { ...item, contents, evaluate }
-                    : item
-                ),
-              });
-              this.socket.emit("update-cmt", this.state.comments);
-            }
+            var commentPut = response.data.result;
+            this.setState({
+              announcement: true,
+              waiting: commentPut,
+            });
           }
         },
         (error) => {

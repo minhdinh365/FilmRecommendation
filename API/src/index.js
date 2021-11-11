@@ -59,8 +59,10 @@ mongoose
         io.emit("get-new-cmt", comment);
       });
 
-      socket.on("update-cmt", (comment) => {
-        io.emit("get-update-cmt", comment);
+      socket.on("update-cmt", (comments) => {
+        var comment = comments.cmt;
+        var id_film = comments.id_film;
+        io.emit("get-update-cmt", { comment, id_film });
       });
 
       socket.on("disconnect", () => {});
