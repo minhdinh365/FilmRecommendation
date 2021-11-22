@@ -162,7 +162,9 @@ const SignUp = () => {
     }
   };
   const [success, setsuccess] = useState(false);
+  const [timeSpan, setTimeSpan] = useState(false);
   const postRegister = (e) => {
+    setTimeSpan(true);
     if (
       textInput.FirstName.trim() &&
       textInput.LastName.trim() &&
@@ -186,7 +188,10 @@ const SignUp = () => {
               setsuccess(true);
             } else {
               setAnnouncement("Username or email already exists");
+              setsuccess(false);
             }
+            setTimeSpan(false);
+            return;
           },
           (error) => {
             console.log(error);
@@ -328,7 +333,15 @@ const SignUp = () => {
                 postRegister(e);
               }}
             >
-              <span>Đăng kí</span>
+              <span>
+                {timeSpan && (
+                  <i
+                    className="fa fa-refresh fa-spin"
+                    style={{ marginRight: "5px" }}
+                  />
+                )}
+                Đăng kí
+              </span>
             </RegisterButton>
           </Information>
         </Card>

@@ -75,6 +75,18 @@ const schema = mongoose.Schema(
     budget: {
       type: Number,
     },
+    crew: {
+      type: mongoose.Schema.Types.Mixed,
+      trim: true,
+    },
+    cast: {
+      type: mongoose.Schema.Types.Mixed,
+      trim: true,
+    },
+    keywords: {
+      type: mongoose.Schema.Types.Mixed,
+      trim: true,
+    },
   },
   {
     toJSON: { virtuals: true },

@@ -3,6 +3,7 @@ import ModalVideo from "react-modal-video";
 import { URL_BACKGROUND } from "../../API/const";
 import { Link, animateScroll as scroll } from "react-scroll";
 import Iframe from "../../Components/Iframe";
+import Fade from "react-reveal";
 import {
   PlayYoutube,
   Container,
@@ -59,78 +60,81 @@ const DetailMovieCard = (props) => {
               src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`}
             />
             <Detail>
-              <Title>{props.contents.title}</Title>
-              <Controller>
-                <WrapperThum>
-                  <Rate>
-                    <span
-                      className="iconify"
-                      data-icon="ant-design:star-filled"
-                    ></span>
-                    <span>{props.contents.vote_average}</span>
-                  </Rate>
-                  <Like>
-                    <span className="iconify" data-icon="mdi:eye"></span>
-                    <span>{props.contents.vote_count}</span>
-                  </Like>
-                </WrapperThum>
-                <WrapperButton>
-                  <TrailerButton
-                    onClick={() => {
-                      setOpen(true);
-                      setHidden("flex");
-                    }}
-                  >
-                    <span
-                      className="iconify"
-                      data-icon="clarity:play-solid"
-                    ></span>
-                    <span>Xem Trailer</span>
-                  </TrailerButton>
-                  <TrailerButton>
-                    <Link
-                      activeClass="active"
-                      to="iframe-video"
-                      spy={true}
-                      smooth={true}
-                      offset={-70}
-                      duration={500}
+              <Fade bottom duration={3000}>
+                <Title>{props.contents.title}</Title>
+                <Controller>
+                  <WrapperThum>
+                    <Rate>
+                      <span
+                        className="iconify"
+                        data-icon="ant-design:star-filled"
+                      ></span>
+                      <span>{props.contents.vote_average}</span>
+                    </Rate>
+                    <Like>
+                      <span className="iconify" data-icon="mdi:eye"></span>
+                      <span>{props.contents.vote_count}</span>
+                    </Like>
+                  </WrapperThum>
+                  <WrapperButton>
+                    <TrailerButton
+                      onClick={() => {
+                        setOpen(true);
+                        setHidden("flex");
+                      }}
                     >
-                      Xem Phim
-                    </Link>
-                  </TrailerButton>
-                </WrapperButton>
-              </Controller>
-              <Slogan>{props.contents.tagline}</Slogan>
-              <Desc>{props.contents.overview}</Desc>
-              <Statistics>
-                <ReleaseDate>
-                  <div>Ngày công chiếu:</div>
-                  <div>{props.contents.release_date}</div>
-                </ReleaseDate>
-                <RunningTime>
-                  <div>Thời lượng phim:</div>
-                  <div>{props.contents.run_time} phút</div>
-                </RunningTime>
-                <Budget>
-                  <div>Ngân sách: </div>
-                  <div>$ {props.contents.budget}</div>
-                </Budget>
-                <Revenue>
-                  <div>Doanh thu: </div>
-                  <div>$ {props.contents.revenue}</div>
-                </Revenue>
-                <Gener>
-                  <div>Thể loại:</div>
-                  {props.contents.genre_ids.map(function (element, i) {
-                    return i === props.contents.genre_ids.length - 1 ? (
-                      <span key={element.id}> {element.name + " "}</span>
-                    ) : (
-                      <span key={element.id}> {element.name + ", "}</span>
-                    );
-                  })}
-                </Gener>
-              </Statistics>
+                      <span
+                        className="iconify"
+                        data-icon="clarity:play-solid"
+                      ></span>
+                      <span>Xem Trailer</span>
+                    </TrailerButton>
+                    <TrailerButton>
+                      <Link
+                        activeClass="active"
+                        to="iframe-video"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                      >
+                        Xem Phim
+                      </Link>
+                    </TrailerButton>
+                  </WrapperButton>
+                </Controller>
+                <Slogan>{props.contents.tagline}</Slogan>
+
+                <Desc>{props.contents.overview}</Desc>
+                <Statistics>
+                  <ReleaseDate>
+                    <div>Ngày công chiếu:</div>
+                    <div>{props.contents.release_date}</div>
+                  </ReleaseDate>
+                  <RunningTime>
+                    <div>Thời lượng phim:</div>
+                    <div>{props.contents.run_time} phút</div>
+                  </RunningTime>
+                  <Budget>
+                    <div>Ngân sách: </div>
+                    <div>$ {props.contents.budget}</div>
+                  </Budget>
+                  <Revenue>
+                    <div>Doanh thu: </div>
+                    <div>$ {props.contents.revenue}</div>
+                  </Revenue>
+                  <Gener>
+                    <div>Thể loại:</div>
+                    {props.contents.genre_ids.map(function (element, i) {
+                      return i === props.contents.genre_ids.length - 1 ? (
+                        <span key={element.id}> {element.name + " "}</span>
+                      ) : (
+                        <span key={element.id}> {element.name + ", "}</span>
+                      );
+                    })}
+                  </Gener>
+                </Statistics>
+              </Fade>
             </Detail>
           </Card>
           <Caster>
@@ -157,7 +161,9 @@ const DetailMovieCard = (props) => {
               })}
             </WrapperCaster>
           </Caster>
-          <Iframe id={props.contents.id} />
+          <Fade bottom duration={3000}>
+            <Iframe id={props.contents.id} />
+          </Fade>
         </Container>
       </Background>
     </>

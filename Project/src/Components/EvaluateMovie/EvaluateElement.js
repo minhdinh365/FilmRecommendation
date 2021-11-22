@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const CommentDetail = styled.div`
-  p{
+  p {
     position: relative;
     margin: 20px auto;
     text-align: center;
@@ -19,10 +19,10 @@ export const CommentDetail = styled.div`
       width: 50%;
     }
   }
-  p:hover{
+  p:hover {
     background-image: linear-gradient(182deg, #000000 0%, #474242 50%);
   }
-  .iconload-more{
+  .iconload-more {
     margin-left: -29px;
     position: absolute;
     margin-top: 3px;
@@ -34,8 +34,8 @@ export const Card = styled.div`
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.85);
   background: black;
-  h2{
-    font: 28px 'opensans-semibold', sans-serif;
+  h2 {
+    font: 28px "opensans-semibold", sans-serif;
     margin-bottom: 30px;
     position: relative;
     margin: 10px 0px;
@@ -47,7 +47,7 @@ export const Card = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 23px;
-    position: relat
+    position: relat;
   }
   & div:nth-child(2) {
     justify-content: center;
@@ -55,30 +55,29 @@ export const Card = styled.div`
     align-items: center;
   }
   h2 strong {
-     padding: 0;
-     z-index: 1;
-     background: black;
-     padding: 4px 8px;
-     position: relative;
-   }
+    padding: 0;
+    z-index: 1;
+    background: black;
+    padding: 4px 8px;
+    position: relative;
+  }
   h2::after {
     position: absolute;
-    content: '';
+    content: "";
     z-index: 0;
     bottom: 50%;
     margin-bottom: -2px;
     height: 3px;
     left: 0;
     right: 0;
- }
-
+  }
 `;
 
 export const Frame = styled.div`
   background-color: rgba(0, 0, 0, 0.85);
   background: #232b2b;
   width: 90%;
-  display: grid;    
+  display: grid;
   grid-template-columns: 1fr 2fr 2fr 9fr;
   align-items: center;
   padding: 5px;
@@ -89,18 +88,37 @@ export const Frame = styled.div`
   @media screen and (max-width: 475px) {
     grid-template-columns: 1fr 9fr 8fr 8fr;
   }
+
   & label {
-    text-align: center;
-    grid-column: 2;
-    background: #00d6ff;
-    color: white;
-    font-weight: 700;
+    background-color: yellow;
+    border-radius: 8px;
+    color: #000;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    
+    font-weight: bold;
+    text-align: center;
+    transition: 200ms;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 14px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
   }
-  & label:hover{
+
+  & label:not(:disabled):hover,
+  & label:not(:disabled):focus {
+    outline: 0;
+    background: #f4e603;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  & label:disabled {
+    filter: saturate(0.2) opacity(0.5);
+    cursor: not-allowed;
+  }
+
+  & label:hover {
     cusor: pointer;
     top: -2px;
     background: #46e1ff;
@@ -124,8 +142,6 @@ export const Frame = styled.div`
     grid-row: 1;
     grid-column: 4;
   }
- 
-  
 `;
 
 export const ReplyFrame = styled.div`
@@ -152,12 +168,12 @@ export const ReplyFrame = styled.div`
     grid-column: 4;
     grid-row: 1;
   }
-  & h5{
+  & h5 {
     padding: 0;
     grid-column: 3;
     margin: 0;
   }
-  .line-comment{
+  .line-comment {
     left: 50%;
     border-left: 2px solid green;
     height: 28px;
@@ -222,7 +238,7 @@ export const Group = styled.div`
 export const GroupPost = styled.div`
   grid-column: 4;
   display: flex;
-  button{
+  button {
     border-bottom: 1px solid;
   }
 `;
@@ -233,7 +249,7 @@ export const Comment = styled.textarea`
   min-width: 95%;
   color: #333;
   font-size: 18px;
-  padding : 10px 20px 0px;
+  padding: 10px 20px 0px;
   resize: vertical;
   outline: none;
   @media screen and (max-width: 1024px) {
@@ -259,7 +275,7 @@ export const ReplyBox = styled.textarea`
   resize: vertical;
   outline: none;
   grid-column: 4;
-  font-family: 'opensans-regular', sans-serif;
+  font-family: "opensans-regular", sans-serif;
 `;
 
 export const Send = styled.button`

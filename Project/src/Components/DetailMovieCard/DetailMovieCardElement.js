@@ -85,8 +85,17 @@ export const Poster = styled.img`
   width: 40%;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  animation: move 1s ease-in-out;
   @media screen and (max-width: 1024px) {
     width: 60%;
+  }
+  @keyframes move {
+    0% {
+      transform: scale(0.5) rotate(8deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
   }
 `;
 

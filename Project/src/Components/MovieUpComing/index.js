@@ -2,7 +2,7 @@ import { React, Component } from "react";
 import Slider from "react-slick";
 import axios from "axios";
 import MovieBXH from "./MovieOnCharts";
-import { LocalhostApi } from '../../API/const'
+import { LocalhostApi } from "../../API/const";
 
 class BXH extends Component {
   constructor(props) {
@@ -16,13 +16,14 @@ class BXH extends Component {
     this.slider.slickPlay();
   }
   componentDidMount() {
-    axios.get(LocalhostApi + `films/upcoming?page=1`)
+    axios
+      .get(LocalhostApi + `films/upcoming?page=1`)
       .then((response) => {
         this.setState({ results: response.data.results });
       })
       .catch((err) => {
-        alert('Kiểm tra kết nối của bạn')
-      })
+        alert("Kiểm tra kết nối của bạn");
+      });
   }
   render() {
     const settings = {
@@ -64,7 +65,11 @@ class BXH extends Component {
       .map((movie) => <MovieBXH key={movie.id} movie={movie}></MovieBXH>);
     return (
       <section id="bxhm">
-        <h2><strong>Yêu thích nhất<span>( {this.state.results.length} )</span></strong></h2>
+        <h2>
+          <strong>
+            Yêu thích nhất<span>( {this.state.results.length} )</span>
+          </strong>
+        </h2>
         <Slider ref={(slider) => (this.slider = slider)} {...settings}>
           {Movies}
         </Slider>
