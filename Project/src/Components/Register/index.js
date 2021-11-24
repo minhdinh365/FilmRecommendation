@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import passwordHash from "password-hash";
-import HeaderUser from "../NavUser";
 import SuccessRegister from "./SuccessRegister";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
 import {
   Form,
   Card,
@@ -182,6 +180,7 @@ const SignUp = () => {
         })
         .then(
           (response) => {
+            console.log(response)
             if (response.data.status === "success") {
               setsuccess(true);
             } else {
@@ -328,7 +327,14 @@ const SignUp = () => {
                 postRegister(e);
               }}
             >
-              <span>Đăng kí</span>
+              <span>
+                {success && (
+                  <i
+                    className="fa fa-refresh fa-spin"
+                    style={{ marginRight: "5px" }}
+                  />
+                )}
+                Đăng kí</span>
             </RegisterButton>
           </Information>
         </Card>

@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {getFilmById, postFilms, getFilms, getFilmsNowPlaying, getFilmsPopular, getFilmsToprated, getFilmsUpcoming} from '../controllers/Films.js'
+import { test, getFilmById, postFilms, getFilms, getFilmsNowPlaying, getFilmsPopular, getFilmsToprated, getFilmsUpcoming } from '../controllers/Films.js'
 
 
 const router = express.Router()
@@ -18,5 +18,6 @@ router.route('/films/now_playing')
     .get(getFilmsNowPlaying)
 router.route('/film/:id').get(getFilmById)
 
+router.route('/testserver').get(test)
+
 export default router
- 

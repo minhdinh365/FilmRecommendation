@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/thanhbangnguyen1235/api_userMovies#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.27.1",
@@ -39,6 +40,7 @@
     "nodemon": "^2.0.13",
     "password-hash": "^1.2.2",
     "react-native-cookie": "^0.3.0",
-    "socket.io": "^4.3.1"
+    "socket.io": "^4.3.1",
+    "translate": "^1.4.1"
   }
 }

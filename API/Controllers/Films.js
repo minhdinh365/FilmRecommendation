@@ -1,4 +1,7 @@
 import { Film } from "../models/Film.js";
+import translate from "translate";
+import axios from "axios";
+import { text } from "express";
 
 export const getFilms = async (req, res) => {
   try {
@@ -121,4 +124,29 @@ export const getFilmById = async (req, res) => {
   } catch (err) {
     res.status(500).json({ msg: err.message })
   }
+}
+export const test = async (req, res) => {
+  try {
+    const list = await Film.find({})
+    list.forEach(element => {
+      axios.get(`https://api.themoviedb.org/3/movie/${element.id}?api_key=a2df3d1a7611194432bbdf1fc80540f2&language=en-US`)
+        .then(data => {
+          const filter = { id: element.id }
+          const text = tr(data.data.overview)
+          const update = { overview: text }
+          Film.findOneAndUpdate(filter, update, { new: true }).then(data => {
+            console.log(1)
+          })
+
+        })
+    })
+    await Promise.all([list, text]);
+
+  } catch (e) {
+    console.log(e);
+  }
+}
+async function tr(text) {
+  let bar = await translate(text, { to: "vi" });
+  return bar
 }
