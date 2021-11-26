@@ -86,15 +86,15 @@ export const Frame = styled.div`
   background: #232b2b;
   width: 90%;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 9fr;
+  grid-template-columns: 4fr 2fr 2fr 9fr;
   align-items: center;
   padding: 5px;
 
   @media screen and (max-width: 1024px) {
-    grid-template-columns: 1fr 18fr 10fr 22fr;
+    grid-template-columns: 4fr 18fr 10fr 22fr;
   }
   @media screen and (max-width: 475px) {
-    grid-template-columns: 1fr 9fr 8fr 8fr;
+    grid-template-columns: 4fr 9fr 8fr 8fr;
   }
 
   & label {

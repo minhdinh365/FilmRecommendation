@@ -117,7 +117,7 @@ class CommentBox extends React.Component {
     return (
       <>
         <ToastContainer
-          position="bottom-center"
+          position="bottom-left"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -196,7 +196,7 @@ class CommentBox extends React.Component {
 
     var cmt = this.state.comments.map((item, index) =>
       item.id_info === commentPut.id_info &&
-      item.is_reply === commentPut.is_reply
+        item.is_reply === commentPut.is_reply
         ? { ...item, contents, evaluate }
         : item
     );

@@ -5,6 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { withStyles } from '@material-ui/core/styles';
 
 export default function AlertDialog(props) {
   const content = [
@@ -23,7 +24,26 @@ export default function AlertDialog(props) {
     setOpen(false);
     props.handleCloseAlert();
   };
+  const DialogTitleT = withStyles({
+    root: {
+      color: '#333',
+      fontSize: '20px'
+    },
 
+  })(DialogTitle);
+  const DialogContentTextT = withStyles({
+    root: {
+      color: '#333',
+      fontSize: '15px'
+    },
+
+  })(DialogContentText);
+  const ButtonT = withStyles({
+    root: {
+      fontSize: '15px'
+    },
+
+  })(Button);
   return (
     <div>
       <Dialog
@@ -32,19 +52,21 @@ export default function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Thông báo"}</DialogTitle>
+        <DialogTitleT id="alert-dialog-title"
+        >{"Thông báo"}</DialogTitleT>
+
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentTextT id="alert-dialog-description">
             {content[0]}
             <br />
             {content[1]}
-          </DialogContentText>
+          </DialogContentTextT>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Hủy</Button>
-          <Button onClick={handleAgree} autoFocus>
+          <ButtonT onClick={handleClose}>Hủy</ButtonT>
+          <ButtonT onClick={handleAgree} autoFocus>
             Chấp nhận
-          </Button>
+          </ButtonT>
         </DialogActions>
       </Dialog>
     </div>
