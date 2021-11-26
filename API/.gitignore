@@ -1,4 +1,4 @@
-.vcode/
-node_modules/
-package-lock.json/
-.env/
+/.vcode
+/node_modules
+/package-lock.json
+/.env
