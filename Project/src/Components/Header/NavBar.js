@@ -108,7 +108,7 @@ export default function NavBar() {
       setSection(currnent);
     });
     return () => {
-      window.removeEventListener("scroll", () => {});
+      window.removeEventListener("scroll", () => { });
     };
   }, []);
   window.addEventListener("scroll", changBackgroundNavbar);
@@ -184,7 +184,7 @@ export default function NavBar() {
               <a onClick={Mix} className="login-navbar">
                 Đăng nhập
               </a>
-              <a href="http://localhost:3000/register">
+              <a href={LocalhostClient + "register"}>
                 <button>Đăng kí</button>
               </a>
             </>

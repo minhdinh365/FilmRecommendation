@@ -746,7 +746,7 @@ a:visited {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-  max-height: 17.8em;
+  max-height: 12.4em;
   line-height: 1.8em;
 }
 .card-movie-chart:hover .descriptions {
@@ -815,6 +815,7 @@ a:visited {
   box-shadow: 0px 10px 20px 10px;
 }
 .slick-slide img {
+  object-fit: cover;
   margin-bottom: 10px;
   min-height: 340px;
   box-shadow: 0 10px 20px 10px rgba(rgb(128, 125, 125), 0.2);

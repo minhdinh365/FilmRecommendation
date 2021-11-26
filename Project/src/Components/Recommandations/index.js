@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { LocalhostApi } from "../../API/const";
 
 const MovieCard = (props) => {
   return (
@@ -41,7 +42,7 @@ const Recommandation = (props) => {
   const [postMovie, setPostMovie] = useState([]);
   useEffect(() => {
     axios
-      .get(`https://localhost:44327/home/predict/minhdinh111`)
+      .get(`${LocalhostApi}recommendation/` + props.id)
       .then((res) => {
         setPostMovie(res.data);
       })
@@ -55,7 +56,7 @@ const Recommandation = (props) => {
   return (
     <section id="portfolio">
       <div className="movie-for-today">
-        <h1>Đề xuất cho bạn</h1>
+        <h1>Phim liên quan</h1>
         <div className="list-movie-for-today">{Movies}</div>
       </div>
     </section>

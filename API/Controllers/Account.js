@@ -90,19 +90,22 @@ export const createAccount = async (req, res) => {
       role: 1,
     });
 
-    info
-      .save()
-      .then(() => {
-        user.save().then(() => {
-          res.status(200).json({ status: "success" });
-        });
-      })
-      .catch((err) => {
-        res.json({ status: err.message });
-        console.error(err);
+    const findAccount = await Account.find({
+      $or: [{ username: req.body.username }, { email: req.body.email }],
+    });
+
+    if (findAccount.length == 0) {
+      info.save().catch((err) => {
+        return res.status(200).json({ status: err.message });
       });
+      user.save().catch((err) => {
+        return res.status(200).json({ status: err.message });
+      });
+      return res.status(200).json({ status: "success" });
+    }
+    return res.status(200).json({ status: "already exit!" });
   } catch (err) {
-    res.json({ status: err.message });
+    return res.status(200).json({ status: err.message });
   }
 };
 

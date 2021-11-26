@@ -7,6 +7,7 @@ import FilmsOnChart from "../../Components/MovieUpComing";
 import About from "../../Components/About";
 
 function Index() {
+  document.title = "Chom Film"
   return (
     <div className="Home">
       <Header />

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ModalVideo from "react-modal-video";
 import { URL_BACKGROUND } from "../../API/const";
 import { Link, animateScroll as scroll } from "react-scroll";
@@ -29,11 +29,15 @@ import {
   WrapperCaster,
   WrapperButton,
   WrapperThum,
+  Keywords
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
+  useEffect(() => {
+    document.title = props.contents.title
+  }, []);
   return (
     <>
       {/* <Advertisments start ={0} end = {10000}/> */}
@@ -59,7 +63,7 @@ const DetailMovieCard = (props) => {
             <Poster
               src={`https://image.tmdb.org/t/p/w500/${props.contents.poster_path}`}
             />
-            <Detail >
+            <Detail>
               <Fade bottom duration={3000}>
                 <Title>{props.contents.title}</Title>
                 <Controller>
@@ -135,6 +139,11 @@ const DetailMovieCard = (props) => {
                   </Gener>
                 </Statistics>
               </Fade>
+              <Keywords>
+                {props.contents.keywords.map(function (element, i) {
+                  return <span key={element.id}> {element.name}</span>
+                })}
+              </Keywords>
             </Detail>
           </Card>
           <Caster>
@@ -162,7 +171,7 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
           <Fade bottom duration={3000}>
-            <Iframe id={props.contents.id} />
+            /*<Iframe id={props.contents.id} />*/
           </Fade>
         </Container>
       </Background>

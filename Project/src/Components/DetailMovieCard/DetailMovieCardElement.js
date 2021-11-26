@@ -99,10 +99,22 @@ export const Poster = styled.img`
        }
     
     }
+  animation: move 1s ease-in-out;
+  @media screen and (max-width: 1024px) {
+    width: 60%;
+  }
+  @keyframes move {
+    0% {
+      transform: scale(0.5) rotate(8deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
 `;
 
 export const Detail = styled.div`
-  padding: 40px;
+  padding: 40px 40px 0 40px ;
   width: 60%;
   color: #fff;
   h2 {
@@ -271,6 +283,24 @@ export const Gener = styled.div`
   span {
     color: yellow;
     font-size: 16px;
+  }
+`;
+
+export const Keywords = styled.div`
+  margin-top: 20px;
+  grid-column: 1 / span 2;
+  margin: auto;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    margin-left: 10px;
+    margin-bottom: 12px;
+    color: #686363;
+    font-size: 16px;
+    background-color: #131212;
+    border-radius: 5px;
+    padding : 5px;
   }
 `;
 export const Caster = styled.div`

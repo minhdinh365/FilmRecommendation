@@ -20,6 +20,7 @@ const schema = mongoose.Schema(
     },
     id: {
       type: Number,
+      ref: 'recommendations'
     },
     original_language: {
       type: String,
@@ -75,23 +76,24 @@ const schema = mongoose.Schema(
     budget: {
       type: Number,
     },
-    keywords: {
-      type: mongoose.Schema.Types.Mixed,
-      trim: true
-    },
     crew: {
       type: mongoose.Schema.Types.Mixed,
-      trim: true
+      trim: true,
     },
     cast: {
       type: mongoose.Schema.Types.Mixed,
-      trim: true
-    }
+      trim: true,
+    },
+    keywords: {
+      type: mongoose.Schema.Types.Mixed,
+      trim: true,
+    },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
+  { _id: false }
 );
 
 schema.virtual("cmt", {
@@ -101,5 +103,4 @@ schema.virtual("cmt", {
   justOne: false,
   count: true,
 });
-
 export const Film = mongoose.model("filmlists", schema);
