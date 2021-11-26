@@ -86,7 +86,7 @@ export const Frame = styled.div`
   background: #232b2b;
   width: 90%;
   display: grid;
-  grid-template-columns: 4fr 2fr 2fr 9fr;
+  grid-template-columns: 1fr 2fr 2fr 9fr;
   align-items: center;
   padding: 5px;
 

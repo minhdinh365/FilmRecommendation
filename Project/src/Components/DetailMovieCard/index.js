@@ -35,6 +35,7 @@ import {
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
+
   useEffect(() => {
     document.title = props.contents.title
   }, []);
@@ -139,13 +140,6 @@ const DetailMovieCard = (props) => {
                   </Gener>
                 </Statistics>
               </Fade>
-              <Keywords>
-                <Fade left duration={3000}>
-                  {props.contents.keywords.map(function (element, i) {
-                    return <span key={element.id}> {element.name}</span>
-                  })}
-                </Fade>
-              </Keywords>
             </Detail>
           </Card>
           <Caster>

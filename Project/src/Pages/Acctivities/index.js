@@ -15,6 +15,9 @@ function Index() {
             isCancel = true
         }
     }, [success])
+    useEffect(() => {
+        document.title = "Hoạt động gần đây"
+    })
     async function setCookiesF() {
         const cookieUser = Cookies.get('User')
         if (cookieUser) {

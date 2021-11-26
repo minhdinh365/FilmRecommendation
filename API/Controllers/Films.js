@@ -35,79 +35,36 @@ export const postFilms = async (req, res, next) => {
     return req.status(500).json({ msg: err.message });
   }
 };
-export const getFilmsPopular = async (req, res) => {
+export const getFilmHomePage = async (req, res) => {
   try {
     if (req.query.page === undefined) {
-      const List = await Film.find({ category: "popular" }).limit(20);
+      const List = await Film.find({ category: req.params.typeget },
+        {
+          id: 1,
+          original_title: 1,
+          title: 1,
+          poster_path: 1,
+          overview: 1,
+          release_date: 1,
+          vote_average: 1,
+          backdrop_path: 1
+        })
+        .limit(20);
       res.json({
         page: 1,
         results: List,
       });
     } else {
-      const List = await Film.find({ category: "popular" })
-        .limit(20)
-        .skip((req.query.page - 1) * 20);
-      res.json({
-        page: parseInt(req.query.page),
-        results: List,
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({ msg: err.message });
-  }
-};
-export const getFilmsToprated = async (req, res) => {
-  try {
-    if (req.query.page === undefined) {
-      const List = await Film.find({ category: "top_rated" }).limit(20);
-      res.json({
-        page: 1,
-        results: List,
-      });
-    } else {
-      const List = await Film.find({ category: "top_rated" })
-        .limit(20)
-        .skip((req.query.page - 1) * 20);
-      res.json({
-        page: parseInt(req.query.page),
-        results: List,
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({ msg: err.message });
-  }
-};
-export const getFilmsUpcoming = async (req, res) => {
-  if (req.query.page === undefined) {
-    const List = await Film.find({ category: "upcoming" }).limit(20);
-    res.json({
-      page: 1,
-      results: List,
-    });
-  } else {
-    const List = await Film.find({ category: "upcoming" })
-      .limit(20)
-      .skip((req.query.page - 1) * 20);
-    res.json({
-      page: parseInt(req.query.page),
-      results: List,
-    });
-  }
-  try {
-  } catch (err) {
-    return res.status(500).json({ msg: err.message });
-  }
-};
-export const getFilmsNowPlaying = async (req, res) => {
-  try {
-    if (req.query.page === undefined) {
-      const List = await Film.find({ category: "now_playing" }).limit(20);
-      res.json({
-        page: 1,
-        results: List,
-      });
-    } else {
-      const List = await Film.find({ category: "now_playing" })
+      const List = await Film.find({ category: req.params.typeget }, {
+        id: 1,
+        original_title: 1,
+        title: 1,
+        poster_path: 1,
+        overview: 1,
+        release_date: 1,
+        vote_average: 1,
+        backdrop_path: 1
+      })
         .limit(20)
         .skip((req.query.page - 1) * 20);
       res.json({

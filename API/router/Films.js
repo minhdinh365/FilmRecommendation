@@ -3,10 +3,7 @@ import {
   getFilmById,
   postFilms,
   getFilms,
-  getFilmsNowPlaying,
-  getFilmsPopular,
-  getFilmsToprated,
-  getFilmsUpcoming,
+  getFilmHomePage,
   UpdateAPI,
   getAllFilm,
 } from "../controllers/Films.js";
@@ -15,10 +12,7 @@ import {
 const router = express.Router();
 
 router.route("/films").post(postFilms).get(getFilms);
-router.route("/films/popular").get(getFilmsPopular);
-router.route("/films/top_rated").get(getFilmsToprated);
-router.route("/films/upcoming").get(getFilmsUpcoming);
-router.route("/films/now_playing").get(getFilmsNowPlaying);
+router.route("/films/:typeget").get(getFilmHomePage);
 router.route("/film/:id").get(getFilmById);
 
 router.route("/update").get(UpdateAPI);

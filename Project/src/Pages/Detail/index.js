@@ -90,7 +90,6 @@ const Detail = () => {
       <>
         {loader}
         <Header />
-
         {film && <DetailMovieCard contents={film} castMovie={castMovie} />}
         <CommentBox
           evaluate={content}
