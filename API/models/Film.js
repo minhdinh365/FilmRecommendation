@@ -20,7 +20,7 @@ const schema = mongoose.Schema(
     },
     id: {
       type: Number,
-      ref: 'recommendations'
+      ref: "recommendations",
     },
     original_language: {
       type: String,
