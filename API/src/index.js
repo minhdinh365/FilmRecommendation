@@ -55,8 +55,6 @@ mongoose
     });
 
     io.on("connection", (socket) => {
-      console.log("user connected");
-      io.emit("test", 123);
       socket.on("add-new-cmt", (comment) => {
         io.emit("get-new-cmt", comment);
       });

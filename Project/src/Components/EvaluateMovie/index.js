@@ -230,7 +230,9 @@ class CommentBox extends React.Component {
       })
       .then(
         (response) => {
-          var socket = socketClient(LocalhostApi);
+          var socket = socketClient(LocalhostApi, {
+            transports: ["websocket", "polling", "flashsocket"],
+          });
           this.socket = socket;
           if (response.data.status === "thành công") {
             this.socket.emit("add-new-cmt", response.data.result);
