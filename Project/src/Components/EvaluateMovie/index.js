@@ -340,8 +340,8 @@ class CommentForm extends React.Component {
                     fontSize="large"
                     name="simple-controlled"
                     value={this.state.star}
-                    onChange={(event, newValue) => {
-                      this.setState({ star: newValue });
+                    onChange={(event) => {
+                      this.setState({ star: event.target.value });
                     }}
                   />
                 </Group>
