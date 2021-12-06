@@ -7,7 +7,7 @@ import {
   putFilm,
   deleteFilm,
   searchFilms,
-} from "../../controllers/admin/Films.js";
+} from "../../Controllers/admin/Films.js";
 
 const router = express.Router();
 

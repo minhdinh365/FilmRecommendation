@@ -6,7 +6,7 @@ import {
   get2000Comments,
   getCommentsByUsername,
   putComment,
-} from "../controllers/Comment.js";
+} from "../Controllers/Comment.js";
 
 const router = express.Router();
 

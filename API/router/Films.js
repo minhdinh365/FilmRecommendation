@@ -6,8 +6,7 @@ import {
   getFilmHomePage,
   UpdateAPI,
   getAllFilm,
-} from "../controllers/Films.js";
-
+} from "../Controllers/Films.js";
 
 const router = express.Router();
 
@@ -19,4 +18,3 @@ router.route("/update").get(UpdateAPI);
 router.route("/getallfilm").get(getAllFilm);
 
 export default router;
-

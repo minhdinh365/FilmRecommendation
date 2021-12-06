@@ -5,7 +5,7 @@ import {
   searchAccount,
   addAccount,
   postAccount,
-} from "../../controllers/admin/Users.js";
+} from "../../Controllers/admin/Users.js";
 
 const router = express.Router();
 

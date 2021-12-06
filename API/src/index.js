@@ -10,7 +10,7 @@ import Recommendation from "../router/Recommendation.js";
 import Information from "../router/Information.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
-import LoginPage from "../router/admin/login.js";
+import LoginPage from "../router/admin/Login.js";
 import bodyParser from "body-parser";
 import Search from "../router/Search.js";
 import handlebars from "express-handlebars";
@@ -49,7 +49,7 @@ mongoose
 
     const io = new Server(server, {
       cors: {
-        origin: "http://localhost:3000",
+        origin: "https://chom-phim.netlify.app/",
         credentials: true,
       },
     });
@@ -67,7 +67,7 @@ mongoose
         io.emit("get-update-cmt", { comment, id_film });
       });
 
-      socket.on("disconnect", () => { });
+      socket.on("disconnect", () => {});
     });
   })
   .catch((err) => {
@@ -78,6 +78,7 @@ app.engine(
   "hbs",
   handlebars({
     extname: ".hbs",
+    defaultLayout: "main",
     helpers: {
       times: function (n, block) {
         var accum = "";
@@ -92,9 +93,11 @@ app.engine(
     },
   })
 );
+
+//handlebars
 const __dirname = path.resolve();
 app.set("view engine", "hbs");
-app.set("views", __dirname + "\\src\\resources\\views");
+app.set("views", __dirname + "/src/resources/views");
 
 app.use("/", FilmsManager);
 app.use("/", UsersManager);

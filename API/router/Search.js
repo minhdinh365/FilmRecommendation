@@ -1,10 +1,8 @@
-import express from 'express'
-import {searchFilms} from '../controllers/Search.js'
+import express from "express";
+import { searchFilms } from "../Controllers/Search.js";
 
+const router = express.Router();
 
-const router = express.Router()
+router.route("/search").get(searchFilms);
 
-router.route('/search')
-    .get(searchFilms)
-
-export default router
+export default router;

@@ -55,20 +55,12 @@ export const Card = styled.div`
     align-items: center;
   }
   h2 strong {
-<<<<<<< HEAD
-     padding: 0;
-     z-index: 1;
-     background: black;
-     position: relative;
-   }
-=======
     padding: 0;
     z-index: 1;
     background: black;
     padding: 4px 8px;
     position: relative;
   }
->>>>>>> 9a1d82b5834ff5753f295c9c92cb8a193fab3fd5
   h2::after {
     position: absolute;
     content: "";
