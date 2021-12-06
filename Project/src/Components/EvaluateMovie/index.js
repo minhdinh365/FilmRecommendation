@@ -40,7 +40,9 @@ class CommentBox extends React.Component {
   }
   socket;
   configSocket = async () => {
-    var socket = socketClient(LocalhostApi);
+    var socket = socketClient(LocalhostApi, {
+      transports: ["websocket", "polling", "flashsocket"],
+    });
     this.socket = socket;
 
     socket.on("get-new-cmt", async (cmt) => {
@@ -172,7 +174,9 @@ class CommentBox extends React.Component {
   }
   _updateComment() {
     var commentPut = this.state.waiting;
-    var socket = socketClient(LocalhostApi);
+    var socket = socketClient(LocalhostApi, {
+      transports: ["websocket", "polling", "flashsocket"],
+    });
     this.socket = socket;
     axios
       .put(LocalhostApi + "comment", { commentPut })
@@ -196,7 +200,7 @@ class CommentBox extends React.Component {
 
     var cmt = this.state.comments.map((item, index) =>
       item.id_info === commentPut.id_info &&
-        item.is_reply === commentPut.is_reply
+      item.is_reply === commentPut.is_reply
         ? { ...item, contents, evaluate }
         : item
     );
