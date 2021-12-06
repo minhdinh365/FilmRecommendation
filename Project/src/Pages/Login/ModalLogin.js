@@ -187,7 +187,7 @@ function ModalLogin(props) {
                   <Button type="submit">Đăng nhập</Button>
                   <OtherSign>
                     <a
-                      href="http://localhost:3000/register"
+                      href="/#/register"
                       style={{ justifyContent: "center", display: "flex" }}
                     >
                       Đăng kí

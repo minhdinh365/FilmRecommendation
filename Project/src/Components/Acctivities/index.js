@@ -67,9 +67,7 @@ export default function Index({ account }) {
                 {watchedFilm.map((element) => {
                   return (
                     <Fade key={element.infoFilm.id}>
-                      <a
-                        href={LocalhostClient + "detail/" + element.infoFilm.id}
-                      >
+                      <a href={"#/detail/" + element.infoFilm.id}>
                         <div className="card-detail-acctivity">
                           <img src={element.infoFilm.poster_path} />
                           <span>{element.infoFilm.title}</span>
@@ -106,7 +104,7 @@ export default function Index({ account }) {
                 {comment.slice(0, 100).map((element) => {
                   return (
                     <Fade key={element.film._id}>
-                      <a href={LocalhostClient + "detail/" + element.film.id}>
+                      <a href={"#/detail/" + element.film.id}>
                         <div className="card-detail-acctivity2">
                           {console.log(element.evaluate)}
                           <img src={element.film.poster_path} />
