@@ -95,7 +95,10 @@ export const getCommentsByUsername = async (req, res) => {
   try {
     const List = await Comment.find({
       $and: [{ id_info: req.query.username }, { is_reply: 0 }],
-    }).populate("film");
+    }).populate(
+      "film",
+      "-cast -keywords -crew -overview -backdrop_path -popularity -release_date -video -vote_count -revenue -video_id -tagline -run_time -budget -category -adult -original_language -original_title"
+    );
     if (List.length > 0) {
       res.json({ List });
     } else {
