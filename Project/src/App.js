@@ -4,12 +4,18 @@ import Informaiton from "./Pages/Information";
 import Detail from "./Pages/Detail";
 import Register from "./Pages/Register";
 import Acctivities from "./Pages/Acctivities";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/inforuser" component={Informaiton} />
@@ -19,7 +25,7 @@ class App extends Component {
           <Route path="/activities" component={Acctivities} />
           <Redirect to="/" />
         </Switch>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
