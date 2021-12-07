@@ -67,16 +67,19 @@ export const loginInfor = async (req, res, next) => {
 
 export const createAccount = async (req, res) => {
   try {
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+    let uploadResponse = "";
+    if (!req.body.avatar) {
+      cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+      });
 
-    const fileStr = req.body.avatar;
-    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset: "dev_setups",
-    });
+      const fileStr = req.body.avatar;
+      uploadResponse = await cloudinary.uploader.upload(fileStr, {
+        upload_preset: "dev_setups",
+      });
+    }
 
     const info = new Information({
       full_name: req.body.full_name,
