@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-
+import styled from "styled-components";
 
 export const BackgroundForget = styled.div`
   width: 100%;
@@ -72,7 +71,7 @@ export const InputFieldForget = styled.input`
   color: black;
 `;
 export const ErrorsForget = styled.div`
-  color: red;
+  color: ${(props) => props.color};
   justify-content: center;
   display: flex;
   z-index: 5;
@@ -87,4 +86,4 @@ export const ButtonForget = styled.button`
   width: 100%;
   border-radius: 10px;
   margin: 0;
-`
+`;
