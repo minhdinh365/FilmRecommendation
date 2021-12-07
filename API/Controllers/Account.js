@@ -2,7 +2,8 @@ import { Account } from "../models/Account.js";
 import { Information } from "../models/Information.js";
 import jwt from "jsonwebtoken";
 import passwordHash from "password-hash";
-import mailgun from "mailgun-js";
+import randomstring from "randomstring";
+import nodemailer from "nodemailer";
 import cloudinary from "cloudinary";
 
 export const getAccount = async (req, res) => {
@@ -132,40 +133,75 @@ export const Changepass = async (req, res) => {
 };
 export const forgetPass = async (req, res) => {
   try {
-    const mg = mailgun({ apiKey: "abc", domain: "http://localhost:5000/" });
-    let email = req.query.email;
-    Account.findOne({ email: email }, (err, user) => {
-      if (err || !user) {
-        return res.status(4000).json({ error: "Email này không tồn tại" });
-      }
-      const token = jwt.sign({ _id: user.username }, "resetpass", {
-        expiresIn: "10m",
-      });
-      const data = {
-        from: "bangnguyen1235@gmail.com",
-        to: email,
-        subject: "Account reset password link",
-        html: `
-          <h2>Please click on the link to reset password</h2>
-          <p>http://localhost:3000/inforuser/forgetpass</p>
-        `,
-      };
-      return user.updateOne({ resetLink: token }, (err, success) => {
-        if (err) {
-          return res
-            .status(4000)
-            .json({ mes: "link reset password was wrong!" });
-        } else {
-          mg.messages().send(data, function (err, body) {
-            if (err) {
-              return res.json({ error: err.message });
-            }
-            return res.json({
-              message: "Email đã được gửi, làm theo hướng dẫn!",
-            });
-          });
-        }
-      });
+    let email = req.body.email;
+    const user = await Account.findOne({ email: email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "Email không chính xác. Vui lòng thử lại!" });
+    }
+    const info = await Information.findOne({ username: user.username });
+
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.PASSWORD_EMAIL,
+      },
     });
-  } catch {}
+
+    const code = randomstring.generate(6);
+
+    var mailOptions = {
+      from: "minhdinhtran0@gmail.com",
+      to: email,
+      subject: "Recover your password from Chom Phim",
+      html: `
+      <div classname ="container" style="display: block; padding: 0px; justtify-content: center;">
+        <img src ="https://res.cloudinary.com/chom-film/image/upload/v1638844192/LOGOF_opy3d0.png" style ="width:200px; height: auto;  display: block; margin-left: auto; margin-right: auto;"/>
+        <h1 style=" font-weight: 600; margin: 0px; font-family: Gill Sans Extrabold, sans-serif; ">RESET YOUR PASSWORD</h1>
+        <div style="display: flex"><h2>Xin chào&nbsp;  <h2 style="color: red ">${info.full_name}&nbsp;!</h2></h2></div>
+          <h3 style="color: #434242; font-weight: 500; margin: 0px; font-family: Gill Sans Extrabold, sans-serif; ">Bạn nhận được email này bởi vì chúng tôi đã nhận được yêu cầu quên mật khẩu từ bạn. Mã xác thực để lấy lại mật khẩu là:</h3>
+          <h2 style="padding: 10px; background-color: black; width: max-content; font-family: Gill Sans Extrabold, sans-serif; font-weight: 700; color: yellow; display: block; marign: auto; margin-left: auto; margin-right: auto;"> ${code}</h2>
+          <h3 style="color: #434242; font-weight: 500; margin: 0px; font-family: Gill Sans Extrabold, sans-serif; ">Nếu bạn không muốn đổi lại mật khẩu, bạn có thể bỏ qua email này. Cảm ơn bạn đã lựa chọn sử dụng dịch vụ của chúng tôi </h3>
+          <h2 style="color: red;"> Chom Phim - Nơi trải nghiệm những bộ phim hay nhất!</h2>
+    </div>
+            `,
+    };
+
+    await transporter.sendMail(mailOptions, async function (error, info) {
+      if (error) {
+        return await res.status(400).json({
+          message: "Không thể gửi email ngay bây giờ. Vui lòng thử lại sau",
+        });
+      } else {
+        return await res.status(200).json({
+          message: "Email xác nhận đã được gửi cho bạn!",
+          code: code,
+          email: user.email,
+        });
+      }
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: "Đã có lỗi xảy ra. Vui lòng thử lại sau",
+    });
+  }
+};
+
+export const changePasswordForget = async (req, res) => {
+  try {
+    const user = await Account.findOneAndUpdate(
+      { email: req.body.email },
+      { password: passwordHash.generate(req.body.password) }
+    )
+      .then((data) => {
+        res.status(200).json({ message: "Thay đổi mật khẩu thành công" });
+      })
+      .catch((err) => {
+        res.status(400).json({ message: err.message });
+      });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };

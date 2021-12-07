@@ -49,7 +49,7 @@ mongoose
 
     const io = new Server(server, {
       cors: {
-        origin: "https://chom-phim.netlify.app/",
+        origin: "https://chom-phim.netlify.app/#/",
         credentials: true,
       },
     });

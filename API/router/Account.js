@@ -6,6 +6,7 @@ import {
   createAccount,
   Changepass,
   forgetPass,
+  changePasswordForget,
 } from "../Controllers/Account.js";
 
 const router = express.Router();
@@ -19,5 +20,7 @@ router.route("/account").post(getAccount).get(showAccount);
 router.route("/isLogin/infor/:token").post(loginInfor);
 
 router.route("/user").post(createAccount);
+
+router.route("/changepassforget").post(changePasswordForget);
 
 export default router;
