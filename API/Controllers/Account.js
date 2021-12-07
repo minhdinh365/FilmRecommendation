@@ -68,7 +68,7 @@ export const loginInfor = async (req, res, next) => {
 export const createAccount = async (req, res) => {
   try {
     let uploadResponse = "";
-    if (!req.body.avatar) {
+    if (req.body.avatar != "") {
       cloudinary.config({
         cloud_name: process.env.CLOUDINARY_NAME,
         api_key: process.env.CLOUDINARY_API_KEY,
@@ -79,12 +79,13 @@ export const createAccount = async (req, res) => {
       uploadResponse = await cloudinary.uploader.upload(fileStr, {
         upload_preset: "dev_setups",
       });
+      uploadResponse = uploadResponse.url;
     }
 
     const info = new Information({
       full_name: req.body.full_name,
       username: req.body.username,
-      avatar: uploadResponse.url,
+      avatar: uploadResponse,
     });
 
     const user = new Account({
