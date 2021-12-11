@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { LocalhostApi } from "../../API/const";
+import passwordHash from "password-hash";
 import axios from "axios";
 import * as yup from "yup";
 import {
@@ -92,7 +93,7 @@ function ModalForget(props) {
   };
 
   const onVerify = (event) => {
-    if (value != title.code) {
+    if (!passwordHash.verify(value, title.code)) {
       setErrors({ message: "Mã xác nhận không đúng", color: "red" });
       setFunc({
         onSubmit: true,

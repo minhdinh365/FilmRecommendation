@@ -181,7 +181,7 @@ export const forgetPass = async (req, res) => {
       } else {
         return await res.status(200).json({
           message: "Email xác nhận đã được gửi cho bạn!",
-          code: code,
+          code: passwordHash.generate(code),
           email: user.email,
         });
       }
