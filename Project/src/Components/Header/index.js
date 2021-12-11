@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Fade from "react-reveal";
 import ModalQuestions from "../QuestionSearch";
 import NavBar from "./NavBar";
-import { LocalhostApi } from '../../API/const'
+import { LocalhostApi } from "../../API/const";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import Backdrop from "@mui/material/Backdrop";
 
 function Header({ start }) {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
@@ -22,15 +23,14 @@ function Header({ start }) {
         const responseJSON = await response.json();
         const { results } = responseJSON;
         setPostMovie(results);
-      }
-      catch (e) { }
+      } catch (e) {}
     }
     if (!isAcctive) {
       fetchPostMovie();
     }
     return () => {
-      isAcctive = true
-    }
+      isAcctive = true;
+    };
   }, []);
   const settings = {
     dots: true,
@@ -46,13 +46,19 @@ function Header({ start }) {
       {
         breakpoint: 1024,
         settings: {
-          dots: false
+          dots: false,
         },
       },
-    ]
+    ],
   };
   return (
     <section id="home">
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <h1>Loading ...</h1>
+      </Backdrop>
       <div className="modal-home-movie">
         <ModalQuestions
           showModalQuestions={showModalQuestions}
@@ -62,31 +68,39 @@ function Header({ start }) {
       <NavBar />
       <div className="Header-banner">
         <Slider {...settings}>
-          {postMovie.map(element => {
-            return (<div className="wrapper-hero" key={element.id}>
-              <img className="img-movie-banner" src={`${element.backdrop_path}`} />
-              <div className="detail-movie-banner">
-                <div className="detail-movie-banner-title" >
-                  <Fade bottom duration={2000}>
-                    <h1>{element.title}</h1>
-                    <span>{element.overview}</span>
-                    <Link to={{
-                      pathname: `/detail/${element.id}`,
-                      state: element.id
-                    }}>
-                      <button className="button-32">Xem Ngay
-                      </button>
-                    </Link>
-                  </Fade>
-                </div>
-                <div className="detail-movie-banner-img">
-                  <Fade top duration={2000}>
-                    <img className="movie-banner-img-right" src={element.poster_path} />
-                  </Fade>
+          {postMovie.map((element) => {
+            return (
+              <div className="wrapper-hero" key={element.id}>
+                <img
+                  className="img-movie-banner"
+                  src={`${element.backdrop_path}`}
+                />
+                <div className="detail-movie-banner">
+                  <div className="detail-movie-banner-title">
+                    <Fade bottom duration={2000}>
+                      <h1>{element.title}</h1>
+                      <span>{element.overview}</span>
+                      <Link
+                        to={{
+                          pathname: `/detail/${element.id}`,
+                          state: element.id,
+                        }}
+                      >
+                        <button className="button-32">Xem Ngay</button>
+                      </Link>
+                    </Fade>
+                  </div>
+                  <div className="detail-movie-banner-img">
+                    <Fade top duration={2000}>
+                      <img
+                        className="movie-banner-img-right"
+                        src={element.poster_path}
+                      />
+                    </Fade>
+                  </div>
                 </div>
               </div>
-
-            </div>)
+            );
           })}
         </Slider>
       </div>
