@@ -1970,6 +1970,19 @@ footer .social-links li:first-child {
 .button-edit-information .btn-info:disabled {
   opacity: 0.5;
 }
+.button-edit-information .btn-info-save {
+  animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 .button-edit-information .cancel-edit {
   background-color: gray;
   box-shadow: none;

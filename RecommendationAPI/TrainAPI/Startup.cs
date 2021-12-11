@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +40,7 @@ namespace TrainAPI
             app.UseAuthorization();
             app.UseCors(builder =>
                builder
-                 .WithOrigins("http://localhost:3000")
+                 .WithOrigins("https://chom-phim.netlify.app/")
                  .AllowAnyHeader()
                  .AllowAnyMethod()
                  .AllowCredentials()

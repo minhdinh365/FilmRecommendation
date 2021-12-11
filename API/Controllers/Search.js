@@ -7,6 +7,7 @@ export const searchFilms = async (req, res, next) => {
       {
         title: 1,
         poster_path: 1,
+        id: 1,
       }
     );
     res.status(200).json({

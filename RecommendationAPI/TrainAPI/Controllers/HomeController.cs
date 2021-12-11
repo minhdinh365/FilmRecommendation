@@ -12,7 +12,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TrainAPI.Models;
-
 namespace TrainAPI.Controllers
 {
     public class HomeController : Controller
@@ -34,9 +33,9 @@ namespace TrainAPI.Controllers
         {
             mlContext = new MLContext();
             client = factory.CreateClient();
-            fmd = new FilmsModel[1999];
+            fmd = new FilmsModel[1974];
 
-            client.BaseAddress = new Uri("http://localhost:5000");
+            client.BaseAddress = new Uri("https://chom-phim.herokuapp.com");
             var response = client.GetAsync("/2000comments").Result;
             string jsonData = response.Content.ReadAsStringAsync().Result;
 
@@ -62,7 +61,7 @@ namespace TrainAPI.Controllers
         public IActionResult Index(string? id)
         {
             clientPost = factory.CreateClient();
-            clientPost.BaseAddress = new Uri("http://localhost:5000");
+            clientPost.BaseAddress = new Uri("https://chom-phim.herokuapp.com");
             var responseUser = clientPost.GetAsync("/evaluate?username=" + id).Result;
             string jsonUser = responseUser.Content.ReadAsStringAsync().Result;
 
@@ -119,33 +118,35 @@ namespace TrainAPI.Controllers
             Console.WriteLine("RSquared: " + metrics.RSquared.ToString());
         }
 
-        public static List<FilmsModel> UseModelForSinglePrediction(MLContext mlContext, DataViewSchema schema, FilmsModel[] testData,  FilmsModel[] cmt, string username)
+        public static List<FilmsModel> UseModelForSinglePrediction(MLContext mlContext, DataViewSchema schema, FilmsModel[] testData, FilmsModel[] cmt, string username)
         {
-            var modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "MovieRecommenderModel.zip");
+            var modelPath = Path.Combine(Environment.CurrentDirectory, "Models", "MovieRecommenderModel.zip");
             var model = mlContext.Model.Load(modelPath, out schema);
             var predictionEngine = mlContext.Model.CreatePredictionEngine<FilmsModel, MovieRatingPrediction>(model);
 
             List<FilmsModel> result = new List<FilmsModel>();
-            double[] index = new double[1999];
+            double[] index = new double[1974];
 
             Dictionary<string, int> list = new Dictionary<string, int>();
-            list.Add("VinhVinh123", 0);
-            list.Add("bangnguyen123", 0);
-            list.Add("bangnguyen1234", 0);
+            list.Add("minhdinh123", 0);
             list.Add("minhdinh111", 0);
+            list.Add("VinhVinh123", 0);
+            list.Add("bangnguyen1234", 0);
+            list.Add("minhdinh365", 0);
+            list.Add("minhdinh364", 0);
 
             foreach (FilmsModel item in cmt)
             {
                 var watched = testData.Where((val, idx) => val.id == item.id).ToArray();
                 list[watched[0].username] = list[watched[0].username] + 1;
                 testData = testData.Where((val, idx) => val.id != item.id).ToArray();
-                Array.Resize(ref testData, 1999);
-                testData[1998] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path));
+                Array.Resize(ref testData, 1974);
+                testData[1973] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path));
             }
 
             username = list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
 
-            for (int i=0; i < 1999; i++)
+            for (int i = 0; i < 1974; i++)
             {
                 if (testData[i].username != username)
                 {
@@ -158,11 +159,11 @@ namespace TrainAPI.Controllers
                     var testInput = new FilmsModel(testData[i].id, username, testData[i].title, testData[i].evaluate, testData[i].poster_path);
                     var movieRatingPrediction = predictionEngine.Predict(testInput);
                     index[i] = (100 / (1 + Math.Exp(-Math.Round(movieRatingPrediction.Score, 1))));
-                }    
+                }
             }
             double temp;
             int tempIndex;
-            for (int i=0; i<36; i++)
+            for (int i = 0; i < 36; i++)
             {
                 temp = index.Max();
                 tempIndex = index.ToList().IndexOf(temp);
@@ -175,7 +176,7 @@ namespace TrainAPI.Controllers
 
         public static void SaveModel(MLContext mlContext, DataViewSchema trainingDataViewSchema, ITransformer model)
         {
-            var modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "MovieRecommenderModel.zip");
+            var modelPath = Path.Combine(Environment.CurrentDirectory, "Models", "MovieRecommenderModel.zip");
 
             mlContext.Model.Save(model, trainingDataViewSchema, modelPath);
         }

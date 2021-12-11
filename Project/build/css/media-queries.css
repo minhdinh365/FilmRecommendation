@@ -99,6 +99,7 @@
   }
   .detail-movie-banner .detail-movie-banner-title {
     margin: auto;
+    margin-top: -50px;
   }
   .detail-movie-banner .detail-movie-banner-title h1 {
     text-align: center;

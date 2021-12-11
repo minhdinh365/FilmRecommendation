@@ -61,7 +61,7 @@ export const putComment = async (req, res) => {
 };
 
 export const createEvaluate = async (req, res) => {
-  const getFilms = await Film.find({}).limit(10);
+  const getFilms = await Film.find({}).limit(329).skip(1645);
   let cmttt = [
     "Bộ phim này dở tệ",
     "Phim này cũng được",
@@ -74,7 +74,7 @@ export const createEvaluate = async (req, res) => {
     let cmt = new Comment({
       id_film: element.id,
       evaluate: radom,
-      id_info: "minhdinh111",
+      id_info: "minhdinh364",
       is_reply: 0,
       contents: cmttt[radom - 1],
     });

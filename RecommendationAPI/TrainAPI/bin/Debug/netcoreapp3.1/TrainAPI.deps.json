@@ -8,7 +8,14 @@
       "TRACE",
       "DEBUG",
       "NETCOREAPP",
-      "NETCOREAPP3_1"
+      "NETCOREAPP3_1",
+      "NETCOREAPP1_0_OR_GREATER",
+      "NETCOREAPP1_1_OR_GREATER",
+      "NETCOREAPP2_0_OR_GREATER",
+      "NETCOREAPP2_1_OR_GREATER",
+      "NETCOREAPP2_2_OR_GREATER",
+      "NETCOREAPP3_0_OR_GREATER",
+      "NETCOREAPP3_1_OR_GREATER"
     ],
     "languageVersion": "8.0",
     "platform": "",
@@ -24,7 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "TrainAPI/1.0.0": {
         "dependencies": {
-          "Microsoft.ML.Recommender": "0.18.0",
+          "Microsoft.ML.Recommender": "0.19.0",
           "Newtonsoft.Json": "13.0.1",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -315,10 +322,10 @@
           "TrainAPI.dll": {}
         }
       },
-      "Microsoft.ML/1.6.0": {
+      "Microsoft.ML/1.7.0": {
         "dependencies": {
-          "Microsoft.ML.CpuMath": "1.6.0",
-          "Microsoft.ML.DataView": "1.6.0",
+          "Microsoft.ML.CpuMath": "1.7.0",
+          "Microsoft.ML.DataView": "1.7.0",
           "Newtonsoft.Json": "13.0.1",
           "System.CodeDom": "4.4.0",
           "System.Collections.Immutable": "1.5.0",
@@ -329,31 +336,31 @@
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.Core.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.Data.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.PCA.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           },
           "lib/netstandard2.0/Microsoft.ML.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           }
         },
         "runtimeTargets": {
@@ -385,12 +392,12 @@
           "runtimes/win-x64/native/LdaNative.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.1800.21.36503"
+            "fileVersion": "0.1900.21.55904"
           },
           "runtimes/win-x86/native/LdaNative.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.1800.21.36503"
+            "fileVersion": "0.1900.21.55904"
           }
         },
         "compile": {
@@ -403,18 +410,18 @@
           "lib/netstandard2.0/Microsoft.ML.dll": {}
         }
       },
-      "Microsoft.ML.CpuMath/1.6.0": {
+      "Microsoft.ML.CpuMath/1.7.0": {
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.ML.CpuMath.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           }
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.ML.CpuMath.dll": {}
         }
       },
-      "Microsoft.ML.DataView/1.6.0": {
+      "Microsoft.ML.DataView/1.7.0": {
         "dependencies": {
           "System.Collections.Immutable": "1.5.0",
           "System.Memory": "4.5.3"
@@ -422,21 +429,21 @@
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.600.21.36503"
+            "fileVersion": "1.700.21.55904"
           }
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
         }
       },
-      "Microsoft.ML.Recommender/0.18.0": {
+      "Microsoft.ML.Recommender/0.19.0": {
         "dependencies": {
-          "Microsoft.ML": "1.6.0"
+          "Microsoft.ML": "1.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.Recommender.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "0.1800.21.36503"
+            "fileVersion": "0.1900.21.55904"
           }
         },
         "runtimeTargets": {
@@ -468,12 +475,12 @@
           "runtimes/win-x64/native/MatrixFactorizationNative.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.1800.21.36503"
+            "fileVersion": "0.1900.21.55904"
           },
           "runtimes/win-x86/native/MatrixFactorizationNative.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.1800.21.36503"
+            "fileVersion": "0.1900.21.55904"
           }
         },
         "compile": {
@@ -2271,33 +2278,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.ML/1.6.0": {
+    "Microsoft.ML/1.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zkDI36NE/xX076TRYT4IZ1bdHc5Sr0KVHeUeEANP1R4jOZpztJXTxHVK/izK+Jz1137Xszp5zdyzw7VOd+WsSA==",
-      "path": "microsoft.ml/1.6.0",
-      "hashPath": "microsoft.ml.1.6.0.nupkg.sha512"
+      "sha512": "sha512-VWNzTz3Owt7qBxsLD1cxjx3fN7YuyVKu26OIwKIF83r+3Fm8B/OkiXugP8rjIYg0c3+KK8G3ks96eiOfdzT26g==",
+      "path": "microsoft.ml/1.7.0",
+      "hashPath": "microsoft.ml.1.7.0.nupkg.sha512"
     },
-    "Microsoft.ML.CpuMath/1.6.0": {
+    "Microsoft.ML.CpuMath/1.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tcDUQ84xG9D8VFgBgXcps/stBoefEK14+deMfftUms8vb9qUmc3A6yTQRZyaggL6Fxybi4LiHLn5DhGs0NvOBw==",
-      "path": "microsoft.ml.cpumath/1.6.0",
-      "hashPath": "microsoft.ml.cpumath.1.6.0.nupkg.sha512"
+      "sha512": "sha512-ibot+EJKOG21DE47YQCy8djLpSJ31hgbwkJPkG2a5KSieb2eEGySCzzMLBAcP2jR5vd8+5Gss3FuGYvfY9Bncw==",
+      "path": "microsoft.ml.cpumath/1.7.0",
+      "hashPath": "microsoft.ml.cpumath.1.7.0.nupkg.sha512"
     },
-    "Microsoft.ML.DataView/1.6.0": {
+    "Microsoft.ML.DataView/1.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-o32XTTTledXjrX8e14habbzk+WJhj+Zgs1UV1OiTwO+rVUwnT4KSROri4L/5kuWdSxMCcTFb5sE1JnjHb+y1Gg==",
-      "path": "microsoft.ml.dataview/1.6.0",
-      "hashPath": "microsoft.ml.dataview.1.6.0.nupkg.sha512"
+      "sha512": "sha512-pMfpOsoRcexVnsNqwRqcqRsdfzw2dN3kBu3QzmZ3YqPuiZLLoDHaB3ZYEAvnIUEhpnIe4wVD4UnUWvatzoVWcQ==",
+      "path": "microsoft.ml.dataview/1.7.0",
+      "hashPath": "microsoft.ml.dataview.1.7.0.nupkg.sha512"
     },
-    "Microsoft.ML.Recommender/0.18.0": {
+    "Microsoft.ML.Recommender/0.19.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nGYd/a5+Frs832skFwseImxmI5mQHas8BTFlw0if3EEMkaz+A5I2TBtp4PlljiCAh+rjImGGyd4nvR1K/I8yuQ==",
-      "path": "microsoft.ml.recommender/0.18.0",
-      "hashPath": "microsoft.ml.recommender.0.18.0.nupkg.sha512"
+      "sha512": "sha512-1X0Al99C32Y1Yb4OZnMjcLYhDOCMLepwTbREID41P+7Eg4z1v2DYzl7Nd2zSDcpgorhXSsPKIKpLVQ1UQos8nA==",
+      "path": "microsoft.ml.recommender/0.19.0",
+      "hashPath": "microsoft.ml.recommender.0.19.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
