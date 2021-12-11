@@ -6,6 +6,7 @@ import { LocalhostApi } from "../../API/const";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Backdrop from "@mui/material/Backdrop";
+import { TextareaAutosize } from "@mui/material";
 
 function Header({ start }) {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
@@ -14,7 +15,9 @@ function Header({ start }) {
     setShowModalQuestions((prev) => !prev);
   };
   const [postMovie, setPostMovie] = useState([]);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
+    setOpen(true);
     let isAcctive = false;
     async function fetchPostMovie() {
       try {
@@ -23,6 +26,7 @@ function Header({ start }) {
         const responseJSON = await response.json();
         const { results } = responseJSON;
         setPostMovie(results);
+        setOpen(false);
       } catch (e) {}
     }
     if (!isAcctive) {
