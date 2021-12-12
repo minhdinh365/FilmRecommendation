@@ -152,7 +152,6 @@ function Main() {
         {loader}
       </div>
       <Pagination pagination={pagination} onPageChange={handleOnPageChange} />
-      <img src="https://i.imgur.com/uDoxArg.gif" alt="no advertisment" />
     </div>
   );
 }

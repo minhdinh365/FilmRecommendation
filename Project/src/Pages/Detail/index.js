@@ -6,7 +6,7 @@ import Header from "../../Components/Header/NavBar";
 import Footer from "../../Components/Footer";
 import axios from "axios";
 import { LocalhostApi } from "../../API/const";
-import Recommandation from "../../Components/Recommandations";
+import Recommendation from "../../Components/Recommendations";
 import UseFullLoading from "../../Components/FullPageLoading";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
@@ -39,7 +39,7 @@ const Detail = () => {
         success = jwt_decode(cookieUser).username;
         let user = { username: success };
         let postWatch = { ...watchedFilm, ...user };
-        axios.post(LocalhostApi + "watched", postWatch).then((data) => { });
+        axios.post(LocalhostApi + "watched", postWatch).then((data) => {});
       }
       window.scrollTo(0, 0);
       const requestOne = axios.get(LocalhostApi + `comment?id=${id}`);
@@ -76,7 +76,7 @@ const Detail = () => {
           .then((res) => {
             setCastMovie(res.data.cast);
           });
-      } catch (e) { }
+      } catch (e) {}
     }
     if (!isAcctive) {
       fetchPostMovie();
@@ -97,7 +97,7 @@ const Detail = () => {
           id={id}
           total_comment={total}
         />
-        <Recommandation id={id}></Recommandation>
+        <Recommendation id={id}></Recommendation>
         <Footer />
       </>
     );

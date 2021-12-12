@@ -596,7 +596,6 @@ ul#nav li.current a {
 #bxhm {
   padding: 50px 30px 30px 30px;
   background: black;
-  border-bottom: 2px solid gray;
 }
 
 #bxhm .slick-arrow {
@@ -644,7 +643,7 @@ h2::after {
   z-index: 1;
   bottom: 50%;
   margin-bottom: -2px;
-  height: 2px;
+  height: 0.5px;
   left: 0;
   right: 0;
   background: white;
@@ -789,6 +788,7 @@ a:visited {
   transition: all 0.5s ease-in-out;
 }
 .title-movie-chart h3 {
+  font-weight: 500;
   text-align: center;
   color: #46e1ff;
   overflow: hidden;
@@ -2286,4 +2286,79 @@ p {
   width: 90%;
   height: 600px;
   border: none;
+}
+/*Recommendation for User*/
+
+#recommend-user {
+  background-color: #191818;
+  margin-bottom: 30px;
+}
+#recommend-user h1 {
+  font: 25px/35px "opensans-semibold", sans-serif;
+  color: yellow;
+  padding: 0;
+  margin-bottom: 10px;
+}
+#recommend-user a {
+  text-decoration: none;
+}
+#recommend-user span {
+  color: #46e1ff;
+}
+.card-recommend-wait {
+  width: 100%;
+  height: auto;
+  padding: 0 20px;
+}
+.card-recommend {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.card-recommend img {
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  padding: 0px 15px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.card-recommend-title {
+  padding: 0px 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+}
+.card-recommend-title h3 {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.card-recommend-title-detail {
+  display: flex;
+  padding: 0 15px;
+  justify-content: space-between;
+}
+#recommend-user h2 {
+  font: 23px "opensans-semibold", sans-serif;
+  text-transform: uppercase;
+  color: yellow;
+  margin-bottom: 30px;
+  position: relative;
+  margin: 15px 0px;
+  padding-left: 25px;
+  font-weight: 500;
+  background-color: #191818;
+}
+#recommend-user h2::after {
+  position: absolute;
+}
+#recommend-user h2 strong {
+  background-color: #191818;
+  padding: 0px;
 }

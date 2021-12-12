@@ -242,7 +242,11 @@
     flex-direction: column;
     justify-content: center;
   }
-  /*bang xep hang*/
+  .information-detail {
+    width: 83%;
+    left: 0;
+    margin: 50px 8%;
+  }
 }
 
 /* mobile wide/smaller tablets
@@ -576,6 +580,10 @@
   .card-detail-acctivity2 span {
     font-size: 10px;
   }
+  .detail-movie-banner .detail-movie-banner-img {
+    margin: auto;
+    margin-top: -40px;
+  }
 }
 
 /* mobile narrow
@@ -640,5 +648,9 @@
     border-radius: 10px;
     display: block;
     min-height: 396px;
+  }
+  .detail-movie-banner .detail-movie-banner-img {
+    margin: auto;
+    margin-top: -10px;
   }
 }

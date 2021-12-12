@@ -26,6 +26,12 @@ namespace TrainAPI
             // services.AddResponseCaching();
             services.AddControllersWithViews();
             services.AddHttpClient();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.WithOrigins("https://chom-phim.netlify.app")
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,15 +42,8 @@ namespace TrainAPI
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
-            app.UseCors(builder =>
-               builder
-                 .WithOrigins("https://chom-phim.netlify.app/")
-                 .AllowAnyHeader()
-                 .AllowAnyMethod()
-                 .AllowCredentials()
-             );
+            app.UseCors("MyPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

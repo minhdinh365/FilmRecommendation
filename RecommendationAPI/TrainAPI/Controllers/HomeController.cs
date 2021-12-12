@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.ML;
 using Microsoft.ML.Data;
@@ -57,6 +58,7 @@ namespace TrainAPI.Controllers
             return View();
         }
 
+        [EnableCors("MyPolicy")]
         [Route("home/predict/{id?}")]
         public IActionResult Index(string? id)
         {
