@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="minhdinh365-001-site1" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\minhd\\source\\repos\\TrainAPI\\TrainAPI\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

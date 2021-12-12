@@ -84,7 +84,10 @@ export const createEvaluate = async (req, res) => {
 };
 export const get2000Comments = async (req, res) => {
   try {
-    const List = await Comment.find().limit(1999).populate("film");
+    const List = await Comment.find().limit(1974).populate({
+      path: "film",
+      select: "poster_path title release_date id run_time",
+    });
     res.json({ List });
   } catch (err) {
     return res.status(500).json({ msg: err.message });
@@ -97,7 +100,7 @@ export const getCommentsByUsername = async (req, res) => {
       $and: [{ id_info: req.query.username }, { is_reply: 0 }],
     }).populate(
       "film",
-      "-cast -keywords -crew -overview -backdrop_path -popularity -release_date -video -vote_count -revenue -video_id -tagline -run_time -budget -category -adult -original_language -original_title"
+      "-cast -keywords -crew -overview -backdrop_path -popularity  -video -vote_count -revenue -video_id -tagline  -budget -category -adult -original_language -original_title"
     );
     if (List.length > 0) {
       res.json({ List });

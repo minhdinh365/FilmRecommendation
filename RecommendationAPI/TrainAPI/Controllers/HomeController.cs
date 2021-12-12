@@ -45,7 +45,7 @@ namespace TrainAPI.Controllers
             foreach (FilmsModel item in films.films)
             {
                 i += 1;
-                fmd[i] = new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path);
+                fmd[i] = new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path, item.run_time, item.release_date);
             }
             (trainingDataView, testDataView) = LoadData(mlContext, fmd);
 
@@ -72,7 +72,7 @@ namespace TrainAPI.Controllers
             foreach (FilmsModel item in user.films)
             {
                 j += 1;
-                cmt[j] = new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path);
+                cmt[j] = new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path, item.run_time, item.release_date);
             }
             Response.StatusCode = 200;
             return Json(UseModelForSinglePrediction(mlContext, trainingDataView.Schema, fmd, cmt, id).Skip(24));
@@ -141,7 +141,7 @@ namespace TrainAPI.Controllers
                 list[watched[0].username] = list[watched[0].username] + 1;
                 testData = testData.Where((val, idx) => val.id != item.id).ToArray();
                 Array.Resize(ref testData, 1974);
-                testData[1973] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path));
+                testData[1973] = (new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path, item.run_time, item.release_date));
             }
 
             username = list.Aggregate((x, y) => x.Value > y.Value ? x : y).Key;
@@ -150,13 +150,13 @@ namespace TrainAPI.Controllers
             {
                 if (testData[i].username != username)
                 {
-                    var testInput = new FilmsModel(testData[i].id, username, testData[i].title, 0, testData[i].poster_path);
+                    var testInput = new FilmsModel(testData[i].id, username, testData[i].title, 0, testData[i].poster_path, testData[i].run_time, testData[i].release_date);
                     var movieRatingPrediction = predictionEngine.Predict(testInput);
                     index[i] = (100 / (1 + Math.Exp(-Math.Round(movieRatingPrediction.Score, 1))));
                 }
                 else
                 {
-                    var testInput = new FilmsModel(testData[i].id, username, testData[i].title, testData[i].evaluate, testData[i].poster_path);
+                    var testInput = new FilmsModel(testData[i].id, username, testData[i].title, testData[i].evaluate, testData[i].poster_path, testData[i].run_time, testData[i].release_date);
                     var movieRatingPrediction = predictionEngine.Predict(testInput);
                     index[i] = (100 / (1 + Math.Exp(-Math.Round(movieRatingPrediction.Score, 1))));
                 }
