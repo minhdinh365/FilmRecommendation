@@ -56,7 +56,7 @@ export default function Recommend(props) {
   const ske = [1, 2, 3, 4, 5, 6];
   return (
     <div>
-      {recommend === undefined ? (
+      {recommend === undefined || recommend.length == 0 ? (
         <div>
           <Slider {...settings}>
             {ske.map((element) => {
