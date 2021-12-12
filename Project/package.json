@@ -19,6 +19,7 @@
     "depcheck": "^1.4.2",
     "express": "^4.17.1",
     "framer-motion": "^4.1.17",
+    "https-proxy-agent": "^5.0.0",
     "i": "^0.3.6",
     "jquery": "^3.6.0",
     "js-cookie": "^3.0.1",
@@ -54,13 +55,13 @@
     "react-toastify": "^8.0.3",
     "react-transition-group": "^4.4.2",
     "reactjs-popup": "^2.0.5",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.3.2",
     "styled-components": "^5.3.1",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.0.1",
-    "yup": "^0.32.9",
-    "redux-thunk": "^2.4.1",
-    "redux": "^4.1.2"
+    "yup": "^0.32.9"
   },
   "scripts": {
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",

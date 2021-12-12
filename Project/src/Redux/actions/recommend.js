@@ -11,7 +11,6 @@ export const getRecommend = (recommend) => {
 
 export const loadRecommend = (username) => {
   return function (dispatch) {
-    console.log(LocalASP_Net);
     axios
       .get(LocalASP_Net + username)
       .then((res) => {
