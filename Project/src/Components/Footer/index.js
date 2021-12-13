@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Fade from "react-reveal";
 import { Row } from "react-bootstrap";
+import { animateScroll as scroll } from "react-scroll";
 
 class Footer extends Component {
   constructor(props) {
@@ -25,10 +26,8 @@ class Footer extends Component {
       <footer>
         <Row>
           {this.state.active ? (
-            <div className="arrow-button">
-              <a className="smoothscroll" href="#">
-                <ion-icon name="arrow-round-up"></ion-icon>Top
-              </a>
+            <div className="arrow-button" onClick={() => scroll.scrollToTop()}>
+              <ion-icon name="arrow-round-up"></ion-icon>Top
             </div>
           ) : null}
           <Fade bottom>

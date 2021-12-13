@@ -6,11 +6,12 @@ import Search from "../Search";
 import Cookies from "js-cookie";
 import Cookies2 from "universal-cookie";
 import jwt_decode from "jwt-decode";
-import { Link } from "react-router-dom";
+import { Link as LinkRouter } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import axios from "axios";
-import { LocalhostApi, LocalhostClient } from "../../API/const";
+import { LocalhostApi } from "../../API/const";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 export default function NavBar() {
   const [isNavVisible, setNavVisibility] = useState(false);
@@ -78,7 +79,6 @@ export default function NavBar() {
   }
   async function Logout() {
     const cookies = new Cookies2();
-    await cookies.remove("User", { path: "/", domain: "localhost" });
     document.cookie = "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
     window.localStorage.clear();
     window.location.reload();
@@ -131,13 +131,13 @@ export default function NavBar() {
         setLoginOpen={setLoginOpen}
         setForgetOpen={setForgetOpen}
       ></ModalForget>
-      <Link to="/" onClick={toggleNav}>
+      <LinkRouter to="/" onClick={toggleNav}>
         <img
           src={process.env.PUBLIC_URL + "/images/LOGOF.png"}
           className="Logo"
           alt="logo"
         />
-      </Link>
+      </LinkRouter>
       <CSSTransition
         in={!isSmallScreen || isNavVisible}
         timeout={0}
@@ -147,18 +147,26 @@ export default function NavBar() {
         <nav className="Nav">
           {listNav.map((element) => {
             return (
-              <a
+              <Link
                 key={element.section}
-                className={
+                activeClass={
                   element.section === section
                     ? "smoothscroll current"
                     : "smoothscroll"
                 }
-                href={LocalhostClient + "#" + element.section}
+                to={element.section}
+                spy={true}
+                smooth={true}
+                hashSpy={true}
+                offset={50}
+                duration={500}
+                isDynamic={true}
+                ignoreCancelEvents={false}
+                spyThrottle={500}
                 onClick={toggleNav}
               >
                 {element.name}
-              </a>
+              </Link>
             );
           })}
           {isSmallScreen ? null : <Search className="hidden-input"></Search>}
