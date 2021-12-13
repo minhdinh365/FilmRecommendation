@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using TrainAPI.Models;
 namespace TrainAPI.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         private IHttpClientFactory factory;
@@ -29,7 +30,7 @@ namespace TrainAPI.Controllers
             this.factory = factory;
         }
 
-
+        [HttpGet]
         public IActionResult SetValue()
         {
             mlContext = new MLContext();
@@ -60,6 +61,7 @@ namespace TrainAPI.Controllers
 
         [EnableCors("MyPolicy")]
         [Route("home/predict/{id?}")]
+        [HttpGet]
         public IActionResult Index(string? id)
         {
             clientPost = factory.CreateClient();

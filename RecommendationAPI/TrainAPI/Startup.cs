@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace TrainAPI
@@ -26,9 +29,12 @@ namespace TrainAPI
             // services.AddResponseCaching();
             services.AddControllersWithViews();
             services.AddHttpClient();
+            services.AddMvc();
+
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("https://chom-phim.netlify.app")
+                builder.WithOrigins("https://chom-phim.netlify.app", "http://localhost:3000")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
@@ -38,7 +44,6 @@ namespace TrainAPI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseDeveloperExceptionPage();
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
