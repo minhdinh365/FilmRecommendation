@@ -44,6 +44,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.7.27, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Certificate": {
+              "target": "Package",
+              "version": "[3.1.21, )"
+            },
             "Microsoft.ML.Recommender": {
               "target": "Package",
               "version": "[0.19.0, )"

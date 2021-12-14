@@ -8,5 +8,4 @@ export const IMG_SIZE_XSMALL = "https://image.tmdb.org/t/p/w45/";
 export const VIDEO_LINK = "https://api.themoviedb.org/3/movie/";
 export const LocalhostClient = "https://chom-phim.netlify.app/";
 export const LocalhostApi = "https://chom-phim.herokuapp.com/";
-export const LocalASP_Net =
-  "http://minhdinh365-001-site1.gtempurl.com/home/predict/";
+export const LocalASP_Net = "https://ChomPhim.somee.com/ChomPhim/home/predict/";

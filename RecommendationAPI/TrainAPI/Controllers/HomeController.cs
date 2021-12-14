@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using TrainAPI.Models;
@@ -32,6 +33,7 @@ namespace TrainAPI.Controllers
 
         public IActionResult SetValue()
         {
+            Console.WriteLine(IPAddress.Loopback);
             mlContext = new MLContext();
             client = factory.CreateClient();
             fmd = new FilmsModel[1974];

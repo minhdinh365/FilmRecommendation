@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARpGzQSsHMUqTPG4g9NgcGwAAAAACAAAAAAAQZgAAAAEAACAAAAD3Zh1POIEaRpcUVfHvwll6mkuBvO+umBntcdhlz+eNlgAAAAAOgAAAAAIAACAAAABRE7LCOmD8RzFHh2gS7SrX+MumycA8+7YJ02TzGWo4CyAAAADQCbxslQbTR0sbMRNCSEv254f1puEdrVSRF4ElwD9ZZ0AAAABoBtKTFrBAfaTPMc9hw7krOtAzmplYk87xUXTsGx+Svtltf9eWRKSs5ZcoJWfvitjdEHjfJ0i15dkD5UDl9ocO</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ChomPhim.somee.com/www.ChomPhim.somee.com/ChomPhim</_PublishTargetUrl>
+    <History>True|2021-12-14T08:28:09.4778266Z;False|2021-12-14T15:18:36.1875874+07:00;True|2021-12-14T15:05:34.5176377+07:00;False|2021-12-14T15:00:26.8323033+07:00;False|2021-12-14T14:59:58.8069192+07:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>12/12/2021 15:25:58</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>12/14/2021 15:16:52</publishTime>
+    </File>
+    <File Include="ca/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="de/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="es/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="fa/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="fr/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="Hangfire.Core.dll">
+      <publishTime>11/03/2021 19:12:34</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authentication.Certificate.dll">
+      <publishTime>10/24/2021 06:08:36</publishTime>
+    </File>
+    <File Include="Microsoft.ML.Core.dll">
+      <publishTime>11/09/2021 11:45:16</publishTime>
+    </File>
+    <File Include="Microsoft.ML.CpuMath.dll">
+      <publishTime>11/09/2021 11:45:10</publishTime>
+    </File>
+    <File Include="Microsoft.ML.Data.dll">
+      <publishTime>11/09/2021 11:45:56</publishTime>
+    </File>
+    <File Include="Microsoft.ML.DataView.dll">
+      <publishTime>11/09/2021 11:45:10</publishTime>
+    </File>
+    <File Include="Microsoft.ML.dll">
+      <publishTime>11/09/2021 11:46:12</publishTime>
+    </File>
+    <File Include="Microsoft.ML.KMeansClustering.dll">
+      <publishTime>11/09/2021 11:46:02</publishTime>
+    </File>
+    <File Include="Microsoft.ML.PCA.dll">
+      <publishTime>11/09/2021 11:46:02</publishTime>
+    </File>
+    <File Include="Microsoft.ML.Recommender.dll">
+      <publishTime>11/09/2021 11:46:14</publishTime>
+    </File>
+    <File Include="Microsoft.ML.StandardTrainers.dll">
+      <publishTime>11/09/2021 11:46:00</publishTime>
+    </File>
+    <File Include="Microsoft.ML.Transforms.dll">
+      <publishTime>11/09/2021 11:46:06</publishTime>
+    </File>
+    <File Include="nb/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="Newtonsoft.Json.dll">
+      <publishTime>03/18/2021 03:03:36</publishTime>
+    </File>
+    <File Include="nl/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="pt-BR/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="pt-PT/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="pt/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="runtimes/linux-arm/native/libLdaNative.so">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/linux-arm/native/libMatrixFactorizationNative.so">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="runtimes/linux-arm64/native/libLdaNative.so">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/linux-arm64/native/libMatrixFactorizationNative.so">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="runtimes/linux-x64/native/libLdaNative.so">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/linux-x64/native/libMatrixFactorizationNative.so">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="runtimes/osx-arm64/native/libLdaNative.dylib">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/osx-arm64/native/libMatrixFactorizationNative.dylib">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="runtimes/osx-x64/native/libLdaNative.dylib">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/osx-x64/native/libMatrixFactorizationNative.dylib">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/LdaNative.dll">
+      <publishTime>11/09/2021 11:44:34</publishTime>
+    </File>
+    <File Include="runtimes/win-x64/native/MatrixFactorizationNative.dll">
+      <publishTime>11/09/2021 11:44:38</publishTime>
+    </File>
+    <File Include="runtimes/win-x86/native/LdaNative.dll">
+      <publishTime>11/09/2021 11:37:00</publishTime>
+    </File>
+    <File Include="runtimes/win-x86/native/MatrixFactorizationNative.dll">
+      <publishTime>11/09/2021 11:37:02</publishTime>
+    </File>
+    <File Include="System.CodeDom.dll">
+      <publishTime>07/19/2017 17:01:30</publishTime>
+    </File>
+    <File Include="System.Threading.Channels.dll">
+      <publishTime>04/15/2020 05:49:28</publishTime>
+    </File>
+    <File Include="tr-TR/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="TrainAPI.deps.json">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="TrainAPI.dll">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="TrainAPI.exe">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="TrainAPI.pdb">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="TrainAPI.runtimeconfig.json">
+      <publishTime>12/14/2021 14:23:21</publishTime>
+    </File>
+    <File Include="TrainAPI.Views.dll">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="TrainAPI.Views.pdb">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>12/14/2021 15:23:49</publishTime>
+    </File>
+    <File Include="zh-TW/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+    <File Include="zh/Hangfire.Core.resources.dll">
+      <publishTime>11/03/2021 19:12:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

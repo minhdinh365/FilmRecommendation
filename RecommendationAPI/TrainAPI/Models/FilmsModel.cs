@@ -38,9 +38,12 @@ namespace TrainAPI.Models
         {
             films = new List<FilmsModel>();
             dynamic myObject = JValue.Parse(json);
-            foreach (dynamic film in myObject.List)
+            if (myObject.List.GetType().Name == "JArray")
             {
-                films.Add(new FilmsModel((int)film.id_film, (string)film.id_info, (string)film.film.title, (float)film.evaluate, (string)film.film.poster_path, (int)film.film.run_time, (string)film.film.release_date));
+                foreach (dynamic film in myObject.List)
+                {
+                    films.Add(new FilmsModel((int)film.id_film, (string)film.id_info, (string)film.film.title, (float)film.evaluate, (string)film.film.poster_path, (int)film.film.run_time, (string)film.film.release_date));
+                }
             }
         }
         

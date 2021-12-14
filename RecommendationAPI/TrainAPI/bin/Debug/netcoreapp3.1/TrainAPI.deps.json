@@ -31,6 +31,8 @@
     ".NETCoreApp,Version=v3.1": {
       "TrainAPI/1.0.0": {
         "dependencies": {
+          "Hangfire.Core": "1.7.27",
+          "Microsoft.AspNetCore.Authentication.Certificate": "3.1.21",
           "Microsoft.ML.Recommender": "0.19.0",
           "Newtonsoft.Json": "13.0.1",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -320,6 +322,72 @@
         },
         "compile": {
           "TrainAPI.dll": {}
+        }
+      },
+      "Hangfire.Core/1.7.27": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Hangfire.Core.dll": {
+            "assemblyVersion": "1.7.27.0",
+            "fileVersion": "1.7.27.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ca/Hangfire.Core.resources.dll": {
+            "locale": "ca"
+          },
+          "lib/netstandard2.0/de/Hangfire.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.0/es/Hangfire.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.0/fa/Hangfire.Core.resources.dll": {
+            "locale": "fa"
+          },
+          "lib/netstandard2.0/fr/Hangfire.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.0/nb/Hangfire.Core.resources.dll": {
+            "locale": "nb"
+          },
+          "lib/netstandard2.0/nl/Hangfire.Core.resources.dll": {
+            "locale": "nl"
+          },
+          "lib/netstandard2.0/pt-BR/Hangfire.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.0/pt-PT/Hangfire.Core.resources.dll": {
+            "locale": "pt-PT"
+          },
+          "lib/netstandard2.0/pt/Hangfire.Core.resources.dll": {
+            "locale": "pt"
+          },
+          "lib/netstandard2.0/tr-TR/Hangfire.Core.resources.dll": {
+            "locale": "tr-TR"
+          },
+          "lib/netstandard2.0/zh-TW/Hangfire.Core.resources.dll": {
+            "locale": "zh-TW"
+          },
+          "lib/netstandard2.0/zh/Hangfire.Core.resources.dll": {
+            "locale": "zh"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Hangfire.Core.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Certificate/3.1.21": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Certificate.dll": {
+            "assemblyVersion": "3.1.21.0",
+            "fileVersion": "3.100.2121.52309"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Certificate.dll": {}
         }
       },
       "Microsoft.ML/1.7.0": {
@@ -2277,6 +2345,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Hangfire.Core/1.7.27": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CuUQjkWBmaLyJGl/eNbSvTH+uOby8ua5WjTrcV4vhiS9xdRgWYLxgr3lQJRyQ9SaL0vifpqaPgBWOoo68KmbJw==",
+      "path": "hangfire.core/1.7.27",
+      "hashPath": "hangfire.core.1.7.27.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Certificate/3.1.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-00KSfsSE7UvOtGiNLx/IYDH2VShmjt0PGWWqKjxPJ1nQaNH8U0/to7x7/ZxCrKiZlw7za/j9MW4JiEcovPbfbw==",
+      "path": "microsoft.aspnetcore.authentication.certificate/3.1.21",
+      "hashPath": "microsoft.aspnetcore.authentication.certificate.3.1.21.nupkg.sha512"
     },
     "Microsoft.ML/1.7.0": {
       "type": "package",
