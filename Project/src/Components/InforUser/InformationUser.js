@@ -106,7 +106,17 @@ export default function InformationUser(props) {
   const [changePass, setChangPass] = useState(false);
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
-    if (file) {
+    if (file.size > 20971580) {
+      toast.warning("Kích thước ảnh quá lớn!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (file) {
       const reader = new FileReader();
       const { current } = uploadedImage;
       current.file = file;
@@ -175,6 +185,7 @@ export default function InformationUser(props) {
                   {...register("full_name")}
                   onChange={(e) => handle(e)}
                   id="full_name"
+                  maxLength="20"
                   disabled={disable}
                   type="text"
                   name="full_name"
