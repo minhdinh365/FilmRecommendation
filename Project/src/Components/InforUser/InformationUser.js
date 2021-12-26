@@ -88,7 +88,7 @@ export default function InformationUser(props) {
     setDisbutton(true);
     axios.post(LocalhostApi + "infor", editInfoUser).then((data) => {
       if (data.data.success) {
-        toast.success("Cập nhật thông tin thành công!", {
+        toast.success(data.data.mgs, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -99,7 +99,16 @@ export default function InformationUser(props) {
         });
         setDisbutton(false);
       } else {
-        setErrors(data.data.mgs);
+        toast.warning(data.data.mgs, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setDisbutton(false);
       }
     });
   };
@@ -129,17 +138,7 @@ export default function InformationUser(props) {
   const [disbutton, setDisbutton] = useState(false);
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer />
       <ChangePassword
         open={changePass}
         setChangPass={setChangPass}
