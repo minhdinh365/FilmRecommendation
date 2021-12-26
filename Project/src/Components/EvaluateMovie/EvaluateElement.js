@@ -90,7 +90,7 @@ export const Frame = styled.div`
   }
 
   & label {
-    background-color: yellow;
+    background-color: #00fc87;
     border-radius: 8px;
     color: #000;
     cursor: pointer;
@@ -109,7 +109,7 @@ export const Frame = styled.div`
   & label:not(:disabled):hover,
   & label:not(:disabled):focus {
     outline: 0;
-    background: #f4e603;
+    background: #04d65a;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
   }
 
@@ -199,10 +199,13 @@ export const EvaluateFrame = styled.div`
     color: #00fc87;
     font-weight: 600;
   }
-  & h4 {
+  & pre {
+    font-family: "opensans-regular", sans-serif;
+    text-align: left;
+    margin: 0;
+    grid-area: 1 / 4 / auto / auto;
     font-size: 16px;
     color: #fff;
-    text-align: left;
     font-weight: 400;
   }
 `;
@@ -249,6 +252,8 @@ export const Comment = styled.textarea`
   min-width: 95%;
   color: #333;
   font-size: 18px;
+  border-radius: 5px;
+  font-family: "opensans-regular", sans-serif;
   padding: 10px 20px 0px;
   resize: vertical;
   outline: none;
@@ -271,6 +276,8 @@ export const ReplyBox = styled.textarea`
   color: #333;
   font-size: 18px;
   text-align: left;
+  font-family: "opensans-regular", sans-serif;
+  border-radius: 5px;
   padding-left: 5px;
   resize: vertical;
   outline: none;

@@ -349,10 +349,6 @@ class CommentForm extends React.Component {
                   <Comment
                     rows="1"
                     placeholder={announce}
-                    onPaste={(e) => {
-                      e.preventDefault();
-                      return false;
-                    }}
                     ref={(textarea) => (this._content = textarea)}
                   ></Comment>
                   <Send type="submit">
@@ -421,7 +417,11 @@ class Evaluate extends React.Component {
                 type="button"
                 onClick={this._handleSubmit.bind(this)}
               >
-                <span className="iconify" data-icon="akar-icons:send"></span>
+                <span
+                  style={{ height: "30px" }}
+                  className="iconify"
+                  data-icon="akar-icons:send"
+                ></span>
               </ButtonReply>
             </GroupPost>
           ) : (
@@ -442,7 +442,7 @@ class Evaluate extends React.Component {
                 : "1 giây trước"}
             </h5>
             <Rating name="simple-person" value={this.props.star} readOnly />
-            <h4>{this.props.content}</h4>
+            <pre>{this.props.content}</pre>
           </Frame>
         </EvaluateFrame>
         <EvaluateFrame>
