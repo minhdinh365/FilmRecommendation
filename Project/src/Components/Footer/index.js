@@ -27,7 +27,7 @@ class Footer extends Component {
         <Row>
           {this.state.active ? (
             <div className="arrow-button" onClick={() => scroll.scrollToTop()}>
-              <ion-icon name="arrow-round-up"></ion-icon>Top
+              <ion-icon name="arrow-up-outline"></ion-icon>Top
             </div>
           ) : null}
           <Fade bottom>
