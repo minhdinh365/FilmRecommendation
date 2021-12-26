@@ -29,7 +29,7 @@ import {
   WrapperCaster,
   WrapperButton,
   WrapperThum,
-  Keywords
+  Keywords,
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
@@ -37,7 +37,7 @@ const DetailMovieCard = (props) => {
   const [hidden, setHidden] = useState("none");
 
   useEffect(() => {
-    document.title = props.contents.title
+    document.title = props.contents.title;
   }, []);
   return (
     <>
@@ -166,9 +166,6 @@ const DetailMovieCard = (props) => {
               })}
             </WrapperCaster>
           </Caster>
-          <Fade bottom duration={3000}>
-            <Iframe id={props.contents.id} />
-          </Fade>
         </Container>
       </Background>
     </>

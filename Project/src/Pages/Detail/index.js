@@ -97,7 +97,7 @@ const Detail = () => {
           id={id}
           total_comment={total}
         />
-        <Recommendation id={id}></Recommendation>
+        <Recommendation id={parseInt(id)}></Recommendation>
         <Footer />
       </>
     );

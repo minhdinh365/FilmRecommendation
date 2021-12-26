@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-
+import styled from "styled-components";
 
 export const BackgroundForget = styled.div`
   width: 100%;
@@ -57,10 +56,10 @@ export const ContentForget = styled.div`
     width: 20px;
     height: 20px;
   }
-  span{
+  span {
     color: white;
   }
-  p{
+  p {
     color: red;
   }
 `;
@@ -85,9 +84,8 @@ export const ButtonForget = styled.button`
   border: none;
   width: 100%;
   border-radius: 10px;
-  margin: 20px 0px;
-  
-`
+  margin: 20px 0px 20px 15px;
+`;
 export const Errors = styled.div`
   color: red;
   justify-content: center;

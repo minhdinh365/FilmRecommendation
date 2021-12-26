@@ -58,7 +58,7 @@ export const Card = styled.div`
     padding: 0;
     z-index: 1;
     background: black;
-    padding: 4px 8px;
+    padding: 4px 0px;
     position: relative;
   }
   h2::after {
@@ -164,9 +164,14 @@ export const ReplyFrame = styled.div`
     font-weight: 600;
     text-align: left;
   }
-  & h4 {
+  & pre {
     grid-column: 4;
     grid-row: 1;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    font-family: "opensans-regular", sans-serif;
+    text-align: left;
   }
   & h5 {
     padding: 0;
