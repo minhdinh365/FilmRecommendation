@@ -78,13 +78,7 @@ export default function Recommend(props) {
         <div>
           <Slider {...settings}>
             {recommend.map((movie) => {
-              return (
-                <CardMovie
-                  style={{ paddingBottom: "40px" }}
-                  key={movie.title}
-                  movie={movie}
-                ></CardMovie>
-              );
+              return <CardMovie key={movie.title} movie={movie}></CardMovie>;
             })}
           </Slider>
         </div>
@@ -95,26 +89,30 @@ export default function Recommend(props) {
 
 const CardMovie = (props) => {
   return (
-    <Link
-      to={{
-        pathname: `/detail/${props.movie.id}`,
-        state: props.movie.id,
-      }}
-    >
-      <div className="card-recommend">
-        <img className="card-recommend-img" src={props.movie.poster_path} />
-        <div className="card-recommend-title">
-          <h3>{props.movie.title}</h3>
-          <div className="card-recommend-title-detail">
-            <div>
-              <span>{props.movie.release_date.toString().substring(0, 4)}</span>
-              <span>&nbsp; &#183; &nbsp;</span>
-              <span>{props.movie.run_time} m</span>
+    <div style={{ paddingBottom: "40px" }}>
+      <Link
+        to={{
+          pathname: `/detail/${props.movie.id}`,
+          state: props.movie.id,
+        }}
+      >
+        <div className="card-recommend">
+          <img className="card-recommend-img" src={props.movie.poster_path} />
+          <div className="card-recommend-title">
+            <h3>{props.movie.title}</h3>
+            <div className="card-recommend-title-detail">
+              <div>
+                <span>
+                  {props.movie.release_date.toString().substring(0, 4)}
+                </span>
+                <span>&nbsp; &#183; &nbsp;</span>
+                <span>{props.movie.run_time} m</span>
+              </div>
+              <span>Movie</span>
             </div>
-            <span>Movie</span>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
