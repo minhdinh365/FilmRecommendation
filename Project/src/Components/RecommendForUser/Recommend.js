@@ -75,10 +75,16 @@ export default function Recommend(props) {
           </Slider>
         </div>
       ) : (
-        <div style={{ paddingBottom: "40px" }}>
+        <div>
           <Slider {...settings}>
             {recommend.map((movie) => {
-              return <CardMovie key={movie.title} movie={movie}></CardMovie>;
+              return (
+                <CardMovie
+                  style={{ paddingBottom: "40px" }}
+                  key={movie.title}
+                  movie={movie}
+                ></CardMovie>
+              );
             })}
           </Slider>
         </div>
