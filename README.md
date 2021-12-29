@@ -27,5 +27,5 @@ Công nghệ Mern Stack
 * [Express](https://expressjs.com/)
 * [Nodejs](https://nodejs.dev/)
 ### Hệ thống dự đoán
-* [Python] cho hệ thống gợi ý phim liên quan
-* [.Net] cho hệ thống gợi ý phim cho người dùng
+* `Python` cho hệ thống gợi ý phim liên quan
+* `.Net` cho hệ thống gợi ý phim cho người dùng
