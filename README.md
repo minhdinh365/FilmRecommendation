@@ -29,3 +29,9 @@ Công nghệ Mern Stack
 ### Hệ thống dự đoán
 * `Python` cho hệ thống gợi ý phim liên quan
 * `.Net` cho hệ thống gợi ý phim cho người dùng
+
+## Sinh viên thực hiện
+* Nguyễn Thanh Bằng 18110254
+* Trần Văn Hân Minh Đính 18110269
+### GVHD: Huỳnh Xuân Phụng
+
