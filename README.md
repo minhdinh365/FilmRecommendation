@@ -19,10 +19,10 @@ Film Recommendation là một trang giúp bạn tìm thấy những bộ phim m�
 
 ### Công nghệ được sử dụng
 Công nghệ Mern Stack
-Front End:
+### Front End:
 * [Boostrap](https://getbootstrap.com/)
 * [React](https://reactjs.org/)
-Back End
+### Back End:
 * [MongoDB](https://www.mongodb.com/)
 * [Express](https://expressjs.com/)
 * [Nodejs](https://nodejs.dev/)
