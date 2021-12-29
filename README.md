@@ -9,17 +9,20 @@ Film Recommendation là một trang giúp bạn tìm thấy những bộ phim m�
 * Bạn có thể xem bản demo [tại đây](https://chom-phim.netlify.app/#/)
 
 
-### Chạy website
-* Bạn có thể clone repo từ https://github.com/minhdinh365/FilmRecommendation vào Desktop của bạn.
-* Cài đặt [Node.js](https://nodejs.org/en/) để có thể sử dụng `npm`
-* Mở terminal/cmd và chạy lệnh `npm install` để cài đặt cái package cần thiết
-* Mở terminal/cmd và chạy lệnh `npm start` , mở trình duyệt của bạn tại địa chỉ `http://localhost:3000/`
+### Hướng Dẫn Chạy Website
+* Bạn có thể clone repository từ https://github.com/minhdinh365/FilmRecommendation vào Desktop của bạn.
+* Cài đặt [Node.js](https://nodejs.org/en/) để có thể sử dụng `npm`.
+* Mở terminal/cmd và chạy lệnh `npm install`, để cài đặt các package cần thiết.
+* Mở terminal/cmd và chạy lệnh `npm start`, mở trình duyệt của bạn tại địa chỉ `http://localhost:3000/`.
+
 
 
 ### Công nghệ được sử dụng
 Công nghệ Mern Stack
+Front End:
+* [Boostrap](https://getbootstrap.com/)
+* [React](https://reactjs.org/)
+Back End
 * [MongoDB](https://www.mongodb.com/)
 * [Express](https://expressjs.com/)
-* [React](https://reactjs.org/)
 * [Nodejs](https://nodejs.dev/)
-* [Boostrap](https://getbootstrap.com/)
