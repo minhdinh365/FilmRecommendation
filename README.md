@@ -3,7 +3,7 @@
 Film Recommendation là một trang giúp bạn tìm thấy những bộ phim mà bạn yêu thích, gợi ý cho bạn những bộ phim mà bạn đang tìm kiếm bấy lâu nay. Sử dụng nguồn API của [ The Movie Database (TMDb)][1] **API**
 
   [1]: https://www.themoviedb.org/documentation/api
-![The Film recomend in Reactjs](https://github.com/minhdinh365/FilmRecommendation/blob/main/Project/public/images/demo.png)
+![The Film recomend in Reactjs](https://github.com/minhdinh365/FilmRecommendation/blob/main/Project/public/images/demo.PNG)
 
 ## Live Demo
 * Bạn có thể xem bản demo [tại đây](https://chom-phim.netlify.app/#/)
