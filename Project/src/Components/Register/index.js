@@ -285,7 +285,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20, color: "white" } }}
-              autoComplete="off"
+              autoComplete="chrome-off"
               label="Email*"
               variant="outlined"
               fullWidth
@@ -299,7 +299,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
-              autoComplete="off"
+              autoComplete="chrome-off"
               inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Mật khẩu*"
               type="password"
