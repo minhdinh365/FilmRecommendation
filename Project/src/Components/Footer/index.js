@@ -37,15 +37,6 @@ class Footer extends Component {
                 <li>
                   &copy; Film Recommandation nơi cùng bạn chia sẽ các bộ phim{" "}
                 </li>
-                <li>
-                  Design by
-                  <a
-                    title="Styleshout"
-                    href="https://www.facebook.com/ThanhBen.197"
-                  >
-                    Thanh Bằng
-                  </a>
-                </li>
               </ul>
             </div>
           </Fade>

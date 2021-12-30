@@ -35,7 +35,7 @@ export default function index() {
           alt="logo"
         />
       </Backhome>
-      {window.localStorage.getItem("avatar") !== undefined ? (
+      {window.localStorage.getItem("avatar") ? (
         <InFoHeader>
           <div className="dropdown">
             <a className="login-navbar">{success}</a>
