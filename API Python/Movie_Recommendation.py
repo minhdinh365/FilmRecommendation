@@ -1,15 +1,18 @@
 import numpy as np
 import json
+from nltk.stem.porter import PorterStemmer
 import pandas as pd
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
 import json
 from io import StringIO
 
-url = "http://localhost:5000/getallfilm"
+url = "https://chom-phim.herokuapp.com/getallfilm"
 
-response = requests.get(url, verify=False)
+response = requests.get(url)
 movies_df ={}
 
 data_json = json.loads(response.content)
@@ -21,7 +24,7 @@ movies_df['crew'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orie
 movies_df['genre_ids'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['genre_ids'].values
 
 def allTitle():
-    url = "http://localhost:5000/getallfilm"
+    url = "https://chom-phim.herokuapp.com/getallfilm"
     response = requests.get(url, verify=False)
     data_json = json.loads(response.content)
     result = {}
@@ -77,11 +80,16 @@ get_list(pd.DataFrame(movies_df["keywords"]), collumn='keywords')
 get_list(pd.DataFrame(movies_df["genre_ids"]), collumn='genre_ids')
 
 movies_df['soup'] = []
+stopwords=[]
 def create_soup(x):
     stop = (int)(x.size /len(x))
+    ps = PorterStemmer()
     for i in range(stop):
-        movies_df["soup"].append((' '.join(x[i]['keywords']) + ' ' + ' '.join(x[i]['cast']) + ' ' + ' '.join(x[i]['director']) + ' '+ ' '.join(x[i]['genre_ids'])).replace("'", "").replace("\\", ""))
-
+      x[i]['keywords'] = [ps.stem(word) for word in x[i]['keywords'] if not word in set(stopwords)]
+      x[i]['cast'] = [ps.stem(word) for word in x[i]['cast'] if not word in set(stopwords)]
+      x[i]['director'] = [ps.stem(word) for word in x[i]['director'] if not word in set(stopwords)]
+      x[i]['genre_ids'] = [ps.stem(word) for word in x[i]['genre_ids'] if not word in set(stopwords)]
+      movies_df["soup"].append((' '.join(x[i]['keywords'] ) + ' ' + ' '.join(x[i]['cast']) + ' ' + ' '.join(x[i]['director']) + ' '+ ' '.join(x[i]['genre_ids'])).replace("'", "").replace("\\", ""))
 create_soup(pd.DataFrame.from_dict(movies_df, orient = 'index'))
 
 count_vectorizer = CountVectorizer(stop_words="english")

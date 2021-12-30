@@ -182,7 +182,7 @@ const SignUp = () => {
         })
         .then(
           (response) => {
-            console.log(response)
+            console.log(response);
             if (response.data.status === "success") {
               setsuccess(true);
             } else {
@@ -285,6 +285,7 @@ const SignUp = () => {
             <TextField
               className="text-field-register"
               inputProps={{ style: { fontSize: 20, color: "white" } }}
+              autoComplete="false"
               label="Email*"
               variant="outlined"
               fullWidth
@@ -298,6 +299,7 @@ const SignUp = () => {
             />
             <TextField
               className="text-field-register"
+              autoComplete="false"
               inputProps={{ style: { fontSize: 20, color: "white" } }}
               label="Mật khẩu*"
               type="password"
@@ -339,8 +341,8 @@ const SignUp = () => {
                     style={{ marginRight: "5px" }}
                   />
                 )}
-
-                Đăng kí</span>
+                Đăng kí
+              </span>
             </RegisterButton>
           </Information>
         </Card>

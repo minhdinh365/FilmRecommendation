@@ -35,21 +35,23 @@ export default function index() {
           alt="logo"
         />
       </Backhome>
-      <InFoHeader>
-        <div className="dropdown">
-          <a className="login-navbar">{success}</a>
-          <div className="dropdown-content">
-            <p>
-              <a href="/#/inforuser">Thông tin tài khoản</a>
-            </p>
-            <p>
-              <a href="/#/activities">Hoạt động gần đây</a>
-            </p>
-            <p onClick={Logout}>Thoát</p>
+      {window.localStorage.getItem("avatar") !== undefined ? (
+        <InFoHeader>
+          <div className="dropdown">
+            <a className="login-navbar">{success}</a>
+            <div className="dropdown-content">
+              <p>
+                <a href="/#/inforuser">Thông tin tài khoản</a>
+              </p>
+              <p>
+                <a href="/#/activities">Hoạt động gần đây</a>
+              </p>
+              <p onClick={Logout}>Thoát</p>
+            </div>
           </div>
-        </div>
-        <Avatar alt={success} src={window.localStorage.getItem("avatar")} />
-      </InFoHeader>
+          <Avatar alt={success} src={window.localStorage.getItem("avatar")} />
+        </InFoHeader>
+      ) : null}
     </HeaderUser>
   );
 }

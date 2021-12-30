@@ -493,7 +493,7 @@ class Reply extends React.Component {
                 ? this.props.time
                 : "1 giây trước"}
             </h5>
-            <h4>{this.props.content}</h4>
+            <pre>{this.props.content}</pre>
           </ReplyFrame>
         </ReviewFrame>
       </>
