@@ -33,7 +33,6 @@ namespace TrainAPI.Controllers
 
         public IActionResult SetValue()
         {
-            Console.WriteLine(IPAddress.Loopback);
             mlContext = new MLContext();
             client = factory.CreateClient();
             fmd = new FilmsModel[1974];

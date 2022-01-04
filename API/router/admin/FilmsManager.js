@@ -1,9 +1,7 @@
 import express from "express";
 import {
   getFilms,
-  addFilms,
-  PostFilms,
-  getEditFilm,
+  postFilms,
   putFilm,
   deleteFilm,
   searchFilms,
@@ -11,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.route("/home/films/search/:page").get(searchFilms);
-router.route("/home/films").get(getFilms);
-router.route("/home/addFilm").get(addFilms).post(PostFilms);
-router.route("/home/:id/editFilm/").get(getEditFilm).put(putFilm);
-router.route("/home/delete/:id").delete(deleteFilm);
+router.route("/admin/films/search/:page").get(searchFilms);
+router.route("/admin/films").get(getFilms);
+router.route("/admin/addFilm").post(postFilms);
+router.route("/admin/:id/editFilm/").put(putFilm);
+router.route("/admin/delete/:id").delete(deleteFilm);
 
 export default router;

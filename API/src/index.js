@@ -72,31 +72,6 @@ mongoose
     console.log("error", err);
   });
 
-app.engine(
-  "hbs",
-  handlebars({
-    extname: ".hbs",
-    defaultLayout: "main",
-    helpers: {
-      times: function (n, block) {
-        var accum = "";
-        for (var i = 0; i < n; ++i) {
-          block.data.index = i + 1;
-          block.data.first = i === 0;
-          block.data.last = i === n - 1;
-          accum += block.fn(this);
-        }
-        return accum;
-      },
-    },
-  })
-);
-
-//handlebars
-const __dirname = path.resolve();
-app.set("view engine", "hbs");
-app.set("views", __dirname + "/src/resources/views");
-
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
 app.use("/", LoginPage);

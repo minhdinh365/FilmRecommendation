@@ -2,11 +2,7 @@ import { Account } from "../../models/Account.js";
 import { Information } from "../../models/Information.js";
 import passwordHash from "password-hash";
 
-export const admin = async (req, res, next) => {
-  res.render("login/index");
-};
-
-export const Login = async (req, res, next) => {
+export const Login = async (req, res) => {
   const loginFail =
     "<div class='alert alert-danger' role='alert'>Login information is incorrect. Please check again</div>";
 

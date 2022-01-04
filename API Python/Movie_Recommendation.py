@@ -19,7 +19,7 @@ data_json = json.loads(response.content)
 movies_df['cast'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['cast'].values
 movies_df['id'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['id'].values
 movies_df['keywords'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['keywords'].values
-movies_df['original_title'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['id'].values
+movies_df['original_title'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['original_title'].values
 movies_df['crew'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['crew'].values
 movies_df['genre_ids'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['genre_ids'].values
 
@@ -80,26 +80,33 @@ get_list(pd.DataFrame(movies_df["keywords"]), collumn='keywords')
 get_list(pd.DataFrame(movies_df["genre_ids"]), collumn='genre_ids')
 
 movies_df['soup'] = []
-stopwords=[]
+stopwords=["phim"]
 def create_soup(x):
     stop = (int)(x.size /len(x))
-    ps = PorterStemmer()
     for i in range(stop):
-      x[i]['keywords'] = [ps.stem(word) for word in x[i]['keywords'] if not word in set(stopwords)]
-      x[i]['cast'] = [ps.stem(word) for word in x[i]['cast'] if not word in set(stopwords)]
-      x[i]['director'] = [ps.stem(word) for word in x[i]['director'] if not word in set(stopwords)]
-      x[i]['genre_ids'] = [ps.stem(word) for word in x[i]['genre_ids'] if not word in set(stopwords)]
       movies_df["soup"].append((' '.join(x[i]['keywords'] ) + ' ' + ' '.join(x[i]['cast']) + ' ' + ' '.join(x[i]['director']) + ' '+ ' '.join(x[i]['genre_ids'])).replace("'", "").replace("\\", ""))
 create_soup(pd.DataFrame.from_dict(movies_df, orient = 'index'))
 
+ps = PorterStemmer()
+movies_df['total'] = []
+for words in movies_df['soup']:
+  movies_df['total'].append([ps.stem(word) for word in words.split() if not word in set(stopwords)])
+
+movies_df['train'] = []
+for words in movies_df['total']:
+  temp = ""
+  for word in words:
+    temp += word + " "
+  movies_df['train'].append(temp)
+
 count_vectorizer = CountVectorizer(stop_words="english")
-count_matrix = count_vectorizer.fit_transform(movies_df["soup"])
+count_matrix = count_vectorizer.fit_transform(movies_df["train"])
 
 cosine_sim2 = cosine_similarity(count_matrix, count_matrix)
 
 movies_df = pd.DataFrame.from_dict(movies_df, orient = 'index').reset_index()
 movies_df = movies_df.transpose()
-indices = pd.Series(movies_df.index, index=movies_df[3])
+indices = pd.Series(movies_df.index, index=movies_df[1])
 
 def recommand(title):
     result = get_recommendations(title, cosine_sim2).to_json(orient="records")
