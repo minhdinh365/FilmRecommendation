@@ -12,7 +12,8 @@ from io import StringIO
 
 url = "https://chom-phim.herokuapp.com/getallfilm"
 
-response = requests.get(url)
+response = requests.get(url, verify=False, timeout=1000)
+print(response.content)
 movies_df ={}
 
 data_json = json.loads(response.content)
@@ -25,7 +26,8 @@ movies_df['genre_ids'] = pd.read_json(StringIO(json.dumps(data_json['result'])),
 
 def allTitle():
     url = "https://chom-phim.herokuapp.com/getallfilm"
-    response = requests.get(url, verify=False)
+    response = requests.get(url, verify=False, timeout=1000)
+    print(response.content)
     data_json = json.loads(response.content)
     result = {}
     result['original_title'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['original_title'].values
