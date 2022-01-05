@@ -2,7 +2,6 @@ import { Film } from "../models/Film.js";
 import { text } from "express";
 import axios from "axios";
 
-
 export const getFilms = async (req, res) => {
   try {
     if (req.query.page === null) {
@@ -38,7 +37,8 @@ export const postFilms = async (req, res, next) => {
 export const getFilmHomePage = async (req, res) => {
   try {
     if (req.query.page === undefined) {
-      const List = await Film.find({ category: req.params.typeget },
+      const List = await Film.find(
+        { category: req.params.typeget },
         {
           id: 1,
           original_title: 1,
@@ -47,24 +47,27 @@ export const getFilmHomePage = async (req, res) => {
           overview: 1,
           release_date: 1,
           vote_average: 1,
-          backdrop_path: 1
-        })
-        .limit(20);
+          backdrop_path: 1,
+        }
+      ).limit(20);
       res.json({
         page: 1,
         results: List,
       });
     } else {
-      const List = await Film.find({ category: req.params.typeget }, {
-        id: 1,
-        original_title: 1,
-        title: 1,
-        poster_path: 1,
-        overview: 1,
-        release_date: 1,
-        vote_average: 1,
-        backdrop_path: 1
-      })
+      const List = await Film.find(
+        { category: req.params.typeget },
+        {
+          id: 1,
+          original_title: 1,
+          title: 1,
+          poster_path: 1,
+          overview: 1,
+          release_date: 1,
+          vote_average: 1,
+          backdrop_path: 1,
+        }
+      )
         .limit(20)
         .skip((req.query.page - 1) * 20);
       res.json({
@@ -84,7 +87,7 @@ export const getFilmById = async (req, res) => {
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
-}
+};
 export const UpdateAPI = async (req, res) => {
   try {
     const list = await Film.find({ crew: null });
@@ -129,7 +132,7 @@ export const UpdateAPI = async (req, res) => {
           console.log(err.message);
         });
     });
-  } catch (err) { }
+  } catch (err) {}
 };
 
 export const getAllFilm = async (req, res) => {
@@ -137,12 +140,12 @@ export const getAllFilm = async (req, res) => {
     const result = await Film.find(
       {},
       {
-        genre_ids: 1,
+        genre_ids: { name: 1 },
         id: 1,
         original_title: 1,
-        crew: 1,
-        cast: 1,
-        keywords: 1,
+        crew: { name: 1 },
+        cast: { name: 1 },
+        keywords: { name: 1 },
         title: 1,
         poster_path: 1,
       }
@@ -152,4 +155,3 @@ export const getAllFilm = async (req, res) => {
     res.json({ err: err.message });
   }
 };
-
