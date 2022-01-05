@@ -5,7 +5,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js"
+    "start": "nodemon --inspect --experimental-worker src/index.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.0.5",
     "node-sass": "^6.0.1",
+    "node-worker-threads-pool": "^1.5.1",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.13",
     "password-hash": "^1.2.2",

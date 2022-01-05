@@ -140,12 +140,12 @@ export const getAllFilm = async (req, res) => {
     const result = await Film.find(
       {},
       {
-        genre_ids: 1,
+        genre_ids: { name: 1 },
         id: 1,
         original_title: 1,
-        crew: 1,
-        cast: 1,
-        keywords: 1,
+        crew: { name: 1, job: 1 },
+        cast: { name: 1 },
+        keywords: { name: 1 },
         title: 1,
         poster_path: 1,
       }
