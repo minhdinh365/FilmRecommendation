@@ -9,3 +9,4 @@ export const VIDEO_LINK = "https://api.themoviedb.org/3/movie/";
 export const LocalhostClient = "https://chom-phim.netlify.app/";
 export const LocalhostApi = "https://chom-phim.herokuapp.com/";
 export const LocalASP_Net = "https://ChomPhim.somee.com/ChomPhim/home/predict/";
+export const LocalhostAdmin = "https://admin-chom-phim.netlify.app/";
