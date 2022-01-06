@@ -6,11 +6,15 @@ export const getFilms = async (req, res) => {
     let countListFilm = await Film.find().count();
     let ListFilms = await Film.find(
       {},
-      { id: 1, title: 1, vote_average: 1, release_date: 1, budget: 1 }
-    )
-      .populate("cmt")
-      .limit(20)
-      .skip((Number(req.query.page) - 1) * 20);
+      {
+        id: 1,
+        title: 1,
+        vote_average: 1,
+        release_date: 1,
+        budget: 1,
+        poster_path: 1,
+      }
+    ).populate("cmt");
     res.status(200).json({ ListFilms, countListFilm });
   } catch (err) {
     res.status(500).json({ message: err.message });

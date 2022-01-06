@@ -14,20 +14,40 @@ export const getAccount = async (req, res) => {
   })
     .then((data) => {
       if (passwordHash.verify(password_request, data.password)) {
-        var token = jwt.sign(
-          {
-            id: data._id,
-            username: data.username,
-            email: data.email,
-          },
-          "Account",
-          { expiresIn: "1h" }
-        );
-        return res.json({
-          status: "Susscess",
-          message: "Đăng nhập thành công",
-          token: token,
-        });
+        if (data.role == 1) {
+          var token = jwt.sign(
+            {
+              id: data._id,
+              username: data.username,
+              role: 1,
+              email: data.email,
+            },
+            "f330ed74$1$eb8d3bf6b3286fc92cc44de237465ea4f209c991",
+            { expiresIn: "1h" }
+          );
+
+          return res.json({
+            status: "Susscess",
+            message: "Đăng nhập thành công",
+            token: token,
+          });
+        } else {
+          var token = jwt.sign(
+            {
+              id: data._id,
+              username: data.username,
+              role: 0,
+              email: data.email,
+            },
+            "f330ed74$1$eb8d3bf6b3286fc92cc44de237465ea4f209c991",
+            { expiresIn: "1h" }
+          );
+          return res.json({
+            status: "Susscess",
+            message: "Đăng nhập thành công",
+            token: token,
+          });
+        }
       } else {
         return res.json({
           status: "Fail",
@@ -53,7 +73,6 @@ export const showAccount = async (req, res) => {
 };
 export const loginInfor = async (req, res, next) => {
   try {
-    console.log(req.query.token);
     var token = req.query.token;
     var result = jwt.verify(token, "Account");
     if (result) {

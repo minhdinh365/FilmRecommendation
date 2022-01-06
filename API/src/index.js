@@ -10,12 +10,10 @@ import Recommendation from "../router/Recommendation.js";
 import Information from "../router/Information.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
-import LoginPage from "../router/admin/Login.js";
+import Dashboard from "../router/admin/Dashboard.js";
 import bodyParser from "body-parser";
 import Search from "../router/Search.js";
-import handlebars from "express-handlebars";
 import methodOverride from "method-override";
-import path from "path";
 import { Server } from "socket.io";
 
 dotenv.config();
@@ -74,4 +72,4 @@ mongoose
 
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
-app.use("/", LoginPage);
+app.use("/", Dashboard);
