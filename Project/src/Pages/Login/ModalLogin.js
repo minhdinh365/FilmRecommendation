@@ -5,11 +5,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Axios from "axios";
-import { LocalhostClient, LocalhostAdmin } from "../../API/const";
+import { LocalhostClient } from "../../API/const";
 import { LocalhostApi } from "../../API/const";
 import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
-import jwt_decode from "jwt-decode";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import UseFullLoading from "../../Components/FullPageLoading";
@@ -53,46 +52,22 @@ function ModalLogin(props) {
         if (res.data.status === "Susscess") {
           window.location.reload();
           setLoginOpen(false);
-
-          console.log(jwt_decode(res.data.token).role);
-          if (jwt_decode(res.data.token).role != 1) {
-            if (!Cookies.get("User")) {
-              setCookie("User", res.data.token, {
-                path: LocalhostClient,
-                maxAge: 43200,
-              });
-            } else {
-              document.cookie =
-                "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
-              window.localStorage.clear();
-              setCookie("User", res.data.token, {
-                path: LocalhostClient,
-                maxAge: 43200,
-              });
-            }
-            if (registerUser) {
-              window.location = LocalhostClient;
-            }
+          if (!Cookies.get("User")) {
+            setCookie("User", res.data.token, {
+              path: LocalhostClient,
+              maxAge: 43200,
+            });
           } else {
-            if (!Cookies.get("Admin")) {
-              window.location = LocalhostAdmin;
-              setCookie("Admin", res.data.token, {
-                path: LocalhostAdmin,
-                maxAge: 43200,
-                domain: LocalhostAdmin,
-              });
-            } else {
-              document.cookie =
-                "Admin=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
-              window.localStorage.clear();
-              setCookie("Admin", res.data.token, {
-                path: LocalhostAdmin,
-                maxAge: 43200,
-                domain: LocalhostAdmin,
-              });
-            }
+            document.cookie = "User=; expires= Thu, 01 Jan 1970 00:00:01 GMT;";
+            window.localStorage.clear();
+            setCookie("User", res.data.token, {
+              path: LocalhostClient,
+              maxAge: 43200,
+            });
           }
-
+          if (registerUser) {
+            window.location = LocalhostClient;
+          }
           hideLoader();
         } else {
           hideLoader();

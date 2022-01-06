@@ -1,86 +1,252 @@
 import { Film } from "../../models/Film.js";
+import { Account } from "../../models/Account.js";
 import escapeStringRegexp from "escape-string-regexp";
 
-export const getFilms = async (req, res) => {
+export const getFilms = async (req, res, next) => {
   try {
-    let countListFilm = await Film.find().count();
-    let ListFilms = await Film.find(
-      {},
-      {
-        id: 1,
-        title: 1,
-        vote_average: 1,
-        release_date: 1,
-        budget: 1,
-        poster_path: 1,
+    if (info !== undefined) {
+      try {
+        global.countListFilm =
+          (await Film.find().count()) === undefined
+            ? 0
+            : await Film.find().count();
+        global.countListAccount =
+          (await Account.find().count()) === undefined
+            ? 0
+            : await Account.find().count();
+        let count = countListFilm / 20;
+        let temp = await Film.find()
+          .populate("cmt")
+          .limit(20)
+          .skip((Number(req.query.page) - 1) * 20);
+        let ListFilms = [];
+        temp = temp.map((list) => {
+          list._doc.cmt = list.cmt;
+          ListFilms.push(list.toObject());
+        });
+        let linkPage = "/home/films?page=";
+        res.render("home/index", {
+          ListFilms,
+          count,
+          linkPage,
+          countListFilm,
+          countListAccount,
+          info,
+        });
+      } catch (err) {
+        const message = err.message;
+        res.render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
       }
-    ).populate("cmt");
-    res.status(200).json({ ListFilms, countListFilm });
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.redirect("/admin/login");
   }
 };
 
-export const postFilms = async (req, res) => {
+export const addFilms = async (req, res, next) => {
   try {
-    const checkID = await Film.findOne({ id: req.body.id });
-    if (checkID.length != 0) {
-      res.status(205).json({ message: "Id phim đã tồn tại" });
+    if (info !== undefined) {
+      try {
+        res.render("home/addFilm", { countListFilm, countListAccount, info });
+      } catch (err) {
+        const message = err.message;
+        res.render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      }
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
     }
+  } catch (err) {
+    res.redirect("/admin/login");
+  }
+};
+
+export const PostFilms = async (req, res, next) => {
+  try {
+    global.countListFilm =
+      Film.find().count() === undefined ? 0 : Film.find().count();
+    global.countListAccount =
+      Account.find().count() === undefined ? 0 : Account.find().count();
     const film = new Film(req.body);
     film.save();
-    res.status(201).json({ message: "Thêm phim mới thành công" });
+    let announcement =
+      "<div class='alert alert-success' role='alert'>successfully added new movie</div>";
+    res.status(200).render("home/addFilm", {
+      announcement,
+      countListFilm,
+      countListAccount,
+      info,
+    });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    let announcement =
+      "<div class='alert alert-danger' role='alert'>Can't add new movies. Please check again</div>";
+    res.render("home/addFilm", {
+      announcement,
+      countListFilm,
+      countListAccount,
+      info,
+    });
   }
 };
 
-export const putFilm = async (req, res) => {
+export const getEditFilm = async (req, res, next) => {
+  try {
+    if (info !== undefined) {
+      try {
+        let film = await Film.findOne({ id: Number(req.params.id) });
+        film = film.toObject();
+        res.render("home/editFilm", {
+          film,
+          countListFilm,
+          countListAccount,
+          info,
+        });
+      } catch (err) {
+        const message = err.message;
+        res.render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      }
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
+  } catch (err) {
+    res.redirect("/admin/login");
+  }
+};
+
+export const putFilm = async (req, res, next) => {
   try {
     Film.updateOne({ id: Number(req.params.id) }, req.body).catch((error) => {
-      res.status(205).json({ message: error.message });
+      const message = err.message;
+      res.render("shared/error", {
+        message,
+        countListAccount,
+        countListFilm,
+        info,
+      });
     });
     let film = await Film.findOne({ id: Number(req.params.id) });
-    res.status(200).json({ film });
+    film = film.toObject();
+    let announcement =
+      "<div class='alert alert-success' role='alert'>A successfully updated movie</div>";
+    res.status(200).render("home/editFilm", {
+      film,
+      announcement,
+      countListFilm,
+      countListAccount,
+      info,
+    });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    const message = err.message;
+    res.render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
   }
 };
 
-export const deleteFilm = async (req, res) => {
+export const deleteFilm = async (req, res, next) => {
   try {
-    Film.deleteOne({ id: Number(req.params.id) }).catch((err) => {
-      res.status(500).json({ message: err.message });
+    Film.deleteOne({ id: Number(req.params.id) }).catch((error) => {
+      const message = err.message;
+      res.render("shared/error", {
+        message,
+        countListAccount,
+        countListFilm,
+        info,
+      });
     });
-    res.status(200).json({ message: "xóa phim thành công" });
+    res.redirect("back");
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    const message = err.message;
+    res.render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
   }
 };
 
-export const searchFilms = async (req, res) => {
+export const searchFilms = async (req, res, next) => {
   try {
-    let searchContent = req.query.content;
-    let id = parseInt(searchContent) || 0;
-    const $regex = escapeStringRegexp(searchContent);
-    let countFind = await (
-      await Film.find({
-        $or: [{ id: id }, { title: { $regex: searchContent } }],
-      })
-    ).length;
-    let ListFilms = await Film.find({
-      $or: [{ id: id }, { title: { $regex: searchContent } }],
-    })
-      .populate("cmt")
-      .limit(20)
-      .skip((req.params.page - 1) * 20);
+    if (info !== undefined) {
+      try {
+        let id = parseInt(req.query.content) || 0;
+        const $regex = escapeStringRegexp(req.query.content);
+        let countRz = await (
+          await Film.find({
+            $or: [{ id: id }, { title: { $regex: req.query.content } }],
+          })
+        ).length;
+        let count = countRz / 20;
+        let ListFilms = await Film.find({
+          $or: [{ id: id }, { title: { $regex: req.query.content } }],
+        })
+          .populate("cmt")
+          .limit(20)
+          .skip((req.params.page - 1) * 20);
+        ListFilms = ListFilms.map((list) => list.toObject());
+        let linkPage = "/home/films/search/";
+        let search = "?content=" + req.query.content;
+        let parentPage = req.params.page;
+        let Result =
+          "<div class='alert alert-warning' role='alert'>" +
+          countRz +
+          " Results for '" +
+          req.query.content +
+          "'" +
+          "</div>";
 
-    res.status(200).json({
-      listFilm: ListFilms,
-      countFind: countFind,
-      content: searchContent,
-    });
+        res.render("home/index", {
+          ListFilms,
+          count,
+          linkPage,
+          search,
+          parentPage,
+          countListFilm,
+          Result,
+          countListAccount,
+          info,
+        });
+      } catch (err) {
+        const message = err.message;
+        res.render("shared/error", {
+          message,
+          countListAccount,
+          countListFilm,
+          info,
+        });
+      }
+    } else {
+      const loginFail =
+        "<div class='alert alert-danger' role='alert'>Please login to continue</div>";
+      res.render("login/index", { loginFail });
+    }
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.redirect("/admin/login");
   }
 };

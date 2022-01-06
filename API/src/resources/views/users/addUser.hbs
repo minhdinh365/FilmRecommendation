@@ -1,0 +1,116 @@
+{{{announcement}}}
+
+<div class="container">
+  <h1 class="mt-3 mb-5" style="text-align: center">Add A New User</h1>
+  <form method="post" id="myForm" action="/home/users/addAccount" 
+    oninput='up3.setCustomValidity(up3.value != up2.value ? "Passwords do not match." : "")'>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="full_name">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="full_name"
+          placeholder="Enter your full name"
+          id="full_name"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          placeholder="Enter an email address"
+          id="email"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="re_password">Re - Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="re_password"
+          name="re_password"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="username">UserName</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="Enter an username"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label class="mr-sm-2" for="role">Roles</label>
+        <select class="custom-select mr-sm-2" name="role" id="role">
+          <option value="0">~ Admin</option>
+          <option selected value="1">~ Client</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="avatar">Avatar</label>
+        <input type="file"  
+        onchange="onImageSeclected(event)"
+        accept="image/png, image/jpeg"
+        class="form-control-file" 
+        id="avatar" 
+        required
+        />
+      </div>
+    <div class="form-group col-md-6 ">
+       <label for="img-avatar">Avatar</label>
+       <img class="form-control" 
+       style="height: 300px; border-radius: 50%;" 
+       id="img-avatar" 
+       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-hjuFaNMnEAp28Q9Mo7x6QK_IyHnKdOqqA&usqp=CAU"
+       alt="display from profile picture">
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <button type="submit" class="btn btn-info">Add</button>
+    </div>
+    </div>
+
+  
+  </form>
+</div>
+
+<script>
+  let imgByte;
+    function onImageSeclected (event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        var imgtag = document.getElementById("img-avatar");
+
+        reader.onload = function(event) {
+            imgtag.src = event.target.result;
+            imgByte = event.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+    }
+    $('#myForm').submit(function(eventObj) {
+    $(this).append('<input type="hidden" name="avatar" value="'+ imgByte+'">');
+    return true;
+});
+</script>

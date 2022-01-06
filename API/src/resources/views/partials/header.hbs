@@ -1,0 +1,78 @@
+<nav class="navbar navbar-light navbar-1 bg-primary">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand text-white" href="/home/films?page=1">Film
+    Recommendation</a>
+  {{#if info}}
+    <div
+      class="list-group-item active d-flex justify-content-start align-items-center py-3"
+    >
+      <img
+        src="{{{info.avatar}}}"
+        class="rounded-circle z-depth-0"
+        width="50"
+        alt="avatar image"
+      />
+      <div class="d-flex flex-column pl-3">
+        <p class="font-weight-normal mb-0">{{{info.full_name}}}</p>
+        <p class="small mb-0">Admin</p>
+      </div>
+    </div>
+  {{/if}}
+  <!-- Collapse button -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  ><span class="navbar-toggler-icon"></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+    <!-- Links -->
+    {{! <div class="row">
+      <div class="col-md-8 col-lg-2"> }}
+
+    <!-- Section: Block Content -->
+    <section>
+
+      <div class="list-group list-group-flush z-depth-1 rounded">
+
+        <a
+          href="/home/films?page=1"
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        >Films
+          <span class="badge badge-info badge-pill">{{countListFilm}}</span>
+        </a>
+        <a
+          href="/home/users/1"
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        >Users
+          <span
+            class="badge badge-warning badge-pill"
+          >{{countListAccount}}</span>
+        </a>
+        <a
+          href="/admin/logout"
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+        >Log Out
+          <ion-icon name="log-out-outline"></ion-icon>
+
+        </a>
+      </div>
+
+    </section>
+    <!-- Section: Block Content -->
+    {{! </div>
+    </div> }}
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->

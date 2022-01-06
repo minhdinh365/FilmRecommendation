@@ -8,12 +8,17 @@ import Films from "../router/Films.js";
 import Watched from "../router/Watched.js";
 import Recommendation from "../router/Recommendation.js";
 import Information from "../router/Information.js";
+import FilmsAdmin from "../router/admin/Films.js";
+import UsersAdmin from "../router/admin/Users.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
 import UsersManager from "../router/admin/UsersManager.js";
+import LoginPage from "../router/admin/Login.js";
 import Dashboard from "../router/admin/Dashboard.js";
 import bodyParser from "body-parser";
 import Search from "../router/Search.js";
+import handlebars from "express-handlebars";
 import methodOverride from "method-override";
+import path from "path";
 import { Server } from "socket.io";
 
 dotenv.config();
@@ -70,6 +75,36 @@ mongoose
     console.log("error", err);
   });
 
+app.use("/", FilmsAdmin);
+app.use("/", UsersAdmin);
+app.use("/", Dashboard);
+
+app.engine(
+  "hbs",
+  handlebars({
+    extname: ".hbs",
+    defaultLayout: "main",
+    helpers: {
+      times: function (n, block) {
+        var accum = "";
+        for (var i = 0; i < n; ++i) {
+          block.data.index = i + 1;
+          block.data.first = i === 0;
+          block.data.last = i === n - 1;
+          accum += block.fn(this);
+        }
+        return accum;
+      },
+    },
+  })
+);
+
+//handlebars
+const __dirname = path.resolve();
+console.log(__dirname);
+app.set("view engine", "hbs");
+app.set("views", __dirname + "/src/resources/views");
+
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
-app.use("/", Dashboard);
+app.use("/", LoginPage);
