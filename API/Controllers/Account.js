@@ -176,7 +176,7 @@ export const forgetPass = async (req, res) => {
     const code = randomstring.generate(6);
 
     var mailOptions = {
-      from: "minhdinhtran0@gmail.com",
+      from: process.env.EMAIL_ADDRESS,
       to: email,
       subject: "Recover your password from Chom Phim",
       html: `
