@@ -64,7 +64,6 @@ export const Container = styled.div`
   display: block;
   justify-content: center;
 `;
-
 export const Card = styled.div`
   width: 90%;
   display: flex;
@@ -80,6 +79,7 @@ export const Card = styled.div`
     justify-content: center;
   }
 `;
+
 
 export const Poster = styled.img`
   width: 40%;
@@ -151,7 +151,7 @@ export const Controller = styled.div`
 `;
 
 export const Rate = styled.div`
-  width: 80px;
+  width: 50px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -317,7 +317,7 @@ export const Caster = styled.div`
   display: block;
   padding-top: 30px;
   h2 {
-    margin: 0px 20px 20px 20px;
+    margin: 50px 20px 20px 20px;
     color: yellow;
   }
 `;

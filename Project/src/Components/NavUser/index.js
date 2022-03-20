@@ -45,7 +45,7 @@ export default function index() {
               </p>
               <p>
                 <a href="/#/activities">Hoạt động gần đây</a>
-              </p>
+              </p>             
               <p onClick={Logout}>Thoát</p>
             </div>
           </div>

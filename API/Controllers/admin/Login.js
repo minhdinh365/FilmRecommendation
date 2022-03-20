@@ -21,7 +21,7 @@ export const Login = async (req, res, next) => {
           username: VerifyUsername.username,
         });
         info = info.toObject();
-        res.status(200).redirect("/home/films?page=1");
+        res.status(200).redirect("/home/dashboard");
       } else {
         res.render("login/index", { loginFail });
       }

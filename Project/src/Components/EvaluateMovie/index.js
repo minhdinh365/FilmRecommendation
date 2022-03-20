@@ -335,8 +335,9 @@ class CommentForm extends React.Component {
             </h2>
             {isLogin ? (
               <>
-                <Group>
-                  <Rating
+                <Group style={{display: "table", position: "relative"}}>
+                  Rating Star:&ensp;
+                  <Rating style={{position : "absolute"}}
                     fontSize="large"
                     name="simple-controlled"
                     value={this.state.star}

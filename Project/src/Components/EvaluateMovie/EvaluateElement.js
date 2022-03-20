@@ -36,9 +36,8 @@ export const Card = styled.div`
   background: black;
   h2 {
     font: 28px "opensans-semibold", sans-serif;
-    margin-bottom: 30px;
+    margin: 0px;
     position: relative;
-    margin: 10px 0px;
     padding: 0;
     text-align: left;
     background-color: rgba(0, 0, 0, 0.85);
@@ -46,8 +45,7 @@ export const Card = styled.div`
   span {
     justify-content: center;
     align-items: center;
-    font-size: 23px;
-    position: relat;
+    font-size: 23px; 
   }
   & div:nth-child(2) {
     justify-content: center;
@@ -70,6 +68,10 @@ export const Card = styled.div`
     height: 3px;
     left: 0;
     right: 0;
+  }
+  h4{
+    display: table;
+    margin: 0;
   }
 `;
 
@@ -208,7 +210,8 @@ export const EvaluateFrame = styled.div`
     font-family: "opensans-regular", sans-serif;
     text-align: left;
     margin: 0;
-    grid-area: 1 / 4 / auto / auto;
+    grid-column: 4;
+    grid-row: 1/4;
     font-size: 16px;
     color: #fff;
     font-weight: 400;
@@ -241,6 +244,8 @@ export const ReviewFrame = styled.div`
 
 export const Group = styled.div`
   display: flex;
+  padding: 10px 0px;
+
 `;
 
 export const GroupPost = styled.div`

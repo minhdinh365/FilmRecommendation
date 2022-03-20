@@ -105,6 +105,7 @@ console.log(__dirname);
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/src/resources/views");
 
+app.use("/", Dashboard);
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
 app.use("/", LoginPage);

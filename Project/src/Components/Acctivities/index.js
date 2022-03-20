@@ -5,7 +5,7 @@ import Fade from "react-reveal";
 
 export default function Index({ account }) {
   const [type, setType] = useState(true);
-  const [comment, setComment] = useState(false);
+  const [comment, setComment] = useState(1);
   const [watchedFilm, setWatchedFilm] = useState(false);
   useEffect(() => {
     let isAcctive = false;
@@ -31,9 +31,7 @@ export default function Index({ account }) {
     };
   }, [account, type]);
   function swtichType(e) {
-    if (e == 1) {
-      setType(true);
-    } else setType(false);
+    setType(e)
   }
   return (
     <div className="acctivity">
@@ -41,16 +39,34 @@ export default function Index({ account }) {
         <span
           id="1"
           onClick={(e) => swtichType(e.target.id)}
-          className={type ? "hightlight-span" : null}
+          className={(type == 1) ? "hightlight-span" : null}
         >
+          <ion-icon name="film"></ion-icon>
           Đã xem gần đây
         </span>
         <span
           id="2"
           onClick={(e) => swtichType(e.target.id)}
-          className={!type ? "hightlight-span" : null}
+          className={(type == 2) ? "hightlight-span" : null}
         >
+         <ion-icon name="chatbubbles"></ion-icon>
           Đã bình luận
+        </span>
+        <span
+          id="3"
+          onClick={(e) => swtichType(e.target.id)}
+          className={(type == 3) ? "hightlight-span" : null}
+        >
+          <ion-icon name="time"></ion-icon>
+          Danh sách xem sau
+        </span>
+        <span
+          id="4"
+          onClick={(e) => swtichType(e.target.id)}
+          className={(type == 4) ? "hightlight-span" : null}
+        >
+          <ion-icon name="thumbs-up"></ion-icon>
+          Phim đã yêu thích
         </span>
       </div>
       <div className="detail-acctivity">
@@ -96,7 +112,7 @@ export default function Index({ account }) {
               <>
                 <div className="card-detail-acctivity2">
                   <span>Phim</span>
-                  <span>Tựa đề</span>
+                  <span>Tựa đề</span>s
                   <span>Ngày bình luận</span>
                   <span>Sao đánh giá</span>
                   <span>Nội dung bình luận</span>

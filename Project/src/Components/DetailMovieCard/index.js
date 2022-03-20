@@ -4,6 +4,8 @@ import { URL_BACKGROUND } from "../../API/const";
 import { Link, animateScroll as scroll } from "react-scroll";
 import Iframe from "../../Components/Iframe";
 import Fade from "react-reveal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   PlayYoutube,
   Container,
@@ -30,17 +32,21 @@ import {
   WrapperButton,
   WrapperThum,
   Keywords,
+  WrapperCard
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
-
+  function SaveMovie() {
+    toast.info("Đã lưu vào danh sách xem sau");
+  }
   useEffect(() => {
     document.title = props.contents.title;
   }, []);
   return (
     <>
+
       {/* <Advertisments start ={0} end = {10000}/> */}
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
@@ -106,6 +112,7 @@ const DetailMovieCard = (props) => {
                         Xem Phim
                       </Link>
                     </TrailerButton>
+
                   </WrapperButton>
                 </Controller>
                 <Slogan>{props.contents.tagline}</Slogan>
@@ -143,6 +150,16 @@ const DetailMovieCard = (props) => {
             </Detail>
           </Card>
           <Caster>
+            <WrapperButton>
+              <TrailerButton onClick={() => SaveMovie()}>
+                <ion-icon name="stopwatch"></ion-icon>
+                <span>Xem Sau</span>
+              </TrailerButton>
+              <TrailerButton onClick={() => SaveMovie()}>
+                <ion-icon name="stopwatch"></ion-icon>
+                <span >Yêu thích</span>
+              </TrailerButton>
+            </WrapperButton>
             <h2>Diễn viên trong phim</h2>
             <WrapperCaster>
               {props.castMovie.slice(0, 6).map((element) => {
@@ -167,7 +184,7 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
           <Fade bottom duration={3000}>
-            <Iframe id={props.contents.id} />
+
           </Fade>
         </Container>
       </Background>
