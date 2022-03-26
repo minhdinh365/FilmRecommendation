@@ -8,6 +8,14 @@ export const searchFilms = async (req, res, next) => {
         title: 1,
         poster_path: 1,
         id: 1,
+        cast: {
+          name: 1,
+          profile_path: 1,         
+        },
+        crew: {
+          name: 1,
+          profile_path: 1,       
+        },
       }
     );
     res.status(200).json({

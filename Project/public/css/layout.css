@@ -257,9 +257,9 @@ h3 {
   outline: none;
   border: none;
   font-size: 20px;
-  color: white;
+  color: black;
   font-weight: 600;
-  background-color: red;
+  background-color: yellow;
   box-shadow: #737676;
   border-radius: 10px;
   cursor: pointer;
@@ -2362,4 +2362,45 @@ p {
 #recommend-user h2 strong {
   background-color: #191818;
   padding: 0px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip{
+  display: block;
+  padding: 5px;
+  position: relative;
+}
+.tooltip span{
+  font-family: 'Raleway', sans-serif;
+  font-size:12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  bottom: -30px;
+  left: -30px; 
+  line-height: 38px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0;
+  z-index: 10;
+  /* CSS3 Transition: */
+  -webkit-transition: 0.50s;
+  /* Future proofing (these do not work yet): */
+  -moz-transition: 0.50s;
+  transition: 0.50s; 
+}
+.tooltip:hover span{ width:auto; padding:0 30px;overflow:visible; }
+.tooltip:hover{text-decoration:none;}
+.tooltip span{
+	background-color:black;
+	color:yellow;
+  border-radius: 5px;
+}
+.tooltip.active  > ion-icon{
+  color: yellow;
 }

@@ -19,6 +19,7 @@ import Search from "../router/Search.js";
 import handlebars from "express-handlebars";
 import methodOverride from "method-override";
 import path from "path";
+import CrawlData from "../router/CrawlData.js";
 import { Server } from "socket.io";
 
 dotenv.config();
@@ -39,6 +40,7 @@ app.use("/", Films);
 app.use("/", Search);
 app.use("/", Information);
 app.use("/", Recommendation);
+app.use("/" , CrawlData);
 
 const URI = process.env.DATABASE_URL;
 mongoose

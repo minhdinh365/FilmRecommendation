@@ -92,7 +92,7 @@ export const Frame = styled.div`
   }
 
   & label {
-    background-color: #00fc87;
+    background-color: yellow;
     border-radius: 8px;
     color: #000;
     cursor: pointer;
@@ -182,9 +182,9 @@ export const ReplyFrame = styled.div`
   }
   .line-comment {
     left: 50%;
-    border-left: 2px solid green;
+    border-left: 2px solid yellow;
     height: 28px;
-    border-bottom: 2px solid green;
+    border-bottom: 2px solid yellow;
     width: 100%;
     margin-left: 50%;
   }
@@ -203,7 +203,7 @@ export const EvaluateFrame = styled.div`
   }
   & h3 {
     font-size: 16px;
-    color: #00fc87;
+    color: yellow;
     font-weight: 600;
   }
   & pre {
@@ -232,7 +232,7 @@ export const ReviewFrame = styled.div`
   }
   & h3 {
     font-size: 16px;
-    color: #00fc87;
+    color: yellow;
     font-weight: 600;
   }
   & h4 {

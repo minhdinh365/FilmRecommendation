@@ -5,14 +5,36 @@ export const Container = styled.div`
   margin: auto;
   display: inline-block;
   width: 250px;
+
   input {
     background-color: transparent;
-    border: none;
+    border-radius: 40px;
     color: white;
     outline: none;
-    border-bottom: 1px solid gray;
+    border: 1px solid gray;
+    display:inline-block;
   }
+  .input:after {
+    font-family: 'FontAwesome';
+    content: '\f274';
+    position: absolute;
+    right: 6px;
+}
 `;
+export const Wrapper = styled.div`
+  position: relative; 
+  ion-icon {
+    color: white;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+`
+export const WrapperIcon = styled.div`
+  position: absolute;
+  top: 2px;
+  right: 0;
+  display: flex;
+`
 
 export const ListSearch = styled.div`
   position: absolute;
@@ -37,21 +59,28 @@ export const CardSearch = styled.div`
   a {
     transition: none;
   }
+  & span:nth-child(2) {
+    font-size: 11px;
+    top: -10px;
+    color: yellow;
+  }
 `;
 export const Img = styled.img`
-  width: 30%;
+  min-width: 30%;
   height: auto;
   object-fit: cover;
 `;
 export const Title = styled.span`
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   padding: 0px 5px 0px 10px;
   margin: 0;
-  display: inline-block;
+  display: block;
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
   max-height: 1.8em;
   line-height: 1.8em;
 `;
+export const Input = styled.input`
+`

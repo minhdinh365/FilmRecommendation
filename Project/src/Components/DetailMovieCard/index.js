@@ -184,7 +184,7 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
           <Fade bottom duration={3000}>
-
+              <Iframe id={props.contents.id}></Iframe>
           </Fade>
         </Container>
       </Background>
