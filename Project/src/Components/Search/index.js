@@ -17,7 +17,7 @@ export default function Index() {
     }
     else if (!isActive) {
       if (name.length > 0) {
-        axios.get(LocalhostApi + name).then((data) => {
+        axios.get(LocalhostApi + "search/" + name).then((data) => {
           setMovie(data.data.film);
         });
       }
