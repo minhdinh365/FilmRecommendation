@@ -31,9 +31,15 @@ export const Wrapper = styled.div`
 `
 export const WrapperIcon = styled.div`
   position: absolute;
-  top: 2px;
+  top: 6px;
   right: 0;
   display: flex;
+  & div {
+    margin-right: 10px;    
+  }
+  & ion-icon {
+    font-size: 20px;
+  }
 `
 
 export const ListSearch = styled.div`
@@ -43,6 +49,11 @@ export const ListSearch = styled.div`
   height: auto;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
+  & a > p{
+    font-size: 13px;
+    padding-left: 15px;
+    color: yellow;
+  }
 `;
 
 export const CardSearch = styled.div`

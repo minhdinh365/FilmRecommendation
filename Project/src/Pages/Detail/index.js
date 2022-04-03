@@ -87,7 +87,7 @@ const Detail = () => {
   }, [id]);
   if (film !== undefined)
     return (
-      <>
+      <div className="detail_page">
         {loader}
         <Header />
         {film && <DetailMovieCard contents={film} castMovie={castMovie} />}
@@ -97,9 +97,10 @@ const Detail = () => {
           id={id}
           total_comment={total}
         />
+        <span>PHIM LIÊN QUAN</span>
         <Recommendation id={parseInt(id)}></Recommendation>
         <Footer />
-      </>
+      </div>
     );
   else
     return (

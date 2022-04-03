@@ -55,8 +55,7 @@ const Recommandation = (props) => {
     .map((movie) => <MovieCard key={movie.id} movie={movie} />);
   return (
     <section id="portfolio">
-      <div className="movie-for-today">
-        <h1>Phim liên quan</h1>
+      <div className="movie-for-today">       
         <div className="list-movie-for-today">{Movies}</div>
       </div>
     </section>

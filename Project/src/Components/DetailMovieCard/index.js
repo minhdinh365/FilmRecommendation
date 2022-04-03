@@ -145,6 +145,16 @@ const DetailMovieCard = (props) => {
                       );
                     })}
                   </Gener>
+                  <Gener>
+                  <div>Đạo diễn:</div>
+                    {props.contents.crew.map(function (element) {
+                      return element.job == "Director" ? (
+                        <span>{element.name}</span>
+                      ) : (
+                        null
+                      );
+                    })}
+                  </Gener>
                 </Statistics>
               </Fade>
             </Detail>

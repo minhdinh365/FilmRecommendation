@@ -27,7 +27,7 @@ const MovieCard = (props) => {
       >
         <div className="card-movie-now">
           <img
-            alt={`${props.movie.title} Movie Poster`}
+             alt={`${props.movie.title} Movie Poster`}
             src={props.movie.poster_path}
           />
           <div className="card-movie-now-tilte">

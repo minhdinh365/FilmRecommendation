@@ -120,6 +120,14 @@ body {
   margin: auto;
   display: block;
 }
+.detail_page > span {
+  color: yellow;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 30px;
+    font-size: 24px;
+}
 .detail-movie-banner {
   top: 0;
   left: 0;
@@ -1078,6 +1086,7 @@ a:visited {
   color: #58afd1;
   transition: color 0.25s 0.0833333333s;
   position: relative;
+  font-size: 15px;
 }
 .card-movie-now h3::before,
 .card-movie-now h3::after {
@@ -1520,7 +1529,7 @@ footer {
   color: #303030;
   font-size: 14px;
   text-align: center;
-  position: relative;
+  bottom: 0;
 }
 
 footer a,
@@ -2403,4 +2412,50 @@ p {
 }
 .tooltip.active  > ion-icon{
   color: yellow;
+}
+/* SEARCH PAGE*/
+
+.search_page{
+  display: block;
+}
+.search_results a,
+a:visited {
+  text-decoration: none;
+  outline: 0;
+  color: #11abb0;
+
+  -webkit-transition: color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+
+.search_results {
+  background: #000000;
+  padding-bottom: 60px;
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+}
+
+.search_results h1 {
+  font: 15px/24px "opensans-semibold", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 35px 0px;
+  color: yellow;
+  font-size: 30px;
+}
+.search_results img {
+  max-width: 100%;
+  height: auto;
+}
+.search_results hr {
+  color: gray;
+  width: 100%;
+  margin: 0;
+}
+.search_results > div > div{
+  width: 100%;
 }
