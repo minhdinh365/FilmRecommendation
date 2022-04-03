@@ -120,6 +120,14 @@ body {
   margin: auto;
   display: block;
 }
+.detail_page > span {
+  color: yellow;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 30px;
+    font-size: 24px;
+}
 .detail-movie-banner {
   top: 0;
   left: 0;
@@ -257,9 +265,9 @@ h3 {
   outline: none;
   border: none;
   font-size: 20px;
-  color: white;
+  color: black;
   font-weight: 600;
-  background-color: red;
+  background-color: yellow;
   box-shadow: #737676;
   border-radius: 10px;
   cursor: pointer;
@@ -1078,6 +1086,7 @@ a:visited {
   color: #58afd1;
   transition: color 0.25s 0.0833333333s;
   position: relative;
+  font-size: 15px;
 }
 .card-movie-now h3::before,
 .card-movie-now h3::after {
@@ -1520,7 +1529,7 @@ footer {
   color: #303030;
   font-size: 14px;
   text-align: center;
-  position: relative;
+  bottom: 0;
 }
 
 footer a,
@@ -2199,10 +2208,10 @@ p {
   flex-direction: column;
   left: 0;
   top: 0;
-  width: 10%;
+  width:15%;
   height: 100%;
   background-color: rgb(19, 18, 18);
-  padding: 20% 0;
+  padding: 15% 0;
 }
 .category-acctivity span {
   text-align: center;
@@ -2228,7 +2237,7 @@ p {
   width: 90%;
   height: 100%;
   background-color: rgb(0, 0, 0);
-  margin-left: 10%;
+  margin-left: 15%;
 }
 .detail-acctivity a {
   text-decoration: none;
@@ -2362,4 +2371,91 @@ p {
 #recommend-user h2 strong {
   background-color: #191818;
   padding: 0px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.tooltip{
+  display: block;
+  padding: 5px;
+  position: relative;
+}
+.tooltip span{
+  font-family: 'Raleway', sans-serif;
+  font-size:12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  bottom: -30px;
+  left: -30px; 
+  line-height: 38px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 0;
+  z-index: 10;
+  /* CSS3 Transition: */
+  -webkit-transition: 0.50s;
+  /* Future proofing (these do not work yet): */
+  -moz-transition: 0.50s;
+  transition: 0.50s; 
+}
+.tooltip:hover span{ width:auto; padding:0 30px;overflow:visible; }
+.tooltip:hover{text-decoration:none;}
+.tooltip span{
+	background-color:black;
+	color:yellow;
+  border-radius: 5px;
+}
+.tooltip.active  > ion-icon{
+  color: yellow;
+}
+/* SEARCH PAGE*/
+
+.search_page{
+  display: block;
+}
+.search_results a,
+a:visited {
+  text-decoration: none;
+  outline: 0;
+  color: #11abb0;
+
+  -webkit-transition: color 0.3s ease-in-out;
+  -moz-transition: color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out;
+}
+
+.search_results {
+  background: #000000;
+  padding-bottom: 60px;
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+}
+
+.search_results h1 {
+  font: 15px/24px "opensans-semibold", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 35px 0px;
+  color: yellow;
+  font-size: 30px;
+}
+.search_results img {
+  max-width: 100%;
+  height: auto;
+}
+.search_results hr {
+  color: gray;
+  width: 100%;
+  margin: 0;
+}
+.search_results > div > div{
+  width: 100%;
 }
