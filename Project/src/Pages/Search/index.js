@@ -102,10 +102,10 @@ const Recommandation = () => {
 
   useEffect(() => {
     // set filer by date
-    if (filterDate == 1) {
+    if (filterDate == 2) {
       setPostMovie(postMovie.sort(custom_sort_up));
     }
-    else if (filterDate == 2) setPostMovie(postMovie.sort(custom_sort_down));
+    else if (filterDate == 1) setPostMovie(postMovie.sort(custom_sort_down));
 
     // set filter by category
     return () => {
