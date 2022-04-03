@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import propTypes from "prop-types";
 import { Link, useRouteMatch } from "react-router-dom";
 import axios from "axios";
+import { LocalhostApi } from "../../API/const";
 
 
 const Search = () => {
@@ -68,7 +69,7 @@ const Recommandation = () => {
     let isActive = false;
     if (!isActive) {
       if (name != "") {
-        axios.get("http://localhost:5000/search/" + name.split('-').join(' ')).then((data) => {
+        axios.get(LocalhostApi + "search/" + name.split('-').join(' ')).then((data) => {
           setPostMovie(data.data.film);
         });
       }
