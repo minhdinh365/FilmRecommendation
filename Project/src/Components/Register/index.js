@@ -177,12 +177,12 @@ const SignUp = () => {
           password: passwordHash.generate(textInput.Password),
           email: textInput.Email,
           role: 1,
+          is_upgrade: false,
           avatar: uploadedImage.current.currentSrc,
           full_name: textInput.FirstName,
         })
         .then(
           (response) => {
-            console.log(response);
             if (response.data.status === "success") {
               setsuccess(true);
             } else {

@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AlertDialog from "../DiaLogUpgrade";
 
 const schema = yup.object().shape({
   full_name: yup.string().required("Vui lòng nhập đầy đủ họ tên"),
@@ -40,7 +41,6 @@ export default function InformationUser(props) {
             username: res.data.account.username,
             full_name: res.data.account.full_name,
             email: res.data.account.user.email,
-            password: "123",
             avatar: res.data.account.avatar,
             total_comment: res.data.total_comment,
             evalute: res.data.evalute,
@@ -49,10 +49,14 @@ export default function InformationUser(props) {
             username: res.data.account.username,
             full_name: res.data.account.full_name,
             email: res.data.account.user.email,
-            password: "123",
             avatar: res.data.account.avatar,
             total_comment: res.data.total_comment,
             evalute: res.data.evalute,
+            is_upgrade: res.data.account.is_upgrade,
+            package_up: res.data.account.package_up,
+            date_start: res.data.account.date_start,
+            date_end: res.data.account.date_end,
+
           });
         });
     }
@@ -218,6 +222,18 @@ export default function InformationUser(props) {
               )}
             </div>
             <p>{errors.email?.message}</p>
+            {Account.is_upgrade ?
+              <div className="infor-user-details">
+                <h2>Gói cước:</h2>
+                <span>Gói {Account.package_up}</span>
+                <AlertDialog data={Account} />
+              </div>
+              :
+              <div className="infor-user-details">
+                <h2>Gói cước:</h2>
+                <div>Bạn chưa đăng kí gói cước nào</div>
+              </div>
+            }
             <div className="infor-user-details">
               <h2>Mật Khẩu:</h2>
               <button
@@ -261,7 +277,7 @@ export default function InformationUser(props) {
             </div>
           </form>
         </div>
-      </div>
+      </div >
     </>
   );
 }

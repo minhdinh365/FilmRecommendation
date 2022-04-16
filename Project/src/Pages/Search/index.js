@@ -86,10 +86,6 @@ const Recommandation = () => {
   function custom_sort_down(a, b) {
     return new Date(b.release_date).getTime() - new Date(a.release_date).getTime();
   }
-  const filterByDate = (e) => {
-    postMovie.sort(custom_sort_up);
-    console.log(postMovie);
-  }
 
   const [filterDate, setFilterDate] = useState(0);
 

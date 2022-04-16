@@ -6,14 +6,10 @@ import { LocalhostApi } from "../../API/const";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Backdrop from "@mui/material/Backdrop";
-import { TextareaAutosize } from "@mui/material";
 
-function Header({ start }) {
+function Header() {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
   /*Show modal questions*/
-  const OpenModalQuesitons = () => {
-    setShowModalQuestions((prev) => !prev);
-  };
   const [postMovie, setPostMovie] = useState([]);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -27,7 +23,7 @@ function Header({ start }) {
         const { results } = responseJSON;
         setPostMovie(results);
         setOpen(false);
-      } catch (e) {}
+      } catch (e) { }
     }
     if (!isAcctive) {
       fetchPostMovie();
@@ -61,7 +57,6 @@ function Header({ start }) {
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
       >
-        <h1>Loading ...</h1>
       </Backdrop>
       <div className="modal-home-movie">
         <ModalQuestions

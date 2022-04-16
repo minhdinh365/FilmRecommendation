@@ -31,8 +31,6 @@ import {
   WrapperCaster,
   WrapperButton,
   WrapperThum,
-  Keywords,
-  WrapperCard
 } from "./DetailMovieCardElement";
 
 const DetailMovieCard = (props) => {
@@ -41,6 +39,7 @@ const DetailMovieCard = (props) => {
   function SaveMovie() {
     toast.info("Đã lưu vào danh sách xem sau");
   }
+
   useEffect(() => {
     document.title = props.contents.title;
   }, []);
@@ -146,7 +145,7 @@ const DetailMovieCard = (props) => {
                     })}
                   </Gener>
                   <Gener>
-                  <div>Đạo diễn:</div>
+                    <div>Đạo diễn:</div>
                     {props.contents.crew.map(function (element) {
                       return element.job == "Director" ? (
                         <span>{element.name}</span>
@@ -193,9 +192,14 @@ const DetailMovieCard = (props) => {
               })}
             </WrapperCaster>
           </Caster>
-          <Fade bottom duration={3000}>
-              <Iframe id={props.contents.id}></Iframe>
-          </Fade>
+
+          {props.information && props.information?.date_end > new Date().toISOString ?
+            <Fade bottom duration={3000}>
+              {/* <Iframe id={props.contents.id}></Iframe> */}
+            </Fade>
+            :
+            <WrapperCaster style={{ color: 'yellow', background: 'black', width: '90%', fontSize: '20px', padding: '30px' }} >Bạn cần đăng nhập và nâng cấp tài khoản để xem phim</WrapperCaster>
+          }
         </Container>
       </Background>
     </>

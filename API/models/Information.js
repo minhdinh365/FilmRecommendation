@@ -17,11 +17,24 @@ const schema = mongoose.Schema({
     require: true,
     trim: true,
   },
+  is_upgrade: {
+    type: Boolean,
+    require: true,
+  },
+  package_up: {
+    type: Number,
+  },
+  date_start: {
+    type: Date,
+  },
+  date_end: {
+    type: Date
+  },
 },
-{ 
-  toJSON: { virtuals: true },
-  toObject: { virtuals: true },
-}, );
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  });
 
 schema.virtual("user", {
   ref: "accounts",

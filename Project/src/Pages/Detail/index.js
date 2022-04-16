@@ -39,7 +39,7 @@ const Detail = () => {
         success = jwt_decode(cookieUser).username;
         let user = { username: success };
         let postWatch = { ...watchedFilm, ...user };
-        axios.post(LocalhostApi + "watched", postWatch).then((data) => {});
+        axios.post(LocalhostApi + "watched", postWatch).then((data) => { });
       }
       window.scrollTo(0, 0);
       const requestOne = axios.get(LocalhostApi + `comment?id=${id}`);
@@ -76,7 +76,7 @@ const Detail = () => {
           .then((res) => {
             setCastMovie(res.data.cast);
           });
-      } catch (e) {}
+      } catch (e) { }
     }
     if (!isAcctive) {
       fetchPostMovie();
@@ -90,7 +90,7 @@ const Detail = () => {
       <div className="detail_page">
         {loader}
         <Header />
-        {film && <DetailMovieCard contents={film} castMovie={castMovie} />}
+        {film && <DetailMovieCard contents={film} castMovie={castMovie} information={User} />}
         <CommentBox
           evaluate={content}
           information={User}

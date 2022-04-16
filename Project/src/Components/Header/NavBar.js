@@ -107,7 +107,7 @@ export default function NavBar() {
       setSection(currnent);
     });
     return () => {
-      window.removeEventListener("scroll", () => {});
+      window.removeEventListener("scroll", () => { });
     };
   }, []);
   window.addEventListener("scroll", changBackgroundNavbar);
@@ -178,10 +178,13 @@ export default function NavBar() {
               />
               <div className="dropdown-content">
                 <p>
-                  <a href="/#/inforuser">Thông tin tài khoản</a>
+                  <a href="/#/inforuser">Thông tin</a>
                 </p>
                 <p>
-                  <a href="/#/activities">Hoạt động gần đây</a>
+                  <a href="/#/activities">Hoạt động</a>
+                </p>
+                <p>
+                  <a href="/#/upgrade_user">Nâng cấp</a>
                 </p>
                 <p onClick={Logout}>Thoát</p>
               </div>

@@ -24,6 +24,7 @@ export default function AlertDialog(props) {
     setOpen(false);
     props.handleCloseAlert();
   };
+
   const DialogTitleT = withStyles({
     root: {
       color: '#333',

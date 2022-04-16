@@ -41,11 +41,11 @@ export default function index() {
             <a className="login-navbar">{success}</a>
             <div className="dropdown-content">
               <p>
-                <a href="/#/inforuser">Thông tin tài khoản</a>
+                <a href="/#/inforuser">Thông tin</a>
               </p>
               <p>
-                <a href="/#/activities">Hoạt động gần đây</a>
-              </p>             
+                <a href="/#/activities">Hoạt động</a>
+              </p>
               <p onClick={Logout}>Thoát</p>
             </div>
           </div>

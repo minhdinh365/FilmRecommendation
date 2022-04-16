@@ -69,5 +69,48 @@ export const updateInfo = async (req, res) => {
         );
       }
     } else return res.json({ success: false, mgs: "Tài khoản không tồn tại" });
-  } catch {}
+  } catch { }
 };
+
+export const UpgradeUser = async (req, res) => {
+  try {
+    const updatePackage = {
+      is_upgrade: true,
+      package_up: req.body.package_up,
+      date_start: new Date(),
+      date_end: dateWithMonthsDelay(req.body.package_up),
+    };
+
+    function dateWithMonthsDelay(package_upgrade) {
+      const date = new Date()
+      if (package_upgrade == 1)
+        date.setDate(date.getDate() + 7)
+      else if (package_upgrade == 2)
+        date.setMonth(date.getMonth() + 1)
+      else
+        date.setFullYear(date.getFullYear() + 1)
+
+      return date
+    }
+    const filter = { username: req.body.username, }
+    await Information.findOne(filter).then(async (data) => {
+      if (data) {
+        await Information.findOneAndUpdate(filter, updatePackage, { new: true }).then(() => {
+          return res.json({
+            success: true,
+            mgs: "Nâng cấp gói thành công",
+          });
+        })
+      }
+      else {
+        res.json({
+          success: false,
+          mgs: "Thất bại",
+        });
+      }
+    });
+  }
+  catch { err => console.log(err) };
+
+  ;
+} 

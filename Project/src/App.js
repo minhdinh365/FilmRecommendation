@@ -5,6 +5,7 @@ import Detail from "./Pages/Detail";
 import Register from "./Pages/Register";
 import Acctivities from "./Pages/Acctivities";
 import Search from "./Pages/Search";
+import Upgrade from "./Pages/UpgradeUser";
 import {
   HashRouter,
   BrowserRouter,
@@ -23,6 +24,7 @@ class App extends Component {
           <Redirect from="/detail/" to="/" exact />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/search/:name" component={Search} />
+          <Route path="/upgrade_user" component={Upgrade} />
           <Route path="/register" component={Register} />
           <Route path="/activities" component={Acctivities} />
           <Redirect to="/" />
