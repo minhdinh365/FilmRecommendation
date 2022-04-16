@@ -193,9 +193,9 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
 
-          {props.information && props.information?.date_end > new Date().toISOString ?
+          {props.information && props.information?.date_end > new Date().toISOString() ?
             <Fade bottom duration={3000}>
-              {/* <Iframe id={props.contents.id}></Iframe> */}
+              <Iframe id={props.contents.id}></Iframe>
             </Fade>
             :
             <WrapperCaster style={{ color: 'yellow', background: 'black', width: '90%', fontSize: '20px', padding: '30px' }} >Bạn cần đăng nhập và nâng cấp tài khoản để xem phim</WrapperCaster>
