@@ -7,7 +7,7 @@ export const API_KEY_ALT = "&api_key=a2df3d1a7611194432bbdf1fc80540f2";
 export const IMG_SIZE_XSMALL = "https://image.tmdb.org/t/p/w45/";
 export const VIDEO_LINK = "https://api.themoviedb.org/3/movie/";
 export const LocalhostClient = "https://chom-phim.netlify.app/";
-export const LocalhostApi = "https://chom-phim.herokuapp.com/";
+export const LocalhostApi = "http://localhost:5000/";
 export const LocalASP_Net = "https://ChomPhim.somee.com/ChomPhim/home/predict/";
 export const LocalhostAdmin = "https://admin-chom-phim.netlify.app/";
 export const ListPrices = [

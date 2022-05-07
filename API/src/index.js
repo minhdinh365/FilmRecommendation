@@ -8,6 +8,7 @@ import Films from "../router/Films.js";
 import Watched from "../router/Watched.js";
 import Recommendation from "../router/Recommendation.js";
 import Information from "../router/Information.js";
+import Momo from "../router/Momo.js";
 import FilmsAdmin from "../router/admin/Films.js";
 import UsersAdmin from "../router/admin/Users.js";
 import FilmsManager from "../router/admin/FilmsManager.js";
@@ -39,6 +40,7 @@ app.use("/", Comment);
 app.use("/", Films);
 app.use("/", Search);
 app.use("/", Information);
+app.use("/", Momo);
 app.use("/", Recommendation);
 app.use("/" , CrawlData);
 

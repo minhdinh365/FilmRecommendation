@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {}
+    "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {
+    "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
+        "projectUniqueName": "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
         "projectName": "TrainAPI",
-        "projectPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
+        "projectPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
         "packagesPath": "C:\\Users\\minhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\obj\\",
+        "outputPath": "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

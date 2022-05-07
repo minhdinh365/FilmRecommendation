@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kHuPU+RhLBfbIIV/aVdrbbKloIvioy7IW1iWr6wQq7JvV63xaQ+b7jCVJ4Vvcvtl9G0F+60Qgw7rPOgq+BM1Og==",
+  "dgSpecHash": "JvAjdrcnuRtyORuDn9nVYeoNbgOngIn0w8Cz9vtn2LphMTJX+D6+zomq8+k9V50XjipiEwdWbU1EfeCmOwERFw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\minhd\\OneDrive\\Desktop\\TLCN_CNPM\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
+  "projectFilePath": "C:\\Users\\minhd\\OneDrive\\Desktop\\DoAn\\FilmRecommendation\\RecommendationAPI\\TrainAPI\\TrainAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\minhd\\.nuget\\packages\\hangfire.core\\1.7.27\\hangfire.core.1.7.27.nupkg.sha512",
     "C:\\Users\\minhd\\.nuget\\packages\\microsoft.aspnetcore.authentication.certificate\\3.1.21\\microsoft.aspnetcore.authentication.certificate.3.1.21.nupkg.sha512",

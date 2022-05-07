@@ -1,0 +1,100 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<div style="margin: 10%; margin-top: 0;">
+  <canvas id="myChart"></canvas>
+  <div style="display: flex; margin-top: 50px;">
+    <div style="margin: auto;">
+      <canvas id="packageChart"></canvas>     
+    </div>
+    <div style="margin: auto;">
+      <canvas id="systemChart"></canvas>
+    </div>
+  </div>
+</div>
+<script>
+
+  function getRandomColor(n) {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    var colors = [];
+    for(var j = 0; j < n; j++){
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        colors.push(color);
+        color = '#';
+    }
+    return colors;
+}
+
+var xGenres = [];
+var yGenres = [{{valueGenres}}];
+{{#each genres}}
+  xGenres.push(`{{this}}`);
+{{/each}}
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xGenres,
+    datasets: [{
+      backgroundColor: getRandomColor(xGenres.length),
+      data: yGenres
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Movie statistics by genre"
+    }
+  }
+});
+
+  //package
+var xPackages = ["package 1", "package 2", "package 3", "None"];
+var yPackages = [{{countOne}}, {{countTwo}}, {{countThree}}, {{countNone}}];
+var barColors = [
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("packageChart", {
+  type: "pie",
+  data: {
+    labels: xPackages,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yPackages
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "statistics of users who have registered for the package by the current month"
+    }
+  }
+});
+
+//System
+var xSystem = ["Films", "Users", "Comments", "Votes"];
+var ySystem = [{{countFilm}}, {{countAccount}}, {{countComment}}, {{countVote}}];
+
+new Chart("systemChart", {
+  type: "pie",
+  data: {
+    labels: xSystem,
+    datasets: [{
+      backgroundColor: barColors,
+      data: ySystem
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "system statistics"
+    }
+  }
+});
+</script>
