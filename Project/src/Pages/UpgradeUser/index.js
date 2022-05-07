@@ -9,14 +9,21 @@ import {
     CostPackage,
     DescriptionPackage,
     Address,
-    ContainerCard
+    ContainerCard,
+    ButtonBuy
 } from './upgradeUser';
 import { Wrapper } from "../../Components/Search/Search";
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
-import PayPal from "../../Components/Paypal/PayPal";
+import axios from "axios";
+import { useLocation } from "react-router";
+import UseFullLoading from "../../Components/FullPageLoading";
+import { NotificationManager } from 'react-notifications';
 
 const Upgrade = () => {
+    const [loader, showLoader, hideLoader] = UseFullLoading();
+    const parameter = useLocation().search
+    const token = new URLSearchParams(parameter).toString();
 
     const [success, setSuccess] = useState('');
     useEffect(() => {
@@ -34,29 +41,45 @@ const Upgrade = () => {
             await setSuccess(jwt_decode(cookieUser).username)
         }
     }
-
-    useEffect(() => {
-        document.title = "Nâng cấp gói cước";
-    })
     const [activeID, setActiveID] = useState(0);
     const Package = (e) => {
         setActiveID(e);
     };
-    const [paypal, setPaypal] = useState({
-        nameBtn: "Tiếp tục",
-        price: activeID,
-        userName: success,
-    });
     useEffect(() => {
-        setPaypal({
-            nameBtn: "Tiếp tục",
-            price: activeID,
-            userName: success,
-        })
-    }, [activeID]);
+        if (token.length > 0) {
+            var confirm = {
+                username: localStorage.getItem("username"),
+                package_up: parseInt(localStorage.getItem("package"))
+            }
+            showLoader();
+            axios.post("http://localhost:5000/momo/confirm?" + token, confirm)
+                .then((data) => {
+                    if (data.data.success) NotificationManager.success("Nâng cấp gói thành công", "Nâng cấp");
+                    else NotificationManager.warning("Có gì đó thất bại rồi", "Nâng cấp");
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("package");
+                    hideLoader();
+                })
+        }
+    }, [activeID, token, success])
+    useEffect(() => {
+        document.title = "Nâng cấp gói cước";
+    })
+    function PayBill(e) {
+        var packageBill = {
+            package_up: e.target.id
+        }
+        localStorage.setItem("package", packageBill.package_up);
+        localStorage.setItem("username", success)
+        axios.post("http://localhost:5000/momo/payment", packageBill)
+            .then((data) => {
+                window.location.href = data.data;
+            })
 
+    }
     return (
         <div className="upgrade_user">
+            {loader}
             <Header />
             {(success !== '') ?
                 <Container>
@@ -79,9 +102,7 @@ const Upgrade = () => {
                                         {item.doit}
                                     </DescriptionPackage>
                                 </Wrapper>
-                                {activeID == item.id ?
-                                    <PayPal paypal={paypal} onClick={() => setPaypal(paypal)}></PayPal>
-                                    : null}
+                                <ButtonBuy id={item.id} onClick={(e) => PayBill(e)}>Thanh Toán</ButtonBuy>
                             </Card>
                         })}
                     </ContainerCard>

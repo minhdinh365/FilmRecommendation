@@ -4,8 +4,6 @@ import { URL_BACKGROUND } from "../../API/const";
 import { Link, animateScroll as scroll } from "react-scroll";
 import Iframe from "../../Components/Iframe";
 import Fade from "react-reveal";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import {
   PlayYoutube,
   Container,
@@ -37,7 +35,6 @@ const DetailMovieCard = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [hidden, setHidden] = useState("none");
   function SaveMovie() {
-    toast.info("Đã lưu vào danh sách xem sau");
   }
 
   useEffect(() => {
