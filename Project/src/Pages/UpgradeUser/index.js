@@ -18,7 +18,8 @@ import jwt_decode from 'jwt-decode';
 import axios from "axios";
 import { useLocation } from "react-router";
 import UseFullLoading from "../../Components/FullPageLoading";
-import { NotificationManager } from 'react-notifications';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Upgrade = () => {
     const [loader, showLoader, hideLoader] = UseFullLoading();
@@ -54,8 +55,8 @@ const Upgrade = () => {
             showLoader();
             axios.post("http://localhost:5000/momo/confirm?" + token, confirm)
                 .then((data) => {
-                    if (data.data.success) NotificationManager.success("Nâng cấp gói thành công", "Nâng cấp");
-                    else NotificationManager.warning("Có gì đó thất bại rồi", "Nâng cấp");
+                    if (data.data.success) toast.success("Nâng cấp gói thành công");
+                    else toast.warning("Có gì đó thất bại rồi", "Nâng cấp");
                     localStorage.removeItem("username");
                     localStorage.removeItem("package");
                     hideLoader();
@@ -80,6 +81,7 @@ const Upgrade = () => {
     return (
         <div className="upgrade_user">
             {loader}
+            <ToastContainer />
             <Header />
             {(success !== '') ?
                 <Container>
