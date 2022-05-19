@@ -53,13 +53,18 @@ const Upgrade = () => {
                 package_up: parseInt(localStorage.getItem("package"))
             }
             showLoader();
+            let isActive = false;
             axios.post("http://localhost:5000/momo/confirm?" + token, confirm)
                 .then((data) => {
-                    if (data.data.success) toast.success("Nâng cấp gói thành công");
-                    else toast.warning("Có gì đó thất bại rồi", "Nâng cấp");
-                    localStorage.removeItem("username");
-                    localStorage.removeItem("package");
-                    hideLoader();
+                    if (!isActive) {
+                        if (data.data.success) { toast.success("Nâng cấp gói thành công"); isActive = true; }
+                        else toast.warning("Có gì đó thất bại rồi", "Nâng cấp");
+                        localStorage.removeItem("username");
+                        localStorage.removeItem("package");
+                        hideLoader();
+                    }
+
+
                 })
         }
     }, [activeID, token, success])
