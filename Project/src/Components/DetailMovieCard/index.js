@@ -143,9 +143,9 @@ const DetailMovieCard = (props) => {
                   </Gener>
                   <Gener>
                     <div>Đạo diễn:</div>
-                    {props.contents.crew.map(function (element) {
+                    {props.contents.crew.map(function (element, index) {
                       return element.job == "Director" ? (
-                        <span>{element.name}</span>
+                        <span key={index}>{element.name}</span>
                       ) : (
                         null
                       );
@@ -192,7 +192,7 @@ const DetailMovieCard = (props) => {
 
           {props.information && props.information?.date_end > new Date().toISOString() ?
             <Fade bottom duration={3000}>
-              <Iframe id={props.contents.id}></Iframe>
+              <Iframe id={props.contents.id} information={props.information}></Iframe>
             </Fade>
             :
             <WrapperCaster style={{ color: 'yellow', background: 'black', width: '90%', fontSize: '20px', padding: '30px' }} >Bạn cần đăng nhập và nâng cấp tài khoản để xem phim</WrapperCaster>

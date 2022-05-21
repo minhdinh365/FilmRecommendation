@@ -65,6 +65,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
