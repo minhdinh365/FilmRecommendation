@@ -5,7 +5,10 @@ import Detail from "./Pages/Detail";
 import Register from "./Pages/Register";
 import Acctivities from "./Pages/Acctivities";
 import Search from "./Pages/Search";
+import Cookies from 'js-cookie';
+import axios from "axios";
 import Upgrade from "./Pages/UpgradeUser";
+import jwt_decode from 'jwt-decode';
 import {
   HashRouter,
   BrowserRouter,
@@ -16,6 +19,16 @@ import {
 
 class App extends Component {
   render() {
+
+    (function() {
+      var token = Cookies.get('User');
+      if (token) {
+          axios.defaults.headers.common['Authorization'] = token;
+      } else {
+          axios.defaults.headers.common['Authorization'] = null;
+      }
+    })();
+
     return (
       <HashRouter>
         <Switch>
