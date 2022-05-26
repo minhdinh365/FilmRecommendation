@@ -99,7 +99,7 @@ export const get2000Comments = async (req, res) => {
 export const getCommentsByUsername = async (req, res) => {
   try {
     const List = await Comment.find({
-      $and: [{ id_info:  req.jwtDecoded.username }, { is_reply: 0 }],
+      $and: [{ id_info:  req.query.username }, { is_reply: 0 }],
     }).populate(
       "film",
       "-cast -keywords -crew -overview -backdrop_path -popularity  -video -vote_count -revenue -video_id -tagline  -budget -category -adult -original_language -original_title"
