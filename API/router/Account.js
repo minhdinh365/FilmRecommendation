@@ -13,6 +13,9 @@ import {
   createEvaluate,
   get2000Comments,
 } from "../Controllers/Comment.js";
+import {
+  getCommentsByUsername,
+} from "../Controllers/Comment.js";
 import AuthMiddleWare from "../Midlewares/AuthMiddleware.js";
 
 const router = express.Router();
@@ -23,6 +26,7 @@ router.route("/forgetpassword").post(forgetPass);
 router.route("/account").post(getAccount);
 router.route("/comment").get(getComments);
 router.route("/createEvaluate").get(createEvaluate);
+router.route("/evaluate").get(getCommentsByUsername);
 router.route("/2000Comments").get(get2000Comments); 
 router.use(AuthMiddleWare);
 router.route("/account").get(showAccount);
