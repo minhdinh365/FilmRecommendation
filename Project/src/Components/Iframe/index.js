@@ -50,8 +50,6 @@ export default function Index({ id, information }) {
 
   return (
     <div className="wrapper-iframe">
-
-    <button type="button" onClickCapture={() =>window.mainCaiGiDo()}>Duyt ME</button>
       <Iframe
         url={URL}
         id="iframe-video"
