@@ -7,15 +7,15 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARpGzQSsHMUqTPG4g9NgcGwAAAAACAAAAAAAQZgAAAAEAACAAAAD3Zh1POIEaRpcUVfHvwll6mkuBvO+umBntcdhlz+eNlgAAAAAOgAAAAAIAACAAAABRE7LCOmD8RzFHh2gS7SrX+MumycA8+7YJ02TzGWo4CyAAAADQCbxslQbTR0sbMRNCSEv254f1puEdrVSRF4ElwD9ZZ0AAAABoBtKTFrBAfaTPMc9hw7krOtAzmplYk87xUXTsGx+Svtltf9eWRKSs5ZcoJWfvitjdEHjfJ0i15dkD5UDl9ocO</EncryptedPassword>
-    <_PublishTargetUrl>ftp://ChomPhim.somee.com/www.ChomPhim.somee.com/ChomPhim</_PublishTargetUrl>
-    <History>True|2021-12-14T08:28:09.4778266Z;False|2021-12-14T15:18:36.1875874+07:00;True|2021-12-14T15:05:34.5176377+07:00;False|2021-12-14T15:00:26.8323033+07:00;False|2021-12-14T14:59:58.8069192+07:00;</History>
+    <_PublishTargetUrl>ftp://ChomPhimAPI.somee.com/www.ChomPhimAPI.somee.com/ChomPhimAPI</_PublishTargetUrl>
+    <History>True|2022-05-19T19:04:06.6574197Z;True|2021-12-14T15:28:09.4778266+07:00;False|2021-12-14T15:18:36.1875874+07:00;True|2021-12-14T15:05:34.5176377+07:00;False|2021-12-14T15:00:26.8323033+07:00;False|2021-12-14T14:59:58.8069192+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>12/12/2021 15:25:58</publishTime>
+      <publishTime>05/18/2022 13:16:28</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>12/14/2021 15:16:52</publishTime>
+      <publishTime>05/18/2022 13:16:28</publishTime>
     </File>
     <File Include="ca/Hangfire.Core.resources.dll">
       <publishTime>11/03/2021 19:12:00</publishTime>
@@ -138,28 +138,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2021 19:12:00</publishTime>
     </File>
     <File Include="TrainAPI.deps.json">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:01</publishTime>
     </File>
     <File Include="TrainAPI.dll">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:00</publishTime>
     </File>
     <File Include="TrainAPI.exe">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:00</publishTime>
     </File>
     <File Include="TrainAPI.pdb">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:00</publishTime>
     </File>
     <File Include="TrainAPI.runtimeconfig.json">
-      <publishTime>12/14/2021 14:23:21</publishTime>
+      <publishTime>05/20/2022 01:58:18</publishTime>
     </File>
     <File Include="TrainAPI.Views.dll">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:01</publishTime>
     </File>
     <File Include="TrainAPI.Views.pdb">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:01</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>12/14/2021 15:23:49</publishTime>
+      <publishTime>05/20/2022 02:00:08</publishTime>
     </File>
     <File Include="zh-TW/Hangfire.Core.resources.dll">
       <publishTime>11/03/2021 19:12:00</publishTime>

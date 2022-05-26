@@ -137,7 +137,7 @@ export const Changepass = async (req, res) => {
   try {
     let newPass = req.body.newpassword;
     let oldPass = req.body.password;
-    let username_request = req.body.username;
+    let username_request = req.jwtDecoded.username;
     const filter = { username: username_request };
     const update = { password: newPass };
 

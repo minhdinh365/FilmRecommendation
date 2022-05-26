@@ -34,16 +34,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(methodOverride("_method"));
 
-app.use("/", Watched);
-app.use("/", Account);
-app.use("/", Comment);
-app.use("/", Films);
-app.use("/", Search);
-app.use("/", Information);
-app.use("/", Momo);
-app.use("/", Recommendation);
-app.use("/" , CrawlData);
-
 const URI = process.env.DATABASE_URL;
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -105,7 +95,7 @@ app.engine(
 
 //handlebars
 const __dirname = path.resolve();
-console.log(__dirname);
+
 app.set("view engine", "hbs");
 app.set("views", __dirname + "/src/resources/views");
 
@@ -113,3 +103,17 @@ app.use("/", Dashboard);
 app.use("/", FilmsManager);
 app.use("/", UsersManager);
 app.use("/", LoginPage);
+
+app.use("/", Films);
+app.use("/", Recommendation);
+app.use("/", Search);
+app.use("/" , CrawlData);
+app.use("/", Account);
+app.use("/", Comment);
+app.use("/", Watched);
+app.use("/", Information);
+app.use("/", Momo);
+
+
+
+

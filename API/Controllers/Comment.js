@@ -22,7 +22,7 @@ export const getComments = async (req, res) => {
 export const postComment = async (req, res) => {
   const checkComment = await Comment.find({
     $and: [
-      { id_info: req.body.comment.id_info },
+      { id_info: req.jwtDecoded.username },
       { id_film: Number(req.body.comment.id_film) },
       { is_reply: 0 },
     ],
@@ -31,6 +31,7 @@ export const postComment = async (req, res) => {
     req.body.comment.is_reply !== 0 ||
     (checkComment.length === 0 && req.body.comment.is_reply === 0)
   ) {
+    req.body.comment.id_info = req.jwtDecoded.username;
     const cmt = await new Comment(req.body.comment).populate("info");
     cmt.save().catch((result) => {
       res.status(200).json({ status: "thành công", result });
@@ -41,10 +42,11 @@ export const postComment = async (req, res) => {
 };
 
 export const putComment = async (req, res) => {
+  req.body.commentPut.id_info = req.jwtDecoded.username;
   await Comment.findOneAndUpdate(
     {
       $and: [
-        { id_info: req.body.commentPut.id_info },
+        { id_info: req.jwtDecoded.username },
         { id_film: Number(req.body.commentPut.id_film) },
         { is_reply: 0 },
       ],
@@ -97,7 +99,7 @@ export const get2000Comments = async (req, res) => {
 export const getCommentsByUsername = async (req, res) => {
   try {
     const List = await Comment.find({
-      $and: [{ id_info: req.query.username }, { is_reply: 0 }],
+      $and: [{ id_info:  req.jwtDecoded.username }, { is_reply: 0 }],
     }).populate(
       "film",
       "-cast -keywords -crew -overview -backdrop_path -popularity  -video -vote_count -revenue -video_id -tagline  -budget -category -adult -original_language -original_title"

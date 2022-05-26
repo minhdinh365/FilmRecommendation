@@ -5,9 +5,9 @@ import { Account } from "../models/Account.js";
 export const getInfo = async (req, res) => {
   try {
     const info = await Information.findOne({
-      username: req.query.username,
+      username: req.jwtDecoded.username,
     }).populate("user", "-password");
-    const comment = await Comment.find({ id_info: req.query.username });
+    const comment = await Comment.find({ id_info: req.jwtDecoded.username });
     let tong = 0;
     let dem = 0;
     let trungbinh = 0;
@@ -41,7 +41,7 @@ export const updateInfo = async (req, res) => {
     const updateAcc = {
       email: req.body.email,
     };
-    const filter = { username: req.body.user };
+    const filter = { username: req.jwtDecoded.username };
     let update = await Information.find(filter);
     if (update.length != 0) {
       const search = await Account.find(updateAcc);
@@ -92,7 +92,7 @@ export const UpgradeUser = async (req, res) => {
 
       return date
     }
-    const filter = { username: req.body.username, }
+    const filter = { username: req.jwtDecoded.username, }
     await Information.findOne(filter).then(async (data) => {
       if (data) {
         await Information.findOneAndUpdate(filter, updatePackage, { new: true }).then(() => {

@@ -18,6 +18,9 @@ const schema = mongoose.Schema({
         require: true,
         trim: true,
     },
+    time_span: {
+        type: Number,
+    }
 },
     {
         toJSON: { virtuals: true },

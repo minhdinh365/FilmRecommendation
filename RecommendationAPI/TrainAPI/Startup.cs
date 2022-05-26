@@ -33,7 +33,7 @@ namespace TrainAPI
        .AddCertificate();
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
-                builder.WithOrigins("https://chom-phim.netlify.app", "https://localhost:3000")
+                builder.WithOrigins("https://chom-phim.netlify.app", "https://localhost:3000", "http://localhost:3000")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));

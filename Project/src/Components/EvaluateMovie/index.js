@@ -319,7 +319,7 @@ class CommentForm extends React.Component {
   render() {
     let isLogin = false;
     let announce = "Bạn cần đăng nhập để viết bình luận";
-    if (this.state.information !== null) {
+    if (this.state.information !== undefined) {
       isLogin = true;
       announce = "Bình luận...";
     }

@@ -21,11 +21,7 @@ const Detail = () => {
   const [content, setContent] = useState([]);
   const [film, setFilm] = useState();
   const [total, setTotal] = useState(0);
-  const [User, setUser] = useState({
-    username: "",
-    avatar: "",
-    full_name: "",
-  });
+  const [User, setUser] = useState();
   const [watchedFilm, setWatchedFilm] = useState({
     id: parseInt(id),
     watched: true,
@@ -43,7 +39,7 @@ const Detail = () => {
       }
       window.scrollTo(0, 0);
       const requestOne = axios.get(LocalhostApi + `comment?id=${id}`);
-      const requestTwo = axios.get(LocalhostApi + `infor?username=${success}`);
+      const requestTwo = axios.get(LocalhostApi + `infor?username=${success}`).catch((error=>{}));
       const requestThree = axios.get(LocalhostApi + `film/${id}`);
       CallApi(requestOne, requestTwo, requestThree);
     }
@@ -60,7 +56,10 @@ const Detail = () => {
         const res3 = responses[2];
         setContent(res1.data.comments);
         setTotal(res1.data.total_comments);
-        if (res2.data.account !== undefined) setUser(res2.data.account);
+        if (res2?.status !== 401 && res2?.data?.account !== undefined) 
+        {
+          setUser(res2.data.account);
+        }
         setFilm(res3.data);
         hideLoader();
       })
