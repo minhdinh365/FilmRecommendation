@@ -16,21 +16,21 @@ export const ListPrices = [
         time: 'Gói 1 (7 ngày)',
         price: '39.000 vnđ',
         description: 'Gói tài khoản này giúp bạn trải nghiệm tất cả các bộ phim có trả phí trên hệ thống website trong vòng 1 tuần kể từ ngày đăng kí.',
-        doit: ' Nhấn vào nút PayPal để tiến hành nâng cấp tài khoản của bạn.'
+        doit: ' Nhấn vào nút "Thanh Toán" để tiến hành nâng cấp tài khoản của bạn.'
     },
     {
         id: 2,
         time: 'Gói 2 (1 tháng)',
         price: '399.000 vnđ',
         description: 'Gói tài khoản này giúp bạn trải nghiệm tất cả các bộ phim có trả phí trên hệ thống website trong vòng 1 tháng kể từ ngày đăng kí.',
-        doit: ' Nhấn vào nút PayPal để tiến hành nâng cấp tài khoản của bạn.'
+        doit: ' Nhấn vào nút "Thanh Toán" để tiến hành nâng cấp tài khoản của bạn.'
     },
     {
         id: 3,
         time: 'Gói 3 (1 năm)',
         price: '799.000 vnđ',
         description: 'Gói tài khoản này giúp bạn trải nghiệm tất cả các bộ phim có trả phí trên hệ thống website trong vòng 1 năm kể từ ngày đăng kí.',
-        doit: ' Nhấn vào nút PayPal để tiến hành nâng cấp tài khoản của bạn.'
+        doit: ' Nhấn vào nút "Thanh Toán" để tiến hành nâng cấp tài khoản của bạn.'
     },
 ];
 export const listPackge = [

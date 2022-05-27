@@ -118,7 +118,7 @@ function ModalLogin(props) {
     <>
       {loader}
       {open ? (
-        <Background ref={modalRef} onClick={closeModal} open={open}>
+        <Background ref={modalRef} onMouseDown={closeModal} open={open}>
           <animated.div style={animatedd}>
             <WrapperModal>
               <Content>
