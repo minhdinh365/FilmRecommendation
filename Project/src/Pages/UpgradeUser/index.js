@@ -19,6 +19,7 @@ import axios from "axios";
 import { useLocation } from "react-router";
 import UseFullLoading from "../../Components/FullPageLoading";
 import { ToastContainer, toast } from "react-toastify";
+import { LocalhostApi } from "../../API/const";
 import "react-toastify/dist/ReactToastify.css";
 
 const Upgrade = () => {
@@ -54,7 +55,7 @@ const Upgrade = () => {
             }
             showLoader();
             let isActive = false;
-            axios.post("http://localhost:5000/momo/confirm?" + token, confirm)
+            axios.post(LocalhostApi + "momo/confirm?" + token, confirm)
                 .then((data) => {
                     if (!isActive) {
                         if (data.data.success) { toast.success("Nâng cấp gói thành công"); isActive = true; }
@@ -77,7 +78,7 @@ const Upgrade = () => {
         }
         localStorage.setItem("package", packageBill.package_up);
         localStorage.setItem("username", success)
-        axios.post("http://localhost:5000/momo/payment", packageBill)
+        axios.post(LocalhostApi + "momo/payment", packageBill)
             .then((data) => {
                 window.location.href = data.data;
             })
