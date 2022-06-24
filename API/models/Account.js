@@ -25,6 +25,9 @@ const schema = mongoose.Schema(
       require: true,
       trim: true,
     },
+    isBlocked: {
+      type: Boolean,
+    }
   },
   {
     toJSON: { virtuals: true },

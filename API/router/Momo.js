@@ -79,7 +79,7 @@ const createPaymentURL = async (req, res) => {
   var requestId = partnerCode + new Date().getTime();
   var orderId = requestId;
   var orderInfo = "Upgrade";
-  var redirectUrl = "http://localhost:3000/#/upgrade_user";
+  var redirectUrl = "https://chom-phim.netlify.app/#/upgrade_user";
   var ipnUrl = "https://callback.url/notify";
   // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
 

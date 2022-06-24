@@ -11,6 +11,7 @@ export const getAccount = async (req, res) => {
   var password_request = req.body.password;
   Account.findOne({
     username: username_request,
+    isBlocked: false,
   })
     .then((data) => {
       if (passwordHash.verify(password_request, data.password)) {

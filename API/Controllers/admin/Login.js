@@ -16,7 +16,7 @@ export const Login = async (req, res, next) => {
     });
 
     if (VerifyUsername !== null) {
-      if (passwordHash.verify(req.body.password, VerifyUsername.password)) {
+      if (passwordHash.verify(req.body.password, VerifyUsername.password) && !VerifyUsername.isBlocked) {
         global.info = await Information.findOne({
           username: VerifyUsername.username,
         });

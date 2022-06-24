@@ -108,58 +108,113 @@
             onclick="window.location.href='/home/{{this.id}}/editFilm/'"
             class="btn btn-link"
           ><ion-icon name="create"  style="color: green; font-size: 23px"></ion-icon></button>
-          <button
-            type="button"
-            class="btn btn-link"
-            data-toggle="modal"
-            data-id="{{this.id}}"
-            onclick="getIdFilm()"
-            data-target="#exampleModalCenter"
-          >
-          <ion-icon name="trash" style="color: red; font-size: 23px"></ion-icon>            
-          </button>
+          {{#if this.isDeleted}}
+            <button
+                type="button"
+                class="btn btn-link"
+                data-toggle="modal"
+                data-id="{{this.id}}"
+                onclick="getRestoreIdFilm()"
+                data-target="#restoreModalCenter"
+              >
+              <ion-icon name="reload" style="color: green; font-size: 23px"></ion-icon>            
+            </button>
 
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="exampleModalCenter"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    onclick="deleteFilm()"
-                  >Delete</button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >Cancel</button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="restoreModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="restoreModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="restoreModalCenterTitle">Restore</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to restore?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      onclick="restoreFilm()"
+                    >restore</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >Cancel</button>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          {{else}}
+            <button
+              type="button"
+              class="btn btn-link"
+              data-toggle="modal"
+              data-id="{{this.id}}"
+              onclick="getIdFilm()"
+              data-target="#exampleModalCenter"
+            >
+            <ion-icon name="trash" style="color: red; font-size: 23px"></ion-icon>            
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onclick="deleteFilm()"
+                    >Delete</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >Cancel</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/if}}
         </td>
       </tr>
     {{/each}}
@@ -189,13 +244,33 @@
     </ul>
   </nav>
   <form name="delete-hidden-form" method="POST"></form>
+  <form name="restore-hidden-form" method="POST"></form>
 </div>
 <script>
-  let id = 0; function getIdFilm(){
-  $('#exampleModalCenter').on('show.bs.modal',function(event){ var button =
-  $(event.relatedTarget); id = button.data('id'); }) }; function deleteFilm(){
-  var form = document.forms['delete-hidden-form']; form.action = '/home/delete/'
-  + id + '?_method=DELETE'; form.submit(); }; function getUrlParameter(name) {
+  let id = 0; 
+  function getIdFilm(){
+    $('#exampleModalCenter').on('show.bs.modal',function(event){ 
+      var button = $(event.relatedTarget);
+      id = button.data('id'); 
+    }) 
+   };
+   function deleteFilm(){
+    var form = document.forms['delete-hidden-form']; form.action = '/home/delete/'+ id + '?_method=DELETE'; 
+    form.submit(); 
+  }; 
+
+  function getRestoreIdFilm(){
+    $('#restoreModalCenter').on('show.bs.modal',function(event){ 
+      var button = $(event.relatedTarget);
+    id = button.data('id'); 
+    }) 
+   };
+   function restoreFilm(){
+    var form = document.forms['restore-hidden-form']; form.action = '/home/put/'+ id + '?_method=PUT'; 
+    form.submit(); 
+  }; 
+
+  function getUrlParameter(name) {
   name = name.replace(/[\\\\\\\\\\\\\\\\\\\\\[]/, '\\\[').replace(/[\]]/,
   '\\]'); var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'); var results =
   regex.exec(location.search); return results === null ?

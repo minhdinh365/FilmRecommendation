@@ -170,7 +170,7 @@ export const putFilm = async (req, res, next) => {
 
 export const deleteFilm = async (req, res, next) => {
   try {
-    Film.deleteOne({ id: Number(req.params.id) }).catch((error) => {
+    await Film.updateOne({ id: Number(req.params.id) }, {isDeleted: true}).catch((error) => {
       const message = err.message;
       res.render("shared/error", {
         message,
@@ -179,6 +179,31 @@ export const deleteFilm = async (req, res, next) => {
         info,
       });
     });
+
+    res.redirect("back");
+  } catch (err) {
+    const message = err.message;
+    res.render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
+  }
+};
+
+export const restoreFilm = async (req, res, next) => {
+  try {
+    await Film.updateOne({ id: Number(req.params.id) }, {isDeleted: false}).catch((error) => {
+      const message = err.message;
+      res.render("shared/error", {
+        message,
+        countListAccount,
+        countListFilm,
+        info,
+      });
+    });
+
     res.redirect("back");
   } catch (err) {
     const message = err.message;

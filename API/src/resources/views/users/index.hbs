@@ -111,60 +111,117 @@
           </div>
         </td>
         <td>{{this.cmt}}</td>
+        {{#if this.isBlocked}}
         <td>
-          <button
-            type="button"
-            class="btn btn-link"
-            data-toggle="modal"
-            data-id="{{this.username}}"
-            onclick="getIdAccount()"
-            data-target="#exampleModalCenter"
-          >
-            <ion-icon name="trash" style="color: red; font-size: 23px"></ion-icon>  
-          </button>
+            <button
+              type="button"
+              class="btn btn-link"
+              data-toggle="modal"
+              data-id="{{this.username}}"
+              onclick="getRestoreIdAccount()"
+              data-target="#restoreModalCenter"
+            >
+              <ion-icon name="reload-outline" style="color: green; font-size: 23px"></ion-icon>  
+            </button>
 
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="exampleModalCenter"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete?
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    onclick="deleteAccount()"
-                  >Delete</button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >Cancel</button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="restoreModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="restoreModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="restoreModalCenterTitle">Restore</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to restore?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      onclick="restoreAccount()"
+                    >Restore</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >Cancel</button>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
+          </td>
+        {{else}}
+          <td>
+            <button
+              type="button"
+              class="btn btn-link"
+              data-toggle="modal"
+              data-id="{{this.username}}"
+              onclick="getIdAccount()"
+              data-target="#exampleModalCenter"
+            >
+              <ion-icon name="trash" style="color: red; font-size: 23px"></ion-icon>  
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onclick="deleteAccount()"
+                    >Delete</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >Cancel</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        {{/if}}
       </tr>
     {{/each}}
   </tbody>
@@ -193,17 +250,28 @@
     </ul>
   </nav>
   <form name="delete-hidden-form" method="POST"></form>
+  <form name="restore-hidden-form" method="POST"></form>
 </div>
 <script>
   let id = 0; 
   function getIdAccount(){
-  $('#exampleModalCenter').on('show.bs.modal', function(event){ 
-    var button = $(event.relatedTarget); 
-    id = button.data('id'); 
-    }) 
+    $('#exampleModalCenter').on('show.bs.modal', function(event){ 
+      var button = $(event.relatedTarget); 
+      id = button.data('id'); 
+      }) 
+    }; 
+    function getRestoreIdAccount(){
+    $('#restoreModalCenter').on('show.bs.modal', function(event){ 
+      var button = $(event.relatedTarget); 
+      id = button.data('id'); 
+      }) 
     }; 
     function deleteAccount(){ var form = document.forms['delete-hidden-form']; 
       form.action = '/home/users/delete/' + id + '?_method=DELETE'; 
+      form.submit(); 
+    }; 
+    function restoreAccount(){ var form = document.forms['restore-hidden-form']; 
+      form.action = '/home/users/put/' + id + '?_method=PUT'; 
       form.submit(); 
     }; 
     function getUrlParameter(name) {

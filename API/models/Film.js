@@ -89,6 +89,9 @@ const schema = mongoose.Schema(
       type: mongoose.Schema.Types.Mixed,
       trim: true,
     },
+    isDeleted:{
+      type: Boolean,
+    }
   },
   {
     toJSON: { virtuals: true },

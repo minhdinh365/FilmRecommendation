@@ -53,7 +53,7 @@ export const getAccounts = async (req, res, next) => {
 };
 
 export const deleteAccount = async (req, res, next) => {
-  await Account.deleteOne({ username: req.params.username }).catch((error) => {
+  await Account.updateOne({ username: req.params.username }, {isBlocked: true}).catch((error) => {
     const message = err.message;
     res.status(500).render("shared/error", {
       message,
@@ -63,17 +63,20 @@ export const deleteAccount = async (req, res, next) => {
     });
   });
 
-  await Information.deleteOne({ username: req.params.username }).catch(
-    (error) => {
-      const message = err.message;
-      res.status(500).render("shared/error", {
-        message,
-        countListAccount,
-        countListFilm,
-        info,
-      });
-    }
-  );
+  res.redirect("back");
+};
+
+export const restoreAccount = async (req, res, next) => {
+  await Account.updateOne({ username: req.params.username }, {isBlocked: false}).catch((error) => {
+    const message = err.message;
+    res.status(500).render("shared/error", {
+      message,
+      countListAccount,
+      countListFilm,
+      info,
+    });
+  });
+
   res.redirect("back");
 };
 

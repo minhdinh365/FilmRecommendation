@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
+  "engines": {
+    "node": "16.13.1"
+  },
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect --experimental-worker src/index.js"
