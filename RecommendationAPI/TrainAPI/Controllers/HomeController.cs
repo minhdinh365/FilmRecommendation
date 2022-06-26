@@ -63,6 +63,27 @@ namespace TrainAPI.Controllers
         [Route("home/predict/{id?}")]
         public IActionResult Index(string? id)
         {
+            if(trainingDataView == null)
+            {
+                mlContext = new MLContext();
+                client = factory.CreateClient();
+                fmd = new FilmsModel[1974];
+
+                client.BaseAddress = new Uri("https://chom-phim.herokuapp.com");
+                var response = client.GetAsync("/2000comments").Result;
+                string jsonData = response.Content.ReadAsStringAsync().Result;
+
+                ListFilm films = new ListFilm(jsonData);
+
+                int i = -1;
+                foreach (FilmsModel item in films.films)
+                {
+                    i += 1;
+                    fmd[i] = new FilmsModel(item.id, item.username, item.title, item.evaluate, item.poster_path, item.run_time, item.release_date);
+                }
+                (trainingDataView, testDataView) = LoadData(mlContext, fmd);
+            }
+
             clientPost = factory.CreateClient();
             clientPost.BaseAddress = new Uri("https://chom-phim.herokuapp.com");
             var responseUser = clientPost.GetAsync("/evaluate?username=" + id).Result;
