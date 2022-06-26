@@ -16,13 +16,16 @@ export const getRecommendation = async (req, res) => {
 
 export const postRecommendation = async (req, res) => {
   try {
-    axios.get("http://127.0.0.1:5000/recommend/").then((data) => {
+    await axios.get("https://chom-phim-api.herokuapp.com/recommend/").then((data) => {
       let jsondata = data.data;
       jsondata.forEach((element) => {
         let red = new Recommendation(element);
         red.save();
       });
+
+      res.status(200).json({status: "success"});
     });
+    
   } catch (err) {
     return res.status(500).json(err);
   }

@@ -13,21 +13,17 @@ from io import StringIO
 url = "https://chom-phim.herokuapp.com/getallfilm"
 
 response = requests.get(url, verify=False, timeout=1000)
-print(response.content)
 movies_df ={}
 
 data_json = json.loads(response.content)
-movies_df['cast'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['cast'].values
 movies_df['id'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['id'].values
 movies_df['keywords'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['keywords'].values
-movies_df['original_title'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['original_title'].values
 movies_df['crew'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['crew'].values
 movies_df['genre_ids'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['genre_ids'].values
 
 def allTitle():
     url = "https://chom-phim.herokuapp.com/getallfilm"
     response = requests.get(url, verify=False, timeout=1000)
-    print(response.content)
     data_json = json.loads(response.content)
     result = {}
     result['original_title'] = pd.read_json(StringIO(json.dumps(data_json['result'])), orient='values')['original_title'].values
@@ -54,7 +50,7 @@ def get_recommendations(title, cosine_sim):
     # (a, b) where a is id of movie, b is sim_score
 
     movies_indices = [ind[0] for ind in sim_scores]
-    movies = movies_df[1].iloc[movies_indices]
+    movies = movies_df[0].iloc[movies_indices]
     return movies
 
 movies_df["director"]=[]
@@ -77,7 +73,6 @@ def get_list(x, collumn):
 
 pd.DataFrame(movies_df["crew"]).apply(get_director)
 
-get_list(pd.DataFrame(movies_df["cast"]), collumn='cast')
 get_list(pd.DataFrame(movies_df["keywords"]), collumn='keywords')
 get_list(pd.DataFrame(movies_df["genre_ids"]), collumn='genre_ids')
 
@@ -86,7 +81,7 @@ stopwords=["phim"]
 def create_soup(x):
     stop = (int)(x.size /len(x))
     for i in range(stop):
-      movies_df["soup"].append((' '.join(x[i]['keywords'] ) + ' ' + ' '.join(x[i]['cast']) + ' ' + ' '.join(x[i]['director']) + ' '+ ' '.join(x[i]['genre_ids'])).replace("'", "").replace("\\", ""))
+      movies_df["soup"].append((' '.join(x[i]['keywords'] ) + ' '.join(x[i]['director']) + ' '+ ' '.join(x[i]['genre_ids'])).replace("'", "").replace("\\", ""))
 create_soup(pd.DataFrame.from_dict(movies_df, orient = 'index'))
 
 ps = PorterStemmer()
@@ -108,12 +103,10 @@ cosine_sim2 = cosine_similarity(count_matrix, count_matrix)
 
 movies_df = pd.DataFrame.from_dict(movies_df, orient = 'index').reset_index()
 movies_df = movies_df.transpose()
-indices = pd.Series(movies_df.index, index=movies_df[1])
+indices = pd.Series(movies_df.index, index=movies_df[0])
 
 def recommand(title):
     result = get_recommendations(title, cosine_sim2).to_json(orient="records")
     parsed = json.loads(result)
     json.dumps(parsed, indent=4)
     return parsed
-
-
