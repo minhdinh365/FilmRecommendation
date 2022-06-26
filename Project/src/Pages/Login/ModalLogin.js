@@ -76,7 +76,7 @@ function ModalLogin(props) {
       })
       .catch((e) => {
         hideLoader();
-        setErrorTM("Kiểm tra lại kết nối internet của bạn");
+        setErrorTM("Tài khoản bị khóa hoặc có lỗi xảy ra");
       });
   };
   const modalRef = useRef();
