@@ -26,15 +26,16 @@ const Upgrade = () => {
     const [loader, showLoader, hideLoader] = UseFullLoading();
     const parameter = useLocation().search
     const token = new URLSearchParams(parameter).toString();
-
     const [success, setSuccess] = useState('');
     useEffect(() => {
+        showLoader();
         let isCancel = false;
         if (!isCancel) {
             setCookiesF();
+            setTimeout(() => { hideLoader() }, 1000)
         }
         return () => {
-            isCancel = true
+            isCancel = true;
         }
     }, [success])
     async function setCookiesF() {

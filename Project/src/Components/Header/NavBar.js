@@ -4,7 +4,6 @@ import ModalForget from "../../Pages/Login/ModalForget";
 import { CSSTransition } from "react-transition-group";
 import Search from "../Search";
 import Cookies from "js-cookie";
-import Cookies2 from "universal-cookie";
 import jwt_decode from "jwt-decode";
 import { Link as LinkRouter } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -13,7 +12,7 @@ import axios from "axios";
 import { LocalhostApi } from "../../API/const";
 import { Link, animateScroll as scroll } from "react-scroll";
 
-export default function NavBar() {
+export default function NavBar({ isHome }) {
   const [isNavVisible, setNavVisibility] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   /*Responsive when the creen less than 1024px*/
@@ -146,26 +145,28 @@ export default function NavBar() {
         <nav className="Nav">
           {listNav.map((element) => {
             return (
-              <Link
-                key={element.section}
-                activeClass={
-                  element.section === section
-                    ? "smoothscroll current"
-                    : "smoothscroll"
-                }
-                to={element.section}
-                spy={true}
-                smooth={true}
-                hashSpy={true}
-                offset={50}
-                duration={500}
-                isDynamic={true}
-                ignoreCancelEvents={false}
-                spyThrottle={500}
-                onClick={toggleNav}
-              >
-                {element.name}
-              </Link>
+              isHome ?
+                <Link
+                  key={element.section}
+                  activeClass={
+                    element.section === section
+                      ? "smoothscroll current"
+                      : "smoothscroll"
+                  }
+                  to={element.section}
+                  spy={true}
+                  smooth={true}
+                  hashSpy={true}
+                  offset={50}
+                  duration={500}
+                  isDynamic={true}
+                  ignoreCancelEvents={false}
+                  spyThrottle={500}
+                  onClick={toggleNav}
+                >
+                  {element.name}
+                </Link>
+                : <div style={{ width: "100px" }}></div>
             );
           })}
           {isSmallScreen ? null : <Search className="hidden-input"></Search>}

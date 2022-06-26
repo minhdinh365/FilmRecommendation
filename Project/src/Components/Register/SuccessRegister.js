@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Redirect } from "react-router-dom";
 import ModalSign from "../../Pages/Login/ModalLogin";
 
 export default function SuccessRegister() {

@@ -37,7 +37,7 @@ function ModalLogin(props) {
   const { errors } = formState;
   const [cookies, setCookie] = useCookies(["User"]);
   const [loader, showLoader, hideLoader] = UseFullLoading();
-  const { open, setLoginOpen, setForgetOpen, registerUser } = props;
+  const { open, setLoginOpen, setForgetOpen, registerUser, detail } = props;
   const switchForget = (event) => {
     setLoginOpen(false);
     setForgetOpen(true);
@@ -118,7 +118,7 @@ function ModalLogin(props) {
     <>
       {loader}
       {open ? (
-        <Background ref={modalRef} onMouseDown={closeModal} open={open}>
+        <Background style={{ marginTop: detail ? '-50px' : '' }} ref={modalRef} onMouseDown={closeModal} open={open}>
           <animated.div style={animatedd}>
             <WrapperModal>
               <Content>

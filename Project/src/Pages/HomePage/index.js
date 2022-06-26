@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../../Components//Header";
+import Header from "../../Components/Header/NavBar";
 import Footer from "../../Components/Footer";
 import Contact from "../../Components/Contact";
 import FilmsNow from "../../Components/MovieNow";
@@ -13,7 +13,7 @@ function Index() {
 
   return (
     <div className="Home">
-      <Header />
+      <Header isHome={true} />
       <FilmsOnChart />
       <RecommendUser />
       <FilmsNow />
