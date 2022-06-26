@@ -86,6 +86,10 @@ body {
   transform: scale(1.1);
 }
 
+.Header a {
+  width: fit-content;
+}
+
 .Logo {
   grid-area: logo;
   height: 70px;
@@ -144,6 +148,10 @@ body {
   display: flex;
   margin: 30px;
   font-size: 24px;
+}
+
+.detail_page:nth-child(2) {
+  background-color: blue;
 }
 
 .detail-movie-banner {
