@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Backdrop from "@mui/material/Backdrop";
 
-function Header() {
+function Header({ isHome }) {
   const [showModalQuestions, setShowModalQuestions] = useState(false);
   /*Show modal questions*/
   const [postMovie, setPostMovie] = useState([]);
@@ -64,7 +64,7 @@ function Header() {
           setShowModalQuestions={setShowModalQuestions}
         ></ModalQuestions>
       </div>
-      <NavBar />
+      <NavBar isHome={isHome} />
       <div className="Header-banner">
         <Slider {...settings}>
           {postMovie.map((element) => {
