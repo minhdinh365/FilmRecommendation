@@ -4,7 +4,7 @@ import { LocalhostApi } from "../../API/const";
 import axios from "axios";
 
 export default function Index({ id, information }) {
-  let URL = `https://www.2embed.ru/embed/tmdb/movie?id=${id}`;
+  let URL = `https://2embed.org/embed/movie?imdb=${id}`;
 
   const [state, setState] = useState({ 
     playedTotal: 0,

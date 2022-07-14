@@ -31,25 +31,24 @@ import {
   WrapperThum,
 } from "./DetailMovieCardElement";
 import ModalSign from "../../Pages/Login/ModalLogin";
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 
 const DetailMovieCard = (props) => {
   const [isOpen, setOpenModal] = useState(false);
   const [hidden, setHidden] = useState("none");
-  function SaveMovie() {
-  }
+  function SaveMovie() {}
   const history = useHistory();
   function checkUser() {
     if (props.information == undefined) {
       setOpen(false);
-      setLoginOpen(true)
-    }
-    else {
+      setLoginOpen(true);
+    } else {
       const dateNow = new Date().toISOString();
       var dateUpgrade = props.information.date_end;
-      const diffInMilliseconds = new Date(dateNow).getTime() - new Date(dateUpgrade).getTime()
+      const diffInMilliseconds =
+        new Date(dateNow).getTime() - new Date(dateUpgrade).getTime();
       if (diffInMilliseconds > 0 || dateUpgrade == undefined) {
-        history.push('/upgrade_user')
+        history.push("/upgrade_user");
       }
     }
   }
@@ -58,14 +57,15 @@ const DetailMovieCard = (props) => {
     document.title = props.contents.title;
   }, []);
 
-  const [loginOpen, setLoginOpen] = useState(false)
-  const [open, setOpen] = useState(true)
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <>
-
       <ModalSign
-        open={loginOpen} setLoginOpen={setLoginOpen} detail={true}
+        open={loginOpen}
+        setLoginOpen={setLoginOpen}
+        detail={true}
       ></ModalSign>
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
@@ -132,7 +132,6 @@ const DetailMovieCard = (props) => {
                         Xem Phim
                       </Link>
                     </TrailerButton>
-
                   </WrapperButton>
                 </Controller>
                 <Slogan>{props.contents.tagline}</Slogan>
@@ -170,9 +169,7 @@ const DetailMovieCard = (props) => {
                     {props.contents.crew.map(function (element, index) {
                       return element.job == "Director" ? (
                         <span key={index}>{element.name}</span>
-                      ) : (
-                        null
-                      );
+                      ) : null;
                     })}
                   </Gener>
                 </Statistics>
@@ -187,7 +184,7 @@ const DetailMovieCard = (props) => {
               </TrailerButton>
               <TrailerButton onClick={() => SaveMovie()}>
                 <ion-icon name="stopwatch"></ion-icon>
-                <span >Yêu thích</span>
+                <span>Yêu thích</span>
               </TrailerButton>
             </WrapperButton>
             <h2>Diễn viên trong phim</h2>
@@ -214,13 +211,27 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
 
-          {props.information && props.information?.date_end > new Date().toISOString() ?
+          {props.information &&
+          props.information?.date_end > new Date().toISOString() ? (
             <Fade bottom duration={3000}>
-              <Iframe id={props.contents.id} information={props.information}></Iframe>
+              <Iframe
+                id={props.contents.imdb_id  }
+                information={props.information}
+              ></Iframe>
             </Fade>
-            :
-            <WrapperCaster style={{ color: 'yellow', background: 'black', width: '90%', fontSize: '20px', padding: '30px' }} >Bạn cần đăng nhập và nâng cấp tài khoản để xem phim</WrapperCaster>
-          }
+          ) : (
+            <WrapperCaster
+              style={{
+                color: "yellow",
+                background: "black",
+                width: "90%",
+                fontSize: "20px",
+                padding: "30px",
+              }}
+            >
+              Bạn cần đăng nhập và nâng cấp tài khoản để xem phim
+            </WrapperCaster>
+          )}
         </Container>
       </Background>
     </>
