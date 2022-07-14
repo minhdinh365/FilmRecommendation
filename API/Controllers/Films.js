@@ -90,49 +90,24 @@ export const getFilmById = async (req, res) => {
 };
 export const UpdateAPI = async (req, res) => {
   try {
-    const list = await Film.find({ crew: null });
+    console.log("Updating API");
+    const list = await Film.find();
     list.forEach((element) => {
-      // axios
-      //   .get(
-      //     `https://api.themoviedb.org/3/movie/${element.id}/keywords?api_key=a2df3d1a7611194432bbdf1fc80540f2`
-      //   )
-      //   .then((data) => {
-      //     const filter = { id: element.id };
-      //     const update = { keywords: data.data.keywords };
-      //     Film.findOneAndUpdate(filter, update, { new: true }).then((data) => {
-      //       console.log("done");
-      //       console.log(element.id);
-      //     });
-      //   });
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=a2df3d1a7611194432bbdf1fc80540f2&language=en-US`
+          `https://api.themoviedb.org/3/movie/${element.id}?api_key=a2df3d1a7611194432bbdf1fc80540f2&language=en-US`
         )
         .then((data) => {
-          const filter = { id: element.id };
-          // const update = { cast: data.data.cast };
-          // Film.findOneAndUpdate(filter, update, { new: true }).then((data) => {
-          //   console.log("done");
-          //   console.log(element.id);
-          // });
-          console.log(data.data);
-          data.data.crew.forEach((index) => {
-            const update2 = { crew: data.data.crew };
-            if (index.job == "Director") {
-              Film.findOneAndUpdate(filter, update2, { new: true }).then(
-                (data) => {
-                  console.log("done");
-                  console.log(element.id);
-                }
-              );
-            }
-          });
-        })
-        .catch((err) => {
-          console.log(err.message);
+          Film.findOneAndUpdate(
+            { id: element.id },
+            { imdb_id: data.data.imdb_id },
+            { new: true }
+          ).then((res) => console.log(data.data.imdb_id));
         });
     });
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getAllFilm = async (req, res) => {

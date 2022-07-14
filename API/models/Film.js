@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import mongoose_fuzzy_searching from 'mongoose-fuzzy-searching';
+import mongoose_fuzzy_searching from "mongoose-fuzzy-searching";
 
 const schema = mongoose.Schema(
   {
@@ -89,9 +89,12 @@ const schema = mongoose.Schema(
       type: mongoose.Schema.Types.Mixed,
       trim: true,
     },
-    isDeleted:{
+    isDeleted: {
       type: Boolean,
-    }
+    },
+    imdb_id: {
+      type: String,
+    },
   },
   {
     toJSON: { virtuals: true },
