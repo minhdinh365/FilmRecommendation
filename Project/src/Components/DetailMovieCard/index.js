@@ -30,27 +30,50 @@ import {
   WrapperButton,
   WrapperThum,
 } from "./DetailMovieCardElement";
+import ModalSign from "../../Pages/Login/ModalLogin";
+import { useHistory } from "react-router";
 
 const DetailMovieCard = (props) => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpenModal] = useState(false);
   const [hidden, setHidden] = useState("none");
-  function SaveMovie() {
+  function SaveMovie() {}
+  const history = useHistory();
+  function checkUser() {
+    if (props.information == undefined) {
+      setOpen(false);
+      setLoginOpen(true);
+    } else {
+      const dateNow = new Date().toISOString();
+      var dateUpgrade = props.information.date_end;
+      const diffInMilliseconds =
+        new Date(dateNow).getTime() - new Date(dateUpgrade).getTime();
+      if (diffInMilliseconds > 0 || dateUpgrade == undefined) {
+        history.push("/upgrade_user");
+      }
+    }
   }
 
   useEffect(() => {
     document.title = props.contents.title;
   }, []);
+
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+
   return (
     <>
-
-      {/* <Advertisments start ={0} end = {10000}/> */}
+      <ModalSign
+        open={loginOpen}
+        setLoginOpen={setLoginOpen}
+        detail={true}
+      ></ModalSign>
       <PlayYoutube style={{ display: hidden }}>
         <ModalVideo
           channel="youtube"
           isOpen={isOpen}
           videoId={props.contents.video_id}
           onClose={() => {
-            setOpen(false);
+            setOpenModal(false);
             setHidden("none");
           }}
           autoPlay={false}
@@ -86,7 +109,7 @@ const DetailMovieCard = (props) => {
                   <WrapperButton>
                     <TrailerButton
                       onClick={() => {
-                        setOpen(true);
+                        setOpenModal(true);
                         setHidden("flex");
                       }}
                     >
@@ -104,11 +127,11 @@ const DetailMovieCard = (props) => {
                         smooth={true}
                         offset={-70}
                         duration={500}
+                        onClick={checkUser}
                       >
                         Xem Phim
                       </Link>
                     </TrailerButton>
-
                   </WrapperButton>
                 </Controller>
                 <Slogan>{props.contents.tagline}</Slogan>
@@ -146,9 +169,7 @@ const DetailMovieCard = (props) => {
                     {props.contents.crew.map(function (element, index) {
                       return element.job == "Director" ? (
                         <span key={index}>{element.name}</span>
-                      ) : (
-                        null
-                      );
+                      ) : null;
                     })}
                   </Gener>
                 </Statistics>
@@ -163,7 +184,7 @@ const DetailMovieCard = (props) => {
               </TrailerButton>
               <TrailerButton onClick={() => SaveMovie()}>
                 <ion-icon name="stopwatch"></ion-icon>
-                <span >Yêu thích</span>
+                <span>Yêu thích</span>
               </TrailerButton>
             </WrapperButton>
             <h2>Diễn viên trong phim</h2>
@@ -190,13 +211,27 @@ const DetailMovieCard = (props) => {
             </WrapperCaster>
           </Caster>
 
-          {props.information && props.information?.date_end > new Date().toISOString() ?
+          {props.information &&
+          props.information?.date_end > new Date().toISOString() ? (
             <Fade bottom duration={3000}>
-              <Iframe id={props.contents.id} information={props.information}></Iframe>
+              <Iframe
+                id={props.contents.imdb_id  }
+                information={props.information}
+              ></Iframe>
             </Fade>
-            :
-            <WrapperCaster style={{ color: 'yellow', background: 'black', width: '90%', fontSize: '20px', padding: '30px' }} >Bạn cần đăng nhập và nâng cấp tài khoản để xem phim</WrapperCaster>
-          }
+          ) : (
+            <WrapperCaster
+              style={{
+                color: "yellow",
+                background: "black",
+                width: "90%",
+                fontSize: "20px",
+                padding: "30px",
+              }}
+            >
+              Bạn cần đăng nhập và nâng cấp tài khoản để xem phim
+            </WrapperCaster>
+          )}
         </Container>
       </Background>
     </>

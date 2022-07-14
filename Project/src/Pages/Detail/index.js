@@ -26,6 +26,7 @@ const Detail = () => {
     id: parseInt(id),
     watched: true,
   });
+
   useEffect(() => {
     let isCancel = false;
     if (!isCancel) {
@@ -39,7 +40,7 @@ const Detail = () => {
       }
       window.scrollTo(0, 0);
       const requestOne = axios.get(LocalhostApi + `comment?id=${id}`);
-      const requestTwo = axios.get(LocalhostApi + `infor?username=${success}`).catch((error=>{}));
+      const requestTwo = axios.get(LocalhostApi + `infor?username=${success}`).catch((error => { }));
       const requestThree = axios.get(LocalhostApi + `film/${id}`);
       CallApi(requestOne, requestTwo, requestThree);
     }
@@ -48,6 +49,7 @@ const Detail = () => {
       setFilm(null);
     };
   }, [id]);
+
   function CallApi(req1, req2, req3) {
     axios.all([req1, req2, req3]).then(
       axios.spread((...responses) => {
@@ -56,8 +58,7 @@ const Detail = () => {
         const res3 = responses[2];
         setContent(res1.data.comments);
         setTotal(res1.data.total_comments);
-        if (res2?.status !== 401 && res2?.data?.account !== undefined) 
-        {
+        if (res2?.status !== 401 && res2?.data?.account !== undefined) {
           setUser(res2.data.account);
         }
         setFilm(res3.data);
@@ -84,11 +85,12 @@ const Detail = () => {
       isAcctive = true;
     };
   }, [id]);
+
   if (film !== undefined)
     return (
       <div className="detail_page">
         {loader}
-        <Header />
+        <Header isHome={false} />
         {film && <DetailMovieCard contents={film} castMovie={castMovie} information={User} />}
         <CommentBox
           evaluate={content}
@@ -105,7 +107,7 @@ const Detail = () => {
     return (
       <>
         {loader}
-        <Header />
+        <Header isHome={false} />
       </>
     );
 };
